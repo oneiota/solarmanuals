@@ -6,4 +6,8 @@ module ApplicationHelper
       link_to link_text, link_path
     end
   end
+  
+  def nicetime(time)
+    time.strftime("%d / %m / %Y")
+  end
 end

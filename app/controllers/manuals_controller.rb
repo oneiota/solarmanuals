@@ -1,4 +1,17 @@
 class ManualsController < ApplicationController
+  
+  def document
+    #@manual = Manual.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "some_file",
+          template: "manuals/document.pdf.erb"
+      end
+    end
+  end
+  
+  
   # GET /manuals
   # GET /manuals.json
   def index
@@ -18,6 +31,10 @@ class ManualsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @manual }
+      format.pdf do
+        render pdf: "some_file",
+          template: "show.pdf.html.erb"
+      end
     end
   end
 
@@ -76,7 +93,7 @@ class ManualsController < ApplicationController
     @manual.destroy
 
     respond_to do |format|
-      format.html { redirect_to manuals_url }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end

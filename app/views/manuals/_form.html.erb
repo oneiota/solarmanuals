@@ -1,13 +1,8 @@
 <%= form_for(@manual) do |f| %>
   <% if @manual.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@manual.errors.count, "error") %> prohibited this manual from being saved:</h2>
-
-      <ul>
-      <% @manual.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Check the errors below and try again.
     </div>
   <% end %>
   
@@ -15,7 +10,7 @@
   
   <div class="field datetime">
     <%= f.label :install_date %>
-    <%= f.datetime_select :install_date %>
+    <%= f.date_select :install_date %>
   </div>
 
   <div class="field">
@@ -111,7 +106,7 @@
     <%= f.text_field :inverter_number %>
   </div>
   <div class="field">
-    <%= f.label :inverter_serial %>
+    <%= f.label :inverter_serial, "Inverter Serial Number" %>
     <%= f.text_field :inverter_serial %>
   </div>
   

@@ -1,155 +1,75 @@
-<p id="notice"><%= notice %></p>
 
+<h2>Client Details</h2>
 <p>
-  <b>Client name:</b>
-  <%= @manual.client_name %>
-</p>
-
-<p>
-  <b>Client address:</b>
-  <%= @manual.client_address %>
-</p>
-
-<p>
-  <b>Client suburb:</b>
+  Installed: <%= nicetime(@manual.install_date) %><br/>
+  <strong><%= @manual.client_name %></strong><br/>
+  <%= @manual.client_address %><br/>
   <%= @manual.client_suburb %>
 </p>
 
-<p>
-  <b>Install date:</b>
-  <%= @manual.install_date %>
-</p>
+<h3>Author Details</h3>
 
 <p>
-  <b>Author name:</b>
-  <%= @manual.author_name %>
-</p>
-
-<p>
-  <b>Author company:</b>
-  <%= @manual.author_company %>
-</p>
-
-<p>
-  <b>Accreditation number:</b>
+  <strong><%= @manual.author_name %></strong><br/>
+  <%= @manual.author_company %><br/>
   <%= @manual.accreditation_number %>
 </p>
 
-<p>
-  <b>System address:</b>
-  <%= @manual.system_address %>
-</p>
+<h3>System Details</h3>
 
 <p>
-  <b>System watts:</b>
-  <%= @manual.system_watts %>
-</p>
-
-<p>
-  <b>System config:</b>
-  <%= @manual.system_config %>
-</p>
-
-<p>
-  <b>System pv voltage:</b>
-  <%= @manual.system_pv_voltage %>
-</p>
-
-<p>
-  <b>System pv current:</b>
-  <%= @manual.system_pv_current %>
-</p>
-
-<p>
-  <b>System yearly yield:</b>
+  <%= @manual.system_address %><br/>
+  <%= @manual.system_watts %><br/>
+  <%= @manual.system_config %><br/>
+  <%= @manual.system_pv_voltage %><br/>
+  <%= @manual.system_pv_current %><br/>
   <%= @manual.system_yearly_yield %>
 </p>
 
-<p>
-  <b>Panels brand:</b>
-  <%= @manual.panels_brand %>
-</p>
+<h3>Panels Details</h3>
 
 <p>
-  <b>Panels model:</b>
-  <%= @manual.panels_model %>
+  Brand: <strong><%= @manual.panels_brand %></strong><br/>
+  Model: <strong><%= @manual.panels_model %></strong><br/>
+  Number of Panels: <strong><%= @manual.panels_number %></strong><br/>
+  Serial Numbers:
 </p>
+<ol>
+  <% @manual.panels_serial_numbers.split(',').each do |number| %>
+    <li><strong><%= number.strip %></strong></li>
+  <% end %>
+</ol>
+<h3>Inverter Details</h3>
 
 <p>
-  <b>Panels number:</b>
-  <%= @manual.panels_number %>
+  Brand: <strong><%= @manual.inverter_brand %></strong><br/>
+  Model: <strong><%= @manual.inverter_model %></strong><br/>
+  Output: <strong><%= @manual.inverter_output %></strong><br/>
+  Number of Inverters: <strong><%= @manual.inverter_number %></strong><br/>
+  Serial Number: <%= @manual.inverter_serial %>
 </p>
 
-<p>
-  <b>Panels serial numbers:</b>
-  <%= @manual.panels_serial_numbers %>
-</p>
+<h3>Warranty Details</h3>
 
 <p>
-  <b>Inverter brand:</b>
-  <%= @manual.inverter_brand %>
-</p>
-
-<p>
-  <b>Inverter model:</b>
-  <%= @manual.inverter_model %>
-</p>
-
-<p>
-  <b>Inverter output:</b>
-  <%= @manual.inverter_output %>
-</p>
-
-<p>
-  <b>Inverter number:</b>
-  <%= @manual.inverter_number %>
-</p>
-
-<p>
-  <b>Inverter serial:</b>
-  <%= @manual.inverter_serial %>
-</p>
-
-<p>
-  <b>Warranty workmanship:</b>
-  <%= @manual.warranty_workmanship %>
-</p>
-
-<p>
-  <b>Warranty panels product:</b>
-  <%= @manual.warranty_panels_product %>
-</p>
-
-<p>
-  <b>Warranty panels output performance:</b>
-  <%= @manual.warranty_panels_output_performance %>
-</p>
-
-<p>
-  <b>Warranty inverter:</b>
+  <%= @manual.warranty_workmanship %><br/>
+  <%= @manual.warranty_panels_product %><br/>
+  <%= @manual.warranty_panels_output_performance %><br/>
   <%= @manual.warranty_inverter %>
 </p>
 
-<p>
-  <b>Diagram panels text:</b>
-  <%= @manual.diagram_panels_text %>
-</p>
+<h3>Diagram Text</h3>
+
+<%= simple_format @manual.diagram_panels_text %>
+
+<%= simple_format @manual.diagram_inverter_text %>
+
+<h3>Performance Estimates</h3>
 
 <p>
-  <b>Diagram inverter text:</b>
-  <%= @manual.diagram_inverter_text %>
-</p>
-
-<p>
-  <b>Average daily:</b>
-  <%= @manual.average_daily %>
-</p>
-
-<p>
-  <b>Average yearly:</b>
+  <%= @manual.average_daily %><br/>
   <%= @manual.average_yearly %>
 </p>
-
 
 <%= link_to 'Edit', edit_manual_path(@manual) %> |
 <%= link_to 'Back', root_url %>
