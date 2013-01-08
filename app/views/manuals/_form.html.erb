@@ -1,0 +1,161 @@
+<%= form_for(@manual) do |f| %>
+  <% if @manual.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@manual.errors.count, "error") %> prohibited this manual from being saved:</h2>
+
+      <ul>
+      <% @manual.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <h2>Client Details</h2>
+  
+  <div class="field">
+    <%= f.label :install_date %><br />
+    <%= f.datetime_select :install_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :client_name, "Full Name" %><br />
+    <%= f.text_field :client_name %>
+  </div>
+  <div class="field">
+    <%= f.label :client_address, "Street Address" %><br />
+    <%= f.text_field :client_address %>
+  </div>
+  <div class="field">
+    <%= f.label :client_suburb, "Suburb" %><br />
+    <%= f.text_field :client_suburb %>
+  </div>
+  
+  <h2>Author Details</h2>
+  
+  <div class="field">
+    <%= f.label :author_name, "Full Name" %><br />
+    <%= f.text_field :author_name %>
+  </div>
+  <div class="field">
+    <%= f.label :author_company, "Company Name" %><br />
+    <%= f.text_field :author_company %>
+  </div>
+  <div class="field">
+    <%= f.label :accreditation_number, "Accreditation Number" %><br />
+    <%= f.text_field :accreditation_number %>
+  </div>
+  
+  <h2>System Details</h2>
+  
+  <div class="field">
+    <%= f.label :system_address, "Grid Interactive Inverter System Location" %><br />
+    <%= f.text_field :system_address, :placeholder => "Insert Address" %>
+  </div>
+  <div class="field">
+    <%= f.label :system_watts, "Solar Panel Array Size" %><br />
+    <%= f.text_field :system_watts, :placeholder => "Insert Watts" %>
+  </div>
+  <div class="field">
+    <%= f.label :system_config, "Electrical Configuration" %><br />
+    <%= f.text_field :system_config, :placeholder => "eg. 1 string of 10 panels" %>
+  </div>
+  <div class="field">
+    <%= f.label :system_pv_voltage, "PV Array Voltage (Open Circuit)" %><br />
+    <%= f.text_field :system_pv_voltage, :placeholder => "eg. 355 Volts DC" %>
+  </div>
+  <div class="field">
+    <%= f.label :system_pv_current, "PV Array Current (Short Circuit)" %><br />
+    <%= f.text_field :system_pv_current, :placeholder => "eg. 8.6 Amps DC" %>
+  </div>
+  <div class="field">
+    <%= f.label :system_yearly_yield, "Approximate Yearly Yield" %><br />
+    <%= f.text_field :system_yearly_yield, :placeholder => "eg. 2975 kiloWatt Hours" %>
+  </div>
+  
+  <h2>Panel Details</h2>
+  
+  <div class="field">
+    <%= f.label :panels_brand, "Panel Brand" %><br />
+    <%= f.text_field :panels_brand %>
+  </div>
+  <div class="field">
+    <%= f.label :panels_model, "Panel Model" %><br />
+    <%= f.text_field :panels_model %>
+  </div>
+  <div class="field">
+    <%= f.label :panels_number, "Number of Panels" %><br />
+    <%= f.text_field :panels_number %>
+  </div>
+  <div class="field">
+    <%= f.label :panels_serial_numbers, "Serial Numbers (comma separated)" %><br />
+    <%= f.text_area :panels_serial_numbers, :placeholder => "2001406276, 2001406250, 2001405450", :rows => 4 %>
+  </div>
+  
+  <h2>Inverter Details</h2>
+  
+  <div class="field">
+    <%= f.label :inverter_brand, "Inverter Brand" %><br />
+    <%= f.text_field :inverter_brand %>
+  </div>
+  <div class="field">
+    <%= f.label :inverter_model, "Inverter Model" %><br />
+    <%= f.text_field :inverter_model %>
+  </div>
+  <div class="field">
+    <%= f.label :inverter_output, "Inverter Output" %><br />
+    <%= f.text_field :inverter_output, :placeholder => "Insert kW" %>
+  </div>
+  <div class="field">
+    <%= f.label :inverter_number, "Number of Inverters" %><br />
+    <%= f.text_field :inverter_number %>
+  </div>
+  <div class="field">
+    <%= f.label :inverter_serial %><br />
+    <%= f.text_field :inverter_serial %>
+  </div>
+  
+  <h2>Warranty Details</h2>
+  
+  <div class="field">
+    <%= f.label :warranty_workmanship, "Installation Workmanship" %><br />
+    <%= f.text_field :warranty_workmanship, :placeholder => "eg. 2 years from installation date" %>
+  </div>
+  <div class="field">
+    <%= f.label :warranty_panels_product, "Panels - Product" %><br />
+    <%= f.text_field :warranty_panels_product, :placeholder => "eg. 10 years" %>
+  </div>
+  <div class="field">
+    <%= f.label :warranty_panels_output_performance, "Panels - Output Performance" %><br />
+    <%= f.text_field :warranty_panels_output_performance, :placeholder => "eg. 25 years" %>
+  </div>
+  <div class="field">
+    <%= f.label :warranty_inverter %><br />
+    <%= f.text_field :warranty_inverter, :placeholder => "eg. 5 years" %>
+  </div>
+  
+  <h2>Diagram Text</h2>
+  
+  <div class="field">
+    <%= f.label :diagram_panels_text %><br />
+    <%= f.text_area :diagram_panels_text, :rows => 4 %>
+  </div>
+  <div class="field">
+    <%= f.label :diagram_inverter_text %><br />
+    <%= f.text_area :diagram_inverter_text, :rows => 4 %>
+  </div>
+  
+  <h2>Performance Estimates</h2>
+  
+  <div class="field">
+    <%= f.label :average_daily %><br />
+    <%= f.text_field :average_daily %>
+  </div>
+  <div class="field">
+    <%= f.label :average_yearly %><br />
+    <%= f.text_field :average_yearly %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

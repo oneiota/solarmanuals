@@ -1,0 +1,29 @@
+<h1>Manual Archive</h1>
+
+<table>
+  <tr>
+    <th>Client name</th>
+    <th>Client address</th>
+    <th>Client suburb</th>
+    <th>Install date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @manuals.each do |manual| %>
+  <tr>
+    <td><%= manual.client_name %></td>
+    <td><%= manual.client_address %></td>
+    <td><%= manual.client_suburb %></td>
+    <td><%= manual.install_date %></td>
+    <td><%= link_to 'Show', manual %></td>
+    <td><%= link_to 'Edit', edit_manual_path(manual) %></td>
+    <td><%= link_to 'Destroy', manual, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Manual', new_manual_path %>

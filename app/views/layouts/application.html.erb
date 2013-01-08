@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Solar</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="wrapper">
+  <header id="header">
+    <h1>Electrical QLD Solar Panel Manual Generator</h1>
+    <nav id="menu">
+      <ul>
+        <li><%= link_to "Archive", manuals_path %></li>
+        <li><%= link_to "Create New Manual", new_manual_path %></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="content">
+    <%= yield %>
+  </div>
+</div>
+</body>
+</html>

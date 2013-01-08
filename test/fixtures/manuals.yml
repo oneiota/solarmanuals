@@ -1,0 +1,65 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  client_name: MyString
+  client_address: MyString
+  client_suburb: MyString
+  install_date: 2013-01-08 12:35:38
+  author_name: MyString
+  author_company: MyString
+  accreditation_number: MyString
+  system_address: MyString
+  system_watts: MyString
+  system_config: MyString
+  system_pv_voltage: MyString
+  system_pv_current: MyString
+  system_yearly_yield: MyString
+  panels_brand: MyString
+  panels_model: MyString
+  panels_number: MyString
+  panels_serial_numbers: MyString
+  inverter_brand: MyString
+  inverter_model: MyString
+  inverter_output: MyString
+  inverter_number: MyString
+  inverter_serial: MyString
+  warranty_wokmanship: MyString
+  warranty_panels_product: MyString
+  warranty_panels_output_performance: MyString
+  warranty_inverter: MyString
+  diagram_panels_text: MyString
+  diagram_inverter_text: MyString
+  average_daily: MyString
+  average_yearly: MyString
+
+two:
+  client_name: MyString
+  client_address: MyString
+  client_suburb: MyString
+  install_date: 2013-01-08 12:35:38
+  author_name: MyString
+  author_company: MyString
+  accreditation_number: MyString
+  system_address: MyString
+  system_watts: MyString
+  system_config: MyString
+  system_pv_voltage: MyString
+  system_pv_current: MyString
+  system_yearly_yield: MyString
+  panels_brand: MyString
+  panels_model: MyString
+  panels_number: MyString
+  panels_serial_numbers: MyString
+  inverter_brand: MyString
+  inverter_model: MyString
+  inverter_output: MyString
+  inverter_number: MyString
+  inverter_serial: MyString
+  warranty_wokmanship: MyString
+  warranty_panels_product: MyString
+  warranty_panels_output_performance: MyString
+  warranty_inverter: MyString
+  diagram_panels_text: MyString
+  diagram_inverter_text: MyString
+  average_daily: MyString
+  average_yearly: MyString

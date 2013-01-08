@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: solar_development
+  pool: 5
+  username: tom
+  password:
