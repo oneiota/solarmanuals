@@ -26,7 +26,7 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "nokogiri"
-gem "wicked_pdf"
+gem "pdfkit"
 gem "wkhtmltopdf-binary"
 # group :development do
 #   gem "wkhtmltopdf-binary"

@@ -1,13 +1,10 @@
 class ManualsController < ApplicationController
+  layout "pdf", :only => [:document]
   
   def document
     #@manual = Manual.find(params[:id])
     respond_to do |format|
       format.html
-      format.pdf do
-        render pdf: "some_file",
-          template: "manuals/document.pdf.erb"
-      end
     end
   end
   
