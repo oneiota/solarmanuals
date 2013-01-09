@@ -71,5 +71,6 @@
   <%= @manual.average_yearly %>
 </p>
 
+<%= link_to 'Generate Document', manual_document_path(@manual) %> | 
 <%= link_to 'Edit', edit_manual_path(@manual) %> |
 <%= link_to 'Back', root_url %>
