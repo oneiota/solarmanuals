@@ -1,1 +1,45 @@
-<%= yield %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Manual</title>
+    <style type="text/css">
+      @font-face {
+        font-family: 'Lyon';
+        src: url('file://<%= Rails.root %>/public/Lyon.otf');
+      }
+      * {
+        font-size: 100%;
+      }
+
+      body {
+        font-family: 'Lyon';
+        font-size: 14px;
+      }
+
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.5em; }
+      h3 { font-size: 1.25em; }
+      h4 { font-size: 1em; }
+
+      .page {
+        page-break-after: always;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin: 0;
+        padding: 0;
+      }
+      
+      table td {
+        border: #ccc 0.5px solid;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

@@ -1,13 +1,19 @@
 class ManualsController < ApplicationController
-  layout "pdf", :only => [:document]
+  layout "pdf", :only => [:document, :cover]
   
   def document
-    #@manual = Manual.find(params[:id])
+    @manual = Manual.find(params[:id])
     respond_to do |format|
       format.html
+      format.pdf do
+        render :pdf => "some_files",
+          :template => "manuals/document.html.erb",
+          :layout => "pdf.html",
+          :basic_auth => true,
+          :disable_smart_shrinking => true
+      end
     end
   end
-  
   
   # GET /manuals
   # GET /manuals.json
@@ -28,10 +34,6 @@ class ManualsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @manual }
-      format.pdf do
-        render pdf: "some_file",
-          template: "show.pdf.html.erb"
-      end
     end
   end
 

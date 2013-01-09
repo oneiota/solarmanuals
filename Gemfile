@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'thin'
 
 
 # Gems used only for assets and not required
@@ -22,11 +23,13 @@ end
 
 gem 'jquery-rails'
 
+gem 'debugger'
+
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "nokogiri"
-gem "pdfkit"
+gem "wicked_pdf", :git => "git://github.com/mileszs/wicked_pdf.git"
 gem "wkhtmltopdf-binary"
 # group :development do
 #   gem "wkhtmltopdf-binary"

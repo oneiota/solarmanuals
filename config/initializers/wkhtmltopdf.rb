@@ -1,1 +1,1 @@
-# WickedPdf.config = { :exe_path => '/usr/local/Cellar/wkhtmltopdf/0.9.9/bin/wkhtmltopdf' }
+#WickedPdf.config = { :exe_path => '/usr/local/bin/wkhtmltopdf' }

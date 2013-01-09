@@ -1,1 +1,230 @@
-<h1>HELLO WORLD</h1>
+<%= debug @manual %>
+<div class="page">
+  <h2><%= @manual.author_company %></h2>
+  <h1>Grid Connect PV User Manual</h1>
+  <p>
+    <%= @manual.client_name %><br/>
+    <%= @manual.client_address %><br/>
+    <%= @manual.client_suburb %>
+  </p>
+  <p>
+    <%= @manual.author_name %><br/>
+    Accreditation No. <%= @manual.accreditation_number %>
+  </p>
+  <p>This document has been prepared as a reference and maintenance manual for the owner of the above PV power system.</p>
+</div>
+
+<div class="page">
+  <h1>Contents</h1>
+</div>
+
+<div class="page">
+  <h1>Introduction</h1>
+  <p><%= @manual.author_company %> congratulates you on the installation of your new grid connected solar system.</p>
+  <p>Great care has gone into the installation of your system, which has been designed specifically for Australian conditions; and, to meet the requirements of the current Australian electrical and building codes.</p>
+  <p>We have included information in this manual to assist you with the operation and maintenance of your new grid connected solar PV system.</p>
+  <p>It is imperative you observe all safety requirements when dealing with all elements of your new system.  Please ensure you familiarise yourself with the safety requirements in this manual together with any local safety rules for your state.</p>
+  <p>Once your grid-connected solar system has been commissioned, it should provide you with trouble free automatic operation.</p>
+  
+  <h1>Solar Power Explained</h1>
+  
+  <h2>How Solar Power Works</h2>
+  <p>Solar electricity generation works by converting energy from the sun, in the form of light, into electricity.</p>
+  <p>Solar cells are made of semiconductors and work via what is known as the photovoltaic (PV) effect.  In this process when light hits a conductor and semiconductor it transfers its energy to that conductor.  Light is actually a stream of energy particles called photons.  When the photons hit the silicon surface in the solar cells they generate electricity by transferring energy and freeing electrons.  In this way electricity is generated.  Put simply, photovoltaic cells are energy converters - converting the energy from sunlight into electricity.</p>
+  
+  <h2>How a Grid Connected Solar Power System Works</h2>
+  <p>A grid-connected solar power system is an array of photovoltaic modules connected via an inverter to provide power for your home, with excess production feeding into the grid.</p>
+  <p>At night, when the solar modules are not producing electricity, the electricity is sourced from the grid. This can be summarised as follows:</p>
+  <ol>
+    <li>
+      <em>Photovoltaic Modules</em><br/>
+      Also known as solar panels, directly convert energy in the form of sunlight into direct current (DC) electrical energy.
+    </li>
+    <li>
+      <em>Inverter</em><br/>
+      An inverter changes the solar DC power into 240V alternating current (AC) ready to be fed back into the grid or used in your premises.
+    </li>
+    <li>
+      <em>Switchboard</em><br/>
+      AC power from the inverter goes through the switchboard for use in your home.
+    </li>
+    <li>
+      <em>Electricity Meter</em><br/>
+      The meter records the energy sent to the grid from your solar system as well as the energy consumed from the grid.
+    </li>
+    <li>
+      <em>The Mains Electricity Grid</em><br/>
+      Any surplus electricity being generated simply flows through into the mains grid for use elsewhere.
+    </li>
+  </ol>
+  
+  <h2>The Electricity Meter</h2>
+  <p>Most homes will need to have their electricity meter changed to enable data to be collected by the electrical retailers and electrical distributors for your electricity bills.  The costs associated with the meter change are NOT covered by your solar system purchase price.</p>
+  <p><strong>Note:</strong> If your meter has not been changed within 3 months of your installation contact your electrical retailer to establish why not.  Your meter can only be changed with a current electrical safety certificate which will expire after 12 months from the date of certificate issue and you will incur further cost to have these certificates re-issued.</p>
+  
+  <h1>System Overview</h1>
+  <ul>
+    <li>The solar system is a grid interactive inverter system located at: <strong><%= @manual.system_address %></strong></li>
+    <li>The solar panel array size is: <strong><%= @manual.system_watts %></strong></li>
+    <li>The electrical configuration is: <strong><%= @manual.system_config %></strong></li>
+    <li>PV array Voltage (Open Circuit): <strong><%= @manual.system_pv_voltage %></strong></li>
+    <li>PV array Current (Short Circuit): <strong><%= @manual.system_pv_current %></strong></li>
+    <li>Approximate Yearly yield: <strong><%= @manual.system_yearly_yield %></strong></li>
+  </ul>
+  
+  <h1>System Performance</h1>
+  <p>The system performance will highly depend on the geographical and atmospheric conditions of the installation site.  The direction your panels face, the angle of tilt they are on, and the amount of dust and shading they encounter all affect the ability of the system to perform at its peak level.</p>
+  <p>The yield of the system will be affected by shading. Shading could be from trees, dust, bird droppings, buildings being built or extended on to, the installation of any structure or additions such as antenna, fire place flues, plumbing pipe work, chimney, etc. Anything that projects a shadow on to the panels will affect its performance.</p>
+  <p>Variations in weather patterns will also affect total yield.</p>
+  <p><strong>See Attachment a for a monthly system performance estimate.</strong></p>
+  
+  <h1>Safety</h1>
+  <p>The following safety instructions are important for your personal safety and for the optimum performance of your solar power system. Please take the time to go through the following checklist with your installation team.  The safety instructions must NOT be ignored.</p>
+  <ul>
+    <li>The service and maintenance of your newly installed solar power system must be carried out by a licensed electrical contractor in strict compliance with the Australian building and electrical safety rules.</li>
+    <li>If you are not a licensed electrical contractor or a qualified person do not attempt to do any modification and/or maintenance work on the solar power system. Doing so may put you in danger and may also void component warranties.</li>
+    <li>Never pour cold water on solar module surfaces when the sun is shining and they are hot. Doing so can shatter the solar module glass. This type of damage will not be covered by the solar module warranty. This activity could also expose you to the danger of electrocution.</li>
+    <li>Never walk on the surface of the solar modules. Doing so will damage the solar module and will not be covered by warranty.</li>
+    <li>Avoid working in the vicinity of the installed solar module area when raining or when the area is still wet.</li>
+    <li>Observe all safety signs installed as part of your system.</li>
+    <li>Please note that DC voltages will be present on the solar module side of the inverter even if the isolating circuit breakers are completely switched off.</li>
+    <li>Beware of the risk of death from touching electrical components! Do not open any of the components of your solar power system unless you are a qualified licensed electrical contractor.</li>
+  </ul>
+  
+  <h1>System Maintenance</h1>
+  
+  <h2>Inspection Timetable</h2>
+  <h4>Weekly</h4>
+  <ul>
+    <li>Check inverter is operating</li>
+    <li>Check meter is recording export power</li>
+  </ul>
+  <h4>Every Three Months</h4>
+  <ul>
+    <li>Check your electricity bill to ensure you are being credited for power you are producing</li>
+    <li>Check for module shading, as shading reduces performance</li>
+    <li>Check for tree litter behind modules and framing</li>
+    <li>Check for build-up of dust and bird droppings</li>
+  </ul>
+  <h4>Every Year</h4>
+  <ul>
+    <li>Professional system performance and maintenance check</li>
+  </ul>
+  <p><strong>Note:</strong> Please check with the original roofing manufacturer for any specific additional maintenance requirements due to the installation of solar panels.</p>
+  
+  <h2>Inspection Procedure</h2>
+  
+  <h4>Inverter</h4>
+  <p>Check the inverter during the day as described in your inverter manual. A brief overview has been provided at the back of this manual for your convenience. Keep the inverter clean, dust free and check for any infestation by vermin.</p>
+  
+  <h4>Meter</h4>
+  <p>Check it during the day when there are no (or minimal) electrical appliances operating in your house. The meter should be showing energy exported. If you are having trouble understanding how to read your meter, contact your electricity retailer or distributor for advice. During winter, the solar system may not make a significant difference to your bill.</p>
+  
+  <h4>Check your Electricity Bill</h4>
+  <p>The easiest way to do this is to compare your current bill with the bill for the same period last year. Look at the number of kilowatts your household has consumed, it should be less than the last bill prior to the installation of the solar system, provided your usage has not changed.</p>
+  
+  <h4>Check for Shading</h4>
+  <p>Trees can grow quickly and they may have grown since your solar system was installed. If they are shading your panels, you will be able to see this by checking the array for shading across several hours during the day.</p>
+  <p>Check at 10am, 12 noon and 3pm. If you detect shading, the trees may need to be trimmed. Be sure to check with your local council to ensure you comply with local laws before trimming or removing trees.</p>
+  
+  <h4>Check for Tree Litter behind Modules and Framing</h4>
+  <p>If you are in a fire risk area, or have trees surrounding your house area, ensure no tree litter is lodged behind the panels and frames.</p>
+  <p>This maintenance is particularly important to include as part of your fire readiness plan. Flying embers in a bush fire could ignite tree litter which is lodged behind panels.</p>
+  
+  <h4>Check for Build-up of Dust or Bird Droppings</h4>
+  <p>A build up of dust and/or bird droppings on your solar panels will reduce the systems output performance.  Refer to the section in this manual on cleaning the panels and safety warnings. <%= @manual.author_company %> does not recommend you climb on to the roof. This should only be undertaken by suitably qualified and equipped person/s, following Occupational Health and Safety procedures.</p>
+  
+  <h1>Trouble Shooting</h1>
+  
+  <h4>Inverter</h4>
+  <p>The inverter is considered to be the &ldquo;heart&rdquo; of the solar system as it controls every aspect of the power generation within the system and provides system status indication.</p>
+  <p>Your inverter manual contains information on identifying problems.</p>
+  <p>If the inverter does not respond:</p>
+  <ul>
+    <li>Check there has not been a power outage.</li>
+    <li>If there is the Inverter will reconnect when power is restored.</li>
+    <li>Check &lsquo;PV Array Main Switch&rsquo; is in the ON position.</li>
+    <li>Check &lsquo;Solar Supply Main Switch&rsquo; is in the ON position.</li>
+    <li>Check that the &lsquo;Inverter Switch&rsquo; is in the ON position.</li>
+  </ul>
+  
+  <h1>Shutdown / Start up Procedure</h1>
+  <h2>System Shutdown Procedure</h2>
+  <p>The system does not need to be turned off unless there is some work that is going to be performed on the system or on the switchboard.</p>
+  <h4>Step 1</h4>
+  <p>Turn off the AC output of the inverter. A circuit breaker labelled &ldquo;Solar Supply Main Switch&rdquo; is installed in the switchboard. Turn this off by flicking the tab to the down position. The inverter will go into a fault condition as there will be no AC applied to the inverter.</p>
+  <h4>Step 2</h4>
+  <p>Turn off the DC input to the inverter. A circuit breaker in the &ldquo;PV Array Switch&rdquo; box is located next to the inverter. Turn this off by flicking the tab to the down position. This circuit breaker has two tabs that are joined together. The inverter will power off once the stored power in the inverter has discharged.</p>
+  
+  <h2>System Start Up Procedure</h2>
+  <p>To turn on the system it is the reverse process of the shutdown procedure (step 2 then step 1).</p>
+</div>
+
+<div class="page">
+  <h1>System Components</h1>
+  
+  <h4>Panels</h4>
+  <table>
+    <tr>
+      <td>Panel Brand: <strong><%= @manual.panels_brand %></strong></td>
+      <td>Panel Model: <strong><%= @manual.panels_model %></strong></td>
+      <td>Number of Panels: <strong><%= @manual.panels_number %></strong></td>
+    </tr>
+  </table>
+  
+  <h4>Panel Serial Numbers</h4>
+  <table>
+    <tr>
+      <% index = 1 %>
+      <% @manual.panels_serials.each do |number| %>
+        <td><%= index %>. <strong><%= number %></strong></td>
+        <% if index % 3 == 0 %>
+          <tr/><tr>
+        <% end %>
+        <% index += 1 %>
+      <% end %>
+    </tr>
+  </table>
+  
+  <h4>Inverter</h4>
+  <table>
+    <tr>
+      <td>Inverter Brand: <strong><%= @manual.inverter_brand %></strong></td>
+      <td>Inverter Model: <strong><%= @manual.inverter_model %></strong></td>
+      <td>Inverter Output: <strong><%= @manual.inverter_output %></strong></td>
+      <td>Number of Inverters: <strong><%= @manual.inverter_number %></strong></td>
+    </tr>
+  </table>
+  
+  <h4>Inverter Serial Number</h4>
+  <table>
+    <tr>
+      <td>1. <%= @manual.inverter_serial %></td>
+    </tr>
+  </table>
+  
+  <h1>Warranties</h1>
+  
+  <table>
+    <tr>
+      <td>Installation Workmanship</td>
+      <td><%= @manual.warranty_workmanship %></td>
+    </tr>
+    <tr>
+      <td>Panels &ndash; Product</td>
+      <td><%= @manual.warranty_panels_product %></td>
+    </tr>
+    <tr>
+      <td>Panels &ndash; Output Performance</td>
+      <td><%= @manual.warranty_panels_output_performance %></td>
+    </tr>
+    <tr>
+      <td>Inverter</td>
+      <td><%= @manual.warranty_inverter %></td>
+    </tr>
+  </table>
+</div>
+
+<div class="page">
+  <h1>Wiring</h1>
+</div>
