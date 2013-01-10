@@ -26,3 +26,12 @@
 .control-group {
   margin: 0 !important;
 }
+
+
+
+
+#new_manual {
+  input[type=text], textarea {
+    width: 270px;
+  }
+}
