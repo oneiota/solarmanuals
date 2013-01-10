@@ -6,11 +6,10 @@ class ManualsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "some_files",
-          :template => "manuals/document.html.erb",
-          :layout => "pdf.html",
-          :basic_auth => true,
-          :disable_smart_shrinking => true
+        pdf = DocumentPdf.new @manual
+        send_data pdf.render, filename: "manual.pdf",
+          type: "application/pdf",
+          disposition: "inline"
       end
     end
   end
