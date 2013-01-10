@@ -6,4 +6,19 @@ class Manual < ActiveRecord::Base
     panels_serial_numbers.split(',').map{ |number| number.strip }
   end
   
+  def panels_table
+    buffer = ""
+    index = 1
+    line_text = ""
+    panels_serials.each do |number|
+      line_text += "|#{index}. <b>#{number}</b>"
+      if index % 3 == 0
+        buffer << "#{line_text}|\n"
+        line_text = ""
+      end
+      index += 1
+    end
+    buffer << "#{line_text}|" unless line_text.blank?
+    buffer
+  end
 end

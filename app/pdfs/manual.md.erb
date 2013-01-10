@@ -69,6 +69,8 @@ Most homes will need to have their electricity meter changed to enable data to b
 
 Note: If your meter has not been changed within 3 months of your installation contact your electrical retailer to establish why not. Your meter can only be changed with a current electrical safety certificate which will expire after 12 months from the date of certificate issue and you will incur further cost to have these certificates re-issued.
 
+---
+
 # System Overview
 
 * The solar system is a grid interactive inverter system located at:
@@ -92,7 +94,9 @@ The yield of the system will be affected by shading. Shading could be from trees
 
 Variations in weather patterns will also affect total yield.
 
-See Attachment a for a monthly system performance estimate.
+<b>See Attachment a for a monthly system performance estimate.</b>
+
+---
 
 # Safety
 
@@ -129,6 +133,8 @@ The following safety instructions are important for your personal safety and for
 
 <b>Note:</b> Please check with the original roofing manufacturer for any specific additional maintenance requirements due to the installation of solar panels.
 
+---
+
 # Inspection Procedure
 
 ### Inverter
@@ -157,7 +163,9 @@ This maintenance is particularly important to include as part of your fire readi
 
 ### Check for Build-up of Dust or Bird Droppings
 
-A build up of dust and/or bird droppings on your solar panels will reduce the systems output performance. Refer to the section in this manual on cleaning the panels and safety warnings. One Iota does not recommend you climb on to the roof. This should only be undertaken by suitably qualified and equipped person/s, following Occupational Health and Safety procedures.
+A build up of dust and/or bird droppings on your solar panels will reduce the systems output performance. Refer to the section in this manual on cleaning the panels and safety warnings. <%= @manual.author_company %> does not recommend you climb on to the roof. This should only be undertaken by suitably qualified and equipped person/s, following Occupational Health and Safety procedures.
+
+---
 
 # Trouble Shooting
 
@@ -193,3 +201,30 @@ Turn off the DC input to the inverter. A circuit breaker in the “PV Array Swit
 ## System Start Up Procedure
 
 To turn on the system it is the reverse process of the shutdown procedure (step 2 then step 1).
+
+---
+
+# System Components
+
+### Panels
+
+|Panel Brand: <b><%= @manual.panels_brand %></b>|Panel Model: <b><%= @manual.panels_model %></b>|Number of Panels: <b><%= @manual.panels_number %></b>|
+
+### Panel Serial Numbers
+
+<%= @manual.panels_table %>
+
+### Inverter
+
+|Inverter Brand: <b><%= @manual.inverter_brand %></b>|Inverter Model: <b><%= @manual.inverter_model %></b>|Inverter Output: <b><%= @manual.inverter_output %></b>|
+
+### Inverter Serial Number
+
+|1. <b><%= @manual.inverter_serial %></b>|
+
+# Warranties
+
+|Installation Workmanship|<b><%= @manual.warranty_workmanship %></b>|
+|Panels - Product|<b><%= @manual.warranty_panels_product %></b>|
+|Panels - Output Performance|<b><%= @manual.warranty_panels_output_performance %></b>|
+|Inverter|<b><%= @manual.warranty_inverter %></b>|

@@ -12,7 +12,7 @@ class DocumentPdf < Prawn::Document
     
     
     @manual = manual
-    template = ERB.new(File.read(Rails.root + 'app/pdfs/manual.md.erb'))
+    template = ERB.new(File.read(Rails.root.join('app/pdfs/manual.md.erb')))
     result = template.result(binding)
     
     # append line to buffer until we hit a blank line
@@ -34,6 +34,7 @@ class DocumentPdf < Prawn::Document
   def parse(buffer)
     if buffer.start_with? "#" then return header(buffer) end
     if buffer.start_with? "* " then return list(buffer) end
+    if buffer.start_with? "|" then return table_from_string(buffer) end
     if buffer.strip == "---" then return start_new_page end
     paragraph buffer
   end
@@ -62,28 +63,32 @@ class DocumentPdf < Prawn::Document
   end
   
   def header3(buffer)
-    text buffer[4..-1], :size => 12, :style => :bold
+    text buffer[4..-1], :size => 11, :style => :bold
   end
   
   def list(buffer)
     # create nested array with bullets
     # then create a borderless table
-    
     arr = []
-    line_buffer = ""
     buffer.each_line do |line|
       if line.start_with? "* "
-        line_buffer += line
+        arr << ["•", line[2..-1]]
       else
-        line_buffer += line
-        arr << ["•", line_buffer[2..-1]]
-        line_buffer = ""        
+        arr << ["", line]
       end
     end
-    arr << ["•", line_buffer[2..-1]]
     
-    table arr, :cell_style => { :borders => [] }
+    table arr, :cell_style => { :borders => [], :padding => 2, :inline_format => true }
     move_down @spacing
+  end
+  
+  def table_from_string(buffer)
+    arr = []
+    buffer.each_line do |line|
+      arr << line.strip.split('|').reject{ |s| s.empty? }
+    end
+    table arr, :cell_style => { :inline_format => true, :border_width => 0.25 }, :width => 540
+    move_down @spacing * 2
   end
 
   
