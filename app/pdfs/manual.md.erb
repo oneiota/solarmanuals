@@ -19,7 +19,7 @@ This document has been prepared as a reference and maintenance manual for the ow
 
 # Introduction
 
-<%= @manual.author_company %> congratulates you on the installation of your new grid connected solar system.
+<b><%= @manual.author_company %></b> congratulates you on the installation of your new grid connected solar system.
 
 Great care has gone into the installation of your system, which has been designed specifically for Australian conditions; and, to meet the requirements of the current Australian electrical and building codes.
 
@@ -76,15 +76,15 @@ Note: If your meter has not been changed within 3 months of your installation co
 * The solar system is a grid interactive inverter system located at:
 <b><%= @manual.system_address %></b>
 * The solar panel array size is:
-<b><%= @manual.system_watts %></b>
+<b><%= @manual.system_watts %> Watts</b>
 * The electrical configuration is: 
 <b><%= @manual.system_config %></b>
 * PV array Voltage (Open Circuit):
-<b><%= @manual.system_pv_voltage %></b>
+<b><%= @manual.system_pv_voltage %> Volts DC</b>
 * PV array Current (Short Circuit):
-<b><%= @manual.system_pv_current %></b>
-* Approximate Yearly yield: 
-<b><%= @manual.system_yearly_yield %></b>
+<b><%= @manual.system_pv_current %> Amps DC</b>
+* Approximate Yearly yield (based on sunlight information from <%= @manual.sunlight_city.capitalize %>): 
+<b><%= @graph.yearly_total %> kiloWatt Hours</b>
 
 # System Performance
 
@@ -228,3 +228,25 @@ To turn on the system it is the reverse process of the shutdown procedure (step 
 |Panels - Product|<b><%= @manual.warranty_panels_product %></b>|
 |Panels - Output Performance|<b><%= @manual.warranty_panels_output_performance %></b>|
 |Inverter|<b><%= @manual.warranty_inverter %></b>|
+
+---
+
+# Appendix 1: System Performance Estimate
+
+= draw_graph
+
+Energy Production Estimates:
+
+|Average:|<b><%= @graph.total_average %> kWh/day</b>|
+|Max:|<b><%= @graph.max %> kWh/day</b>|
+|Min:|<b><%= @graph.min %> kWh/day</b>|
+|Yearly:|<b><%= @graph.yearly_total %> kWh</b>|
+
+---
+
+# Wiring
+
+### Diagram of installed system
+
+= draw_diagram
+

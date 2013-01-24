@@ -31,3 +31,4 @@ gem "twitter-bootstrap-rails"
 gem "nokogiri"
 
 gem "prawn"
+gem "prawn-graph"

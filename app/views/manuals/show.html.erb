@@ -18,12 +18,11 @@
 <h3>System Details</h3>
 
 <p>
-  <%= @manual.system_address %><br/>
-  <%= @manual.system_watts %><br/>
-  <%= @manual.system_config %><br/>
-  <%= @manual.system_pv_voltage %><br/>
-  <%= @manual.system_pv_current %><br/>
-  <%= @manual.system_yearly_yield %>
+  Address: <strong><%= @manual.system_address %></strong><br/>
+  Output: <strong><%= @manual.system_watts %></strong> W<br/>
+  System config: <strong><%= @manual.system_config %></strong><br/>
+  PV Voltage: <strong><%= @manual.system_pv_voltage %></strong> Volts DC<br/>
+  PV Current <strong><%= @manual.system_pv_current %></strong> Amps DC
 </p>
 
 <h3>Panels Details</h3>
@@ -52,24 +51,15 @@
 <h3>Warranty Details</h3>
 
 <p>
-  <%= @manual.warranty_workmanship %><br/>
-  <%= @manual.warranty_panels_product %><br/>
-  <%= @manual.warranty_panels_output_performance %><br/>
-  <%= @manual.warranty_inverter %>
+  Workmanship: <strong><%= @manual.warranty_workmanship %></strong><br/>
+  Panels - Product: <strong><%= @manual.warranty_panels_product %></strong><br/>
+  Panels - Output Performance: <strong><%= @manual.warranty_panels_output_performance %></strong><br/>
+  Inverter: <strong><%= @manual.warranty_inverter %></strong>
 </p>
 
-<h3>Diagram Text</h3>
+<h3>Graph</h3>
 
-<%= simple_format @manual.diagram_panels_text %>
-
-<%= simple_format @manual.diagram_inverter_text %>
-
-<h3>Performance Estimates</h3>
-
-<p>
-  <%= @manual.average_daily %><br/>
-  <%= @manual.average_yearly %>
-</p>
+<p>Using <strong><%= @manual.sunlight_city.capitalize %></strong> for sunlight data.</p>
 
 <%= link_to 'Generate Document', manual_document_path(@manual, :format => :pdf) %> | 
 <%= link_to 'Edit', edit_manual_path(@manual) %> |

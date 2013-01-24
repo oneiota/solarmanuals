@@ -6,10 +6,10 @@
     </div>
   <% end %>
   <div class="section row">
-    <div class="span3">
+    <div class="span4">
       <h2>Client Details</h2>
     </div>
-    <div class="span9">
+    <div class="span8">
       <div class="field datetime">
         <%= f.label :install_date %>
         <%= f.date_select :install_date %>
@@ -31,10 +31,10 @@
   </div>
   <hr/>
   <div class="section row">
-    <div class="span3">  
+    <div class="span4">  
       <h2>Author Details</h2>
     </div>
-    <div class="span9">
+    <div class="span8">
       <div class="field">
         <%= f.label :author_name, "Full Name" %>
         <%= f.text_field :author_name %>
@@ -51,17 +51,20 @@
   </div>
   <hr/>
   <div class="section row">
-    <div class="span3">
+    <div class="span4">
       <h2>System Details</h2>
     </div>
-    <div class="span9">
+    <div class="span8">
       <div class="field">
         <%= f.label :system_address, "Grid Interactive Inverter System Location" %>
         <%= f.text_field :system_address, :placeholder => "Insert Address" %>
       </div>
       <div class="field">
         <%= f.label :system_watts, "Solar Panel Array Size" %>
-        <%= f.text_field :system_watts, :placeholder => "Insert Watts" %>
+        <div class="input-append">
+          <span class="input-container"><%= f.text_field :system_watts, :placeholder => "e.g. 2450" %></span>
+          <span class="add-on">W</span>
+        </div>
       </div>
       <div class="field">
         <%= f.label :system_config, "Electrical Configuration" %>
@@ -69,24 +72,26 @@
       </div>
       <div class="field">
         <%= f.label :system_pv_voltage, "PV Array Voltage (Open Circuit)" %>
-        <%= f.text_field :system_pv_voltage, :placeholder => "eg. 355 Volts DC" %>
+        <div class="input-append">
+          <span class="input-container"><%= f.text_field :system_pv_voltage, :placeholder => "eg. 355" %></span>
+          <span class="add-on">Volts DC</span>
+        </div>
       </div>
       <div class="field">
         <%= f.label :system_pv_current, "PV Array Current (Short Circuit)" %>
-        <%= f.text_field :system_pv_current, :placeholder => "eg. 8.6 Amps DC" %>
-      </div>
-      <div class="field">
-        <%= f.label :system_yearly_yield, "Approximate Yearly Yield" %>
-        <%= f.text_field :system_yearly_yield, :placeholder => "eg. 2975 kiloWatt Hours" %>
+        <div class="input-append">
+          <span class="input-container"><%= f.text_field :system_pv_current, :placeholder => "eg. 8.6" %></span>
+          <span class="add-on">Amps DC</span>
+        </div>
       </div>
     </div>
   </div>
   <hr/>
   <div class="section row">
-    <div class="span3">
+    <div class="span4">
       <h2>Panel Details</h2>
     </div>
-    <div class="span9">
+    <div class="span8">
       <div class="field">
         <%= f.label :panels_brand, "Panel Brand" %>
         <%= f.text_field :panels_brand %>
@@ -107,10 +112,10 @@
   </div>
   <hr/>
   <div class="section row">
-    <div class="span3">
+    <div class="span4">
       <h2>Inverter Details</h2>
     </div>
-    <div class="span9">  
+    <div class="span8">  
       <div class="field">
         <%= f.label :inverter_brand, "Inverter Brand" %>
         <%= f.text_field :inverter_brand %>
@@ -121,7 +126,10 @@
       </div>
       <div class="field">
         <%= f.label :inverter_output, "Inverter Output" %>
-        <%= f.text_field :inverter_output, :placeholder => "Insert kW" %>
+        <div class="input-append">
+          <span class="input-container"><%= f.text_field :inverter_output %></span>
+          <span class="add-on">kW</span>
+        </div>
       </div>
       <div class="field">
         <%= f.label :inverter_number, "Number of Inverters" %>
@@ -135,10 +143,10 @@
   </div>
   <hr/>
   <div class="section row">
-    <div class="span3">
+    <div class="span4">
       <h2>Warranty Details</h2>
     </div>
-    <div class="span9">  
+    <div class="span8">  
       <div class="field">
         <%= f.label :warranty_workmanship, "Installation Workmanship" %>
         <%= f.text_field :warranty_workmanship, :placeholder => "eg. 2 years from installation date" %>
@@ -159,36 +167,15 @@
   </div>
   <hr/>
   <div class="section row">
-    <div class="span3">
-      <h2>Diagram Text</h2>
+    <div class="span4">
+      <h2>Graph</h2>
     </div>
-    <div class="span9">  
-      <div class="field">
-        <%= f.label :diagram_panels_text %>
-        <%= f.text_area :diagram_panels_text, :rows => 4, :placeholder => "eg. 10 X REC. Peak Energy 245W solar panels (Model # REC PE 245W). Total: 2450W array)" %>
-      </div>
-      <div class="field">
-        <%= f.label :diagram_inverter_text %>
-        <%= f.text_area :diagram_inverter_text, :rows => 4, :placeholder => "eg. SMA Sunny Boy SB 2500HF" %>
-      </div>
+    <div class="span8">
+      <%= f.label :sunlight_city, "City to use for sunlight data" %>
+      <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
     </div>
   </div>
-  <hr/>
-  <div class="section row">
-    <div class="span3">
-      <h2>Performance Estimates</h2>
-    </div>
-    <div class="span9">  
-      <div class="field">
-        <%= f.label :average_daily %>
-        <%= f.text_field :average_daily %>
-      </div>
-      <div class="field">
-        <%= f.label :average_yearly %>
-        <%= f.text_field :average_yearly %>
-      </div>
-    </div>
-  </div>
+  
   <hr/>
   <div class="actions">
     <%= f.submit "Save Manual", :class => "btn btn-large" %>

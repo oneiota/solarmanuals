@@ -28,10 +28,46 @@
 }
 
 
-
-
-#new_manual {
+.new_manual, .edit_manual {
   input[type=text], textarea {
-    width: 270px;
+    width: 250px;
+    background: #eee;
+    border: none;
+    padding: 7px 10px;
+    box-shadow: none;
+    font-family: 'Monaco', Courier, monospace;
+    font-size: 12px;
+    border-radius: 4px !important;
+    &:focus {
+      outline: none;
+      background: #dedede;
+    }
   }
+  .input-append {
+    width: 270px;
+    overflow: hidden;
+    position: relative;
+    .add-on {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: #fff;
+      z-index: 10;
+      border-color: #eee;
+      height: 18px;
+      padding: 7px;
+    }
+    .input-container {
+      display: block;
+      overflow: hidden;
+    }
+    input {
+      width: 100%;
+    }
+  }
+}
+
+label {
+  color: #555;
 }

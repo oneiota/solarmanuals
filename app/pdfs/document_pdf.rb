@@ -12,6 +12,9 @@ class DocumentPdf < Prawn::Document
     
     
     @manual = manual
+    @graph = PerformanceGraph.new(self, @manual)
+    @diagram = Diagram.new(self, @manual)
+    
     template = ERB.new(File.read(Rails.root.join('app/pdfs/manual.md.erb')))
     result = template.result(binding)
     
@@ -29,6 +32,7 @@ class DocumentPdf < Prawn::Document
     end
     # parse left over buffer for end of file
     parse(buffer) unless buffer.empty? 
+    
   end
   
   def parse(buffer)
@@ -36,6 +40,7 @@ class DocumentPdf < Prawn::Document
     if buffer.start_with? "* " then return list(buffer) end
     if buffer.start_with? "|" then return table_from_string(buffer) end
     if buffer.strip == "---" then return start_new_page end
+    if buffer.start_with? "= " then return call_function(buffer) end
     paragraph buffer
   end
   
@@ -46,24 +51,24 @@ class DocumentPdf < Prawn::Document
   
   def header(buffer)
     if buffer.start_with? "# "
-      header1(buffer)
+      header1(buffer[2..-1])
     elsif buffer.start_with? "## "
-      header2(buffer)
+      header2(buffer[3..-1])
     elsif buffer.start_with? "### "
-      header3(buffer)
+      header3(buffer[4..-1])
     end
   end
   
   def header1(buffer)
-    text buffer[2..-1], :size => 20, :style => :bold
+    text buffer, :size => 20, :style => :bold
   end
   
   def header2(buffer)
-    text buffer[3..-1], :size => 16, :style => :bold
+    text buffer, :size => 16, :style => :bold
   end
   
   def header3(buffer)
-    text buffer[4..-1], :size => 11, :style => :bold
+    text buffer, :size => 11, :style => :bold
   end
   
   def list(buffer)
@@ -89,6 +94,22 @@ class DocumentPdf < Prawn::Document
     end
     table arr, :cell_style => { :inline_format => true, :border_width => 0.25 }, :width => 540
     move_down @spacing * 2
+  end
+  
+  def call_function(buffer)
+    method_name = buffer[2..-1].strip
+    if self.respond_to?(method_name)
+      send method_name
+    else
+    end
+  end
+  
+  def draw_graph
+    @graph.draw_graph
+  end
+  
+  def draw_diagram
+    @diagram.draw
   end
 
   
