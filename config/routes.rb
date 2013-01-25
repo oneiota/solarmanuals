@@ -6,8 +6,10 @@ Solar::Application.routes.draw do
   
   get '/manuals/:id/document', to: 'manuals#document', as: "manual_document"
   
-  root :to => 'home#index'
+  authenticated :user do
+    root :to => "manuals#index"
+  end
   
-  # root :to => 'manuals#index'
+  root :to => 'home#index'
 
 end
