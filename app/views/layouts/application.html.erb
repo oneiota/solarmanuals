@@ -67,7 +67,7 @@
               <ul class="nav">
                 <li><%= link_to "Get Started", new_user_registration_path %></li>
                 <li><a href="#try">Try It</a></li>
-                <li><a href="features.html">Features</a></li>
+                <li><a href="/features">Features</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>
               <%= form_for "user", :url => user_session_path, :html => { :class => "navbar-form pull-right" } do |f| %>
@@ -83,11 +83,9 @@
     </div>
     
     
-    <div class="container wrapper">
+    <div class="container">
       <%= yield %>
-    </div>
-    
-    <div class="container wrapper">
+      <hr/>
       <footer class="row">
         <p class="span3">&copy; Installer Technologies 2012</p>
         <p class="span3 offset6"><a class="pull-right" href="mailto:contact@solarmanuals.com.au">contact@solarmanuals.com.au</a></p>
