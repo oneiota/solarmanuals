@@ -11,16 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125052211) do
+ActiveRecord::Schema.define(:version => 20130125053650) do
 
   create_table "manuals", :force => true do |t|
     t.string   "client_name"
     t.string   "client_address"
     t.string   "client_suburb"
     t.datetime "install_date"
-    t.string   "author_name"
-    t.string   "author_company"
-    t.string   "accreditation_number"
     t.string   "system_address"
     t.string   "system_watts"
     t.string   "system_config"

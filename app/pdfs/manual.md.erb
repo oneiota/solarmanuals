@@ -1,4 +1,4 @@
-## <%= @manual.author_company %>
+## <%= @manual.user.company %>
 
 # Grid Connect PV User Manual
 
@@ -6,8 +6,9 @@
 <%= @manual.client_address %>
 <%= @manual.client_suburb %>
 
-<%= @manual.author_name %>
-Accreditation No. <%= @manual.accreditation_number %>
+<%= @manual.user.full_name %>
+
+Accreditation No. <%= @manual.user.accreditation %>
 
 This document has been prepared as a reference and maintenance manual for the owner of the above PV power system.
 
@@ -19,7 +20,7 @@ This document has been prepared as a reference and maintenance manual for the ow
 
 # Introduction
 
-<b><%= @manual.author_company %></b> congratulates you on the installation of your new grid connected solar system.
+<b><%= @manual.user.company %></b> congratulates you on the installation of your new grid connected solar system.
 
 Great care has gone into the installation of your system, which has been designed specifically for Australian conditions; and, to meet the requirements of the current Australian electrical and building codes.
 
@@ -163,7 +164,7 @@ This maintenance is particularly important to include as part of your fire readi
 
 ### Check for Build-up of Dust or Bird Droppings
 
-A build up of dust and/or bird droppings on your solar panels will reduce the systems output performance. Refer to the section in this manual on cleaning the panels and safety warnings. <%= @manual.author_company %> does not recommend you climb on to the roof. This should only be undertaken by suitably qualified and equipped person/s, following Occupational Health and Safety procedures.
+A build up of dust and/or bird droppings on your solar panels will reduce the systems output performance. Refer to the section in this manual on cleaning the panels and safety warnings. <b><%= @manual.user.company %></b> does not recommend you climb on to the roof. This should only be undertaken by suitably qualified and equipped person/s, following Occupational Health and Safety procedures.
 
 ---
 

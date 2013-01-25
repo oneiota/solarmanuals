@@ -1,6 +1,8 @@
 class ManualsController < ApplicationController
   layout "pdf", :only => [:document, :cover]
   
+  before_filter :authenticate_user!
+  
   def document
     @manual = Manual.find(params[:id])
     respond_to do |format|
@@ -40,7 +42,6 @@ class ManualsController < ApplicationController
   # GET /manuals/new.json
   def new
     @manual = Manual.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @manual }
@@ -56,7 +57,7 @@ class ManualsController < ApplicationController
   # POST /manuals.json
   def create
     @manual = Manual.new(params[:manual])
-
+    @manual.user = current_user
     respond_to do |format|
       if @manual.save
         format.html { redirect_to @manual, notice: 'Manual was successfully created.' }
