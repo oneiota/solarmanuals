@@ -21,7 +21,7 @@ class Diagram
   
   def modules
     @doc.stroke do
-      @doc.rectangle [@left + @modules_left, @start_y], @modules_width, 200
+      @doc.rectangle [@left + @modules_left, @start_y], @modules_width, 120
     end
     
     data = [
@@ -30,11 +30,26 @@ class Diagram
         :styles => [:bold]
       },
       {
-        :text => "#{@manual.panels_number} x #{@manual.panels_brand} 245W solar panels\n Model #{@manual.panels_model}\nTotal: #{@manual.system_watts} W array"
+        :text => "#{@manual.panels_number} x #{@manual.panels_brand} 245W",
+        :styles => [:bold]
+      },
+      {
+        :text => " panels\nModel: "
+      },
+      {
+        :text => "#{@manual.panels_model}\n",
+        :styles => [:bold]
+      },
+      {
+        :text => "Total: "
+      },
+      {
+        :text => "#{@manual.system_watts}W Array",
+        :styles => [:bold]
       }
     ]
     
-    @doc.formatted_text_box data, :at => [@left + @modules_left + 20, @start_y - 20], :width => 160, :height => 160
+    @doc.formatted_text_box data, :at => [@left + @modules_left + 20, @start_y - 20], :width => 160, :height => 100
     
   end
   
@@ -141,10 +156,15 @@ class Diagram
     left = @left + 110
     # single line
     @doc.stroke do
-      
       @doc.move_to [left, @top]
-      @doc.line_to [left, @top - 100]
+      @doc.line_to [left, @top - 50]
+      @doc.rectangle [left - 10, @top - 50], 20, 50
+      @doc.move_to [left, @top - 100]
+      @doc.line_to [left, @top - 150]
+      @doc.rectangle [@left + 30, @top - 150], 160, 100
     end
+    
+    @doc.text_box "Switch Board", :style => :bold, :at => [@left + 40, @top - 195], :width => 140, :align => :center
   end
   
 end
