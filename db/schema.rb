@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122003018) do
+ActiveRecord::Schema.define(:version => 20130122005645) do
 
   create_table "manuals", :force => true do |t|
     t.string   "client_name"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20130122003018) do
     t.string   "system_config"
     t.string   "system_pv_voltage"
     t.string   "system_pv_current"
-    t.string   "system_yearly_yield"
     t.string   "panels_brand"
     t.string   "panels_model"
     t.string   "panels_number"
@@ -40,10 +39,6 @@ ActiveRecord::Schema.define(:version => 20130122003018) do
     t.string   "warranty_panels_product"
     t.string   "warranty_panels_output_performance"
     t.string   "warranty_inverter"
-    t.text     "diagram_panels_text"
-    t.text     "diagram_inverter_text"
-    t.string   "average_daily"
-    t.string   "average_yearly"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "sunlight_city"

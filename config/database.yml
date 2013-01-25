@@ -3,5 +3,5 @@ development:
   encoding: unicode
   database: solar_development
   pool: 5
-  username: tom
+  username: david
   password:
