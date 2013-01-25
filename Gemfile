@@ -34,3 +34,5 @@ gem "prawn"
 gem "prawn-graph"
 
 gem 'devise'
+
+gem 'paypal-express'
