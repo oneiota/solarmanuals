@@ -1,9 +1,9 @@
 class RemoveFieldsFromManuals < ActiveRecord::Migration
   def change
-    remove_column :manuals, :system_yearly_yield, :string
-    remove_column :manuals, :diagram_panels_text, :string
-    remove_column :manuals, :diagram_inverter_text, :string
-    remove_column :manuals, :average_daily, :string
-    remove_column :manuals, :average_yearly, :string
+    remove_column :manuals, :system_yearly_yield
+    remove_column :manuals, :diagram_panels_text
+    remove_column :manuals, :diagram_inverter_text
+    remove_column :manuals, :average_daily
+    remove_column :manuals, :average_yearly
   end
 end

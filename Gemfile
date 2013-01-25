@@ -32,3 +32,5 @@ gem "nokogiri"
 
 gem "prawn"
 gem "prawn-graph"
+
+gem 'devise'
