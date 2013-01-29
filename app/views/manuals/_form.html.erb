@@ -2,7 +2,7 @@
   <div class="span4">
     <h2>System Details</h2>
   </div>
-  <div class="span8">
+  <div class="span5">
     <div class="field">
       <%= f.label :system_address, "Grid Interactive Inverter System Location" %>
       <%= f.text_field :system_address, :placeholder => "Insert Address" %>
@@ -39,7 +39,7 @@
   <div class="span4">
     <h2>Panel Details</h2>
   </div>
-  <div class="span8">
+  <div class="span5">
     <div class="field">
       <%= f.label :panels_brand, "Panel Brand" %>
       <%= f.text_field :panels_brand %>
@@ -63,7 +63,7 @@
   <div class="span4">
     <h2>Inverter Details</h2>
   </div>
-  <div class="span8">  
+  <div class="span5">  
     <div class="field">
       <%= f.label :inverter_brand, "Inverter Brand" %>
       <%= f.text_field :inverter_brand %>
@@ -94,7 +94,7 @@
   <div class="span4">
     <h2>Warranty Details</h2>
   </div>
-  <div class="span8">  
+  <div class="span5">  
     <div class="field">
       <%= f.label :warranty_workmanship, "Installation Workmanship" %>
       <%= f.text_field :warranty_workmanship, :placeholder => "eg. 2 years from installation date" %>
@@ -118,7 +118,7 @@
   <div class="span4">
     <h2>Graph</h2>
   </div>
-  <div class="span8">
+  <div class="span5">
     <%= f.label :sunlight_city, "City to use for sunlight data" %>
     <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
   </div>

@@ -52,6 +52,7 @@
                 <li><%= nav_link "New Manual", new_manual_path %></li>
               </ul>
               <ul class="nav pull-right">
+                <!-- <li><%= link_to "Settings", user_path(current_user) %></li> -->
                 <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
               </ul>
             </div><!--/.nav-collapse -->
@@ -88,7 +89,7 @@
         <div class="alert alert-error"><%= alert %></div>
       <% end %>
       <% if notice %>
-        <div class="alert"><%= notice %></div>
+        <div class="alert alert-info"><%= notice %></div>
       <% end %>
       
       <%= yield %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129033329) do
+ActiveRecord::Schema.define(:version => 20130129081621) do
 
   create_table "manuals", :force => true do |t|
     t.string   "client_name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130129033329) do
     t.string   "sunlight_city"
     t.integer  "user_id"
     t.boolean  "filled",                             :default => false
+    t.boolean  "trashed",                            :default => false
   end
 
   create_table "payments", :force => true do |t|

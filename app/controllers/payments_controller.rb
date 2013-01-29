@@ -5,21 +5,41 @@ class PaymentsController < ApplicationController
     @payment = Payment.find_by_identifier! params[:id]
   end
   
-  PARAMS = {
+  SETTINGS = {
     "single" => {
       :amount => 5,
       :digital => true,
       :recurring => false
+    },
+    "subscription" => {
+      :amount => 30,
+      :digital => true,
+      :recurring => true
     }
   }
 
   def create
+    payment_params = SETTINGS[params[:payment][:type]]
+    payment_params[:payable_id] = params[:payment][:payable_id]
+    payment_params[:payable_type] = params[:payment][:payable_type]
     
-    real_params = PARAMS[params[:payment][:type]]
-    real_params[:payable_id] = params[:payment][:payable_id]
-    real_params[:payable_type] = params[:payment][:payable_type]
-    
-    payment = Payment.create! real_params
+    payment = Payment.create! payment_params
+    payment.setup!(
+      success_payments_url,
+      cancel_payments_url
+    )
+    if payment.popup?
+      redirect_to payment.popup_uri
+    else
+      redirect_to payment.redirect_uri
+    end
+  end
+  
+  # for when a user clicks "Pay" after already clicking Pay once and not paying
+  # since the Payment entry is created, we need to setup and redirect again
+  # but we already have the details stored
+  def update
+    payment = Payment.find(params[:id])
     payment.setup!(
       success_payments_url,
       cancel_payments_url

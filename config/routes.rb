@@ -1,10 +1,11 @@
 Solar::Application.routes.draw do
 
   devise_for :users
+  resources :users, only: [:show]
 
   resources :manuals
   
-  resources :payments, only: [:show, :create, :destroy] do
+  resources :payments, only: [:show, :create, :destroy, :update] do
     collection do
       get :success
       get :cancel

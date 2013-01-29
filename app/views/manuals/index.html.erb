@@ -1,7 +1,24 @@
-<h1>Manual Archive</h1>
+<div class="row">
+  <div class="span4">
+    <p>
+      <strong><%= current_user.first_name %> <%= current_user.last_name %></strong><br/>
+      <strong><%= current_user.company %></strong><br/>
+      Accreditation number: <strong><%= current_user.accreditation %></strong>
+    </p>
+
+    <p><%= link_to "Update my details", edit_user_registration_path %></p>
+  </div>
+  <div class="offset4 span4">
+    <p><%= link_to "<span class='above'><span class='price'>$30</span> / month</span></span>Subscribe for unlimited access".html_safe, root_url, class: "btn btn-primary btn-block subscribe" %>
+  </div>
+</div>
+<hr/>
+
+<h1>Archive</h1>
 
 <table class="table table-striped">
   <tr>
+    <th width="20">Paid</th>
     <th>Client name</th>
     <th>Client address</th>
     <th>Client suburb</th>
@@ -10,14 +27,16 @@
   </tr>
 
 <% @manuals.each do |manual| %>
-  <tr>
-    <td><%= manual.client_name %></td>
-    <td><%= manual.client_address %></td>
-    <td><%= manual.client_suburb %></td>
+  <%= content_tag :tr, class: (manual.filled? ? 'success': '') do %>
+    <td>
+      <%= content_tag :i, "", class: (manual.paid? ? 'icon-ok' : '') %>
+    </td>
+    <td><%= link_to manual.client_name, manual %></td>
+    <td><%= link_to manual.client_address, manual %></td>
+    <td><%= link_to manual.client_suburb, manual %></td>
     <td><%= nicetime(manual.install_date) %></td>
-    <td class="index-controls"><%= link_to 'Show Details', manual, :class => "btn btn-small" %>
-    <%= link_to 'Edit', edit_manual_path(manual), :class => "btn btn-small" %>
+    <td class="index-controls">
     <%= link_to 'Delete', manual, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></td>
-  </tr>
+  <% end %>
 <% end %>
 </table>

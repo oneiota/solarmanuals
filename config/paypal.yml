@@ -8,7 +8,7 @@ test:
   <<: *sandbox
 
 production: &production
-  username: SET_YOUR_OWN
-  password: SET_YOUR_OWN
-  signature: SET_YOUR_OWN
+  username: info_api1.solarmanuals.com.au
+  password: WNMTTNCWGYRRKJSK
+  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31A5jPhdBZvhJWzHC8YnUNZzP0n1Vw
   sandbox: false

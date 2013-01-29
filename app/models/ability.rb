@@ -11,6 +11,10 @@ class Ability
       manual.paid?
     end
     
+    can :manage, User do |other_user|
+      user == other_user
+    end
+    
     
   end
 end

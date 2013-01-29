@@ -20,7 +20,7 @@ class ManualsController < ApplicationController
   # GET /manuals
   # GET /manuals.json
   def index
-    @manuals = Manual.all
+    @manuals = Manual.not_trashed
 
     respond_to do |format|
       format.html # index.html.erb
@@ -32,7 +32,20 @@ class ManualsController < ApplicationController
   # GET /manuals/1.json
   def show
     @manual = Manual.find(params[:id])
+    
+    # # check for existing payment
+    # if p = @manual.payment
+    #   p.setup!(
+    #     success_payments_url,
+    #     cancel_payments_url
+    #   )
+    #   @existing_uri = p.redirect_uri
+    # else    
+    #   @payment = Payment.new
+    # end
+    
     @payment = @manual.payment || Payment.new
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @manual }
@@ -90,9 +103,10 @@ class ManualsController < ApplicationController
   # DELETE /manuals/1.json
   def destroy
     @manual = Manual.find(params[:id])
-    @manual.destroy
-
-    respond_to do |format|
+    @manual.trashed = true
+    @manual.save
+    puts @manual.errors.inspect
+    respond_to do |format|    
       format.html { redirect_to root_url }
       format.json { head :no_content }
     end
