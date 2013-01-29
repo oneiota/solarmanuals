@@ -2,6 +2,7 @@ class ManualsController < ApplicationController
   layout "pdf", :only => [:document, :cover]
   
   before_filter :authenticate_user!
+  load_and_authorize_resource
   
   def document
     @manual = Manual.find(params[:id])
@@ -31,7 +32,7 @@ class ManualsController < ApplicationController
   # GET /manuals/1.json
   def show
     @manual = Manual.find(params[:id])
-
+    @payment = @manual.payment || Payment.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @manual }

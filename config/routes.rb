@@ -4,6 +4,14 @@ Solar::Application.routes.draw do
 
   resources :manuals
   
+  resources :payments, only: [:show, :create, :destroy] do
+    collection do
+      get :success
+      get :cancel
+      post :notify
+    end
+  end
+  
   get '/manuals/:id/document', to: 'manuals#document', as: "manual_document"
   
   authenticated :user do

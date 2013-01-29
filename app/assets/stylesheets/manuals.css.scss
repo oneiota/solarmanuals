@@ -25,6 +25,13 @@
 
 .control-group {
   margin: 0 !important;
+  position: relative;
+}
+
+.help-inline {
+  position: absolute;
+  left: 280px;
+  top: 8px;
 }
 
 
@@ -45,8 +52,8 @@
   }
   .input-append {
     width: 270px;
-    overflow: hidden;
     position: relative;
+    font-size: inherit;
     .add-on {
       position: absolute;
       right: 0;
@@ -60,10 +67,6 @@
     }
     .input-container {
       display: block;
-      overflow: hidden;
-    }
-    input {
-      width: 100%;
     }
   }
 }

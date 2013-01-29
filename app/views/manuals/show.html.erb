@@ -7,52 +7,72 @@
   <%= @manual.client_suburb %>
 </p>
 
-<h3>System Details</h3>
+<% if @manual.paid? && @manual.filled %>
 
-<p>
-  Address: <strong><%= @manual.system_address %></strong><br/>
-  Output: <strong><%= @manual.system_watts %></strong> W<br/>
-  System config: <strong><%= @manual.system_config %></strong><br/>
-  PV Voltage: <strong><%= @manual.system_pv_voltage %></strong> Volts DC<br/>
-  PV Current <strong><%= @manual.system_pv_current %></strong> Amps DC
-</p>
+  <h3>System Details</h3>
 
-<h3>Panels Details</h3>
+  <p>
+    Address: <strong><%= @manual.system_address %></strong><br/>
+    Output: <strong><%= @manual.system_watts %></strong> W<br/>
+    System config: <strong><%= @manual.system_config %></strong><br/>
+    PV Voltage: <strong><%= @manual.system_pv_voltage %></strong> Volts DC<br/>
+    PV Current <strong><%= @manual.system_pv_current %></strong> Amps DC
+  </p>
 
-<p>
-  Brand: <strong><%= @manual.panels_brand %></strong><br/>
-  Model: <strong><%= @manual.panels_model %></strong><br/>
-  Number of Panels: <strong><%= @manual.panels_number %></strong><br/>
-  Serial Numbers:
-</p>
-<ol>
-  <% @manual.panels_serial_numbers.split(',').each do |number| %>
-    <li><strong><%= number %></strong></li>
+  <h3>Panels Details</h3>
+
+  <p>
+    Brand: <strong><%= @manual.panels_brand %></strong><br/>
+    Model: <strong><%= @manual.panels_model %></strong><br/>
+    Number of Panels: <strong><%= @manual.panels_number %></strong><br/>
+    Serial Numbers:
+  </p>
+  <ol>
+    <% @manual.panels_serial_numbers.split(',').each do |number| %>
+      <li><strong><%= number %></strong></li>
+    <% end %>
+  </ol>
+  <h3>Inverter Details</h3>
+
+  <p>
+    Brand: <strong><%= @manual.inverter_brand %></strong><br/>
+    Model: <strong><%= @manual.inverter_model %></strong><br/>
+    Output: <strong><%= @manual.inverter_output %></strong><br/>
+    Number of Inverters: <strong><%= @manual.inverter_number %></strong><br/>
+    Serial Number: <%= @manual.inverter_serial %>
+  </p>
+
+  <h3>Warranty Details</h3>
+
+  <p>
+    Workmanship: <strong><%= @manual.warranty_workmanship %></strong><br/>
+    Panels - Product: <strong><%= @manual.warranty_panels_product %></strong><br/>
+    Panels - Output Performance: <strong><%= @manual.warranty_panels_output_performance %></strong><br/>
+    Inverter: <strong><%= @manual.warranty_inverter %></strong>
+  </p>
+
+  <h3>Graph</h3>
+
+  <p>Using <strong><%= @manual.sunlight_city.capitalize %></strong> for sunlight data.</p>
+  
+<% end %>
+
+<% if @manual.paid? && @manual.filled %>
+
+  <%= link_to 'Generate PDF', manual_document_path(@manual, :format => :pdf), :class => "btn" %>
+  <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn" %>
+
+<% elsif @manual.paid? %>
+  
+  <%= link_to 'Continue', edit_manual_path(@manual), :class => "btn" %>
+  
+<% else %>
+
+  <%= form_for @payment do |f| %>
+    <%= f.hidden_field :type, :value => "single" %>
+    <%= f.hidden_field :payable_id, :value => @manual.id %>
+    <%= f.hidden_field :payable_type, :value => @manual.class %>
+    <%= f.submit 'Pay' %>
   <% end %>
-</ol>
-<h3>Inverter Details</h3>
 
-<p>
-  Brand: <strong><%= @manual.inverter_brand %></strong><br/>
-  Model: <strong><%= @manual.inverter_model %></strong><br/>
-  Output: <strong><%= @manual.inverter_output %></strong><br/>
-  Number of Inverters: <strong><%= @manual.inverter_number %></strong><br/>
-  Serial Number: <%= @manual.inverter_serial %>
-</p>
-
-<h3>Warranty Details</h3>
-
-<p>
-  Workmanship: <strong><%= @manual.warranty_workmanship %></strong><br/>
-  Panels - Product: <strong><%= @manual.warranty_panels_product %></strong><br/>
-  Panels - Output Performance: <strong><%= @manual.warranty_panels_output_performance %></strong><br/>
-  Inverter: <strong><%= @manual.warranty_inverter %></strong>
-</p>
-
-<h3>Graph</h3>
-
-<p>Using <strong><%= @manual.sunlight_city.capitalize %></strong> for sunlight data.</p>
-
-<%= link_to 'Generate Document', manual_document_path(@manual, :format => :pdf) %> | 
-<%= link_to 'Edit', edit_manual_path(@manual) %> |
-<%= link_to 'Back', root_url %>
+<% end %>

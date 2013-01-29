@@ -82,8 +82,15 @@
       </div>
     </div>
     
-    
     <div class="container">
+      
+      <% if alert %>
+        <div class="alert alert-error"><%= alert %></div>
+      <% end %>
+      <% if notice %>
+        <div class="alert"><%= notice %></div>
+      <% end %>
+      
       <%= yield %>
       <hr/>
       <footer class="row">

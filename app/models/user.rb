@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :company, :accreditation
   
   has_many :manuals
-  has_many :payments
+  has_one :payment, :as => :payable
   
   
   def full_name

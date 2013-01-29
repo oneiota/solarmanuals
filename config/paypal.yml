@@ -1,0 +1,14 @@
+development: &sandbox # change to your own
+  username: seller_1322623704_biz_api1.studiooneiota.com
+  password: 1322623726
+  signature: AkAPGtCC-2yIQQqLyfg8qMlY9Ol6AOJwDxdhhkdJTIz-a0IjegeTU4tD	
+  sandbox: true
+
+test:
+  <<: *sandbox
+
+production: &production
+  username: SET_YOUR_OWN
+  password: SET_YOUR_OWN
+  signature: SET_YOUR_OWN
+  sandbox: false

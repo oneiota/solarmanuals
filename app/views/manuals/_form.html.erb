@@ -1,163 +1,129 @@
-<%= form_for(@manual) do |f| %>
-  <% if @manual.errors.any? %>
-    <div class="alert alert-error">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      Check the errors below and try again.
+<div class="section row">
+  <div class="span4">
+    <h2>System Details</h2>
+  </div>
+  <div class="span8">
+    <div class="field">
+      <%= f.label :system_address, "Grid Interactive Inverter System Location" %>
+      <%= f.text_field :system_address, :placeholder => "Insert Address" %>
     </div>
-  <% end %>
-  <div class="section row">
-    <div class="span4">
-      <h2>Client Details</h2>
-    </div>
-    <div class="span8">
-      <div class="field datetime">
-        <%= f.label :install_date %>
-        <%= f.date_select :install_date %>
+    <div class="field">
+      <%= f.label :system_watts, "Solar Panel Array Size" %>
+      <div class="input-append">
+        <span class="input-container"><%= f.text_field :system_watts, :placeholder => "e.g. 2450" %></span>
+        <span class="add-on">W</span>
       </div>
+    </div>
+    <div class="field">
+      <%= f.label :system_config, "Electrical Configuration" %>
+      <%= f.text_field :system_config, :placeholder => "eg. 1 string of 10 panels" %>
+    </div>
+    <div class="field">
+      <%= f.label :system_pv_voltage, "PV Array Voltage (Open Circuit)" %>
+      <div class="input-append">
+        <span class="input-container"><%= f.text_field :system_pv_voltage, :placeholder => "eg. 355" %></span>
+        <span class="add-on">Volts DC</span>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.label :system_pv_current, "PV Array Current (Short Circuit)" %>
+      <div class="input-append">
+        <span class="input-container"><%= f.text_field :system_pv_current, :placeholder => "eg. 8.6" %></span>
+        <span class="add-on">Amps DC</span>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="section row">
+  <div class="span4">
+    <h2>Panel Details</h2>
+  </div>
+  <div class="span8">
+    <div class="field">
+      <%= f.label :panels_brand, "Panel Brand" %>
+      <%= f.text_field :panels_brand %>
+    </div>
+    <div class="field">
+      <%= f.label :panels_model, "Panel Model" %>
+      <%= f.text_field :panels_model %>
+    </div>
+    <div class="field">
+      <%= f.label :panels_number, "Number of Panels" %>
+      <%= f.text_field :panels_number %>
+    </div>
+    <div class="field">
+      <%= f.label :panels_serial_numbers, "Serial Numbers (comma separated)" %>
+      <%= f.text_area :panels_serial_numbers, :placeholder => "2001406276, 2001406250, 2001405450", :rows => 4 %>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="section row">
+  <div class="span4">
+    <h2>Inverter Details</h2>
+  </div>
+  <div class="span8">  
+    <div class="field">
+      <%= f.label :inverter_brand, "Inverter Brand" %>
+      <%= f.text_field :inverter_brand %>
+    </div>
+    <div class="field">
+      <%= f.label :inverter_model, "Inverter Model" %>
+      <%= f.text_field :inverter_model %>
+    </div>
+    <div class="field">
+      <%= f.label :inverter_output, "Inverter Output" %>
+      <div class="input-append">
+        <span class="input-container"><%= f.text_field :inverter_output %></span>
+        <span class="add-on">kW</span>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.label :inverter_number, "Number of Inverters" %>
+      <%= f.text_field :inverter_number %>
+    </div>
+    <div class="field">
+      <%= f.label :inverter_serial, "Inverter Serial Number" %>
+      <%= f.text_field :inverter_serial %>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="section row">
+  <div class="span4">
+    <h2>Warranty Details</h2>
+  </div>
+  <div class="span8">  
+    <div class="field">
+      <%= f.label :warranty_workmanship, "Installation Workmanship" %>
+      <%= f.text_field :warranty_workmanship, :placeholder => "eg. 2 years from installation date" %>
+    </div>
+    <div class="field">
+      <%= f.label :warranty_panels_product, "Panels - Product" %>
+      <%= f.text_field :warranty_panels_product, :placeholder => "eg. 10 years" %>
+    </div>
+    <div class="field">
+      <%= f.label :warranty_panels_output_performance, "Panels - Output Performance" %>
+      <%= f.text_field :warranty_panels_output_performance, :placeholder => "eg. 25 years" %>
+    </div>
+    <div class="field">
+      <%= f.label :warranty_inverter %>
+      <%= f.text_field :warranty_inverter, :placeholder => "eg. 5 years" %>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="section row">
+  <div class="span4">
+    <h2>Graph</h2>
+  </div>
+  <div class="span8">
+    <%= f.label :sunlight_city, "City to use for sunlight data" %>
+    <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
+  </div>
+</div>
 
-      <div class="field">
-        <%= f.label :client_name, "Full Name" %>
-        <%= f.text_field :client_name %>
-      </div>
-      <div class="field">
-        <%= f.label :client_address, "Street Address" %>
-        <%= f.text_field :client_address %>
-      </div>
-      <div class="field">
-        <%= f.label :client_suburb, "Suburb" %>
-        <%= f.text_field :client_suburb %>
-      </div>
-    </div>
-  </div>
-  <hr/>
-  <div class="section row">
-    <div class="span4">
-      <h2>System Details</h2>
-    </div>
-    <div class="span8">
-      <div class="field">
-        <%= f.label :system_address, "Grid Interactive Inverter System Location" %>
-        <%= f.text_field :system_address, :placeholder => "Insert Address" %>
-      </div>
-      <div class="field">
-        <%= f.label :system_watts, "Solar Panel Array Size" %>
-        <div class="input-append">
-          <span class="input-container"><%= f.text_field :system_watts, :placeholder => "e.g. 2450" %></span>
-          <span class="add-on">W</span>
-        </div>
-      </div>
-      <div class="field">
-        <%= f.label :system_config, "Electrical Configuration" %>
-        <%= f.text_field :system_config, :placeholder => "eg. 1 string of 10 panels" %>
-      </div>
-      <div class="field">
-        <%= f.label :system_pv_voltage, "PV Array Voltage (Open Circuit)" %>
-        <div class="input-append">
-          <span class="input-container"><%= f.text_field :system_pv_voltage, :placeholder => "eg. 355" %></span>
-          <span class="add-on">Volts DC</span>
-        </div>
-      </div>
-      <div class="field">
-        <%= f.label :system_pv_current, "PV Array Current (Short Circuit)" %>
-        <div class="input-append">
-          <span class="input-container"><%= f.text_field :system_pv_current, :placeholder => "eg. 8.6" %></span>
-          <span class="add-on">Amps DC</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr/>
-  <div class="section row">
-    <div class="span4">
-      <h2>Panel Details</h2>
-    </div>
-    <div class="span8">
-      <div class="field">
-        <%= f.label :panels_brand, "Panel Brand" %>
-        <%= f.text_field :panels_brand %>
-      </div>
-      <div class="field">
-        <%= f.label :panels_model, "Panel Model" %>
-        <%= f.text_field :panels_model %>
-      </div>
-      <div class="field">
-        <%= f.label :panels_number, "Number of Panels" %>
-        <%= f.text_field :panels_number %>
-      </div>
-      <div class="field">
-        <%= f.label :panels_serial_numbers, "Serial Numbers (comma separated)" %>
-        <%= f.text_area :panels_serial_numbers, :placeholder => "2001406276, 2001406250, 2001405450", :rows => 4 %>
-      </div>
-    </div>
-  </div>
-  <hr/>
-  <div class="section row">
-    <div class="span4">
-      <h2>Inverter Details</h2>
-    </div>
-    <div class="span8">  
-      <div class="field">
-        <%= f.label :inverter_brand, "Inverter Brand" %>
-        <%= f.text_field :inverter_brand %>
-      </div>
-      <div class="field">
-        <%= f.label :inverter_model, "Inverter Model" %>
-        <%= f.text_field :inverter_model %>
-      </div>
-      <div class="field">
-        <%= f.label :inverter_output, "Inverter Output" %>
-        <div class="input-append">
-          <span class="input-container"><%= f.text_field :inverter_output %></span>
-          <span class="add-on">kW</span>
-        </div>
-      </div>
-      <div class="field">
-        <%= f.label :inverter_number, "Number of Inverters" %>
-        <%= f.text_field :inverter_number %>
-      </div>
-      <div class="field">
-        <%= f.label :inverter_serial, "Inverter Serial Number" %>
-        <%= f.text_field :inverter_serial %>
-      </div>
-    </div>
-  </div>
-  <hr/>
-  <div class="section row">
-    <div class="span4">
-      <h2>Warranty Details</h2>
-    </div>
-    <div class="span8">  
-      <div class="field">
-        <%= f.label :warranty_workmanship, "Installation Workmanship" %>
-        <%= f.text_field :warranty_workmanship, :placeholder => "eg. 2 years from installation date" %>
-      </div>
-      <div class="field">
-        <%= f.label :warranty_panels_product, "Panels - Product" %>
-        <%= f.text_field :warranty_panels_product, :placeholder => "eg. 10 years" %>
-      </div>
-      <div class="field">
-        <%= f.label :warranty_panels_output_performance, "Panels - Output Performance" %>
-        <%= f.text_field :warranty_panels_output_performance, :placeholder => "eg. 25 years" %>
-      </div>
-      <div class="field">
-        <%= f.label :warranty_inverter %>
-        <%= f.text_field :warranty_inverter, :placeholder => "eg. 5 years" %>
-      </div>
-    </div>
-  </div>
-  <hr/>
-  <div class="section row">
-    <div class="span4">
-      <h2>Graph</h2>
-    </div>
-    <div class="span8">
-      <%= f.label :sunlight_city, "City to use for sunlight data" %>
-      <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
-    </div>
-  </div>
-  
-  <hr/>
-  <div class="actions">
-    <%= f.submit "Save Manual", :class => "btn btn-large" %>
-  </div>
-<% end %>
+
+<%= f.hidden_field :filled, :value => true %>
+

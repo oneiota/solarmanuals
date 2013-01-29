@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125064516) do
+ActiveRecord::Schema.define(:version => 20130129033329) do
 
   create_table "manuals", :force => true do |t|
     t.string   "client_name"
@@ -36,26 +36,27 @@ ActiveRecord::Schema.define(:version => 20130125064516) do
     t.string   "warranty_panels_product"
     t.string   "warranty_panels_output_performance"
     t.string   "warranty_inverter"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "sunlight_city"
     t.integer  "user_id"
-    t.integer  "payment_id"
+    t.boolean  "filled",                             :default => false
   end
 
   create_table "payments", :force => true do |t|
-    t.integer  "amount",     :default => 1
-    t.integer  "user_id"
+    t.integer  "amount",       :default => 1
     t.string   "token"
     t.string   "identifier"
     t.string   "payer_id"
-    t.boolean  "recurring",  :default => false
-    t.boolean  "digital",    :default => false
-    t.boolean  "popup",      :default => false
-    t.boolean  "completed",  :default => false
-    t.boolean  "canceled",   :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "recurring",    :default => false
+    t.boolean  "digital",      :default => false
+    t.boolean  "popup",        :default => false
+    t.boolean  "completed",    :default => false
+    t.boolean  "canceled",     :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "payable_id"
+    t.string   "payable_type"
   end
 
   create_table "users", :force => true do |t|

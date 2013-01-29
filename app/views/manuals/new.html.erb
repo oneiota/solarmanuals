@@ -1,1 +1,43 @@
-<%= render 'form' %>
+<%= form_for(@manual) do |f| %>
+  <% if @manual.errors.any? %>
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Check the errors below and try again.
+    </div>
+  <% end %>
+  
+  <div class="section row">
+    <div class="span4">
+      <h2>Client Details</h2>
+    </div>
+    <div class="span8">
+      <div class="field datetime">
+        <%= f.label :install_date %>
+        <%= f.date_select :install_date %>
+      </div>
+
+      <div class="field">
+        <%= f.label :client_name, "Full Name" %>
+        <%= f.text_field :client_name %>
+      </div>
+      <div class="field">
+        <%= f.label :client_address, "Street Address" %>
+        <%= f.text_field :client_address %>
+      </div>
+      <div class="field">
+        <%= f.label :client_suburb, "Suburb" %>
+        <%= f.text_field :client_suburb %>
+      </div>
+    </div>
+  </div>
+  
+  <% if @manual.paid? %>
+    <%= render 'form' %>
+  <% end %>
+  <hr/>
+  <div class="row">
+    <div class="actions span8 offset4">
+      <%= f.submit "Continue", :class => "btn btn-large" %>
+    </div>
+  </div>
+<% end %>
