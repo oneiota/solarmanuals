@@ -52,14 +52,14 @@ class PaymentsController < ApplicationController
   end
 
   def destroy
-    Payment.find_by_identifier!(params[:id]).unsubscribe!
-    redirect_to root_path, notice: 'Recurring Profile Canceled'
+    Payment.find_by_id(params[:id]).unsubscribe!
+    redirect_to root_path, notice: 'Subscription successfully cancelled'
   end
 
   def success
     handle_callback do |payment|
       payment.complete!(params[:PayerID])
-      flash[:notice] = 'Payment Transaction Completed'
+      flash[:notice] = 'Payment was successful'
       success_page(payment)
     end
   end
@@ -67,7 +67,7 @@ class PaymentsController < ApplicationController
   def cancel
     handle_callback do |payment|
       payment.cancel!
-      flash[:warn] = 'Payment Request Canceled'
+      flash[:warn] = 'Payment cancelled'
       root_url
     end
   end
@@ -77,8 +77,6 @@ class PaymentsController < ApplicationController
   def success_page(payment)
     if payment.payable_type == "Manual"
       return edit_manual_url(payment.payable_id)
-    elsif payment.payable_type == "User"
-      return user_url(payment.payable_id)
     end
     return root_url
   end

@@ -9,16 +9,29 @@
     <p><%= link_to "Update my details", edit_user_registration_path %></p>
   </div>
   <div class="offset4 span4">
-    <p><%= link_to "<span class='above'><span class='price'>$30</span> / month</span></span>Subscribe for unlimited access".html_safe, root_url, class: "btn btn-primary btn-block subscribe" %>
+    
+    <% if current_user.subscribed? %>
+      <p>You are subscribed! <%= link_to "Cancel my subscription.", payment_path(current_user.payment), :method => :delete, :confirm => "Are you sure?" %></p>
+    <% else %>
+      <%= form_for @subscription do |f| %>
+        <%= f.hidden_field :type, :value => "subscription" %>
+        <%= f.hidden_field :payable_id, :value => current_user.id %>
+        <%= f.hidden_field :payable_type, :value => current_user.class %>
+        <p><%= link_to "<span class='above'><span class='price'>$30</span> / month</span></span>Subscribe for unlimited access".html_safe, "#", id: "submit-subscription", class: "btn btn-primary btn-block subscribe" %></p>
+        <p id="subscription-loading">Just a minute... Redirecting you to PayPal</p>
+      <% end %>
+    <% end %>
   </div>
 </div>
 <hr/>
 
-<h1>Archive</h1>
+<p><%= link_to "New Manual", new_manual_path, class: 'btn btn-large' %></p>
 
 <table class="table table-striped">
   <tr>
-    <th width="20">Paid</th>
+    <% unless current_user.subscribed? %>
+      <th width="20">Paid</th>
+    <% end %>
     <th>Client name</th>
     <th>Client address</th>
     <th>Client suburb</th>
@@ -28,9 +41,11 @@
 
 <% @manuals.each do |manual| %>
   <%= content_tag :tr, class: (manual.filled? ? 'success': '') do %>
-    <td>
-      <%= content_tag :i, "", class: (manual.paid? ? 'icon-ok' : '') %>
-    </td>
+    <% unless current_user.subscribed? %>
+      <td>
+        <%= content_tag :i, "", class: (manual.paid? ? 'icon-ok' : 'icon-minus') %>
+      </td>
+    <% end %>
     <td><%= link_to manual.client_name, manual %></td>
     <td><%= link_to manual.client_address, manual %></td>
     <td><%= link_to manual.client_suburb, manual %></td>

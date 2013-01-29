@@ -19,7 +19,7 @@
       <p><%= link_to 'Continue filling details', edit_manual_path(@manual), :class => "btn" %></p>
 
     <% else %>
-      <p>You can unlock this manual for a fee of $5AU or subscribe for unlimited access.</p>
+      <p>You can unlock this manual for a fee of <strong>$5</strong>AU or <%= link_to "subscribe", root_url %> for unlimited access.</p>
       
       <% if @payment %>
         <%= form_for @payment do |f| %>
@@ -31,7 +31,7 @@
       <% end %>
       
       <% if @existing_uri %>
-        <p><%= link_to "Pay for this manual", @existing_uri, :class => "btn", :'data-loading-text' => "Loading..." %></p>
+        <p><%= link_to "Pay for this manual", @existing_uri, :class => "btn", :'data-loading-text' => "Just a minute..." %></p>
       <% end %>
 
     <% end %>

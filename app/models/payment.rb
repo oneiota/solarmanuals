@@ -67,6 +67,7 @@ class Payment < ActiveRecord::Base
       self.identifier = response.payment_info.first.transaction_id
     end
     self.completed = true
+    self.canceled = false
     self.save!
     self
   end

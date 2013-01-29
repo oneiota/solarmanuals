@@ -39,7 +39,7 @@ class Manual < ActiveRecord::Base
   end
   
   def paid?
-    payment && payment.completed
+    user.subscribed? || (payment && payment.completed && !payment.canceled)
   end
   
 end

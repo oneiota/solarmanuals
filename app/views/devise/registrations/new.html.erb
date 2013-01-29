@@ -1,7 +1,13 @@
 <h2>Get Started</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  
+  <% if resource.errors.any? %>
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Check the errors below and try again.
+    </div>
+  <% end %>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>

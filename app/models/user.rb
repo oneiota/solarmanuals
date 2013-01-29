@@ -12,8 +12,16 @@ class User < ActiveRecord::Base
   has_many :manuals
   has_one :payment, :as => :payable
   
+  def active_manuals
+    manuals.where(:trashed => false)
+  end
   
   def full_name
     "#{first_name} #{last_name}"
   end
+  
+  def subscribed?
+    payment && payment.completed && !payment.canceled
+  end
+  
 end
