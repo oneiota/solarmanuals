@@ -11,6 +11,14 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
+//= require jquery.tmpl
+//= require jquery.iframe-transport
+//= require jquery.fileupload
+//= require jquery.fileupload-ui
+//= require shadowbox
+//= require images/customupload
+//= require images/form
 //= require twitter/bootstrap
 //= require_tree .

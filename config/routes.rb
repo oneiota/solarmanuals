@@ -5,6 +5,8 @@ Solar::Application.routes.draw do
 
   resources :manuals
   
+  resources :images
+  
   resources :payments, only: [:show, :create, :destroy, :update] do
     collection do
       get :success

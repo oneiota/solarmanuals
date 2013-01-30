@@ -38,3 +38,7 @@ gem 'devise'
 gem 'paypal-express'
 
 gem 'cancan'
+
+gem 'carrierwave'
+gem 'fog'
+gem 'mini_magick'

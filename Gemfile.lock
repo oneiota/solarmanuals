@@ -35,6 +35,9 @@ GEM
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     cancan (1.6.8)
+    carrierwave (0.8.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -59,8 +62,20 @@ GEM
       warden (~> 1.2.1)
     erubis (2.7.0)
     eventmachine (1.0.0)
+    excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fog (1.9.0)
+      builder
+      excon (~> 0.14)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.4)
     hashery (2.1.0)
     hike (1.2.1)
     i18n (0.6.1)
@@ -80,7 +95,12 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    mini_magick (3.4)
+      subexec (~> 0.2.1)
     multi_json (1.5.0)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.6.3)
     nokogiri (1.5.6)
     orm_adapter (0.4.0)
     paypal-express (0.5.2)
@@ -131,6 +151,7 @@ GEM
       mime-types (>= 1.16)
     restclient_with_cert (0.0.8)
       rest-client (>= 1.6)
+    ruby-hmac (0.4.0)
     ruby-rc4 (0.1.5)
     sass (3.2.5)
     sass-rails (3.2.5)
@@ -142,6 +163,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    subexec (0.2.2)
     therubyracer (0.11.1)
       libv8 (~> 3.11.8.7)
       ref
@@ -171,11 +193,14 @@ PLATFORMS
 
 DEPENDENCIES
   cancan
+  carrierwave
   coffee-rails (~> 3.2.1)
   debugger
   devise
+  fog
   jquery-rails
   less-rails
+  mini_magick
   nokogiri
   paypal-express
   pg

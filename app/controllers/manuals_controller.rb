@@ -36,6 +36,8 @@ class ManualsController < ApplicationController
     @manual = Manual.find(params[:id])    
     @payment = @manual.payment || Payment.new
     
+    @image = Image.new
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @manual }
