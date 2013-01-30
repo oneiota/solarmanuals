@@ -30,11 +30,15 @@
         <%= f.label :client_suburb, "Suburb" %>
         <%= f.text_field :client_suburb %>
       </div>
+      <div class="field">
+        <%= f.label :client_state %>
+        <%= f.collection_select :client_state, State.all, :id, :name, { :disabled => lambda{|state| state.disabled } } %>
+      </div>
     </div>
   </div>
   
   <% if @manual.paid? %>
-    <%= render 'form' %>
+    <%= render :partial => 'form', :locals => {  f: f } %>
   <% end %>
   
   <hr/>

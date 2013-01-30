@@ -1,14 +1,16 @@
 class Manual < ActiveRecord::Base
   attr_accessible :user_id, :payment_id,
-    :client_address, :client_name, :client_suburb, :install_date, :inverter_brand, :inverter_model, :inverter_number, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_address, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :sunlight_city, :filled, :trashed
+    :client_address, :client_name, :client_suburb, :client_state, :install_date, :inverter_brand, :inverter_model, :inverter_number, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_address, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :sunlight_city, :filled, :trashed
   
-  validates_presence_of :client_address, :client_name, :client_suburb, :install_date
+  validates_presence_of :client_address, :client_name, :client_suburb, :client_state, :install_date
   
   validates_presence_of :inverter_brand, :inverter_model, :inverter_number, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_address, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :if => :validate_pdf_fields?
   
   belongs_to :user
   has_one :payment, :as => :payable
   accepts_nested_attributes_for :payment
+  
+  belongs_to :client_state, :class_name => "State", :foreign_key => "client_state"
   
   def self.not_trashed
     where(:trashed => false)
