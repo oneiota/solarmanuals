@@ -1,0 +1,11 @@
+#manual-images-container {
+  &.loading {
+    #manual-images {
+      opacity: 0.3;
+    }
+  }
+}
+
+#upload-manual-images {
+  display: none;
+}

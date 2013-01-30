@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ajax-progress
+//= require spin
 //= require twitter/bootstrap
 //= require_tree .

@@ -5,7 +5,8 @@
       Installed: <%= nicetime(@manual.install_date) %><br/>
       <strong><%= @manual.client_name %></strong><br/>
       <%= @manual.client_address %><br/>
-      <%= @manual.client_suburb %>
+      <%= @manual.client_suburb %><br/>
+      <%= @manual.client_state.name %>
     </p>
     
     <hr/>
@@ -26,17 +27,30 @@
           <%= f.hidden_field :type, :value => "single" %>
           <%= f.hidden_field :payable_id, :value => @manual.id %>
           <%= f.hidden_field :payable_type, :value => @manual.class %>
-          <%= f.submit 'Pay for this manual', :class => "btn", :'data-loading-text' => "Loading..." %>
+          <%= f.submit 'Pay for this manual', :class => "btn", :'data-loading-text' => "Just a minute..." %>
         <% end %>
       <% end %>
-      
-      <% if @existing_uri %>
-        <p><%= link_to "Pay for this manual", @existing_uri, :class => "btn", :'data-loading-text' => "Just a minute..." %></p>
-      <% end %>
-
     <% end %>
     
     <p><%= link_to "← Back", root_url %></p>
+    
+    <hr/>
+    
+    <%= form_for @manual, :url => { :action => :update }, :html => { :multipart => true } do |f| %>
+      <a href="#" id="upload-manual-images" class="btn btn-large">Upload Images</a>
+      <%= f.file_field :files_array, :multiple => true %>
+      <%= f.submit "Upload", :class => "btn", :id => "submit_manual_images_btn" %>
+    <% end %>
+    
+    <hr/>
+    
+    <div id="manual-images-container">
+      <div id="manual-images">
+        <% @manual.images.each do |image| %>
+          <%= image_tag image.file.url(:thumb) %>
+        <% end %>
+      </div>
+    </div>
   </div>
   <div class="span8">
     <% if @manual.paid? && @manual.filled %>

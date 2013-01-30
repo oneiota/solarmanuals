@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130000408) do
+ActiveRecord::Schema.define(:version => 20130130061002) do
+
+  create_table "images", :force => true do |t|
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "manual_id"
+  end
 
   create_table "manuals", :force => true do |t|
     t.string   "client_name"
@@ -42,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20130130000408) do
     t.integer  "user_id"
     t.boolean  "filled",                             :default => false
     t.boolean  "trashed",                            :default => false
-    t.integer  "client_state"
+    t.integer  "client_state_id"
   end
 
   create_table "payments", :force => true do |t|

@@ -83,9 +83,11 @@ class ManualsController < ApplicationController
       if @manual.update_attributes(params[:manual])
         format.html { redirect_to @manual, notice: 'Manual was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @manual.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

@@ -38,3 +38,6 @@ gem 'devise'
 gem 'paypal-express'
 
 gem 'cancan'
+
+gem 'paperclip'
+gem 'aws-sdk'

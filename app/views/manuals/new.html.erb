@@ -31,8 +31,8 @@
         <%= f.text_field :client_suburb %>
       </div>
       <div class="field">
-        <%= f.label :client_state %>
-        <%= f.collection_select :client_state, State.all, :id, :name, { :disabled => lambda{|state| state.disabled } } %>
+        <%= f.label :client_state_id %>
+        <%= f.collection_select :client_state_id, State.all, :id, :name, { :disabled => lambda{|state| state.disabled } } %>
       </div>
     </div>
   </div>
