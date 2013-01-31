@@ -1,4 +1,4 @@
 var div = $("#manual-images");
-var images = '<% @manual.images.each do |image| %><img src="<%= image.file.url(:thumb) %>" class="span2" /><% end %>';
+var images = '<% @manual.images.each do |image| %><img src="<%= image.file.url(:thumb) %>" /> <% end %>';
 div.html(images);
 $("#manual-images-container").removeClass("loading").spin(false);

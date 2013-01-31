@@ -1,5 +1,18 @@
 #manual-images-container {
-  min-height: 200px;
+  min-height: 100px;
+  width: 102%;
+  margin-left: -1%;
+  overflow: hidden;
+  img {
+    width: 33.333333333%;
+    padding: 1%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    float: left;
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+  }
   &.loading {
     #manual-images {
       opacity: 0.3;

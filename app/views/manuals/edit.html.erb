@@ -1,14 +1,8 @@
-<div class="row">
+<p><%= link_to "← Back", manual_path(@manual) %></p>
 
-  <%= form_for(@manual) do |f| %>
-    <% if @manual.errors.any? %>
-      <div class="alert alert-error">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Check the errors below and try again.
-      </div>
-    <% end %>
-    
-    <div class="span3">
+<div class="row">
+  
+  <div class="span4">
   
       <h3>Client Details</h3>
       <p>
@@ -18,25 +12,34 @@
         <%= @manual.client_suburb %>
       </p>
       
-      <p><%= link_to "← Back", manual_path(@manual) %></p>
-      
-    </div>
-    
-    <div class="span9">
-    
       <% if @manual.paid? %>
-        <%= render :partial => 'form', :locals => {  f: f } %>
+        <%= render 'images' %>
       <% end %>
       
-      <hr/>
-      
-      <div class="actions">
-        <%= f.submit "Save Details", :class => "btn btn-large" %>
-      </div>
-      
-      
     </div>
     
-  <% end %>
+    <div class="span7 offset1">
+      
+      <%= form_for(@manual) do |f| %>
+        <% if @manual.errors.any? %>
+          <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Check the errors below and try again.
+          </div>
+        <% end %>
+    
+        <% if @manual.paid? %>
+          <%= render :partial => 'form', :locals => {  f: f } %>
+        <% end %>
+      
+        <hr/>
+      
+        <div class="actions">
+          <%= f.submit "Save Details", :class => "btn btn-large" %>
+        </div>
+      
+      <% end %>
+      
+    </div>
   
 </div>

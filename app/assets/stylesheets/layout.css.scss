@@ -9,6 +9,12 @@ body {
   height: auto !important;
   height: 100%;
   margin: 0 auto -60px;
+  padding-top: 60px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  @media (max-width: 979px) {
+    padding: 0;
+  }
 }
 
 /* Set the fixed height of the footer here */

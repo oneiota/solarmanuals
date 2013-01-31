@@ -38,7 +38,7 @@
     
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           
           <a class="brand" href="/">Installer Technologies</a>
           <% if user_signed_in? %>
@@ -46,7 +46,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </a>
-            <div class="container nav-collapse">
+            <div class="nav-collapse">
               <ul class="nav">
                 <li><%= nav_link "Archive", root_url %></li>
                 <li><%= nav_link "New Manual", new_manual_path %></li>
@@ -82,7 +82,7 @@
     </div>
     
     <div id="wrap">
-      <div class="container content">
+      <div class="container-fluid content">
       
         <% if alert %>
           <div class="alert alert-error"><%= alert %></div>
@@ -97,8 +97,8 @@
       <div id="push"></div>
     </div>
     <div id="footer">
-      <div class="container">
-        <footer class="row">
+      <div class="container-fluid">
+        <footer class="row-fluid">
           <p class="span3">&copy; Installer Technologies 2012</p>
           <p class="span3 offset6"><a class="pull-right" href="mailto:contact@solarmanuals.com.au">info@solarmanuals.com.au</a></p>
         </footer>

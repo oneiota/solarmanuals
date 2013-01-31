@@ -1,4 +1,6 @@
-<div class="row">
+<p><%= link_to "← Back", root_url %></p>
+
+<div class="row-fluid">
   <div class="span4">
     <h3>Client Details</h3>
     <p>
@@ -11,9 +13,9 @@
     
     <hr/>
     <% if @manual.paid? && @manual.filled %>
-      <p>
-        <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary" %>
-        <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn" %>
+      <p id="manuals-actions">
+        <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary", id: "download-pdf" %>
+        <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn", id: "edit-manual" %>
       </p>
     <% elsif @manual.paid? %>
 
@@ -27,32 +29,18 @@
           <%= f.hidden_field :type, :value => "single" %>
           <%= f.hidden_field :payable_id, :value => @manual.id %>
           <%= f.hidden_field :payable_type, :value => @manual.class %>
-          <%= f.submit 'Proceed to checkout', :class => "btn btn-success", :'data-loading-text' => "Just a minute..." %>
+          <%= f.submit 'Proceed to checkout', :class => "btn btn-large btn-block btn-success", :'data-loading-text' => "Just a minute..." %>
         <% end %>
       <% end %>
     <% end %>
     
-    <p><%= link_to "← Back", root_url %></p>
-    
-    <hr/>
-    
-    <%= form_for @manual, :url => { :action => :update }, :html => { :multipart => true } do |f| %>
-      <a href="#" id="upload-manual-images" class="btn btn-large">Upload Images</a>
-      <%= f.file_field :files_array, :multiple => true %>
-      <%= f.submit "Upload", :class => "btn", :id => "submit_manual_images_btn" %>
+    <% if @manual.paid? %>  
+      <%= render 'images' %>
     <% end %>
     
-    <hr/>
     
-    <div id="manual-images-container" class="row">
-      <div id="manual-images">
-        <% @manual.images.each do |image| %>
-          <%= image_tag image.file.url(:thumb), :class => "span2" %>
-        <% end %>
-      </div>
-    </div>
   </div>
-  <div class="span8">
+  <div class="span7 offset1">
     <% if @manual.filled %>
 
       <h3>System Details</h3>

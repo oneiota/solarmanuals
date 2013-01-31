@@ -1,4 +1,7 @@
 $ ->
+  
+  $(window).scrollTop(0)
+  
   opts =
     lines: 9 # The number of lines to draw
     length: 7 # The length of each line
@@ -23,7 +26,7 @@ $ ->
   
   if window.FormData
     $("#manual_files_array, #submit_manual_images_btn").hide()
-    $("#upload-manual-images").show().on "click", (e) ->
+    $("#upload-manual-images").css("display", "block").on "click", (e) ->
       e.preventDefault()
       $("#manual_files_array").trigger("click")
     
