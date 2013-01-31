@@ -81,23 +81,29 @@
       </div>
     </div>
     
-    <div class="container">
+    <div id="wrap">
+      <div class="container content">
       
-      <% if alert %>
-        <div class="alert alert-error"><%= alert %></div>
-      <% end %>
-      <% if notice %>
-        <div class="alert alert-info"><%= notice %></div>
-      <% end %>
+        <% if alert %>
+          <div class="alert alert-error"><%= alert %></div>
+        <% end %>
+        <% if notice %>
+          <div class="alert alert-info"><%= notice %></div>
+        <% end %>
       
-      <%= yield %>
-      <hr/>
-      <footer class="row">
-        <p class="span3">&copy; Installer Technologies 2012</p>
-        <p class="span3 offset6"><a class="pull-right" href="mailto:contact@solarmanuals.com.au">contact@solarmanuals.com.au</a></p>
-      </footer>
-    </div> <!-- /container -->
-
+        <%= yield %>
+        
+      </div> <!-- /container -->
+      <div id="push"></div>
+    </div>
+    <div id="footer">
+      <div class="container">
+        <footer class="row">
+          <p class="span3">&copy; Installer Technologies 2012</p>
+          <p class="span3 offset6"><a class="pull-right" href="mailto:contact@solarmanuals.com.au">info@solarmanuals.com.au</a></p>
+        </footer>
+      </div>
+    </div>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -12,7 +12,7 @@
     <hr/>
     <% if @manual.paid? && @manual.filled %>
       <p>
-        <%= link_to 'Generate PDF', manual_document_path(@manual, :format => :pdf), :class => "btn" %>
+        <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary" %>
         <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn" %>
       </p>
     <% elsif @manual.paid? %>
@@ -27,7 +27,7 @@
           <%= f.hidden_field :type, :value => "single" %>
           <%= f.hidden_field :payable_id, :value => @manual.id %>
           <%= f.hidden_field :payable_type, :value => @manual.class %>
-          <%= f.submit 'Pay for this manual', :class => "btn", :'data-loading-text' => "Just a minute..." %>
+          <%= f.submit 'Proceed to checkout', :class => "btn btn-success", :'data-loading-text' => "Just a minute..." %>
         <% end %>
       <% end %>
     <% end %>
@@ -44,16 +44,16 @@
     
     <hr/>
     
-    <div id="manual-images-container">
+    <div id="manual-images-container" class="row">
       <div id="manual-images">
         <% @manual.images.each do |image| %>
-          <%= image_tag image.file.url(:thumb) %>
+          <%= image_tag image.file.url(:thumb), :class => "span2" %>
         <% end %>
       </div>
     </div>
   </div>
   <div class="span8">
-    <% if @manual.paid? && @manual.filled %>
+    <% if @manual.filled %>
 
       <h3>System Details</h3>
 

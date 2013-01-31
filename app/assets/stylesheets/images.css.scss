@@ -1,4 +1,5 @@
 #manual-images-container {
+  min-height: 200px;
   &.loading {
     #manual-images {
       opacity: 0.3;

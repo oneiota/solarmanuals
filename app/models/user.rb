@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_one :payment, :as => :payable
   
   def active_manuals
-    manuals.where(:trashed => false)
+    manuals.where(:trashed => false).order('created_at DESC')
   end
   
   def full_name
