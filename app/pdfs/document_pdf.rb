@@ -3,8 +3,8 @@ require 'erb'
 
 class DocumentPdf < Prawn::Document
   
-  def initialize(manual)
-    super()
+  def initialize(options, manual)
+    super(options)
     
     font_size 11
     default_leading 5
@@ -14,6 +14,7 @@ class DocumentPdf < Prawn::Document
     @manual = manual
     @graph = PerformanceGraph.new(self, @manual)
     @diagram = Diagram.new(self, @manual)
+    @certificate = Certificate.new(self, @manual)
     
     template = ERB.new(File.read(Rails.root.join('app/pdfs/manual.md.erb')))
     result = template.result(binding)
@@ -92,7 +93,7 @@ class DocumentPdf < Prawn::Document
     buffer.each_line do |line|
       arr << line.strip.split('|').reject{ |s| s.empty? }
     end
-    table arr, :cell_style => { :inline_format => true, :border_width => 0.25 }, :width => 540
+    table arr, :cell_style => { :inline_format => true, :border_width => 2 }, :width => bounds.width
     move_down @spacing * 2
   end
   
@@ -110,6 +111,10 @@ class DocumentPdf < Prawn::Document
   
   def draw_diagram
     @diagram.draw
+  end
+  
+  def certificate
+    @certificate.draw
   end
 
   

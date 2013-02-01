@@ -9,7 +9,7 @@ class ManualsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = DocumentPdf.new @manual
+        pdf = DocumentPdf.new({ :page_size => 'A4' }, @manual)
         send_data pdf.render, filename: "manual.pdf",
           type: "application/pdf",
           disposition: "inline"
