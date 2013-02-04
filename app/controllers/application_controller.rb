@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   
   def check_user_fields
     if current_user && current_user.fields_not_filled?
-      flash[:notice] = "Warning! You need to <a href='#{edit_user_registration_path}'>fill in all the fields</a> on before you can generate PDFs".html_safe
+      flash[:notice] = "Warning! You should <a href='#{edit_user_registration_path}'>fill in all your company details</a> to ensure the manuals contain correct information.".html_safe
     end
   end
   

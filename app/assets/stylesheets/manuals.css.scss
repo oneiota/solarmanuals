@@ -161,3 +161,15 @@ label {
   overflow: hidden;
   display: block;
 }
+
+
+
+.alert-info {
+  a {
+    color: #444;
+    text-decoration: underline;
+    &:hover {
+      color: #111;
+    }
+  }
+}

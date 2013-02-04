@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation
+  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax
   
   attr_accessor :current_password
   
@@ -31,7 +31,10 @@ class User < ActiveRecord::Base
   end
   
   def fields_not_filled?
-    company.blank? || accreditation.blank?
+    [company, accreditation, abn, company_address, company_suburb, company_postcode, contact_email, company_phone, company_fax].each do |field|
+      return true if field.blank?
+    end
+    false
   end
   
   def update_with_password(params={}) 

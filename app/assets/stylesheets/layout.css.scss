@@ -19,11 +19,9 @@ body {
   padding-top: 60px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  /*
-@media (max-width: 979px) {
-    padding: 0;
+  @media (max-width: 979px) {
+    padding-top: 0;
   }
-*/
 }
 
 #footer {

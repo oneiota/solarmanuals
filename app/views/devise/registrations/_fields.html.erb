@@ -12,6 +12,27 @@
 <p>You can fill these in later.</p>
 <% end %>
 
-<div><%= f.text_field :company, :placeholder => "Company / Trading name" %></div>
 
 <div><%= f.text_field :accreditation, :placeholder => "CEC Accreditation Number" %></div>
+
+<p><strong>Company Details</strong></p>
+
+<div><%= f.text_field :company, :placeholder => "Company / Trading name" %></div>
+
+<div><%= f.text_field :abn, :placeholder => 'ABN' %></div>
+
+<p><strong>Address</strong></p>
+
+<div><%= f.text_field :company_address, :placeholder => 'Street Address' %></div>
+
+<div><%= f.text_field :company_suburb, :placeholder => 'Suburb' %></div>
+
+<div><%= f.text_field :company_postcode, :placeholder => 'Postcode' %></div>
+
+<p><strong>Contact Details</strong></p>
+
+<div><%= f.text_field :contact_email, :placeholder => 'Contact Email' %></div>
+
+<div><%= f.text_field :company_phone, :placeholder => 'Phone number' %></div>
+
+<div><%= f.text_field :company_fax, :placeholder => 'Fax number' %></div>

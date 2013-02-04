@@ -20,6 +20,10 @@
   
       <hr/>
   
+      <%= render :partial => 'fields', :locals => { f: f } %>
+  
+      <hr/>
+
       <h3>Change Password</h3>
       <p>Leave blank to keep password.</p>
       <div>
@@ -29,11 +33,7 @@
       <div>
         <%= f.password_field :current_password, :placeholder => "Current Password" %>
       </div>
-  
-      <hr/>
-  
-      <%= render :partial => 'fields', :locals => { f: f } %>
-  
+      
       <hr/>
   
       <div><%= f.submit "Update", :class => "btn btn-large" %></div>

@@ -99,7 +99,7 @@ class Payment < ActiveRecord::Base
     else
       item = {
         name: DESCRIPTION[:item],
-        description: DESCRIPTION[:item],
+        description: DESCRIPTION[:instant],
         amount: self.amount
       }
       item[:category] = :Digital if self.digital?
