@@ -95,14 +95,31 @@
       </div> <!-- /container -->
       <div id="push"></div>
     </div>
+    
     <div id="footer">
-      <div class="container-fluid">
+    
+      <% if !user_signed_in? %>
+      
+      <div class="greenfooter container-fluid">
         <footer class="row-fluid">
-          <p class="span3">&copy; Installer Technologies 2012</p>
-          <p class="span3 offset6"><a class="pull-right" href="mailto:contact@solarmanuals.com.au">info@solarmanuals.com.au</a></p>
+          <div class="span3">For<br/>Support<br/>Enquiries<br/>Questions</div>
+          <div class="span1"><i class="sm-sprite sm-curly"></i></div>
+          <div class="span4">Contact Us <i class="sm-sprite sm-comment"></i><br/><a href="info@solarmanuals.com.au">info@solarmanuals.com.au</a></div>
+          <div class="span4"></div>          
+        </footer>
+      </div>    
+      
+      <% end %>
+              
+       <div class="blackfooter container-fluid">
+        <footer class="row-fluid">
+          <div class="span3">&#169; Solar Energy Consulting 2012</div>
+          <ul class="span9"><li><a href="#">FAQ</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul>         
         </footer>
       </div>
+    
     </div>
+    
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
