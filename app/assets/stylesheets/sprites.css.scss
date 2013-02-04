@@ -1,6 +1,9 @@
+$mapwidth: 898px / 2;
+$mapheight: 3640px / 2;
+
 .sm-sprite {
   background: url(sprite_map.png);
-  background-size: 449px 1560px;
+  background-size: $mapwidth $mapheight;
   display: inline-block;
 }
 
