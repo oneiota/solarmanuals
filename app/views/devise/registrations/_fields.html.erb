@@ -1,11 +1,17 @@
-<div><%= f.label :first_name %><br />
-<%= f.text_field :first_name %></div>
+<h3>Your name</h3>
 
-<div><%= f.label :last_name %><br />
-<%= f.text_field :last_name %></div>
+<div><%= f.text_field :first_name, :placeholder => "First name" %></div>
 
-<div><%= f.label :company %><br />
-<%= f.text_field :company %></div>
+<div><%= f.text_field :last_name, :placeholder => "Last name" %></div>
 
-<div><%= f.label :accreditation, "Accreditation Number" %><br />
-<%= f.text_field :accreditation, :placeholder => "A0123456" %></div>
+<hr/>
+
+<h3>Other details</h3>
+
+<% unless user_signed_in? %>
+<p>You can fill these in later.</p>
+<% end %>
+
+<div><%= f.text_field :company, :placeholder => "Company / Trading name" %></div>
+
+<div><%= f.text_field :accreditation, :placeholder => "CEC Accreditation Number" %></div>

@@ -19,7 +19,7 @@
       </p>
     <% elsif @manual.paid? %>
 
-      <p><%= link_to 'Continue filling details', edit_manual_path(@manual), :class => "btn" %></p>
+      <p><%= link_to 'Continue filling details', edit_manual_path(@manual), :class => "btn btn-large btn-block" %></p>
 
     <% else %>
       <p>You can unlock this manual for a fee of <strong>$5</strong>AU or <%= link_to "subscribe", root_url %> for unlimited access.</p>
@@ -46,14 +46,13 @@
       <h3>System Details</h3>
 
       <p>
-        Address: <strong><%= @manual.system_address %></strong><br/>
         Output: <strong><%= @manual.system_watts %></strong> W<br/>
         System config: <strong><%= @manual.system_config %></strong><br/>
         PV Voltage: <strong><%= @manual.system_pv_voltage %></strong> Volts DC<br/>
         PV Current <strong><%= @manual.system_pv_current %></strong> Amps DC
       </p>
 
-      <h3>Panels Details</h3>
+      <h3>Panel Details</h3>
 
       <p>
         Brand: <strong><%= @manual.panels_brand %></strong><br/>
@@ -72,8 +71,7 @@
         Brand: <strong><%= @manual.inverter_brand %></strong><br/>
         Model: <strong><%= @manual.inverter_model %></strong><br/>
         Output: <strong><%= @manual.inverter_output %></strong><br/>
-        Number of Inverters: <strong><%= @manual.inverter_number %></strong><br/>
-        Serial Number: <%= @manual.inverter_serial %>
+        Serial Number: <strong><%= @manual.inverter_serial %></strong>
       </p>
 
       <h3>Warranty Details</h3>
@@ -83,6 +81,16 @@
         Panels - Product: <strong><%= @manual.warranty_panels_product %></strong><br/>
         Panels - Output Performance: <strong><%= @manual.warranty_panels_output_performance %></strong><br/>
         Inverter: <strong><%= @manual.warranty_inverter %></strong>
+      </p>
+      
+      <h3>Safety Certificate Details</h3>
+      
+      <p>
+        Date of test: <strong><%= @manual.inspection_date.strftime('%e / %-m / %y') %></strong><br/>
+        Electrical contractor licence number: <strong><%= @manual.contractor_licence %></strong><br/>
+        Name on contractor licence: <strong><%= @manual.contractor_licence_name %></strong><br/>
+        Electrical contractor phone number: <strong><%= @manual.contractor_phone %></strong><br/>
+        Contractor name: <strong><%= @manual.contractor_name %></strong>
       </p>
 
       <h3>Graph</h3>

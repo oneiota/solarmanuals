@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131015212) do
+ActiveRecord::Schema.define(:version => 20130204002403) do
 
   create_table "images", :force => true do |t|
     t.datetime "created_at",        :null => false
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20130131015212) do
     t.string   "client_address"
     t.string   "client_suburb"
     t.datetime "install_date"
-    t.string   "system_address"
     t.string   "system_watts"
     t.string   "system_config"
     t.string   "system_pv_voltage"
@@ -40,7 +39,6 @@ ActiveRecord::Schema.define(:version => 20130131015212) do
     t.string   "inverter_brand"
     t.string   "inverter_model"
     t.string   "inverter_output"
-    t.string   "inverter_number"
     t.string   "inverter_serial"
     t.string   "warranty_workmanship"
     t.string   "warranty_panels_product"
@@ -54,6 +52,11 @@ ActiveRecord::Schema.define(:version => 20130131015212) do
     t.boolean  "trashed",                            :default => false
     t.integer  "client_state_id"
     t.integer  "feature_image_id"
+    t.integer  "contractor_licence"
+    t.string   "contractor_licence_name"
+    t.string   "contractor_phone"
+    t.string   "contractor_name"
+    t.datetime "inspection_date"
   end
 
   create_table "payments", :force => true do |t|

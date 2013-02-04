@@ -5,9 +5,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :company, :accreditation
+  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation
   
-  validates_presence_of :first_name, :last_name, :company, :accreditation
+  attr_accessor :current_password
+  
+  validates_presence_of :first_name, :last_name
   
   has_many :manuals
   has_one :payment, :as => :payable
@@ -22,6 +24,23 @@ class User < ActiveRecord::Base
   
   def subscribed?
     payment && payment.completed && !payment.canceled
+  end
+  
+  def fields_filled?
+    !fields_not_filled?
+  end
+  
+  def fields_not_filled?
+    company.blank? || accreditation.blank?
+  end
+  
+  def update_with_password(params={}) 
+    if params[:password].blank? 
+      params.delete(:password)      
+      params.delete(:current_password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank? 
+    end 
+    update_attributes(params) 
   end
   
 end

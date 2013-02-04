@@ -69,22 +69,22 @@
   top: 8px;
 }
 
+input[type=text], input[type=email], input[type=password], textarea {
+  width: 250px;
+  background: #eee;
+  border: none;
+  padding: 7px 10px;
+  box-shadow: none !important;
+  font-size: 12px;
+  border-radius: 4px !important;
+  &:focus {
+    outline: none;
+    border: none;
+    background: #dedede;
+  }
+}
 
 .new_manual, .edit_manual {
-  input[type=text], textarea {
-    width: 250px;
-    background: #eee;
-    border: none;
-    padding: 7px 10px;
-    box-shadow: none;
-    font-family: 'Monaco', Courier, monospace;
-    font-size: 12px;
-    border-radius: 4px !important;
-    &:focus {
-      outline: none;
-      background: #dedede;
-    }
-  }
   .input-append {
     width: 270px;
     position: relative;
@@ -103,6 +103,13 @@
     .input-container {
       display: block;
     }
+  }
+}
+
+
+.error {
+  input[type=text], textarea {
+    background: #f2dede;
   }
 }
 

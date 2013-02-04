@@ -4,10 +4,6 @@
   </div>
   <div class="span5">
     <div class="field">
-      <%= f.label :system_address, "Grid Interactive Inverter System Location" %>
-      <%= f.text_field :system_address, :placeholder => "Insert Address" %>
-    </div>
-    <div class="field">
       <%= f.label :system_watts, "Solar Panel Array Size" %>
       <div class="input-append">
         <span class="input-container"><%= f.text_field :system_watts, :placeholder => "e.g. 2450" %></span>
@@ -80,10 +76,6 @@
       </div>
     </div>
     <div class="field">
-      <%= f.label :inverter_number, "Number of Inverters" %>
-      <%= f.text_field :inverter_number %>
-    </div>
-    <div class="field">
       <%= f.label :inverter_serial, "Inverter Serial Number" %>
       <%= f.text_field :inverter_serial %>
     </div>
@@ -110,6 +102,34 @@
     <div class="field">
       <%= f.label :warranty_inverter %>
       <%= f.text_field :warranty_inverter, :placeholder => "eg. 5 years" %>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="section row">
+  <div class="span4">
+    <h3>Safety Certificate Details</h3>
+  </div>
+  <div class="span5">  
+    <div class="field">
+      <%= f.label :contractor_licence, "Electrical Contractor Licence Number" %>
+      <%= f.text_field :contractor_licence %>
+    </div>
+    <div class="field">
+      <%= f.label :contractor_licence_name, "Name on contractor licence" %>
+      <%= f.text_field :contractor_licence_name %>
+    </div>
+    <div class="field">
+      <%= f.label :contractor_phone, "Contractor phone number" %>
+      <%= f.text_field :contractor_phone %>
+    </div>
+    <div class="field">
+      <%= f.label :contractor_name, "Contractor name" %>
+      <%= f.text_field :contractor_name %>
+    </div>
+    <div class="field datetime">
+      <%= f.label :inspection_date, "Date of test" %>
+      <%= f.date_select :inspection_date %>
     </div>
   </div>
 </div>

@@ -1,26 +1,40 @@
-<h2>Get Started</h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<div class="row-fluid">
+  <div class="span3">
+    <hr/>
+    
+    <p>Fill in the details to get started generating your own solar installation user manuals.</p>
+    
+    <p>Please <%= link_to "let us know", "mailto:info@solarmanuals.com.au" %> if you have problems, or any comments or feedback.</p>
+    
+  </div>
   
-  <% if resource.errors.any? %>
-    <div class="alert alert-error">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      Check the errors below and try again.
-    </div>
-  <% end %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <div class="span8 offset1">
+    <hr/>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   
-  <%= render :partial => 'fields', :locals => { f: f } %>
+      <% if resource.errors.any? %>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          Check the errors below and try again.
+        </div>
+      <% end %>
+      
+      <h3>Account Details</h3>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+      <div>
+        <p>We'll use your email to log you in.</p>
+        <%= f.email_field :email, :placeholder => "Email" %>
+      </div>
+      
+      <div><%= f.password_field :password, :placeholder => "Password" %></div>
 
-<%= render "devise/shared/links" %>
+      <hr/>
+  
+      <%= render :partial => 'fields', :locals => { f: f } %>
+  
+      <hr/>
+
+      <div><%= f.submit "Sign up", :class => "btn btn-large" %></div>
+    <% end %>
+  </div>
+</div>

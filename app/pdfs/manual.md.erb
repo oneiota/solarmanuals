@@ -73,7 +73,7 @@ Note: If your meter has not been changed within 3 months of your installation co
 # System Overview
 
 * The solar system is a grid interactive inverter system located at:
-<b><%= @manual.system_address %></b>
+<b><%= @manual.client_address %> <%= @manual.client_suburb %></b>
 * The solar panel array size is:
 <b><%= @manual.system_watts %> Watts</b>
 * The electrical configuration is: 
@@ -219,7 +219,7 @@ To turn on the system it is the reverse process of the shutdown procedure (step 
 
 ### Inverter Serial Number
 
-|1. <b><%= @manual.inverter_serial %></b>|
+|<b><%= @manual.inverter_serial %></b>|
 
 # Warranties
 
@@ -230,7 +230,7 @@ To turn on the system it is the reverse process of the shutdown procedure (step 
 
 ---
 
-# Appendix 1: System Performance Estimate
+# System Performance Estimate
 
 = draw_graph
 
@@ -248,6 +248,8 @@ Energy Production Estimates:
 ### Diagram of installed system
 
 = draw_diagram
+
+---
 
 = certificate
 
