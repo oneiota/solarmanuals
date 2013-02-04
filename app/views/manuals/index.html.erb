@@ -1,15 +1,40 @@
+
+<% if current_user.is_new? %>
+  <p>
+    <p><%= link_to '<i class="icon-file"></i> Create New Manual'.html_safe, new_manual_path, class: 'btn btn-large btn-block btn-info', id: 'new-manual' %></p>
+  </p>
+  <hr/>
+<% end %>
+
 <div class="row-fluid">
   <div class="span3">
-    <p><%= link_to '<i class="icon-file"></i> New Manual'.html_safe, new_manual_path, class: 'btn btn-large btn-block', id: 'new-manual' %></p>
+    <% if current_user.logo.url.blank? %>
+      <p><%= image_tag "upload_logo.gif" %></p>
+    <% else %>
+      <p><%= image_tag current_user.logo.url(:original) %></p>
+    <% end %>
+    <p><%= link_to "Upload Logo", "#", :class => "btn btn-block", :id => "upload-logo-btn" %></p>
+    <%= form_for current_user do |f| %>
+      <%= f.file_field :logo %>
+      <%= f.submit %>
+    <% end %>
   </div>
   <div class="span4">
+    <h4>Your details</h4>
     <p>
-      <strong><%= current_user.first_name %> <%= current_user.last_name %></strong><br/>
-      <strong><%= current_user.company %></strong><br/>
-      Accreditation number: <strong><%= current_user.accreditation %></strong>
+      Name: <strong><%= current_user.first_name %> <%= current_user.last_name %></strong><br/>
+      Company name: <strong><%= fallback(current_user.company) %></strong><br/>
+      Accreditation number: <strong><%= fallback(current_user.accreditation) %></strong><br/>
+      ABN: <strong><%= fallback(current_user.abn) %></strong><br/>
+      Company Address: <strong><%= fallback(current_user.company_address) %></strong><br/>
+      Company Suburb: <strong><%= fallback current_user.company_suburb %></strong><br/>
+      Company Postcode: <strong><%= fallback current_user.company_postcode %></strong><br/>
+      Contact email: <strong><%= fallback current_user.contact_email %></strong><br/>
+      Phone number: <strong><%= fallback current_user.company_phone %></strong><br/>
+      Fax number: <strong><%= fallback current_user.company_fax %></strong>
     </p>
-
     <p><%= link_to "Update my details", edit_user_registration_path %></p>
+    <hr/>
   </div>
   <div class="offset1 span4">
     
@@ -54,4 +79,13 @@
     <%= link_to 'Delete', manual, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-btn" %></td>
   <% end %>
 <% end %>
+
+
+<% if @manuals.count == 0 %>
+  <tr>
+    <td colspan="5"><a>No manuals yet.</a></td>
+  </tr>
+<% end %>
 </table>
+
+

@@ -18,6 +18,16 @@ $ ->
     zIndex: 2e9 # The z-index (defaults to 2000000000)
     top: 'auto' # Top position relative to parent in px
     left: 'auto' # Left position relative to parent in px
+  
+  
+  $("#upload-logo-btn").on "click", (e) ->
+    e.preventDefault()
+    $("#user_logo").trigger("click")
+  
+  $("#user_logo").on "change", ->
+    console.log("changed")
+    $("form.edit_user").submit()
+    $("#upload-logo-btn").text("Uploading...")
     
   $("#submit-subscription").on "click", (e) ->
     e.preventDefault()

@@ -1,7 +1,7 @@
 Solar::Application.routes.draw do
 
   devise_for :users
-  resources :users, only: [:show]
+  resources :users, only: [:show, :update]
 
   resources :manuals
   

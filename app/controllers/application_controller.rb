@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
   
-  before_filter :check_user_fields
+  helper_method :fallback
+  
+  def fallback(field)
+    field.blank? ? "<span class='not-on-file'>Please enter...</span>".html_safe : field
+  end
+  
+  after_filter :check_user_fields
   
   def check_user_fields
     if current_user && current_user.fields_not_filled?

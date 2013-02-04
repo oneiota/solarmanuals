@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax
+  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo
+  
+  has_attached_file :logo, LOGO_OPTS
   
   attr_accessor :current_password
   
@@ -44,6 +46,10 @@ class User < ActiveRecord::Base
       params.delete(:password_confirmation) if params[:password_confirmation].blank? 
     end 
     update_attributes(params) 
+  end
+  
+  def is_new?
+    manuals.count == 0
   end
   
 end

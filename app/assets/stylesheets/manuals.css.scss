@@ -1,6 +1,6 @@
 #new-manual {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 25px 0;
+  font-size: 1.75em;
 }
 
 .btn i {
@@ -125,7 +125,7 @@ label {
     display: block;
     margin-bottom: 5px;
     color: #fff;
-    font-size: 2em;
+    font-size: 1.75em;
   }
 }
 
@@ -172,4 +172,18 @@ label {
       color: #111;
     }
   }
+}
+
+
+.info {
+  color: #39B54A;
+}
+
+.not-on-file {
+  color: #c09853;
+  font-weight: normal;
+}
+
+form.edit_user {
+  display: none;
 }

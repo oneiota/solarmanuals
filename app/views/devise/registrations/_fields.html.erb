@@ -1,38 +1,38 @@
 <h3>Your name</h3>
 
-<div><%= f.text_field :first_name, :placeholder => "First name" %></div>
+<div><%= f.text_field :first_name, :placeholder => "First name", :autocomplete => false %></div>
 
-<div><%= f.text_field :last_name, :placeholder => "Last name" %></div>
+<div><%= f.text_field :last_name, :placeholder => "Last name", :autocomplete => false %></div>
 
 <hr/>
 
 <h3>Other details</h3>
 
 <% unless user_signed_in? %>
-<p>You can fill these in later.</p>
+  <p class="info">* You can fill these in later.</p>
 <% end %>
 
 
-<div><%= f.text_field :accreditation, :placeholder => "CEC Accreditation Number" %></div>
+<div><%= f.text_field :accreditation, :placeholder => "CEC Accreditation Number", :autocomplete => false %></div>
 
 <p><strong>Company Details</strong></p>
 
-<div><%= f.text_field :company, :placeholder => "Company / Trading name" %></div>
+<div><%= f.text_field :company, :placeholder => "Company / Trading name", :autocomplete => false %></div>
 
-<div><%= f.text_field :abn, :placeholder => 'ABN' %></div>
+<div><%= f.text_field :abn, :placeholder => 'ABN', :autocomplete => false %></div>
 
 <p><strong>Address</strong></p>
 
-<div><%= f.text_field :company_address, :placeholder => 'Street Address' %></div>
+<div><%= f.text_field :company_address, :placeholder => 'Street Address', :autocomplete => false %></div>
 
-<div><%= f.text_field :company_suburb, :placeholder => 'Suburb' %></div>
+<div><%= f.text_field :company_suburb, :placeholder => 'Suburb', :autocomplete => false %></div>
 
-<div><%= f.text_field :company_postcode, :placeholder => 'Postcode' %></div>
+<div><%= f.text_field :company_postcode, :placeholder => 'Postcode', :autocomplete => false %></div>
 
 <p><strong>Contact Details</strong></p>
 
-<div><%= f.text_field :contact_email, :placeholder => 'Contact Email' %></div>
+<div><%= f.text_field :contact_email, :placeholder => 'Contact Email', :autocomplete => false %></div>
 
-<div><%= f.text_field :company_phone, :placeholder => 'Phone number' %></div>
+<div><%= f.text_field :company_phone, :placeholder => 'Phone number', :autocomplete => false %></div>
 
-<div><%= f.text_field :company_fax, :placeholder => 'Fax number' %></div>
+<div><%= f.text_field :company_fax, :placeholder => 'Fax number', :autocomplete => false %></div>

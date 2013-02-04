@@ -1,7 +1,7 @@
-$footerheight: 269px;
-$negfooterheight: $footerheight * -1;
+$footerHeight: 269px;
+$smallFooterHeight: 60px;
 
-$pagewidth: 1240px;
+$pageWidth: 1240px;
 
 html,
 body {
@@ -13,10 +13,10 @@ body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  max-width: $pagewidth;
-  margin: 0 auto $negfooterheight !important;
-  padding-bottom: $footerheight + 20;
+  max-width: $pageWidth;
+  margin: 0 auto (-($footerHeight));
   padding-top: 60px;
+  padding-bottom: 50px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   @media (max-width: 979px) {
@@ -24,17 +24,36 @@ body {
   }
 }
 
-#footer {
-  height: $footerheight;
-  > div {
-    padding-top: 20px;
+// small footer
+.signed-in #wrap {
+  margin-bottom: -($smallFooterHeight);
+}
+
+.header-width {
+  max-width: $pageWidth - 10;
+  margin: 0 auto;
+}
+
+#footer,
+#push {
+  height: $footerHeight;
+}
+
+.signed-in {
+  #footer,
+  #push {
+    height: $smallFooterHeight;
   }
+}
+
+#footer > div {
+  padding-top: 20px;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
 
 .greenfooter footer, .blackfooter footer {
-  max-width: $pagewidth;
+  max-width: $pageWidth;
   margin: 0 auto; 
 }
 
