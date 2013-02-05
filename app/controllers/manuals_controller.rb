@@ -107,4 +107,13 @@ class ManualsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def set_feature
+    @manual = Manual.find(params[:id])
+    @manual.feature_image = Image.find(params[:feature_id])
+    @manual.save
+    respond_to do |format|
+      format.js
+    end
+  end
 end

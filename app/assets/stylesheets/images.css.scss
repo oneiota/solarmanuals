@@ -12,6 +12,9 @@
     @media (min-width: 768px) {
       width: 50%;
     }
+    &.feature {
+      border: black solid 3px;
+    }
   }
   &.loading {
     #manual-images {

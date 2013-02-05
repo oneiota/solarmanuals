@@ -13,7 +13,10 @@ Solar::Application.routes.draw do
     end
   end
   
+  resources :images, only: [:destroy]
+  
   get '/manuals/:id/document', to: 'manuals#document', as: "manual_document"
+  put '/manuals/:id/set_feature', :to => 'manuals#set_feature', :as => 'set_feature'
   
   authenticated :user do
     root :to => "manuals#index"

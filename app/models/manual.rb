@@ -58,4 +58,8 @@ class Manual < ActiveRecord::Base
     end
   end
   
+  def feature_image_class(feature_id)
+    feature_image_id == feature_id ? 'feature' : ''
+  end
+  
 end

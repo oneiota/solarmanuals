@@ -1,6 +1,7 @@
 # encoding: UTF-8
 require 'erb'
-
+require "open-uri"
+    
 class DocumentPdf < Prawn::Document
   
   def initialize(options, manual)
@@ -115,6 +116,11 @@ class DocumentPdf < Prawn::Document
   
   def certificate
     @certificate.draw
+  end
+  
+  def feature_image
+    image open(@manual.feature_image.file.url(:original)), :width => bounds.width
+    move_down 16
   end
 
   

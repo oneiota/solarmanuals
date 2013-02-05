@@ -32,7 +32,7 @@
       </div>
       <div class="field">
         <%= f.label :client_state_id, "State" %>
-        <%= f.collection_select :client_state_id, State.all, :id, :name, { :disabled => lambda{|state| state.disabled } } %>
+        <%= f.collection_select :client_state_id, State.all, :id, :display_name, { :disabled => lambda{|state| state.disabled } } %>
       </div>
     </div>
   </div>

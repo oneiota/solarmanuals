@@ -5,7 +5,7 @@ class Ability
     
     user ||= User.new
     
-    can [:create, :destroy, :update, :read], Manual
+    can [:create, :destroy, :update, :read, :set_feature], Manual
     
     can :document, Manual do |manual|
       manual.paid?
