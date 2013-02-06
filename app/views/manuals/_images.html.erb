@@ -3,7 +3,7 @@
 <%= form_for @manual, :url => { :action => :update }, :html => { :multipart => true } do |f| %>
   <p><a href="#" id="upload-manual-images" class="btn btn-large"><i class="icon-upload"></i> Upload Photos</a></p>
   <%= f.file_field :files_array, :multiple => true,  :accept => "image/*" %>
-  <%= f.submit "Upload", :class => "btn", :id => "submit_manual_images_btn" %>
+  <%= f.submit "Upload Images", :class => "btn", :id => "submit_manual_images_btn" %>
 <% end %>
 
 <hr/>
