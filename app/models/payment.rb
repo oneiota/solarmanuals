@@ -1,6 +1,6 @@
 class Payment < ActiveRecord::Base
   
-  validates :token, uniqueness: true
+  # validates :token, uniqueness: true
   validates :amount, presence: true
   # validates :identifier, uniqueness: true
   scope :recurring, where(recurring: true)
@@ -84,7 +84,7 @@ class Payment < ActiveRecord::Base
   end
   
   DESCRIPTION = {
-    item: 'Grid Connect Solar User Manuals',
+    item: 'Grid Connect Solar User Manual',
     instant: 'One-off payment',
     recurring: 'Monthly subscription'
   }

@@ -47,7 +47,7 @@ class Manual < ActiveRecord::Base
   end
   
   def validate_pdf_fields?
-    paid? && !trashed
+    paid? && !trashed && filled
   end
   
   def paid?
