@@ -4,9 +4,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
+  # only for logo (probably)
   def update
     @user = User.find(params[:id])
-    @user.update_attributes(params[:user])
+    unless @user.update_attributes(params[:user])
+      flash[:alert] = "Please use an image under 2MB"
+    end
     redirect_to root_url
   end
   

@@ -67,6 +67,7 @@ GEM
     eventmachine (1.0.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fastimage (1.2.13)
     hashery (2.1.0)
     hike (1.2.1)
     httparty (0.10.0)
@@ -192,6 +193,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   devise
+  fastimage
   jquery-rails
   less-rails
   nokogiri

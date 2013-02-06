@@ -41,3 +41,5 @@ gem 'cancan'
 
 gem 'paperclip'
 gem 'aws-sdk'
+
+gem 'fastimage'

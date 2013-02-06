@@ -1,6 +1,5 @@
 # encoding: UTF-8
 require 'erb'
-require "open-uri"
     
 class DocumentPdf < Prawn::Document
   
@@ -16,6 +15,7 @@ class DocumentPdf < Prawn::Document
     @graph = PerformanceGraph.new(self, @manual)
     @diagram = Diagram.new(self, @manual)
     @certificate = Certificate.new(self, @manual)
+    @cover = Cover.new(self, @manual)
     
     template = ERB.new(File.read(Rails.root.join('app/pdfs/manual.md.erb')))
     result = template.result(binding)
@@ -118,9 +118,8 @@ class DocumentPdf < Prawn::Document
     @certificate.draw
   end
   
-  def feature_image
-    image open(@manual.feature_image.file.url(:original)), :width => bounds.width
-    move_down 16
+  def cover
+    @cover.draw
   end
 
   

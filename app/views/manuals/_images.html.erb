@@ -11,15 +11,7 @@
 <div id="manual-images-container">
   <div id="manual-images">
     <% @manual.images.each do |image| %>
-      <div class="manual-image">
-        <%= link_to image_tag(image.file.url(:thumb), 
-            :id => "image-#{image.id}", 
-            :class => @manual.feature_image_class(image.id)
-          ), set_feature_path(feature_id: image.id, :format => :js), 
-          :method => :put, 
-          :remote => true %>
-        <%# link_to "Delete", image_path(image), :method => :delete %>
-      </div>
+      <%= render :partial => 'manuals/image', :locals => { image: image } %>
     <% end %>
   </div>
 </div>

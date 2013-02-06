@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo
   
   has_attached_file :logo, LOGO_OPTS
+  validates_attachment :logo,
+    :size => { :in => 0..2.megabytes }
   
   attr_accessor :current_password
   

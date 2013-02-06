@@ -10,7 +10,7 @@ IMAGE_OPTS = {
 
 LOGO_OPTS = { 
   :styles => { 
-    :thumb => "140x140#" 
+    :thumb => "300x" 
   }, 
   :path => "/logos/:style/:id/:basename.:extension",
   :url => ':s3_path_url',

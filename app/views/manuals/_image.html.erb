@@ -1,0 +1,8 @@
+<%= content_tag :div, id: "image-#{image.id}", :class => "manual-image " + image.feature_image_class(image.id) do %>
+
+  <%= image_tag image.file.url(:thumb) %>
+  <span class="featured">Cover image</span>
+  <%= link_to "Set as cover image", set_feature_path(image, :format => :js), :method => :put, :remote => true, :class => "set-feature" %>
+  <%= link_to "x", image_path(image, :format => :js), :method => :delete, :remote => true, :class => "delete-image" %>
+
+<% end %>

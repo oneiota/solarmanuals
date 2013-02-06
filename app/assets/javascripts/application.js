@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ajax-progress
+//= require placeholder_polyfill.jquery
 //= require spin
+//= require canvasResize
+//= require exif
 //= require twitter/bootstrap
 //= require_tree .

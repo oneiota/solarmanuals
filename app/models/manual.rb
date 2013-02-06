@@ -18,7 +18,9 @@ class Manual < ActiveRecord::Base
   
   belongs_to :client_state, :class_name => "State"
   
-  belongs_to :feature_image, :class_name => "Image"
+  def feature_image
+    Image.where(manual_id: id, feature: true).first
+  end
   
   def self.not_trashed
     where(:trashed => false)
@@ -58,8 +60,5 @@ class Manual < ActiveRecord::Base
     end
   end
   
-  def feature_image_class(feature_id)
-    feature_image_id == feature_id ? 'feature' : ''
-  end
   
 end
