@@ -1,5 +1,5 @@
-$mapwidth: 898px / 2;
-$mapheight: 3120px / 2;
+$mapwidth: 148px / 2;
+$mapheight: 644px / 2;
 
 .sm-sprite {
   background: url('sprite_map.png');
@@ -19,38 +19,9 @@ $mapheight: 3120px / 2;
   height: 161px;
 }
 
-.sm-tick {
-  background-position: -94px 0px;
-  width: 375px;
-  height: 260px;
+.sm-curly-blk {
+  background-position: 0px -160px;
+  width: 37px;
+  height: 162px;
 }
 
-.sm-easy {
-  background-position: -94px -260px;
-  width: 375px;
-  height: 260px;
-}
-
-.sm-phone {
-  background-position: -94px -520px;
-  width: 375px;
-  height: 260px;
-}
-
-.sm-dollars {
-  background-position: -94px -780px;
-  width: 375px;
-  height: 260px;
-}
-
-.sm-graph {
-  background-position: -94px -1040px;
-  width: 375px;
-  height: 260px;
-}
-
-.sm-diagram {
-  background-position: -94px -1300px;
-  width: 375px;
-  height: 260px;
-}
