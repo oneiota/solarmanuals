@@ -95,7 +95,7 @@ class PaymentsController < ApplicationController
   end
 
   def paypal_api_error(e)
-    redirect_to root_url, error: e.response.details.collect(&:long_message).join('<br />')
+    redirect_to root_url, alert: e.response.details.collect(&:long_message).join('<br />')
   end
 
 end
