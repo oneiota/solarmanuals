@@ -28,6 +28,8 @@ class PaymentsController < ApplicationController
       success_payments_url,
       cancel_payments_url
     )
+    puts payment.inspect
+    puts "REDIRECT URI: #{payment.redirect_uri}"
     if payment.popup?
       redirect_to payment.popup_uri
     else
@@ -44,6 +46,7 @@ class PaymentsController < ApplicationController
       success_payments_url,
       cancel_payments_url
     )
+    puts payment.inspect
     if payment.popup?
       redirect_to payment.popup_uri
     else
