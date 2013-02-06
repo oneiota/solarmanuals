@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def subscribed?
-    payment && payment.completed && !payment.canceled
+    (payment && payment.completed && !payment.canceled) || insider
   end
   
   def fields_filled?

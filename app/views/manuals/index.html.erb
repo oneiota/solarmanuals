@@ -30,9 +30,10 @@
     <p><%= link_to "Update my details", edit_user_registration_path %></p>
     <hr/>
   </div>
-  <div class="offset1 span4">
-    
-    <% if current_user.subscribed? %>
+  <div class="offset1 span4 alignright">
+    <% if current_user.insider %>
+      <p>You are subscribed!</p>
+    <% elsif current_user.subscribed? %>
       <p>You are subscribed! <%= link_to "Cancel my subscription.", payment_path(current_user.payment), :method => :delete, :confirm => "Are you sure?\n\nCancelling your subscription will remove access to your archive. We will keep all of the details but you will need to pay the one-off fee for access to each one.\n\nYou can subscribe again at any time.\n\n" %></p>
     <% else %>
       <%= form_for @subscription do |f| %>

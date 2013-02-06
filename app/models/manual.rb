@@ -51,7 +51,7 @@ class Manual < ActiveRecord::Base
   end
   
   def paid?
-    user.subscribed? || (payment && payment.completed && !payment.canceled)
+    user.subscribed? || user.insider || (payment && payment.completed && !payment.canceled)
   end
   
   def files_array=(array)
