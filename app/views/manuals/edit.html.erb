@@ -9,7 +9,9 @@
         Installed: <%= nicetime(@manual.install_date) %><br/>
         <strong><%= @manual.client_name %></strong><br/>
         <%= @manual.client_address %><br/>
-        <%= @manual.client_suburb %>
+        <%= @manual.client_suburb %><br/>
+        <%= @manual.cient_state.name %><br/>
+        <%= @manual.client_postcode %>
       </p>
       
       <% if @manual.paid? %>

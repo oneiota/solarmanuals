@@ -39,9 +39,9 @@ class DocumentPdf < Prawn::Document
     
     string = "<page> of <total>"
     options = { 
-      :at => [bounds.right - 150, 0],
-      :width => 150,
-      :align => :right,
+      :at => [0, 0],
+      :width => bounds.width,
+      :align => :center,
       :start_count_at => 2,
       :page_filter => lambda{ |pg| pg > 1 && pg != 11 }
     }
