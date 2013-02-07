@@ -36,6 +36,18 @@ class DocumentPdf < Prawn::Document
     # parse left over buffer for end of file
     parse(buffer) unless buffer.empty? 
     
+    
+    string = "<page> of <total>"
+    options = { 
+      :at => [bounds.right - 150, 0],
+      :width => 150,
+      :align => :right,
+      :start_count_at => 2,
+      :page_filter => lambda{ |pg| pg > 1 && pg != 11 }
+    }
+    
+    number_pages string, options
+    
   end
   
   def parse(buffer)
