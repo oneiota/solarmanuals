@@ -95,13 +95,52 @@ body {
   }
 }
 
+.margins {
+  margin: 20px 0 !important;
+}
+
+.margintop {
+  margin-top: 20px !important;
+}
+
+.marginbottom {
+  margin-bottom: 20px !important;
+}
+
 @media (max-width: 767px) {
- /*
+  
  #footer {
     margin-left: -20px;
     margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    > div {
+      padding-left: 20px;
+      padding-right: 20px;
+    }        
+    .sm-curly {
+      display: none;
+    }
   }
-*/
+  
+  .navbar-inner {
+    .collapsed {
+      margin-bottom: 0px;
+    }
+  }
+  
+  body .hero-unit h1 {
+    font-size: 36px;
+  }
+  
+  body .btn {
+    margin-bottom: 20px;
+  }
+  
+  .getstartedbtn {
+    display: none;
+  }
+  
+  body .indent {
+    text-indent: 0;
+  }
+  
 }
