@@ -25,11 +25,11 @@ class Certificate
     @doc.move_down (16*2)
     
     # @doc.text_box "Lic No: 35641", :at => [160, @doc.cursor], :style => :bold
-    @doc.text_box "ABN: 43 067 209 778", :at => [260, @doc.cursor], :style => :bold
+    @doc.text_box "ABN: #{@manual.user.abn}", :at => [0, @doc.cursor], :style => :bold, :width => @doc.bounds.width, :align => :center
     
     @doc.move_down 32
     
-    @doc.text_box "6/887 Ann St Fortitude Valley\nPh: 0411693644  Fax: 07 123456789\nEmail: test@example.com", :at => [30, @doc.cursor], :width => @doc.bounds.width-60, :align => :center
+    @doc.text_box "#{@manual.user.company_address} #{@manual.user.company_suburb}\nPhone #{@manual.user.company_phone}  Fax: #{@manual.user.company_fax}\nEmail: #{@manual.user.contact_email}", :at => [30, @doc.cursor], :width => @doc.bounds.width-60, :align => :center
     
     @doc.move_down (16*5)
     
