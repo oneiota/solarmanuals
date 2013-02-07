@@ -1,17 +1,6 @@
 <div class="row-fluid">
   <div class="span3">
-    <div id="user-logo">
-      <% if current_user.logo? %>
-        <%= image_tag current_user.logo.url(:thumb) %>
-      <% else %>
-        <%= image_tag "upload_logo.gif" %>
-      <% end %>
-    </div>
-    <p><%= link_to "<span></span> Upload Logo".html_safe, "#", :class => "btn btn-block", :id => "upload-logo-btn" %></p>
-    <%= form_for current_user, :html => { :class => "logo-form" } do |f| %>
-      <%= f.file_field :logo %>
-      <%= f.submit %>
-    <% end %>
+    <%= render 'users/logo' %>
   </div>
   <div class="span4">
     <h4>Your details</h4>

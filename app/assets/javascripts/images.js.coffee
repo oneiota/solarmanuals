@@ -5,12 +5,13 @@ $ ->
       $(this).closest(".manual-image").hide()
   
   canvasSupported = !!document.createElement("canvas").getContext
+  
   resizeImage = (image, callback) ->
     $.canvasResize image,
-      width: 800
-      height: 600
+      width: 1350
+      height: 1350
       crop: false
-      quality: 80
+      quality: 60
       callback: (data, width, height) ->
         file = $.canvasResize 'dataURLtoBlob', data
         callback(file)

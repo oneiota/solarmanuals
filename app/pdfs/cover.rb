@@ -9,41 +9,49 @@ class Cover
   end
   
   def draw
-    @doc.text "#{@manual.user.company}", :align => :center, :size => 20
+    
+    if @manual.user.logo?
+      logo_uri = @manual.user.logo.url(:original)
+      logo = open(logo_uri)
+      @doc.image logo, :scale => dpi_ratio, :position => :center
+    else
+      @doc.text "#{@manual.user.company}", :align => :center, :size => 20
+    end
+    
+    @doc.move_down 16*4
+    
+    @doc.text "Grid Connect PV User Manual", :align => :center, :size => 24, :style => :bold
+    
     @doc.move_down 16*2
-
+    
     feature_image
     
-    @doc.text "Grid Connect PV User Manual", :align => :center, :size => 16
+    @doc.move_down 16*5
     
-    @doc.text "#{@manual.client_name} \n#{@manual.client_address} \n#{@manual.client_suburb}", :align => :center
+    @doc.text "Prepared for #{@manual.client_name} \n#{@manual.client_address} \n#{@manual.client_suburb}", :align => :center
 
-    @doc.text_box "#{@manual.user.full_name}\nAccreditation No. #{@manual.user.accreditation}", :at => [0, 16*5], :width => @doc.bounds.width, :style => :bold, :align => :center
+    @doc.text_box "#{@manual.user.company}\n#{address_line}#{phone_line}System installed by #{@manual.user.full_name} / Accreditation No. #{@manual.user.accreditation}", :at => [0, 16*7], :width => @doc.bounds.width, :style => :bold, :align => :center
     
     @doc.text_box "This document has been prepared as a reference and maintenance manual for the owner of the above PV power system.", :at => [50, 16*2], :width => @doc.bounds.width - 100, :align => :center
+  end
+  
+  def address_line
+    "#{@manual.user.company_address} #{@manual.user.company_suburb}\n" if @manual.user.company_address.present?
+  end
+  
+  def phone_line
+    str = ""
+    str += "Phone #{@manual.user.company_phone}" if @manual.user.company_phone.present?
+    str += "    Fax #{@manual.user.company_fax}" if @manual.user.company_fax.present?
+    str += "\n"
+    str
   end
   
   def feature_image
     if @manual.feature_image && @manual.feature_image.file?
       uri = @manual.feature_image.file.url(:original)
       cover_image = open(uri)
-      
-      # FastImage/Prawn has a bug that won't let us pass in cover_image
-      width, height = FastImage.size(uri)
-      
-      if width && height
-        print_width = width * dpi_ratio
-        print_height = height * dpi_ratio
-      
-        if print_width > @doc.bounds.width
-          @doc.image cover_image, :width => @doc.bounds.width
-          @doc.move_down 16
-        else
-          left_pos = (@doc.bounds.width - print_width) / 2
-          @doc.image cover_image, :at => [left_pos, @doc.cursor], :scale => dpi_ratio
-          @doc.move_down print_height + 16
-        end
-      end
+      @doc.image cover_image, :position => :center, :scale => dpi_ratio
     end
   end
 
