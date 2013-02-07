@@ -4,6 +4,7 @@ require 'erb'
 class DocumentPdf < Prawn::Document
   
   def initialize(options, manual)
+    options[:margin] = 60
     super(options)
     
     font_size 11

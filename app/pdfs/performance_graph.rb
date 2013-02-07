@@ -30,7 +30,7 @@ class PerformanceGraph
     width = 480.0
     weeks = @data.length
     start_y = @document.cursor - 30
-    graph_left = 50
+    graph_left = 20
     
     # draw horizontal lines
     @document.line_width = 0.5

@@ -6,11 +6,12 @@ class Diagram
     
     @modules_width = 200
     @modules_left = 300
-    @left = 0
+    @left = -30
     
   end
   
   def draw
+    
     @start_y = @doc.cursor - 30
     
     modules
@@ -157,13 +158,10 @@ class Diagram
     @doc.formatted_text_box text, :at => [@left + width + 50, @top - 10]
     
     # DC dash
-    @doc.dash 5
     @doc.stroke do
-      @doc.move_to [@left + 50, @top - 30]
-      @doc.line_to [@left + 115, @top - 30]
+      horizontal_dash @top - 30, @left + 50, @left + 115, 5
     end
     
-    @doc.dash 0
     # AC curve
     @doc.stroke do
       curve_left = @left + 115
@@ -176,6 +174,19 @@ class Diagram
     
     @top = @top - height    
     
+  end
+  
+  def horizontal_dash(at, from, to, dashes)
+    total_length = to - from
+    dash_length = total_length / (dashes * 2 + 1).to_f
+    puts dash_length
+    x_pos = 0
+    (0..dashes).each do |dash|
+      puts (from + x_pos * dash_length)
+      @doc.move_to [from + x_pos * dash_length, at]
+      @doc.line_to [from + (x_pos+1) * dash_length, at]
+      x_pos += 2
+    end
   end
   
   def switch_board

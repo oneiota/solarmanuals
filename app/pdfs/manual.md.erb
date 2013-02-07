@@ -14,15 +14,19 @@ It is imperative you observe all safety requirements when dealing with all eleme
 
 Once your grid-connected solar system has been commissioned, it should provide you with trouble free automatic operation.
 
----
+
+
 
 # Solar Power Explained
+
 
 ## How Solar Power Works
 
 Solar electricity generation works by converting energy from the sun, in the form of light, into electricity.
 
 Solar cells are made of semiconductors and work via what is known as the photovoltaic (PV) effect. In this process when light hits a conductor and semiconductor it transfers its energy to that conductor. Light is actually a stream of energy particles called photons. When the photons hit the silicon surface in the solar cells they generate electricity by transferring energy and freeing electrons. In this way electricity is generated. Put simply, photovoltaic cells are energy converters - converting the energy from sunlight into electricity.
+
+---
 
 ## How a Grid Connected Solar Power System Works
 
@@ -50,6 +54,8 @@ The meter records the energy sent to the grid from your solar system as well as 
 
 Any surplus electricity being generated simply flows through into the mains grid for use elsewhere.
 
+
+
 ## The Electricity Meter
 
 Most homes will need to have their electricity meter changed to enable data to be collected by the electrical retailers and electrical distributors for your electricity bills. The costs associated with the meter change are NOT covered by your solar system purchase price.
@@ -72,6 +78,9 @@ Note: If your meter has not been changed within 3 months of your installation co
 <b><%= @manual.system_pv_current %> Amps DC</b>
 * Approximate Yearly yield (based on sunlight information from <%= @manual.sunlight_city.capitalize %>): 
 <b><%= @graph.yearly_total %> kiloWatt Hours</b>
+
+
+
 
 # System Performance
 
@@ -171,6 +180,9 @@ If the inverter does not respond:
 * Check that the ‘Inverter Switch’ is in the ON position.
 * Shutdown / Start up Procedure
 
+
+
+
 # Shutdown / Start up Procedure
 
 ## System Shutdown Procedure
@@ -229,6 +241,12 @@ Energy Production Estimates:
 |Min:|<b><%= @graph.min %> kWh/day</b>|
 |Yearly:|<b><%= @graph.yearly_total %> kWh</b>|
 
+
+
+* This data is supplied by the Australian Bureau of Meteorology.
+* 'Peak sun hours' is the equivalent number of hours per day when solar insolation averages 1000 watts per square meter.
+
+
 ---
 
 # Wiring
@@ -236,8 +254,6 @@ Energy Production Estimates:
 ### Diagram of installed system
 
 = draw_diagram
-
----
 
 = certificate
 

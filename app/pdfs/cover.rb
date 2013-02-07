@@ -18,7 +18,7 @@ class Cover
       @doc.text "#{@manual.user.company}", :align => :center, :size => 20
     end
     
-    @doc.move_down 16*4
+    @doc.move_down 16*3
     
     @doc.text "Grid Connect PV User Manual", :align => :center, :size => 24, :style => :bold
     

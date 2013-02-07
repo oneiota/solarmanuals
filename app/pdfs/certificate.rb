@@ -13,11 +13,14 @@ class Certificate
   
   def draw
     
+    @doc.start_new_page :margin => 31
+    
+    
     # borders
-    horizontal_sine_curve(@doc.cursor-1, 0, @doc.bounds.width-4, -1)
-    horizontal_sine_curve(@doc.cursor-@doc.bounds.height+10, 0, @doc.bounds.width-4, 1)
-    vertical_sine_curve(0, 10, @doc.bounds.height-4, 1)
-    vertical_sine_curve(@doc.bounds.width-4, 10, @doc.bounds.height, -1)
+    horizontal_sine_curve(@doc.cursor, 6, @doc.bounds.width-12, -1)
+    horizontal_sine_curve(@doc.cursor-@doc.bounds.height, 6, @doc.bounds.width-12, 1)
+    vertical_sine_curve(6, 0, @doc.bounds.height, 1)
+    vertical_sine_curve(@doc.bounds.width-6, 0, @doc.bounds.height, -1)
     
     @doc.move_down 35
     
