@@ -28,7 +28,7 @@ class Cover
     
     @doc.move_down 16*5
     
-    @doc.text "Prepared for #{@manual.client_name} \n#{@manual.client_address} \n#{@manual.client_suburb}", :align => :center
+    @doc.text "Prepared for #{@manual.client_name} \n#{@manual.client_address} \n#{@manual.client_suburb}, #{@manual.client_state.name} #{@manual.client_postcode}", :align => :center
 
     @doc.text_box "#{@manual.user.company}\n#{address_line}#{phone_line}System installed by #{@manual.user.full_name} / Accreditation No. #{@manual.user.accreditation}", :at => [0, 16*7], :width => @doc.bounds.width, :style => :bold, :align => :center
     

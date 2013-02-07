@@ -31,11 +31,16 @@
         <%= f.text_field :client_suburb, :placeholder => "Suburb"  %>
       </div>
       <div class="field">
+        <%= f.text_field :client_postcode, :placeholder => "Post code"  %>
+      </div>
+      <div class="field">
         <%= f.label :client_state_id, "State" %>
         <%= f.collection_select :client_state_id, State.all, :id, :display_name, { :disabled => lambda{|state| state.disabled } } %>
       </div>
     </div>
   </div>
+  
+  <hr/>
   
   <% if @manual.paid? %>
     <%= render :partial => 'form', :locals => {  f: f } %>

@@ -32,7 +32,7 @@ class Certificate
     
     @doc.move_down 32
     
-    @doc.text_box "#{@manual.user.company_address} #{@manual.user.company_suburb}\nPhone #{@manual.user.company_phone}  Fax: #{@manual.user.company_fax}\nEmail: #{@manual.user.contact_email}", :at => [30, @doc.cursor], :width => @doc.bounds.width-60, :align => :center
+    @doc.text_box "#{@manual.user.company_address} #{@manual.user.company_suburb} #{@manual.user.company_postcode} \nPhone #{@manual.user.company_phone}  Fax: #{@manual.user.company_fax}\nEmail: #{@manual.user.contact_email}", :at => [30, @doc.cursor], :width => @doc.bounds.width-60, :align => :center
     
     @doc.move_down (16*5)
     

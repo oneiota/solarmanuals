@@ -1,9 +1,9 @@
 class Manual < ActiveRecord::Base
   attr_accessible :user_id, :payment_id, :feature_image_id,
-    :client_address, :client_name, :client_suburb, :client_state_id, :install_date, :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :sunlight_city, :filled, :trashed, :files_array,
+    :client_address, :client_name, :client_suburb, :client_postcode, :client_state_id, :install_date, :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :sunlight_city, :filled, :trashed, :files_array,
     :contractor_licence, :contractor_licence_name, :contractor_phone, :contractor_name, :inspection_date
   
-  validates_presence_of :client_address, :client_name, :client_suburb, :client_state_id, :install_date
+  validates_presence_of :client_address, :client_name, :client_suburb, :client_state_id, :install_date, :client_postcode
   
   validates_presence_of :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :contractor_licence, :contractor_licence_name, :contractor_name, :contractor_phone, :inspection_date, :if => :validate_pdf_fields?
   
