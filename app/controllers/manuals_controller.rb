@@ -47,10 +47,8 @@ class ManualsController < ApplicationController
   def new
     @manual = Manual.new
     @manual.user = current_user
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @manual }
-    end
+    
+    @all_manuals = current_user.manuals
   end
 
   # GET /manuals/1/edit
@@ -59,6 +57,9 @@ class ManualsController < ApplicationController
     @manual.contractor_licence_name ||= current_user.company
     @manual.contractor_name ||= current_user.full_name
     @manual.contractor_phone ||= current_user.company_phone
+    
+    puts @manual.client_state.name
+    # @all_manuals = current_user.manuals
   end
 
   # POST /manuals
