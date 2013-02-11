@@ -13,7 +13,7 @@
     </p>
     
     <hr/>
-    <% if @manual.paid? && @manual.filled %>
+    <% if @manual.completed? %>
       <p id="manuals-actions">
         <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary", id: "download-pdf" %>
         <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn", id: "edit-manual" %>

@@ -5,8 +5,6 @@ class Manual < ActiveRecord::Base
   
   validates_presence_of :client_address, :client_name, :client_suburb, :client_state_id, :install_date, :client_postcode
   
-  validates_presence_of :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :contractor_licence, :contractor_licence_name, :contractor_name, :contractor_phone, :inspection_date, :if => :validate_pdf_fields?
-  
   validates_numericality_of :system_pv_current, :system_pv_voltage, :system_watts, :inverter_output, :if => :validate_pdf_fields?
   
   belongs_to :user
@@ -46,6 +44,53 @@ class Manual < ActiveRecord::Base
     buffer
   end
   
+  def completed?
+    attributes.each_pair do |k, v|
+      unless k == 'trashed'
+        if v.nil? || v.blank?
+          return false
+        end
+      end
+    end
+    true
+  end
+  
+  def self.all_completed
+    Manual.all.keep_if(&:completed?)
+  end
+  
+  def self.system_details_prefill
+    manuals = unique_values("system_watts", "system_pv_current", "system_pv_voltage")
+    
+    manuals.collect do |m|
+      ["#{m['system_watts']}W, #{m['system_pv_current']}Amps, #{m['system_pv_voltage']}V", m['id']]
+    end
+  end
+  
+  def self.panel_details_prefill
+    manuals = unique_values("panels_brand", "panels_model", "panels_number")
+    
+    manuals.collect do |m|
+      ["#{m['panels_number']} x #{m['panels_brand']} #{m['panels_model']}", m['id']]
+    end
+  end
+  
+  def self.inverter_details_prefill
+    manuals = unique_values("inverter_brand", "inverter_model", "inverter_output")
+    
+    manuals.collect do |m|
+      ["#{m['inverter_output']} #{m['inverter_brand']} #{m['inverter_model']}", m['id']]
+    end
+  end
+  
+  def self.warranty_details_prefill
+    manuals = unique_values("warranty_inverter", "warranty_panels_output_performance", "warranty_panels_product", "warranty_workmanship")
+    
+    manuals.collect do |m|
+      ["#{m['warranty_inverter']}, #{m['warranty_panels_output_performance']}, #{m['warranty_panels_product']}, #{m['warranty_workmanship']}", m['id']]
+    end
+  end
+  
   def validate_pdf_fields?
     paid? && !trashed && filled
   end
@@ -58,6 +103,20 @@ class Manual < ActiveRecord::Base
     array.each do |file|
       images.build(:file => file)
     end
+  end
+  
+  private
+  
+  
+  def self.unique_values(*fields)
+    manuals = []
+    all(:select => fields.concat(['id']).join(", ")).each do |m|
+      # hash exists in array (minus id)
+      unless manuals.map{ |m| m.delete(:id) }.include? m.attributes.delete(:id)
+        manuals << m.attributes
+      end
+    end
+    manuals
   end
   
   

@@ -1,6 +1,10 @@
 <div class="section row">
   <div class="span4">
     <h3>System Details</h3>
+    
+    <%= label_tag "Used previously" %> 
+    <%= select "system_details", "prefill", Manual.system_details_prefill, { :include_blank => "Select" }, { :class => "select-prefill" } %>
+    
   </div>
   <div class="span5">
     <div class="field">
@@ -34,6 +38,10 @@
 <div class="section row">
   <div class="span4">
     <h3>Panel Details</h3>
+    
+    <%= label_tag "Used previously" %>
+    <%= select "panel_details", "prefill", Manual.panel_details_prefill, { :include_blank => "Select" }, { :class => "select-prefill" } %>
+    
   </div>
   <div class="span5">
     <div class="field">
@@ -58,6 +66,10 @@
 <div class="section row">
   <div class="span4">
     <h3>Inverter Details</h3>
+    
+    <%= label_tag "Used previously" %>
+    <%= select "inverter_details", "prefill", Manual.inverter_details_prefill, { :include_blank => "Select" }, { :class => "select-prefill" } %>
+    
   </div>
   <div class="span5">  
     <div class="field">
@@ -85,6 +97,8 @@
 <div class="section row">
   <div class="span4">
     <h3>Warranty Details</h3>
+    <%= label_tag "Used previously" %>
+    <%= select "warranty_details", "prefill", Manual.warranty_details_prefill, { :include_blank => "Select" }, { :class => "select-prefill" } %>
   </div>
   <div class="span5">  
     <div class="field">

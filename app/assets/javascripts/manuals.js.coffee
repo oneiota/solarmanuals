@@ -37,3 +37,22 @@ $ ->
     e.preventDefault()
     $(this).closest("form").submit()
     $("#subscription-loading").show()
+  
+  
+  $(".select-prefill").on 'change', ->
+    params = {
+      type: $(this).attr('id')
+    }
+    $.ajax
+      url: '/manuals/'+$(this).val()
+      dataType: 'json'
+      data: params
+      success: (data) ->
+        realData = {
+          'manual' : data
+        }
+        $('form').populate realData,
+          resetForm: false
+      
+    
+    

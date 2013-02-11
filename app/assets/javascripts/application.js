@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ajax-progress
 //= require jquery.placeholderfix
+//= require populate
 //= require spin
 //= require canvasResize
 //= require exif
