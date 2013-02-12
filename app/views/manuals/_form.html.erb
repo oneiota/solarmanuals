@@ -21,7 +21,7 @@
     <div class="field">
       <%= f.label :system_pv_voltage, "PV Array Voltage (Open Circuit)" %>
       <div class="input-append">
-        <span class="input-container"><%= f.text_field :system_pv_voltage, :placeholder => "eg. 355" %></span>
+        <span class="input-container"><%= f.text_field :system_pv_voltage, :placeholder => "eg. 35.5" %></span>
         <span class="add-on">Volts DC</span>
       </div>
     </div>
@@ -58,6 +58,7 @@
     </div>
     <div class="field">
       <%= f.label :panels_serial_numbers, "Serial Numbers (comma separated)" %>
+      <p class="greyed">Optional - list here unless published in attachments.</p>
       <%= f.text_area :panels_serial_numbers, :placeholder => "2001406276, 2001406250, 2001405450", :rows => 4 %>
     </div>
   </div>
@@ -89,6 +90,7 @@
     </div>
     <div class="field">
       <%= f.label :inverter_serial, "Inverter Serial Number" %>
+      <p class="greyed">Optional - enter here unless published in attachments.</p>
       <%= f.text_field :inverter_serial %>
     </div>
   </div>

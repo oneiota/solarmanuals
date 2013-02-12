@@ -113,8 +113,9 @@ class Manual < ActiveRecord::Base
   def self.unique_values(*fields)
     manuals = []
     all(:select => fields.concat(['id']).join(", ")).each do |m|
+
       # hash exists in array (minus id)
-      unless manuals.map{ |m| m.delete(:id) }.include? m.attributes.delete(:id)
+      unless manuals.map{ |m| m.except("id") }.include? m.attributes.except("id")
         manuals << m.attributes
       end
     end

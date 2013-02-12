@@ -218,20 +218,27 @@ To turn on the system it is the reverse process of the shutdown procedure (step 
 ## Panels
 
 |Panel Brand: <b><%= @manual.panels_brand %></b>|Panel Model: <b><%= @manual.panels_model %></b>|Number of Panels: <b><%= @manual.panels_number %></b>|
-<% unless @manual.panels_serial_numbers.blank? %>
+
 ### Panel Serial Numbers
 
+<% unless @manual.panels_serial_numbers.blank? %>
 <%= @manual.panels_table %>
+<% else %>
+See attachments.
 <% end %>
+
 ## Inverter
 
 |Inverter Brand: <b><%= @manual.inverter_brand %></b>|Inverter Model: <b><%= @manual.inverter_model %></b>|Inverter Output: <b><%= @manual.inverter_output %></b>|
 
-<% unless @manual.inverter_serial.blank? %>
 ### Inverter Serial Number
 
+<% unless @manual.inverter_serial.blank? %>
 |<b><%= @manual.inverter_serial %></b>|
+<% else %>
+See attachments.
 <% end %>
+
 # Warranties
 
 |Installation Workmanship|<b><%= @manual.warranty_workmanship %></b>|
