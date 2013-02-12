@@ -48,7 +48,7 @@ class Manual < ActiveRecord::Base
   
   def completed?
     attributes.each_pair do |k, v|
-      unless k == 'trashed'
+      unless ['trashed', 'panels_serial_numbers', 'inverter_serial'].include? k
         if v.nil? || v.blank?
           return false
         end
