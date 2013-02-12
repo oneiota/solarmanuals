@@ -5,7 +5,7 @@ class Manual < ActiveRecord::Base
   
   validates_presence_of :client_address, :client_name, :client_suburb, :client_state_id, :install_date, :client_postcode
   
-  validates_numericality_of :system_pv_current, :system_pv_voltage, :system_watts, :inverter_output, :if => :validate_pdf_fields?
+  validates_numericality_of :system_pv_current, :system_pv_voltage, :system_watts, :inverter_output, :if => :validate_pdf_fields?, :allow_blank => true
   
   belongs_to :user
   has_one :payment, :as => :payable
