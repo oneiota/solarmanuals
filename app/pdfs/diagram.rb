@@ -179,10 +179,8 @@ class Diagram
   def horizontal_dash(at, from, to, dashes)
     total_length = to - from
     dash_length = total_length / (dashes * 2 + 1).to_f
-    puts dash_length
     x_pos = 0
     (0..dashes).each do |dash|
-      puts (from + x_pos * dash_length)
       @doc.move_to [from + x_pos * dash_length, at]
       @doc.line_to [from + (x_pos+1) * dash_length, at]
       x_pos += 2

@@ -187,6 +187,30 @@ label {
 #user-logo {
   margin-bottom: 1em;
 }
+
 .logo-form {
   display: none;
+}
+
+.pdfs-submit-btn, #upload-pdf-fields {
+  display: none;
+}
+
+#manuals-pdf-boxes {
+  &.loading {
+    min-height: 100px;
+  }
+}
+
+.checkbox {
+  &:hover {
+    .delete-pdf-link {
+      display: inline;
+    }
+  }
+  .delete-pdf-link {
+    color: red;
+    margin-left: 20px;
+    display: none;
+  }
 }

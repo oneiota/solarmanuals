@@ -53,6 +53,27 @@ $ ->
         }
         $('form').populate realData,
           resetForm: false
+  
+  
+  $('.pdf-checkbox').on 'change', ->
+    $(this).closest('form').submit()
       
-    
-    
+  $('#upload-pdfs-btn').on 'click', (e) ->
+    e.preventDefault()
+    $('.upload-pdfs-input').trigger 'click'
+  
+  $('.upload-pdfs-input').on 'change', ->
+    # check file extensions are .pdf
+    for f in this.files
+      # http://stackoverflow.com/a/1203361/917850
+      if f.name.split('.').pop() != 'pdf'
+        return alert('Please choose PDF files')
+        
+    $('#upload-pdfs-btn').text('Uploading...')
+    $('body').addClass('submitting')
+    $('.upload-pdfs-form').submit()
+  
+  # hide checkbox after confirming to delete PDF
+  $(document).on 'confirm:complete', (e, answer) ->
+    if answer
+      $(e.target).closest('label').hide()

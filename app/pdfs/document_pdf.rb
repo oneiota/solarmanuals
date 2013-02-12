@@ -36,7 +36,6 @@ class DocumentPdf < Prawn::Document
     # parse left over buffer for end of file
     parse(buffer) unless buffer.empty? 
     
-    
     string = "<page> of <total>"
     options = { 
       :at => [0, 0],
@@ -47,6 +46,21 @@ class DocumentPdf < Prawn::Document
     }
     
     number_pages string, options
+    
+    # attach PDFs
+    
+    @manual.pdfs.each do |pdf|
+      go_to_page(page_count)
+      
+      pdf_url = pdf.file.url
+      new_pdf = open(pdf_url)
+      template_page_count = count_pdf_pages(new_pdf)
+      
+      (1..template_page_count).each do |template_page_number|
+        start_new_page(:template => new_pdf, :template_page => template_page_number)
+      end
+    end
+    
     
   end
   
@@ -134,6 +148,13 @@ class DocumentPdf < Prawn::Document
   def cover
     @cover.draw
   end
+  
+  private
+
+    def count_pdf_pages(pdf_file_path)
+      pdf = Prawn::Document.new(:template => pdf_file_path)
+      pdf.page_count
+    end
 
   
 end

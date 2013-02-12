@@ -1,0 +1,25 @@
+<hr/>
+
+<%= form_for current_user, :html => { :multipart => true, :class => 'upload-pdfs-form' } do |f| %>  
+  <%= link_to "Upload PDF attachments", "#", id: 'upload-pdfs-btn', class: 'btn btn-block btn-large' %>
+  <div id="upload-pdf-fields">
+    <%= f.file_field :pdfs_array, :multiple => true, class: 'upload-pdfs-input' %>
+    <%= hidden_field_tag :redirect, manual_path(@manual) %>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<div id="manual-pdfs-boxes">
+  <% if current_user.pdfs.count > 0 %>
+    <p><strong>Attach these PDFs</strong></p>
+  <% end %>
+  <%= form_for @manual, :remote => true do |f| %>
+    <% current_user.pdfs.each do |pdf| %>
+      <%= label_tag dom_id(pdf), :class => 'checkbox' do %>
+        <%= check_box_tag 'manual[pdf_ids][]', pdf.id, @manual.pdf_ids.include?(pdf.id), id: dom_id(pdf), :class => 'pdf-checkbox' %> 
+        <%= pdf.file_file_name %> <%= link_to "Delete", pdf_path(pdf), :method => :delete, :remote => true, :confirm => "Delete #{pdf.file_file_name}?", :class => 'delete-pdf-link'%>
+      <% end %>
+    <% end %>
+    <%= f.submit "Update PDFs list", class: 'pdfs-submit-btn' %>
+  <% end %>
+</div>

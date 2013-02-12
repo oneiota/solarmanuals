@@ -17,3 +17,11 @@ LOGO_OPTS = {
   :storage => :s3, 
   :s3_credentials => "#{Rails.root}/config/s3.yml"
 }
+
+
+PDF_OPTS = {
+  :path => "/pdfs/:id/:basename.:extension",
+  :url => ':s3_path_url',
+  :storage => :s3, 
+  :s3_credentials => "#{Rails.root}/config/s3.yml"
+}

@@ -14,6 +14,7 @@ Solar::Application.routes.draw do
   end
   
   resources :images, only: [:destroy]
+  resources :pdfs, only: [:destroy]
   
   get '/manuals/:id/document', to: 'manuals#document', as: "manual_document"
   

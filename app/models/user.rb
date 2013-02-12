@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo
+  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo, :pdfs_array
   
   has_attached_file :logo, LOGO_OPTS
   validates_attachment :logo,
@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   
   has_many :manuals
   has_one :payment, :as => :payable
+  
+  has_many :pdfs
+  accepts_nested_attributes_for :pdfs
   
   def active_manuals
     manuals.where(:trashed => false).order('created_at DESC')
@@ -53,5 +56,12 @@ class User < ActiveRecord::Base
   def is_new?
     manuals.count == 0
   end
+  
+  def pdfs_array=(array)
+    array.each do |file|
+      pdfs.build(:file => file)
+    end
+  end
+  
   
 end

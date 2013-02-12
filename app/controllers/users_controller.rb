@@ -10,7 +10,13 @@ class UsersController < ApplicationController
     unless @user.update_attributes(params[:user])
       flash[:alert] = "Please use an image under 2MB"
     end
-    redirect_to root_url
+    
+    # upload PDF form redirects to manual/:id
+    if params[:redirect]
+      redirect_to params[:redirect]
+    else
+      redirect_to root_url
+    end
   end
   
 end

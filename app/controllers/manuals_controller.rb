@@ -1,5 +1,5 @@
 class ManualsController < ApplicationController
-  layout "pdf", :only => [:document, :cover]
+  layout "pdf", :only => [:document]
   
   before_filter :authenticate_user!
   load_and_authorize_resource
@@ -47,7 +47,7 @@ class ManualsController < ApplicationController
     end
     
     @manual = Manual.find(params[:id], query)  
-    @payment = @manual.payment || Payment.new  
+    @payment = @manual.payment || Payment.new
     
     respond_to do |format|
       format.html # show.html.erb

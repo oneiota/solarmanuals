@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207033230) do
+ActiveRecord::Schema.define(:version => 20130212002725) do
 
   create_table "images", :force => true do |t|
     t.datetime "created_at",                           :null => false
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(:version => 20130207033230) do
     t.string   "client_postcode"
   end
 
+  create_table "manuals_pdfs", :force => true do |t|
+    t.integer "pdf_id"
+    t.integer "manual_id"
+  end
+
   create_table "payments", :force => true do |t|
     t.integer  "amount",       :default => 1
     t.string   "token"
@@ -74,6 +79,14 @@ ActiveRecord::Schema.define(:version => 20130207033230) do
     t.datetime "updated_at",                      :null => false
     t.integer  "payable_id"
     t.string   "payable_type"
+  end
+
+  create_table "pdfs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "states", :force => true do |t|
