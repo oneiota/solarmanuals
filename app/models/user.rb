@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
   
   has_many :manuals
-  has_one :payment, :as => :payable
+  has_many :eway_payments
   
   has_many :pdfs
   accepts_nested_attributes_for :pdfs
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
   
   def subscribed?
-    (payment && payment.completed && !payment.canceled) || insider
+    true
   end
   
   def fields_filled?

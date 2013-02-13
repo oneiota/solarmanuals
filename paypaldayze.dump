@@ -1,0 +1,688 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: images; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE images (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    file_file_name character varying(255),
+    file_content_type character varying(255),
+    file_file_size integer,
+    file_updated_at timestamp without time zone,
+    manual_id integer,
+    feature boolean DEFAULT false
+);
+
+
+ALTER TABLE public.images OWNER TO tom;
+
+--
+-- Name: images_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.images_id_seq OWNER TO tom;
+
+--
+-- Name: images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE images_id_seq OWNED BY images.id;
+
+
+--
+-- Name: images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('images_id_seq', 80, true);
+
+
+--
+-- Name: manuals; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE manuals (
+    id integer NOT NULL,
+    client_name character varying(255),
+    client_address character varying(255),
+    client_suburb character varying(255),
+    install_date timestamp without time zone,
+    system_watts character varying(255),
+    system_config character varying(255),
+    system_pv_voltage character varying(255),
+    system_pv_current character varying(255),
+    panels_brand character varying(255),
+    panels_model character varying(255),
+    panels_number character varying(255),
+    panels_serial_numbers text,
+    inverter_brand character varying(255),
+    inverter_model character varying(255),
+    inverter_output character varying(255),
+    inverter_serial character varying(255),
+    warranty_workmanship character varying(255),
+    warranty_panels_product character varying(255),
+    warranty_panels_output_performance character varying(255),
+    warranty_inverter character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    sunlight_city character varying(255),
+    user_id integer,
+    filled boolean DEFAULT false,
+    trashed boolean DEFAULT false,
+    client_state_id integer,
+    contractor_licence integer,
+    contractor_licence_name character varying(255),
+    contractor_phone character varying(255),
+    contractor_name character varying(255),
+    inspection_date timestamp without time zone,
+    client_postcode character varying(255)
+);
+
+
+ALTER TABLE public.manuals OWNER TO tom;
+
+--
+-- Name: manuals_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE manuals_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.manuals_id_seq OWNER TO tom;
+
+--
+-- Name: manuals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE manuals_id_seq OWNED BY manuals.id;
+
+
+--
+-- Name: manuals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('manuals_id_seq', 15, true);
+
+
+--
+-- Name: manuals_pdfs; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE manuals_pdfs (
+    id integer NOT NULL,
+    pdf_id integer,
+    manual_id integer
+);
+
+
+ALTER TABLE public.manuals_pdfs OWNER TO tom;
+
+--
+-- Name: manuals_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE manuals_pdfs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.manuals_pdfs_id_seq OWNER TO tom;
+
+--
+-- Name: manuals_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE manuals_pdfs_id_seq OWNED BY manuals_pdfs.id;
+
+
+--
+-- Name: manuals_pdfs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('manuals_pdfs_id_seq', 16, true);
+
+
+--
+-- Name: payments; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE payments (
+    id integer NOT NULL,
+    amount integer DEFAULT 1,
+    token character varying(255),
+    identifier character varying(255),
+    payer_id character varying(255),
+    recurring boolean DEFAULT false,
+    digital boolean DEFAULT false,
+    popup boolean DEFAULT false,
+    completed boolean DEFAULT false,
+    canceled boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    payable_id integer,
+    payable_type character varying(255)
+);
+
+
+ALTER TABLE public.payments OWNER TO tom;
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE payments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.payments_id_seq OWNER TO tom;
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE payments_id_seq OWNED BY payments.id;
+
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('payments_id_seq', 9, true);
+
+
+--
+-- Name: pdfs; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE pdfs (
+    id integer NOT NULL,
+    user_id integer,
+    file_file_name character varying(255),
+    file_content_type character varying(255),
+    file_file_size integer,
+    file_updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.pdfs OWNER TO tom;
+
+--
+-- Name: pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE pdfs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pdfs_id_seq OWNER TO tom;
+
+--
+-- Name: pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE pdfs_id_seq OWNED BY pdfs.id;
+
+
+--
+-- Name: pdfs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('pdfs_id_seq', 14, true);
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO tom;
+
+--
+-- Name: states; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE states (
+    id integer NOT NULL,
+    name character varying(255),
+    disabled boolean DEFAULT true
+);
+
+
+ALTER TABLE public.states OWNER TO tom;
+
+--
+-- Name: states_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE states_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.states_id_seq OWNER TO tom;
+
+--
+-- Name: states_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE states_id_seq OWNED BY states.id;
+
+
+--
+-- Name: states_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('states_id_seq', 7, true);
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    first_name character varying(255),
+    last_name character varying(255),
+    company character varying(255),
+    accreditation character varying(255),
+    abn character varying(255),
+    company_address character varying(255),
+    company_suburb character varying(255),
+    company_postcode character varying(255),
+    contact_email character varying(255),
+    company_phone character varying(255),
+    company_fax character varying(255),
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone,
+    insider boolean DEFAULT false
+);
+
+
+ALTER TABLE public.users OWNER TO tom;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: tom
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO tom;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tom
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tom
+--
+
+SELECT pg_catalog.setval('users_id_seq', 2, true);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY images ALTER COLUMN id SET DEFAULT nextval('images_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY manuals ALTER COLUMN id SET DEFAULT nextval('manuals_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY manuals_pdfs ALTER COLUMN id SET DEFAULT nextval('manuals_pdfs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY payments ALTER COLUMN id SET DEFAULT nextval('payments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY pdfs ALTER COLUMN id SET DEFAULT nextval('pdfs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY states ALTER COLUMN id SET DEFAULT nextval('states_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: tom
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: images; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY images (id, created_at, updated_at, file_file_name, file_content_type, file_file_size, file_updated_at, manual_id, feature) FROM stdin;
+36	2013-01-31 05:56:55.808521	2013-01-31 05:56:55.808521	e67925d6648fcea02909f1e0bf03d959.jpg	image/jpeg	230849	2013-01-31 05:56:55.611536	1	f
+37	2013-01-31 05:57:03.931505	2013-01-31 05:57:03.931505	f45b2d23f7853818974597b9a468997d.jpg	image/jpeg	185974	2013-01-31 05:56:55.709834	1	f
+38	2013-01-31 06:00:23.889969	2013-01-31 06:00:23.889969	tumblr_lw9amb00l91qzfrcco1_1280.jpeg	image/jpeg	249036	2013-01-31 06:00:23.782995	1	f
+65	2013-02-06 00:55:41.107807	2013-02-12 00:06:14.457023	blob	image/jpeg	107783	2013-02-06 00:55:23.486195	7	f
+63	2013-02-06 00:55:23.673279	2013-02-06 00:55:23.673279	blob	image/jpeg	61752	2013-02-06 00:55:23.263886	7	f
+64	2013-02-06 00:55:33.495489	2013-02-06 00:55:33.495489	blob	image/jpeg	107080	2013-02-06 00:55:23.394742	7	f
+66	2013-02-06 00:55:48.912099	2013-02-06 00:55:48.912099	blob	image/jpeg	115450	2013-02-06 00:55:23.577206	7	f
+58	2013-02-05 23:57:12.870897	2013-02-06 05:45:40.967758	Screen_Shot_2013-01-31_at_1.45.45_PM.png	image/png	205047	2013-02-05 23:57:12.55786	7	f
+67	2013-02-06 05:24:33.803781	2013-02-07 00:38:12.490771	blob	image/jpeg	95335	2013-02-06 05:24:33.614527	8	f
+71	2013-02-07 00:44:06.23882	2013-02-07 00:44:06.23882	blob	image/jpeg	41121	2013-02-07 00:44:05.930971	6	f
+73	2013-02-07 00:44:43.507539	2013-02-07 00:44:43.507539	blob	image/jpeg	118345	2013-02-07 00:44:06.144283	6	f
+75	2013-02-07 00:47:05.138319	2013-02-07 00:47:05.138319	blob	image/jpeg	361456	2013-02-07 00:46:41.903553	6	f
+72	2013-02-07 00:44:22.60624	2013-02-07 00:47:23.672415	blob	image/jpeg	112236	2013-02-07 00:44:06.051952	6	f
+74	2013-02-07 00:46:42.050447	2013-02-11 04:44:56.548526	blob	image/jpeg	298755	2013-02-07 00:46:41.733456	6	f
+\.
+
+
+--
+-- Data for Name: manuals; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY manuals (id, client_name, client_address, client_suburb, install_date, system_watts, system_config, system_pv_voltage, system_pv_current, panels_brand, panels_model, panels_number, panels_serial_numbers, inverter_brand, inverter_model, inverter_output, inverter_serial, warranty_workmanship, warranty_panels_product, warranty_panels_output_performance, warranty_inverter, created_at, updated_at, sunlight_city, user_id, filled, trashed, client_state_id, contractor_licence, contractor_licence_name, contractor_phone, contractor_name, inspection_date, client_postcode) FROM stdin;
+14	asdasd	duhlakf	21elkhsf	2013-02-11 00:00:00	2450000	1 string of 20 panels	355	8.6	REC	PE 245	10		SMA	Sunnyboy 2500HF	2.5		2 years	10 Years (see appendix 2)	25 years (see appendix 2)	5 years (see appendix 3)	2013-02-11 06:02:12.584563	2013-02-12 04:10:08.491865	canberra	1	t	f	1	1235	Watts Electrical Pty Ltd	123239458723	Tom Conroy	2013-02-11 00:00:00	s124
+15	asd	asd	asd	2013-02-12 00:00:00																	2013-02-12 04:59:53.033268	2013-02-12 04:59:53.033268	canberra	1	t	f	1	\N	Watts Electrical Pty Ltd	123239458723	Tomz Conroy	2013-02-12 00:00:00	asd
+6	David Fontain	886 Ann St	Fortitude Valley	2013-02-03 00:00:00	2450	1 string of 20 panels	355	8.6	REC	PE 245	10	1231513512, 12341241234, 1234123411	SMA	Sunnyboy 2500HF	2.5	2120174569	2 years	10 Years (see appendix 2)	25 years (see appendix 2)	5 years (see appendix 3)	2013-02-03 23:34:15.889478	2013-02-07 03:37:46.019157	canberra	1	t	f	1	32425	Contract Electrical (Qld) Pty Ltd	1234567890	Richard Tiffin	2013-02-04 00:00:00	4000
+7	Pamela Anderson	45 Asd st	Auchenflower	2013-02-04 00:00:00	2450	1 string of 20 panels	355	8.6	REC	REC PE 245	10	12324123513	SMA	Sunnyboy 2500HF	2.5	2120174569	2 years	10 Years (see appendix 2)	25 years (see appendix 2)	5 years (see appendix 3)	2013-02-04 05:29:32.903169	2013-02-07 03:37:46.029519	canberra	1	t	f	1	35641	One Iota	0411693664	David Fontain	2013-02-04 00:00:00	4000
+8	Darvid James Fountain	497 Milton Rd	Auchenflower	2013-02-04 00:00:00	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2013-02-04 05:41:20.651613	2013-02-07 03:37:46.032589	\N	1	f	f	1	\N	\N	\N	\N	\N	4000
+9	Pammmmmm	1233245	Fortz	2013-02-04 00:00:00	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2013-02-04 05:55:44.580976	2013-02-07 03:37:46.035213	\N	1	f	f	1	\N	\N	\N	\N	\N	4000
+10	asd	asd	asd	2013-02-05 00:00:00	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2013-02-05 01:27:04.652584	2013-02-07 03:37:46.037813	\N	1	f	f	1	\N	\N	\N	\N	\N	4000
+11	asd	asd	asd	2013-02-06 00:00:00	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2013-02-06 04:16:21.367056	2013-02-07 03:37:46.040526	\N	1	f	f	1	\N	\N	\N	\N	\N	4000
+12	asd	asd	asd	2013-02-06 00:00:00	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2013-02-06 04:24:54.937781	2013-02-07 03:37:46.043008	\N	1	f	f	1	\N	\N	\N	\N	\N	4000
+13	Pamela Anderson	1235 	1243	2013-02-11 00:00:00	2450	1 string of 20 panels	355	8.6	REC	PE 245	10	123	SMA	Sunnyboy 2500HF	2.5	123	2 years	10 Years (see appendix 2)	25 years (see appendix 2)	5 years (see appendix 3)	2013-02-11 06:00:18.701178	2013-02-11 06:00:18.701178	canberra	1	t	f	1	124235	DSFg	234`	dfsdfg	2013-02-11 00:00:00	1234245
+\.
+
+
+--
+-- Data for Name: manuals_pdfs; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY manuals_pdfs (id, pdf_id, manual_id) FROM stdin;
+16	14	14
+\.
+
+
+--
+-- Data for Name: payments; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY payments (id, amount, token, identifier, payer_id, recurring, digital, popup, completed, canceled, created_at, updated_at, payable_id, payable_type) FROM stdin;
+1	5	EC-8RK356208U8488126	7DR33010TD3194901	UWZZ39JQWHJBA	f	t	f	t	f	2013-01-30 04:43:47.335619	2013-01-30 04:45:38.12796	1	Manual
+2	30	EC-99N243243W674323C	I-9SWD7NW6EX03	\N	t	t	f	t	t	2013-01-31 01:06:50.341498	2013-01-31 01:15:40.219551	1	User
+3	5	EC-42U68284N62516943	\N	\N	f	t	f	f	f	2013-01-31 03:06:34.459941	2013-01-31 03:06:41.049259	4	Manual
+4	5	EC-5V1946298V950533N	0UW949701T150913X	UWZZ39JQWHJBA	f	t	f	t	f	2013-02-03 23:34:17.669522	2013-02-03 23:35:58.08523	6	Manual
+5	5	EC-7A626603GU6267413	8XP82354N6444603L	UWZZ39JQWHJBA	f	t	f	t	f	2013-02-04 05:29:37.852069	2013-02-04 05:30:23.373498	7	Manual
+6	5	EC-91750719PJ676512J	97V152888V110120R	UWZZ39JQWHJBA	f	t	f	t	f	2013-02-04 05:41:21.938505	2013-02-04 05:42:24.26329	8	Manual
+7	5	EC-88901413NC224360J	\N	\N	f	t	f	f	f	2013-02-05 01:27:05.8468	2013-02-05 01:27:12.127032	10	Manual
+8	5	EC-6L457007MA006753B	\N	\N	f	t	f	f	f	2013-02-06 04:16:22.645363	2013-02-06 04:21:26.845085	11	Manual
+9	5	EC-8NB23830E59707938	\N	\N	f	t	f	f	f	2013-02-06 04:24:56.309147	2013-02-06 04:24:59.733544	12	Manual
+\.
+
+
+--
+-- Data for Name: pdfs; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY pdfs (id, user_id, file_file_name, file_content_type, file_file_size, file_updated_at) FROM stdin;
+11	1	test.pdf	application/pdf	284543	2013-02-12 02:56:18.682716
+12	1	test2.pdf	application/pdf	274993	2013-02-12 02:57:54.03644
+13	1	test.pdf	application/pdf	284543	2013-02-12 02:57:54.037988
+14	1	Mitchell_STC_FORM.pdf	application/pdf	457728	2013-02-12 05:25:29.472763
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY schema_migrations (version) FROM stdin;
+20130108023538
+20130122003018
+20130122005645
+20130125041043
+20130125041055
+20130125051022
+20130125052211
+20130125053650
+20130125063445
+20130125063625
+20130125064516
+20130129023929
+20130129033329
+20130129081621
+20130130000238
+20130130000408
+20130130042955
+20130130043002
+20130130044055
+20130130061002
+20130131015212
+20130203234125
+20130203234630
+20130204002403
+20130204050359
+20130204080924
+20130205040759
+20130206234303
+20130207033230
+20130212002402
+20130212002534
+20130212002725
+\.
+
+
+--
+-- Data for Name: states; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY states (id, name, disabled) FROM stdin;
+1	Queensland	f
+2	New South Wales	t
+3	Victoria	t
+4	Tasmania	t
+5	South Australia	t
+6	Northern Territory	t
+7	Western Australia	t
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: tom
+--
+
+COPY users (id, created_at, updated_at, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, first_name, last_name, company, accreditation, abn, company_address, company_suburb, company_postcode, contact_email, company_phone, company_fax, logo_file_name, logo_content_type, logo_file_size, logo_updated_at, insider) FROM stdin;
+2	2013-02-04 06:40:01.546412	2013-02-05 01:54:07.83664	david@studiooneiota.com	$2a$10$DIneXnLTVJTVXaiamXIJ4uprM3KxiOYE375Pfw5uwF6G7Nz9ecWq6	\N	\N	\N	3	2013-02-05 01:54:07.835842	2013-02-04 07:31:58.408869	127.0.0.1	127.0.0.1	David	Fontain										\N	\N	\N	\N	f
+1	2013-01-30 04:34:30.91885	2013-02-12 07:39:54.655702	tom@conroy.com.au	$2a$10$k4jCi2dipEdaTotK4eItTeN36C7NLOk2G4CNZoRjinN6erYm6Qm4G	\N	\N	\N	16	2013-02-12 07:39:54.65498	2013-02-06 01:20:26.441859	127.0.0.1	192.168.0.11	Tomz	Conroy	Watts Electrical Pty Ltd	A1234567		887 Ann St	Fortitude Valley	4006		123239458723		tumblr_mh3nxo1QAn1qz9ddwo1_500.png	image/png	55262	2013-02-07 01:13:11.984289	t
+\.
+
+
+--
+-- Name: images_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY images
+    ADD CONSTRAINT images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: manuals_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY manuals_pdfs
+    ADD CONSTRAINT manuals_pdfs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: manuals_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY manuals
+    ADD CONSTRAINT manuals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: payments_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY payments
+    ADD CONSTRAINT payments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY pdfs
+    ADD CONSTRAINT pdfs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: states_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY states
+    ADD CONSTRAINT states_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: tom; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: tom; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: tom
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM tom;
+GRANT ALL ON SCHEMA public TO tom;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

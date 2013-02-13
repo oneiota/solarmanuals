@@ -20,18 +20,8 @@
     <hr/>
   </div>
   <div class="offset1 span4 alignright">
-    <% if current_user.insider %>
+    <% if current_user.subscribed? %>
       <p>You are subscribed!</p>
-    <% elsif current_user.subscribed? %>
-      <p>You are subscribed! <%= link_to "Cancel my subscription.", payment_path(current_user.payment), :method => :delete, :confirm => "Are you sure?\n\nCancelling your subscription will remove access to your archive. We will keep all of the details but you will need to pay the one-off fee for access to each one.\n\nYou can subscribe again at any time.\n\n" %></p>
-    <% else %>
-      <%= form_for @subscription do |f| %>
-        <%= f.hidden_field :type, :value => "subscription" %>
-        <%= f.hidden_field :payable_id, :value => current_user.id %>
-        <%= f.hidden_field :payable_type, :value => current_user.class %>
-        <p><%= link_to "<span class='above'>Subscribe</span></span>$30 / month for unlimited access".html_safe, "#", id: "submit-subscription", class: "btn btn-success btn-block subscribe" %></p>
-        <p id="subscription-loading">Just a minute... Redirecting you to PayPal</p>
-      <% end %>
     <% end %>
   </div>
 </div>

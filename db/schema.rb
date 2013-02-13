@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212002725) do
+ActiveRecord::Schema.define(:version => 20130213050535) do
+
+  create_table "eway_payments", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "eway_error"
+    t.boolean  "eway_status"
+    t.string   "transaction_number"
+    t.integer  "return_amount"
+    t.string   "eway_auth_code"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "images", :force => true do |t|
     t.datetime "created_at",                           :null => false
@@ -63,22 +74,6 @@ ActiveRecord::Schema.define(:version => 20130212002725) do
   create_table "manuals_pdfs", :force => true do |t|
     t.integer "pdf_id"
     t.integer "manual_id"
-  end
-
-  create_table "payments", :force => true do |t|
-    t.integer  "amount",       :default => 1
-    t.string   "token"
-    t.string   "identifier"
-    t.string   "payer_id"
-    t.boolean  "recurring",    :default => false
-    t.boolean  "digital",      :default => false
-    t.boolean  "popup",        :default => false
-    t.boolean  "completed",    :default => false
-    t.boolean  "canceled",     :default => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.integer  "payable_id"
-    t.string   "payable_type"
   end
 
   create_table "pdfs", :force => true do |t|

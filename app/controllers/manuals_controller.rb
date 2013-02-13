@@ -24,8 +24,6 @@ class ManualsController < ApplicationController
   # GET /manuals.json
   def index
     @manuals = current_user.active_manuals
-    
-    @subscription = current_user.payment || Payment.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,7 +48,6 @@ class ManualsController < ApplicationController
     end
     
     @manual = Manual.find(params[:id], query)  
-    @payment = @manual.payment || Payment.new
     
     respond_to do |format|
       format.html # show.html.erb

@@ -25,14 +25,6 @@
     <% else %>
       <p>You can unlock this manual for a fee of <strong>$5</strong>AU or <%= link_to "subscribe", root_url %> for unlimited access.</p>
       
-      <% if @payment %>
-        <%= form_for @payment do |f| %>
-          <%= f.hidden_field :type, :value => "single" %>
-          <%= f.hidden_field :payable_id, :value => @manual.id %>
-          <%= f.hidden_field :payable_type, :value => @manual.class %>
-          <%= f.submit 'Proceed to checkout', :class => "btn btn-large btn-block btn-success", :'data-loading-text' => "Just a minute..." %>
-        <% end %>
-      <% end %>
     <% end %>
     
     <% if @manual.paid? %>
