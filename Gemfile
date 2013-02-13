@@ -32,8 +32,7 @@ gem 'debugger'
 # gem "twitter-bootstrap-rails"
 gem "nokogiri"
 
-gem "prawn"
-gem "prawn-graph"
+gem "prawn", :git => "git://github.com/prawnpdf/prawn.git"
 
 gem 'devise'
 
@@ -45,3 +44,5 @@ gem 'paperclip'
 gem 'aws-sdk'
 
 gem 'fastimage'
+
+gem 'pdf-merger'
