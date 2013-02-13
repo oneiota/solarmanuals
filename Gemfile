@@ -38,3 +38,5 @@ gem 'paperclip'
 gem 'aws-sdk'
 
 gem 'fastimage'
+
+gem 'bigcharger'

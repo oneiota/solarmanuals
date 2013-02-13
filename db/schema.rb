@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213050535) do
+ActiveRecord::Schema.define(:version => 20130213075628) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130213050535) do
     t.string   "contractor_name"
     t.datetime "inspection_date"
     t.string   "client_postcode"
+    t.integer  "eway_payment_id"
   end
 
   create_table "manuals_pdfs", :force => true do |t|
@@ -118,6 +119,9 @@ ActiveRecord::Schema.define(:version => 20130213050535) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.boolean  "insider",                :default => false
+    t.boolean  "subscribed",             :default => false
+    t.string   "eway_id"
+    t.string   "stored_cc_number"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -40,9 +40,10 @@
     </div>
   </div>
   
-  <hr/>
-  
   <% if @manual.paid? %>
+  
+    <hr/>
+  
     <%= render :partial => 'form', :locals => {  f: f } %>
   <% end %>
   

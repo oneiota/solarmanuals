@@ -25,6 +25,34 @@
     <% else %>
       <p>You can unlock this manual for a fee of <strong>$5</strong>AU or <%= link_to "subscribe", root_url %> for unlimited access.</p>
       
+      <%= form_for @payment do |f| %>
+        <%= hidden_field_tag :manual_id, @manual.id %>
+        
+        <% if current_user.eway_id %>
+        
+          <p>Using stored credit card number <strong><%= current_user.stored_cc_number.scan(/.{4}/).join(" ").downcase %></strong></p>
+          
+          <p><%= link_to "Change payment details" %></p>
+          
+        <% else %>
+
+          <%= f.text_field :cc_number, :placeholder => "Credit Card Number" %>
+          <div>
+            <%= f.text_field :cc_expiry_month, :size => 2, :maxlength => 2, :placeholder => "MM", :class => "expiry" %> / 
+            <%= f.text_field :cc_expiry_year, :size => 2, :maxlength => 2, :placeholder => "YY", :class => "expiry" %>
+            <%= f.text_field :cvn, :size => 3, :maxlength => 3, :placeholder => "CVN", :class => "cvn" %>
+          </div>
+          <%= f.label :remember, :class => "checkbox" do %>
+            <%= f.check_box :remember %> Remember details
+          <% end %>
+        
+        <% end %>
+        
+        <%= f.submit "Pay Now", :class => "btn btn-large" %>
+      <% end %>
+      
+      
+      
     <% end %>
     
     <% if @manual.paid? %>

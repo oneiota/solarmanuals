@@ -1,17 +1,16 @@
 Solar::Application.routes.draw do
 
   devise_for :users
-  resources :users, only: [:show, :update]
-
-  resources :manuals
   
-  resources :payments, only: [:show, :create, :destroy, :update] do
-    collection do
-      get :success
-      get :cancel
-      post :notify
-    end
+  resources :users, only: [:show, :update] do
+    post :subscribe
   end
+
+  resources :manuals do
+    post :pay
+  end
+  
+  resources :eway_payments, only: [:create]
   
   resources :images, only: [:destroy]
   resources :pdfs, only: [:destroy]

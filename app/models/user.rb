@@ -1,11 +1,8 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo, :pdfs_array
+  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo, :pdfs_array, :subscribed, :eway_id, :stored_cc_number
   
   has_attached_file :logo, LOGO_OPTS
   validates_attachment :logo,
@@ -30,7 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def subscribed?
-    true
+    subscribed
   end
   
   def fields_filled?
@@ -62,6 +59,48 @@ class User < ActiveRecord::Base
       pdfs.build(:file => file)
     end
   end
+  
+  
+  
+  # payments
+  
+  
+  def create_eway_id(opts)
+    self.eway_id = Eway.client.create_customer(
+      'Title' => 'Mr.',
+      'FirstName' => first_name,
+      'LastName' => last_name,
+      'Country' => 'au',
+      'CCNumber' => opts[:cc_number],
+      'CCExpiryMonth' => opts[:cc_expiry_month],
+      'CCExpiryYear' => opts[:cc_expiry_year],
+      'CVN' => opts[:cvn]
+    )
+    
+    if opts[:remember] == '1'
+      self.save
+    end
+    
+    return self.eway_id
+  end
+  
+  def stored_cc_number
+    self[:stored_cc_number] || get_cc_number
+  end
+  
+  private
+  
+  def get_cc_number
+    if !eway_id
+      return nil
+    end
+    response = Eway.client.query_customer(eway_id)
+    self.stored_cc_number = response['CCNumber']
+    self.save
+    return self.stored_cc_number
+  end
+  
+  
   
   
 end

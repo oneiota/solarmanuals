@@ -35,6 +35,8 @@ class ManualsController < ApplicationController
   # GET /manuals/1.json
   def show
     
+    @payment = EwayPayment.new
+    
     query = {}
     
     if params[:type] == 'system_details_prefill'
@@ -132,4 +134,11 @@ class ManualsController < ApplicationController
       format.js
     end
   end
+  
+  
+  def pay
+    
+  end
+  
+  
 end

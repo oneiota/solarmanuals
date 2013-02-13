@@ -9,8 +9,7 @@ class Manual < ActiveRecord::Base
   
   belongs_to :user
   
-  # has_one :eway_payment
-  # accepts_nested_attributes_for :payment
+  belongs_to :eway_payment
   
   has_many :images
   accepts_nested_attributes_for :images
@@ -99,7 +98,7 @@ class Manual < ActiveRecord::Base
   end
   
   def paid?
-    user.subscribed?
+    user.subscribed? || !!eway_payment
   end
   
   def files_array=(array)

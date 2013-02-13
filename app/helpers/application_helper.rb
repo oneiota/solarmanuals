@@ -10,4 +10,6 @@ module ApplicationHelper
   def nicetime(time)
     time.strftime("%d / %m / %Y")
   end
+  
+  
 end

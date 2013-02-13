@@ -19,4 +19,11 @@ class UsersController < ApplicationController
     end
   end
   
+  def subscribe
+    @user = User.find(params[:id])
+    @user.subscribed = true
+    @user.save
+    redirect_to @user
+  end
+  
 end
