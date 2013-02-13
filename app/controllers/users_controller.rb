@@ -20,10 +20,19 @@ class UsersController < ApplicationController
   end
   
   def subscribe
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     @user.subscribed = true
+    @user.eway_id ||= @user.create_eway_id(params[:user])
+    puts @user.eway_id
     @user.save
-    redirect_to @user
+    redirect_to root_url
+  end
+  
+  def unsubscribe
+    @user = User.find(params[:user_id])
+    @user.subscribed = false
+    @user.save
+    redirect_to root_url
   end
   
 end

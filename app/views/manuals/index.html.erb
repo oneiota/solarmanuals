@@ -22,6 +22,27 @@
   <div class="offset1 span4 alignright">
     <% if current_user.subscribed? %>
       <p>You are subscribed!</p>
+      
+      <p><%= link_to "Unsubscribe", user_unsubscribe_path(current_user), :method => :put %></p>
+      
+    <% else %>
+      
+      <% if current_user.eway_id %>
+        <%= link_to "Subscribe", user_subscribe_path(current_user), :method => :put %>
+      <% else %>
+        
+        <%= link_to "Subscribe", "#", :id => "show-cc-fields" %>
+        <div id="subscribe-cc-fields">
+          <%= form_for current_user, :url => user_subscribe_path(current_user) do |f| %>
+            <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
+            
+            <%= f.hidden_field :remember, :value => true %>
+            
+            <%= f.submit "Subscribe" %>
+          <% end %>
+        </div>
+      <% end %>
+      
     <% end %>
   </div>
 </div>

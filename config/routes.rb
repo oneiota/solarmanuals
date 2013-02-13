@@ -3,7 +3,8 @@ Solar::Application.routes.draw do
   devise_for :users
   
   resources :users, only: [:show, :update] do
-    post :subscribe
+    put :subscribe
+    put :unsubscribe
   end
 
   resources :manuals do

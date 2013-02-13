@@ -1,0 +1,6 @@
+<%= f.text_field :cc_number, :placeholder => "Credit Card Number" %>
+<div>
+  <%= f.text_field :cc_expiry_month, :size => 2, :maxlength => 2, :placeholder => "MM", :class => "expiry" %> / 
+  <%= f.text_field :cc_expiry_year, :size => 2, :maxlength => 2, :placeholder => "YY", :class => "expiry" %>
+  <%= f.text_field :cvn, :size => 3, :maxlength => 3, :placeholder => "CVN", :class => "cvn" %>
+</div>

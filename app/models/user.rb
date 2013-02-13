@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates_attachment :logo,
     :size => { :in => 0..2.megabytes }
   
-  attr_accessor :current_password
+  attr_accessor :current_password, :cc_number, :cc_expiry_month, :cc_expiry_year, :cvn, :remember
   
   validates_presence_of :first_name, :last_name
   
