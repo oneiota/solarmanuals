@@ -14,7 +14,7 @@
         <%= @manual.client_postcode %>
       </p>
       
-      <% if @manual.paid? %>
+      <% if @manual.unlocked? %>
         <%= render 'images' %>
       <% end %>
       
@@ -30,7 +30,7 @@
           </div>
         <% end %>
     
-        <% if @manual.paid? %>
+        <% if @manual.unlocked? %>
           <%= render :partial => 'form', :locals => {  f: f } %>
         <% end %>
       

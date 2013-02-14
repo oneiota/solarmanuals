@@ -53,9 +53,7 @@
 
 <table class="table" id="manuals-archive-table">
   <tr>
-    <% unless current_user.subscribed? %>
-      <th width="20">Paid</th>
-    <% end %>
+    <th width="20">Paid</th>
     <th>Client name</th>
     <th class="hidden-phone">Client address</th>
     <th class="hidden-phone">Client suburb</th>
@@ -65,11 +63,9 @@
 
 <% @manuals.each do |manual| %>
   <%= content_tag :tr, class: (manual.filled? ? 'success': '') do %>
-    <% unless current_user.subscribed? %>
-      <td class="paid-icon">
-        <%= link_to content_tag(:i, "", class: (manual.paid? ? 'icon-ok' : 'icon-minus')), manual %>
-      </td>
-    <% end %>
+    <td class="paid-icon">
+      <%= link_to content_tag(:i, "", class: (manual.paid? ? 'icon-ok' : 'icon-minus')), manual %>
+    </td>
     <td><%= link_to manual.client_name, manual %></td>
     <td class="hidden-phone"><%= link_to manual.client_address, manual %></td>
     <td class="hidden-phone"><%= link_to manual.client_suburb, manual %></td>

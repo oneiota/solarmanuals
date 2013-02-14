@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213075628) do
+ActiveRecord::Schema.define(:version => 20130213235915) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20130213075628) do
     t.datetime "inspection_date"
     t.string   "client_postcode"
     t.integer  "eway_payment_id"
+    t.boolean  "marked",                             :default => false
   end
 
   create_table "manuals_pdfs", :force => true do |t|
@@ -122,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20130213075628) do
     t.boolean  "subscribed",             :default => false
     t.string   "eway_id"
     t.string   "stored_cc_number"
+    t.datetime "last_payed_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

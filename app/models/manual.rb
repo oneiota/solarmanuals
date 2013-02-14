@@ -48,8 +48,9 @@ class Manual < ActiveRecord::Base
   
   def completed?
     attributes.each_pair do |k, v|
-      unless ['trashed', 'panels_serial_numbers', 'inverter_serial'].include? k
+      unless ['trashed', 'panels_serial_numbers', 'inverter_serial', 'marked', 'eway_payment_id'].include? k
         if v.nil? || v.blank?
+          puts k
           return false
         end
       end
@@ -98,7 +99,11 @@ class Manual < ActiveRecord::Base
   end
   
   def paid?
-    user.subscribed? || !!eway_payment
+    !!eway_payment
+  end
+  
+  def unlocked?
+    paid? || user.subscribed?
   end
   
   def files_array=(array)

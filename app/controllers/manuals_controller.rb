@@ -6,12 +6,16 @@ class ManualsController < ApplicationController
   
   def document
     @manual = Manual.find(params[:id])
+    
+    if @manual.user.subscribed?
+      @manual.marked = true
+      @manual.save
+    end
+
     respond_to do |format|
       format.html
       format.pdf do
         pdf = DocumentPdf.new({ :page_size => 'A4' }, @manual)
-        
-        
         
         send_data pdf.render, filename: "manual.pdf",
           type: "application/pdf",

@@ -60,7 +60,34 @@ class User < ActiveRecord::Base
     end
   end
   
+  def unpaid_marked_manuals
+    manuals.where(:eway_payment_id => nil, :marked => true)
+  end
   
+  def current_charge
+    number_of_manuals = unpaid_marked_manuals.count
+    return 0 if number_of_manuals == 0
+    
+    tiers = {
+      100 => 250,
+      250 => 225,
+      500 => 200,
+      1000 => 175,
+      9999999 => 150
+    }
+    
+    charge_amount = 3000
+    if number_of_manuals > 10
+      tiers.each do |tier_max, price_per_manual|
+        if number_of_manuals <= tier_max
+          charge_amount += (number_of_manuals - 10) * price_per_manual
+          break
+        end
+      end
+    end
+    
+    return charge_amount
+  end
   
   # payments
   

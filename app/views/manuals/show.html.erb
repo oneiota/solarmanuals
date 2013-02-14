@@ -18,7 +18,7 @@
         <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary", id: "download-pdf" %>
         <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn", id: "edit-manual" %>
       </p>
-    <% elsif @manual.paid? %>
+    <% elsif @manual.unlocked? %>
 
       <p><%= link_to 'Continue filling details', edit_manual_path(@manual), :class => "btn btn-large btn-block" %></p>
 
@@ -45,17 +45,17 @@
         <% end %>
         
         <%= f.submit "Pay Now", :class => "btn btn-large" %>
+        
       <% end %>
-      
-      
       
     <% end %>
     
-    <% if @manual.paid? %>
+    <% if @manual.unlocked? %>
       
       <%= render 'pdfs_form' %>
       
       <%= render 'images' %>
+      
     <% end %>
     
     
