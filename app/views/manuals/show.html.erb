@@ -20,7 +20,7 @@
       </p>
     <% elsif @manual.unlocked? %>
 
-      <p><%= link_to 'Continue filling details', edit_manual_path(@manual), :class => "btn btn-large btn-block" %></p>
+      <p><%= link_to 'Continue filling details', edit_manual_path(@manual), :class => "btn btn-large btn-block btn-primary" %></p>
 
     <% else %>
       <p>You can unlock this manual for a fee of <strong>$5</strong>AU or <%= link_to "subscribe", root_url %> for unlimited access.</p>

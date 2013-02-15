@@ -1,7 +1,13 @@
 class EwayPaymentsController < ApplicationController
   
+  layout "invoice", :only => [:show]
+  
   rescue_from BigCharger::Error do |e|
     redirect_to :back, :alert => "Payment details were invalid."
+  end
+  
+  def show
+    @payment = EwayPayment.find(params[:id])
   end
   
   def create

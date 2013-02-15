@@ -30,6 +30,13 @@ class UsersController < ApplicationController
   
   def unsubscribe
     @user = User.find(params[:user_id])
+    
+    unless @user.last_payed_at.nil?
+      @payment = EwayPayment.new
+      @payment.user = @user
+      @payment.process_unsubscribe_payment!
+    end
+    
     @user.subscribed = false
     @user.save
     redirect_to root_url

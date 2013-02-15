@@ -22,9 +22,9 @@
   
       <h3>Email</h3>
       <div><%= f.email_field :email %></div>
-  
+      
       <hr/>
-  
+      
       <%= render :partial => 'fields', :locals => { f: f } %>
   
       <hr/>
@@ -43,5 +43,22 @@
   
       <div><%= f.submit "Update", :class => "btn btn-large" %></div>
     <% end %>
+    
+    
+    <hr/>
+    
+    <h2>Billing</h2>
+    <% if current_user.subscribed? %>
+      <p>You are subscribed</p>
+      <p>Accumulated bill this month: <%= currency(current_user.current_charge) %></p>
+    <% end %>
+    
+    <h4>Previous Invoices</h4>
+    
+    <% current_user.eway_payments.reverse.each do |payment| %>
+      <p><%= link_to "#{nicetime(payment.created_at)} #{currency(payment.return_amount)}", invoice_path(payment) %></p>
+    <% end %>
+    
   </div>
+
 </div>

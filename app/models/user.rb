@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :pdfs
   
   def active_manuals
-    manuals.where(:trashed => false).order('created_at DESC')
+    manuals.where(:trashed => false).order('created_at DESC').includes(:eway_payment)
   end
   
   def full_name
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def subscribed?
-    subscribed
+    subscribed || insider
   end
   
   def fields_filled?
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
   
   def fields_not_filled?
-    [company, accreditation, abn, company_address, company_suburb, company_postcode, contact_email, company_phone, company_fax].each do |field|
+    [company, accreditation, abn, company_address, company_suburb, company_postcode, contact_email, company_phone].each do |field|
       return true if field.blank?
     end
     false
@@ -65,8 +65,10 @@ class User < ActiveRecord::Base
   end
   
   def current_charge
+    
+    charge_amount = 3000
+    
     number_of_manuals = unpaid_marked_manuals.count
-    return 0 if number_of_manuals == 0
     
     tiers = {
       100 => 250,
@@ -76,7 +78,6 @@ class User < ActiveRecord::Base
       9999999 => 150
     }
     
-    charge_amount = 3000
     if number_of_manuals > 10
       tiers.each do |tier_max, price_per_manual|
         if number_of_manuals <= tier_max
@@ -91,6 +92,9 @@ class User < ActiveRecord::Base
   
   # payments
   
+  def self.billable
+    where('last_payed_at <= ? OR last_payed_at IS NULL', 1.minute.ago).where('eway_id IS NOT NULL').where(:insider => false)
+  end
   
   def create_eway_id(opts)
     self.eway_id = Eway.client.create_customer(

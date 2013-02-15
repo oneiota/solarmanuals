@@ -11,6 +11,8 @@ Solar::Application.routes.draw do
     post :pay
   end
   
+  resources :invoices, :controller => "eway_payments", :only => [:show]
+  
   resources :eway_payments, only: [:create]
   
   resources :images, only: [:destroy]
