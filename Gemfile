@@ -46,3 +46,5 @@ gem 'aws-sdk'
 gem 'fastimage'
 
 gem 'pdf-merger'
+
+gem 'newrelic_rpm'
