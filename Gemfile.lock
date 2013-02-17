@@ -98,6 +98,7 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     multi_xml (0.5.1)
+    newrelic_rpm (3.5.6.55)
     nokogiri (1.5.6)
     orm_adapter (0.4.0)
     paperclip (3.3.1)
@@ -190,6 +191,7 @@ DEPENDENCIES
   devise
   fastimage
   jquery-rails
+  newrelic_rpm
   nokogiri
   paperclip
   paypal-express

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130212002725) do
+ActiveRecord::Schema.define(:version => 20130213235915) do
+
+  create_table "eway_payments", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "eway_error"
+    t.boolean  "eway_status"
+    t.string   "transaction_number"
+    t.integer  "return_amount"
+    t.string   "eway_auth_code"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "images", :force => true do |t|
     t.datetime "created_at",                           :null => false
