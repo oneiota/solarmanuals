@@ -20,8 +20,16 @@ LOGO_OPTS = {
 
 
 PDF_OPTS = {
-  :path => "/pdfs/:id/:basename.:extension",
+  :styles => { :processed => ["", :pdf] },
+  :path => "/pdfs/:style/:id/:basename.:extension",
   :url => ':s3_path_url',
   :storage => :s3, 
-  :s3_credentials => "#{Rails.root}/config/s3.yml"
+  :s3_credentials => "#{Rails.root}/config/s3.yml",
+  :processors => [:ghostscript]
 }
+
+if Rails.env.development?
+  IMAGE_OPTS[:path].insert(0, "/dev")
+  LOGO_OPTS[:path].insert(0, "/dev")
+  PDF_OPTS[:path].insert(0, "/dev")
+end
