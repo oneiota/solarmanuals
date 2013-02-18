@@ -24,6 +24,12 @@ Solar::Application.routes.draw do
     root :to => "manuals#index"
   end
   
+  get '/faq', to: 'home#faq'  
+  get '/privacy', to: 'home#privacy'
+  get '/delivery', to: 'home#delivery'
+  get '/refunds', to: 'home#refunds'
+  get '/terms', to: 'home#terms'
+  
   root :to => 'home#index'
 
 end
