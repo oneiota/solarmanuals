@@ -11,9 +11,7 @@ class ManualsController < ApplicationController
       format.pdf do
         pdf = DocumentPdf.new({ :page_size => 'A4' }, @manual)
         
-        
-        
-        send_data pdf.render, filename: "manual.pdf",
+        send_data pdf.render, filename: "#{@manual.client_name.downcase.squish.gsub( /\s/, '_' )}_gridconnect_user_manual.pdf",
           type: "application/pdf",
           disposition: "inline"
       end
