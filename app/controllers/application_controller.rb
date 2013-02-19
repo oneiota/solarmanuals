@@ -11,12 +11,5 @@ class ApplicationController < ActionController::Base
     field.blank? ? "<span class='not-on-file'>Please enter...</span>".html_safe : field
   end
   
-  after_filter :check_user_fields
-  
-  def check_user_fields
-    if current_user && current_user.fields_not_filled?
-      flash[:notice] = "Warning! You should <a href='#{edit_user_registration_path}'>fill in all your company details</a> to ensure the manuals contain correct information.".html_safe
-    end
-  end
   
 end

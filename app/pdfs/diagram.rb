@@ -95,7 +95,7 @@ class Diagram
       @doc.line_to [left - 100, @top]
     end
     
-    @doc.text_box "2 x 1000V DC Isolators", :at => [left - 70, @top + 20]
+    @doc.text_box "2 x #{@manual.isolator_type} Isolators", :at => [left - 70, @top + 20]
     
     # second switch
     left = left - 100

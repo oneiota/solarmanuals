@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213235915) do
+ActiveRecord::Schema.define(:version => 20130219035811) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20130213235915) do
     t.string   "warranty_panels_product"
     t.string   "warranty_panels_output_performance"
     t.string   "warranty_inverter"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.string   "sunlight_city"
     t.integer  "user_id"
     t.boolean  "filled",                             :default => false
@@ -69,6 +69,11 @@ ActiveRecord::Schema.define(:version => 20130213235915) do
     t.string   "contractor_name"
     t.datetime "inspection_date"
     t.string   "client_postcode"
+    t.boolean  "include_performance",                :default => false
+    t.boolean  "include_wiring",                     :default => false
+    t.boolean  "include_certificate",                :default => false
+    t.string   "isolator_type",                      :default => "1000V DC"
+    t.integer  "inverter_number",                    :default => 1
   end
 
   create_table "manuals_pdfs", :force => true do |t|
