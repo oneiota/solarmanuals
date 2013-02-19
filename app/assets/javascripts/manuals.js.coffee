@@ -80,7 +80,8 @@ $ ->
       $(e.target).closest('label').hide()
   
   # show/hide checkboxes
-  $('.showhide .fields').hide()
+  $('.showhide input[type=checkbox]:not(:checked)').each ->
+    $(this).closest('.showhide').children('.fields').hide()
   $('.showhide input[type=checkbox]').on 'change', ->
     fields = $(this).closest('.showhide').children('.fields')
     if $(this).is(':checked')
