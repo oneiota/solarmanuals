@@ -109,11 +109,22 @@ class Manual < ActiveRecord::Base
   
   def self.prefill(*fields)
     manuals = unique_values(fields)
+    manuals.delete_if do |manual|
+      !(all_present?(manual.values))
+    end
     manuals.collect do |m|
       values = fields.map do |field|
         m[field]
       end
       [values.join(", "), m['id']]
     end
+  end
+  
+  def self.all_present?(array)
+    array.each do |v|
+      puts "#{v} - #{v.blank?}"
+      return false if v.blank?
+    end
+    true
   end
 end
