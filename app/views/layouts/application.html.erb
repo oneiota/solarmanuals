@@ -115,8 +115,27 @@
               
        <div class="blackfooter container-fluid">
         <footer class="row-fluid">
-          <div class="span4 hidden-phone">&#169; Solar Energy Consulting Australia 2012</div>
-          <ul class="span4"><li><a href="#">FAQ</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul>
+          <div class="span4 hidden-phone">&#169; Installer Technologies 2012
+            <br/>
+            Unit 6, 887 Ann St<br/>
+            Fortitude Valley, 4006, QLD<br/>
+            Phone: +61 421 454 923
+          </div>
+          <div class="span4">
+            <div class="row">
+              <ul class="span12">
+                <li><%= link_to "FAQ", '/faq' %></li>
+                <li><%= link_to "Terms & Conditions", '/terms' %></li>
+              </ul>
+            </div>
+            <div class="row">
+              <ul class="span12">
+                <li><%= link_to "Privacy", '/privacy' %></li>
+                <li><%= link_to "Delivery Policy", '/delivery' %></li>
+                <li><%= link_to "Refunds", '/refunds' %></li>            
+              </ul>
+            </div>
+          </div>
           <% if user_signed_in? %>
           <div class="span4">Contact Us <i class="icon-white icon-comment">&nbsp;</i> <a href="mailto:info@solarmanuals.com.au">info@solarmanuals.com.au</a></div>
           <% end %>

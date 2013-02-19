@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     unless @user.update_attributes(params[:user])
-      flash[:alert] = "Please use an image under 2MB"
+      flash[:alert] = "There was a problem with the image, please try another."
     end
     
     # upload PDF form redirects to manual/:id

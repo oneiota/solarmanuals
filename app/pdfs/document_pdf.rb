@@ -52,7 +52,7 @@ class DocumentPdf < Prawn::Document
     @manual.pdfs.each do |pdf|
       go_to_page(page_count)
       
-      pdf_url = pdf.file.url
+      pdf_url = pdf.file(:processed)
       new_pdf = open(pdf_url)
       template_page_count = count_pdf_pages(new_pdf)
       

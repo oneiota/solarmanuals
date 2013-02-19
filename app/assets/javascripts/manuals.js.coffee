@@ -25,7 +25,8 @@ $ ->
     $("#user_logo").trigger("click")
   
   $("#user_logo").on "change", ->
-    
+    #unless this.files[0].type in ['image/jpg', 'image/png', 'image/jpeg']
+    #  return alert("Please upload a JPG or PNG image.")
     if this.files[0].size > 2097152
       return alert("Please upload a logo less than 2MB")
     
