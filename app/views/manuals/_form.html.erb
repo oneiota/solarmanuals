@@ -82,11 +82,15 @@
       <%= f.text_field :inverter_model %>
     </div>
     <div class="field">
-      <%= f.label :inverter_output, "Inverter Output" %>
+      <%= f.label :inverter_output, "Inverter Output (per inverter)" %>
       <div class="input-append">
         <span class="input-container"><%= f.text_field :inverter_output %></span>
         <span class="add-on">kW</span>
       </div>
+    </div>
+    <div class="field">
+      <%= f.label :inverter_number, "Number of Inverters" %>
+      <%= f.text_field :inverter_number %>
     </div>
     <div class="field">
       <%= f.label :inverter_serial, "Inverter Serial Number" %>
@@ -124,39 +128,64 @@
 <hr/>
 <div class="section row">
   <div class="span4">
-    <h3>Safety Certificate Details</h3>
+    <h3>Performance Estimates</h3>
   </div>
-  <div class="span5">  
-    <div class="field">
-      <%= f.label :contractor_licence, "Electrical Contractor Licence Number" %>
-      <%= f.text_field :contractor_licence %>
-    </div>
-    <div class="field">
-      <%= f.label :contractor_licence_name, "Name on contractor licence" %>
-      <%= f.text_field :contractor_licence_name %>
-    </div>
-    <div class="field">
-      <%= f.label :contractor_phone, "Contractor phone number" %>
-      <%= f.text_field :contractor_phone %>
-    </div>
-    <div class="field">
-      <%= f.label :contractor_name, "Contractor name" %>
-      <%= f.text_field :contractor_name %>
-    </div>
-    <div class="field datetime">
-      <%= f.label :inspection_date, "Date of test" %>
-      <%= f.date_select :inspection_date %>
+  <div class="span5 showhide">
+    <%= f.label :include_performance, :class => "checkbox" do %>
+      <%= f.check_box :include_performance %> Include Performance Estimate
+    <% end %>
+    <div class="fields">
+      <%= f.label :sunlight_city, "City to use for sunlight data" %>
+      <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
     </div>
   </div>
 </div>
 <hr/>
 <div class="section row">
   <div class="span4">
-    <h3>Graph</h3>
+    <h3>Wiring</h3>
   </div>
-  <div class="span5">
-    <%= f.label :sunlight_city, "City to use for sunlight data" %>
-    <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
+  <div class="span5 showhide">
+    <%= f.label :include_wiring, :class => "checkbox" do %>
+      <%= f.check_box :include_wiring %> Include Wiring
+    <% end %>
+    <div class="fields">
+      <%= f.label :isolator_type, "Type of Isolator" %>
+      <%= f.text_field :isolator_type %>
+    </div>
+  </div>
+</div>
+<hr/>
+<div class="section row">
+  <div class="span4">
+    <h3>Safety Certificate Details</h3>
+  </div>
+  <div class="span5 showhide">  
+    <%= f.label :include_certificate, :class => "checkbox" do %>
+      <%= f.check_box :include_certificate %> Include Safety Certificate
+    <% end %>
+    <div class="fields">
+      <div class="field">
+        <%= f.label :contractor_licence, "Electrical Contractor Licence Number" %>
+        <%= f.text_field :contractor_licence %>
+      </div>
+      <div class="field">
+        <%= f.label :contractor_licence_name, "Name on contractor licence" %>
+        <%= f.text_field :contractor_licence_name %>
+      </div>
+      <div class="field">
+        <%= f.label :contractor_phone, "Contractor phone number" %>
+        <%= f.text_field :contractor_phone %>
+      </div>
+      <div class="field">
+        <%= f.label :contractor_name, "Contractor name" %>
+        <%= f.text_field :contractor_name %>
+      </div>
+      <div class="field datetime">
+        <%= f.label :inspection_date, "Date of test" %>
+        <%= f.date_select :inspection_date %>
+      </div>
+    </div>
   </div>
 </div>
 

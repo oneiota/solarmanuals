@@ -14,6 +14,10 @@
     
     <hr/>
     <% if @manual.completed? %>
+      <% if current_user.fields_not_filled? %>
+        <p><strong>Warning:</strong> You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.</p>
+        <hr/>
+      <% end %>
       <p id="manuals-actions">
         <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary", id: "download-pdf" %>
         <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn", id: "edit-manual" %>

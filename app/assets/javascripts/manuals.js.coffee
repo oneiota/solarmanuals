@@ -78,3 +78,13 @@ $ ->
   $(document).on 'confirm:complete', (e, answer) ->
     if answer
       $(e.target).closest('label').hide()
+  
+  # show/hide checkboxes
+  $('.showhide .fields').hide()
+  $('.showhide input[type=checkbox]').on 'change', ->
+    fields = $(this).closest('.showhide').children('.fields')
+    if $(this).is(':checked')
+      fields.show()
+    else
+      fields.hide()
+    
