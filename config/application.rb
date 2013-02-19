@@ -63,6 +63,8 @@ module Solar
     
     config.assets.initialize_on_precompile = false
     
+    # config.force_ssl = false
+    
   end
 end
 
