@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def update_card
     @user = current_user
     if @user.create_eway_id(params[:user])
-      if @user.is_billable?
+      if @user.flagged
         @payment = EwayPayment.new
         @payment.user = @user
         unless @payment.process_subscription!
