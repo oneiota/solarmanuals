@@ -1,0 +1,91 @@
+<div style="width: 500px">
+
+  <h1>Tax Invoice</h1>
+
+  <p><%= @payment.created_at.strftime("%B %-d %Y, %l:%M%P") %></p>
+
+  <p>
+    <strong>Installer Technologies</strong><br/>
+    <%= link_to "http://www.solarmanuals.com.au/", "http://www.solarmanuals.com.au/" %><br/>
+    ABN: 
+  </p>
+
+  <p>
+    Transaction ID: <%= @payment.transaction_number %><br/>
+    Authorisation Code: <%= @payment.eway_auth_code %>
+  </p>
+
+  <p>
+    <strong>Billed To</strong><br/>
+    <%= @payment.user.full_name %><br/>
+    <%= @payment.user.company_address %><br/>
+    <%= @payment.user.company_suburb %> <%= @payment.user.company_postcode %>
+  </p>
+
+  <%- @total_manuals = @payment.manuals.count -%>
+
+  <table width="100%" style="text-align: left; border-collapse: collapse">
+    <thead style="border-bottom: #ccc 1px solid">
+      <tr>
+        <th>Description</th>
+        <th>Unit price</th>
+        <th>Qty</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @payment.subscription %>
+        <% if @total_manuals > 0 %>
+          <tr>
+            <td>Free manuals</td>
+            <td><%= currency(0) %></td>
+            <td><%= @total_manuals > 10 ? 10 : @total_manuals %></td>
+            <td><%= currency(0) %></td>
+          </tr>
+        <% end %>
+    
+        <% if @total_manuals > 10 %>
+          <tr>
+            <td>Paid manuals</td>
+            <td><%= currency(@payment.user.manuals_tier(@total_manuals)[:price]) %></td>
+            <td><%= @total_manuals - 10 %></td>
+            <td><%= currency(@payment.user.manuals_charge(@total_manuals)) %></td>
+          </tr>
+        <% end %>
+    
+        <tr>
+          <td>Subscription fee</td>
+          <td><%= currency(SUBSCRIPTION_FEE) %></td>
+          <td>1</td>
+          <td><%= currency(SUBSCRIPTION_FEE) %></td>
+        </tr>
+      <% else %>
+      
+        <tr>
+          <td>Casual manual fee</td>
+          <td><%= currency(CASUAL_FEE) %></td>
+          <td>1</td>
+          <td><%= currency(CASUAL_FEE) %></td>
+        </tr>
+      
+      <% end %>
+    </tbody>
+    <tfoot style="border-top: #ccc 1px solid; border-bottom: #ccc 1px solid">
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Total</strong></td>
+        <td><strong><%= currency(@payment.return_amount) %></strong></td>
+      </tr>
+    </tfoot>
+  </table>
+
+
+
+  <p>To resolve any issues with this transaction please contact us at <%= link_to "info@solarmanuals.com.au", "mailto:info@solarmanuals.com.au" %></p>
+
+  <h4>Security Policy</h4>
+  <p>Installer Technologies payments are processed with eWay. We do not store your credit card details. Instead, details are encrypted with RSA SHA1 256-bit encryption and sent to eWay using Transport Layer Security (TLS). eWay securely stores your details if you have elected to keep your details stored, or you are a subscriber.</p>
+  
+  <p id="view-in-browser"><%= link_to "View this invoice in browser", invoice_url(@payment) %></p>
+</div>

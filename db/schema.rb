@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219035811) do
+ActiveRecord::Schema.define(:version => 20130220054417) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(:version => 20130219035811) do
     t.string   "transaction_number"
     t.integer  "return_amount"
     t.string   "eway_auth_code"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "subscription",       :default => false
   end
 
   create_table "images", :force => true do |t|
@@ -129,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20130219035811) do
     t.string   "eway_id"
     t.string   "stored_cc_number"
     t.datetime "last_payed_at"
+    t.boolean  "flagged",                :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

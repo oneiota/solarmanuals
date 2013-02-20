@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  skip_before_filter :check_user_flagged!
+  
   def show
     @user = User.find(params[:id])
   end
@@ -19,17 +21,41 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit_card
+    @user = current_user
+  end
+  
+  def update_card
+    @user = current_user
+    if @user.create_eway_id(params[:user])
+      if @user.is_billable?
+        @payment = EwayPayment.new
+        @payment.user = @user
+        unless @payment.process_subscription!
+          flash[:alert] = "Payment failed: #{@payment.errors[:base].first}"
+          redirect_to root_url and return
+        end
+      end
+      @user.flagged = false
+      @user.save
+      redirect_to root_url, :notice => "Payment details updated."
+    end
+  end
+  
   def subscribe
-    @user = User.find(params[:user_id])
+    @user = current_user
     @user.subscribed = true
     @user.eway_id ||= @user.create_eway_id(params[:user])
-    puts @user.eway_id
+    
+    # so we know to first charge them in a month
+    @user.last_payed_at = Time.now
+    
     @user.save
     redirect_to root_url
   end
   
   def unsubscribe
-    @user = User.find(params[:user_id])
+    @user = current_user
     
     unless @user.last_payed_at.nil?
       @payment = EwayPayment.new

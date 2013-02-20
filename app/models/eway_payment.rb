@@ -6,32 +6,36 @@ class EwayPayment < ActiveRecord::Base
   
   validates_presence_of :return_amount, :transaction_number, :user_id
   
+  validate :transaction_approved
+  
   belongs_to :user
   has_many :manuals
   
-  def process_subscription!
-    
-    charge_amount = user.current_charge
-    
-    return if charge_amount == 0
+  def process_payment!(amount)
     
     response = Eway.client.process_payment(
       user.eway_id,
-      charge_amount,
+      amount,
       'Solar Manuals Subscription'
     )
     
-    self.eway_error = response['ewayTrxnError']
-    self.eway_status = response['ewayTrxnStatus']
-    self.transaction_number = response['ewayTrxnNumber']
-    self.return_amount = response['ewayReturnAmount']
-    self.eway_auth_code = response['ewayAuthCode']
+    set_payment_details(response)
     
-    if self.save!
-      puts "Created payment for #{user.first_name} #{user.last_name} at #{charge_amount}"
+  end
+  
+  def process_subscription!
+    charge_amount = user.current_charge
+    return if charge_amount == 0
+    
+    self.process_payment!(charge_amount)
+    
+    self.subscription = true
+    
+    if self.save
+      puts "Created payment for #{user.full_name} at #{charge_amount}"
       
+      user.flagged = false
       user.last_payed_at = Time.now
-      
       user.save
       
       user.unpaid_marked_manuals.each do |manual|
@@ -39,18 +43,44 @@ class EwayPayment < ActiveRecord::Base
         manual.save
       end
       
+      # email receipt
+      UserMailer.receipt(self).deliver
+      
       return true
+      
     else
-      # let us know
+      
+      puts "Payment failed for #{user.full_name}, #{errors[:base].first}"
+      
+      # email warnings
+      UserMailer.admin_payment_alert(self).deliver
+      UserMailer.payment_failed_alert(self).deliver
+      
+      user.flagged = true
+      user.save
+      return false
     end
-    
   end
-  
   
   def process_unsubscribe_payment!
     
-    
-    
+  end
+  
+  private
+  
+  def set_payment_details(response)
+    self.eway_error = response['ewayTrxnError']
+    self.eway_status = response['ewayTrxnStatus'] == "True"
+    self.transaction_number = response['ewayTrxnNumber']
+    self.return_amount = response['ewayReturnAmount']
+    self.eway_auth_code = response['ewayAuthCode']
+  end
+  
+  def transaction_approved
+    error = self.eway_error.split(",")
+    unless error.first == "00"
+      errors[:base] << error.last
+    end
   end
   
 end

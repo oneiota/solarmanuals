@@ -23,17 +23,26 @@
     <% if current_user.subscribed? %>
       <p>You are subscribed!</p>
       
-      <p><%= link_to "Unsubscribe", user_unsubscribe_path(current_user), :method => :put %></p>
+      <p><%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put %></p>
+      
+      <h4>Billing Details</h4>
+      <p>
+        Next payment: <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong><br/>
+        Current usage: <strong><%= currency(current_user.current_charge) %></strong><br/>
+        Card on file: <strong><%= format_card(current_user.stored_cc_number) %></strong>
+      </p>
+      <p><%= link_to "Change credit card", edit_card_users_path %></p>
+      <hr/>
       
     <% else %>
       
       <% if current_user.eway_id %>
-        <%= link_to "Subscribe", user_subscribe_path(current_user), :method => :put %>
+        <%= link_to "Subscribe", subscribe_users_path, :method => :put %>
       <% else %>
         
         <%= link_to "Subscribe", "#", :id => "show-cc-fields" %>
         <div id="subscribe-cc-fields">
-          <%= form_for current_user, :url => user_subscribe_path(current_user) do |f| %>
+          <%= form_for current_user, :url => subscribe_users_path do |f| %>
             <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
             
             <%= f.hidden_field :remember, :value => true %>

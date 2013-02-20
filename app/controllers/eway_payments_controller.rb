@@ -3,13 +3,14 @@ class EwayPaymentsController < ApplicationController
   layout "invoice", :only => [:show]
   
   rescue_from BigCharger::Error do |e|
-    redirect_to :back, :alert => "Payment details were invalid."
+    redirect_to :back, :alert => e.inspect
   end
   
   def show
     @payment = EwayPayment.find(params[:id])
   end
   
+  # casual payment
   def create
     
     if params[:manual_id]
@@ -20,26 +21,22 @@ class EwayPaymentsController < ApplicationController
     @user = current_user
     @payment.user = @user
     
-    eway_id = @user.eway_id || @user.create_eway_id(params[:eway_payment])
+    @user.eway_id ||= @user.create_eway_id(params[:eway_payment])
     
-    response = Eway.client.process_payment(
-      eway_id,
-      500,
-      'Solar Manuals'
-    )
-    
-    @payment.eway_error = response['ewayTrxnError']
-    @payment.eway_status = response['ewayTrxnStatus']
-    @payment.transaction_number = response['ewayTrxnNumber']
-    @payment.return_amount = response['ewayReturnAmount']
-    @payment.eway_auth_code = response['ewayAuthCode']
+    @payment.process_payment!(CASUAL_FEE)
     
     if @payment.save
       if @manual
         @manual.eway_payment = @payment
         @manual.save
-        redirect_to @manual
+        
+        # email receipt
+        UserMailer.receipt(@payment).deliver
+        
+        redirect_to @manual, :notice => "Payment processed succesfully."
       end
+    else
+      redirect_to @manual, :alert => "Payment failed: #{@payment.errors[:base].first}"
     end
     
   end

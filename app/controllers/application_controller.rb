@@ -11,5 +11,13 @@ class ApplicationController < ActionController::Base
     field.blank? ? "<span class='not-on-file'>Please enter...</span>".html_safe : field
   end
   
+  before_filter :check_user_flagged!
+  
+  def check_user_flagged!
+    if current_user && current_user.flagged
+      flash[:alert] ||= "Your last payment failed. Please update your credit card details."
+      render "users/edit_card"
+    end
+  end
   
 end

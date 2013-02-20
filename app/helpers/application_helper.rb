@@ -8,11 +8,15 @@ module ApplicationHelper
   end
   
   def nicetime(time)
-    time.strftime("%d / %m / %Y")
+    time.strftime("%B %-d, %Y")
   end
   
   def currency(cents)
-    "$%.2f" % (cents / 100.0)
+    "$%.2f" % (cents / 100.0) + " AUD"
   end
   
+  def format_card(number)
+    # split into strings 4 characters long
+    number.scan(/.{4}/).join("-").downcase
+  end
 end

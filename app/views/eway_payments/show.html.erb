@@ -1,9 +1,3 @@
 <% content_for(:title) { @payment.created_at } %>
 
-<h1>Invoice</h1>
-
-<p>User / Solar manuals details...</p>
-
-<% @payment.manuals.each do |manual| %>
-  <p>Manual: <%= manual.client_name %></p>
-<% end %>
+<%= render 'receipt' %>

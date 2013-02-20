@@ -1,8 +1,24 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Invoice <%= yield :title %></title>
+    <style type="text/css">
+      body {
+        font-family: Helvetica, sans-serif;
+        font-size: 13px;
+      }
+      #view-in-browser {
+        display: none;
+      }
+      @media print {
+        #back {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="back"><%= link_to "← Back", edit_user_registration_path %></div>
     <%= yield %>
   </body>
 </html>

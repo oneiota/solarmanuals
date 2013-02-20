@@ -1,0 +1,10 @@
+<%= form_for current_user, :url => update_card_users_path do |f| %>
+  <% if current_user.is_billable? %>
+    <p>
+      We will try to reprocess the last payment with the new details.<br/>
+      <strong>Total:</strong> <%= currency(current_user.current_charge) %>
+    </p>
+  <% end %>
+  <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
+  <%= f.submit %>
+<% end %>

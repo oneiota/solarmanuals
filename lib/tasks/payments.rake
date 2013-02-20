@@ -5,9 +5,9 @@ namespace :solar do
     User.billable.each do |user|      
       @payment = EwayPayment.new
       @payment.user = user
+      
       @payment.process_subscription!
     end
-    
   end
   
 end

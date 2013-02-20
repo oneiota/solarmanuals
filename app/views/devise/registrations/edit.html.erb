@@ -50,7 +50,7 @@
     <h2>Billing</h2>
     <% if current_user.subscribed? %>
       <p>You are subscribed</p>
-      <p>Accumulated bill this month: <%= currency(current_user.current_charge) %></p>
+      <p>Usage this month: <%= currency(current_user.current_charge) %></p>
     <% end %>
     
     <h4>Previous Invoices</h4>
