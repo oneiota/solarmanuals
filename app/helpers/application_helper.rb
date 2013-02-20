@@ -19,4 +19,5 @@ module ApplicationHelper
     # split into strings 4 characters long
     number.scan(/.{4}/).join("-").downcase
   end
+  
 end

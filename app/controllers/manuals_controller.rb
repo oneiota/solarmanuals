@@ -38,22 +38,8 @@ class ManualsController < ApplicationController
   # GET /manuals/1
   # GET /manuals/1.json
   def show
-    
     @payment = EwayPayment.new
-    
-    query = {}
-    
-    if params[:type] == 'system_details_prefill'
-      query[:select] = "system_watts, system_pv_current, system_pv_voltage, system_config"
-    elsif params[:type] == 'panel_details_prefill'
-      query[:select] = "panels_brand, panels_model, panels_number"
-    elsif params[:type] == 'inverter_details_prefill'
-      query[:select] = "inverter_brand, inverter_model, inverter_output"
-    elsif params[:type] == 'warranty_details_prefill'
-      query[:select] = "warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship"
-    end
-    
-    @manual = Manual.find(params[:id], query)  
+    @manual = Manual.find_with_type(params[:id], params[:type])
     
     respond_to do |format|
       format.html # show.html.erb

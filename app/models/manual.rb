@@ -1,6 +1,6 @@
 class Manual < ActiveRecord::Base
   attr_accessible :user_id, :eway_payment_id, :feature_image_id, :pdf_ids,
-    :client_address, :client_name, :client_suburb, :client_postcode, :client_state_id, :install_date, :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :sunlight_city, :filled, :trashed, :files_array,
+    :client_address, :client_name, :client_suburb, :client_postcode, :client_state_id, :install_date, :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :sunlight_city, :filled, :trashed, :files_array, :include_performance, :include_wiring, :include_certificate, :isolator_type, :inverter_number,
     :contractor_licence, :contractor_licence_name, :contractor_phone, :contractor_name, :inspection_date
   
   validates_presence_of :client_address, :client_name, :client_suburb, :client_state_id, :install_date, :client_postcode
@@ -47,12 +47,9 @@ class Manual < ActiveRecord::Base
   end
   
   def completed?
-    attributes.each_pair do |k, v|
-      unless ['trashed', 'panels_serial_numbers', 'inverter_serial', 'marked', 'eway_payment_id'].include? k
-        if v.nil? || v.blank?
-          puts k
-          return false
-        end
+    [client_address, client_name, client_suburb, client_postcode, client_state_id, install_date, inverter_brand, inverter_model, inverter_output, inverter_number, panels_brand, panels_model, panels_number, system_config, system_pv_current, system_pv_voltage, system_watts, warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship].each do |key|
+      if key.nil? || key.blank?
+        return false
       end
     end
     true
@@ -63,36 +60,21 @@ class Manual < ActiveRecord::Base
   end
   
   def self.system_details_prefill
-    manuals = unique_values("system_watts", "system_pv_current", "system_pv_voltage")
-    
-    manuals.collect do |m|
-      ["#{m['system_watts']}W, #{m['system_pv_current']}Amps, #{m['system_pv_voltage']}V", m['id']]
-    end
+    prefill("system_watts", "system_pv_current", "system_pv_voltage")
   end
   
   def self.panel_details_prefill
-    manuals = unique_values("panels_brand", "panels_model", "panels_number")
-    
-    manuals.collect do |m|
-      ["#{m['panels_number']} x #{m['panels_brand']} #{m['panels_model']}", m['id']]
-    end
+    prefill("panels_brand", "panels_model", "panels_number")
   end
   
   def self.inverter_details_prefill
-    manuals = unique_values("inverter_brand", "inverter_model", "inverter_output")
-    
-    manuals.collect do |m|
-      ["#{m['inverter_output']} #{m['inverter_brand']} #{m['inverter_model']}", m['id']]
-    end
+    prefill("inverter_brand", "inverter_model", "inverter_output")
   end
   
   def self.warranty_details_prefill
-    manuals = unique_values("warranty_inverter", "warranty_panels_output_performance", "warranty_panels_product", "warranty_workmanship")
-    
-    manuals.collect do |m|
-      ["#{m['warranty_inverter']}, #{m['warranty_panels_output_performance']}, #{m['warranty_panels_product']}, #{m['warranty_workmanship']}", m['id']]
-    end
+    prefill("warranty_inverter", "warranty_panels_output_performance", "warranty_panels_product", "warranty_workmanship")
   end
+  
   
   def validate_pdf_fields?
     paid? && !trashed && filled
@@ -112,6 +94,17 @@ class Manual < ActiveRecord::Base
     end
   end
   
+  PREFILL_FIELDS = {
+    'system_details_prefill' => "system_watts, system_pv_current, system_pv_voltage, system_config",
+    'panel_details_prefill' => "panels_brand, panels_model, panels_number",
+    'inverter_details_prefill' => "inverter_brand, inverter_model, inverter_output, inverter_number",
+    'warranty_details_prefill' => "warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship"
+  }
+  
+  def self.find_with_type(id, type)
+    find(id, {:select => PREFILL_FIELDS[type]})
+  end
+  
   private
   
   
@@ -127,5 +120,25 @@ class Manual < ActiveRecord::Base
     manuals
   end
   
+  def self.prefill(*fields)
+    manuals = unique_values(fields)
+    manuals.delete_if do |manual|
+      !(all_present?(manual.values))
+    end
+    manuals.collect do |m|
+      values = fields.map do |field|
+        m[field]
+      end
+      [values.join(", "), m['id']]
+    end
+  end
   
+  def self.all_present?(array)
+    array.each do |v|
+      puts "#{v} - #{v.blank?}"
+      return false if v.blank?
+    end
+    true
+  end
+
 end

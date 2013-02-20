@@ -1,2 +1,3 @@
 module ManualsHelper
+
 end
