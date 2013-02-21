@@ -81,4 +81,41 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
   
+  def single_charge
+    
+    if params[:manual_id]
+      @manual = Manual.find(params[:manual_id])
+    end
+    
+    @payment = EwayPayment.new
+    @user = current_user
+    @payment.user = @user
+    
+    @user.assign_attributes(params[:user])
+    
+    @user.validate_card = true
+    unless @user.valid?
+      render template: 'manuals/show' and return
+    end
+    
+    @user.eway_id ||= @user.create_eway_id
+    
+    @payment.process_payment!(CASUAL_FEE)
+    
+    if @payment.save
+      if @manual
+        @manual.eway_payment = @payment
+        @manual.save
+        
+        # email receipt
+        UserMailer.receipt(@payment).deliver
+        
+        redirect_to @manual, :notice => "Payment processed succesfully."
+      end
+    else
+      redirect_to @manual, :alert => "Payment failed: #{@payment.errors[:base].first}"
+    end
+    
+  end
+  
 end

@@ -29,7 +29,7 @@
     <% else %>
       <p>You can unlock this manual for a fee of <strong>$5</strong>AU or <%= link_to "subscribe", root_url %> for unlimited access.</p>
       
-      <%= form_for @payment do |f| %>
+      <%= form_for current_user, :url => single_charge_users_path, :html => { :class => 'card_form' } do |f| %>
         <%= hidden_field_tag :manual_id, @manual.id %>
         
         <% if current_user.eway_id %>
