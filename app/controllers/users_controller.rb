@@ -82,13 +82,13 @@ class UsersController < ApplicationController
   end
   
   def single_charge
-    
+    @user = current_user
+        
     if params[:manual_id]
       @manual = Manual.find(params[:manual_id])
     end
     
     @payment = EwayPayment.new
-    @user = current_user
     @payment.user = @user
     
     @user.assign_attributes(params[:user])
