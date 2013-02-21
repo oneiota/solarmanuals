@@ -17,11 +17,19 @@ class EwayPaymentsController < ApplicationController
       @manual = Manual.find(params[:manual_id])
     end
     
-    @payment = EwayPayment.new(params[:payment])
+    @payment = EwayPayment.new
     @user = current_user
     @payment.user = @user
     
-    @user.eway_id ||= @user.create_eway_id(params[:eway_payment])
+    @user.assign_attributes(params[:eway_payment])
+    
+    @user.validate_card = true
+    unless @user.valid?
+      flash[:alert] = "Invalid card details"
+      redirect_to @manual and return
+    end
+    
+    @user.eway_id ||= @user.create_eway_id
     
     @payment.process_payment!(CASUAL_FEE)
     

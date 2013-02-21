@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   
   skip_before_filter :check_user_flagged!
   
+  rescue_from BigCharger::Error do |e|
+    flash[:alert] = e.message
+    redirect_to update_card_users_path
+  end
+  
   def show
     @user = User.find(params[:id])
   end
@@ -27,7 +32,15 @@ class UsersController < ApplicationController
   
   def update_card
     @user = current_user
-    if @user.create_eway_id(params[:user])
+    @user.assign_attributes(params[:user])
+    
+    @user.validate_card = true    
+    # validate card details
+    unless @user.valid?
+      render action: "edit_card" and return
+    end
+    
+    if @user.create_eway_id
       if @user.flagged
         @payment = EwayPayment.new
         @payment.user = @user

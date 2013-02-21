@@ -2,13 +2,22 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo, :pdfs_array, :subscribed, :eway_id, :stored_cc_number
+  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo, :pdfs_array, :subscribed, :eway_id, :stored_cc_number, :cc_number, :cc_expiry_month, :cc_expiry_year, :cvn, :remember
   
   has_attached_file :logo, LOGO_OPTS
   validates_attachment :logo,
     :size => { :in => 0..2.megabytes }
   
-  attr_accessor :current_password, :cc_number, :cc_expiry_month, :cc_expiry_year, :cvn, :remember
+  attr_accessor :current_password, :cc_number, :cc_expiry_month, :cc_expiry_year, :cvn, :remember, :validate_card
+  
+  validates :cc_number, :length => { :is => 16 }, :if => :should_validate_card?
+  validates :cc_expiry_month, :length => { :is => 2 }, :if => :should_validate_card?
+  validates :cc_expiry_year, :length => { :is => 2 }, :if => :should_validate_card?
+  validates :cvn, :length => { :in => 3..4 }, :if => :should_validate_card?
+  
+  def should_validate_card?
+    validate_card
+  end
   
   validates_presence_of :first_name, :last_name
   
@@ -104,19 +113,19 @@ class User < ActiveRecord::Base
     User.billable.include?(self)
   end
   
-  def create_eway_id(opts)
+  def create_eway_id
     self.eway_id = Eway.client.create_customer(
       'Title' => 'Mr.',
       'FirstName' => first_name,
       'LastName' => last_name,
       'Country' => 'au',
-      'CCNumber' => opts[:cc_number],
-      'CCExpiryMonth' => opts[:cc_expiry_month],
-      'CCExpiryYear' => opts[:cc_expiry_year],
-      'CVN' => opts[:cvn]
+      'CCNumber' => cc_number,
+      'CCExpiryMonth' => cc_expiry_month,
+      'CCExpiryYear' => cc_expiry_year,
+      'CVN' => cvn
     )
     
-    if opts[:remember] == '1'
+    if remember == '1'
       self.save
     end
     

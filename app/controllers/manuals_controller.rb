@@ -96,7 +96,6 @@ class ManualsController < ApplicationController
         format.json { head :no_content }
         format.js
       else
-        puts @manual.errors.messages
         format.html { render action: "edit" }
         format.json { render json: @manual.errors, status: :unprocessable_entity }
       end

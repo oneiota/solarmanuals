@@ -1,4 +1,4 @@
-<%= form_for current_user, :url => update_card_users_path do |f| %>
+<%= form_for current_user, :url => update_card_users_path, :html => { :class => "card_form" } do |f| %>
   <% if current_user.flagged %>
     <p>
       We will try to reprocess the last payment with the new details.<br/>

@@ -2,6 +2,15 @@ label.inline {
   display: inline;
 }
 
+.card_form {
+  .control-group {
+    display: inline-block;
+  }
+  .help-inline {
+    display: none;
+  }
+}
+
 .expiry, .cvn {
   display: inline-block !important;
   width: 50px !important;
