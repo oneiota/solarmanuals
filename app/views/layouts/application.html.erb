@@ -136,10 +136,19 @@
               </ul>
             </div>
           </div>
-          <% if user_signed_in? %>
-          <div class="span4">Contact Us <i class="icon-white icon-comment">&nbsp;</i> <a href="mailto:info@solarmanuals.com.au">info@solarmanuals.com.au</a></div>
-          <% end %>
-          <div class="span4 marginbotom hidden-desktop hidden-tablet">&#169; Solar Energy Consulting 2012</div>         
+          
+          <div class="span4">
+            <% if user_signed_in? %>
+            <p>
+              Contact Us <i class="icon-white icon-comment">&nbsp;</i> <a href="mailto:info@solarmanuals.com.au">info@solarmanuals.com.au</a>
+            </p>
+            <% end %>
+            <p>
+              All prices on this site are stated in Australian Dollars.
+            </p>
+          </div>
+          
+          <div class="span4 marginbotom hidden-desktop hidden-tablet">&#169; Installer Technologies 2013</div>         
         </footer>
       </div>
     

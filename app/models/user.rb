@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
   
   def subscribed?
-    subscribed || insider
+    subscribed
   end
   
   def fields_filled?

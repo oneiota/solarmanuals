@@ -1,7 +1,28 @@
+# :user_id, :eway_payment_id, :feature_image_id, :pdf_ids,
+# 
+# :client_address, :client_name, :client_suburb, :client_postcode, :client_state_id, :install_date, 
+# 
+# :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, 
+# :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, 
+# 
+# :system_config, :system_pv_current, :system_pv_voltage, :system_watts, 
+# 
+# :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, 
+# 
+# :sunlight_city, 
+# 
+# :filled, :trashed, :files_array, 
+# 
+# :include_performance, :include_wiring, :include_certificate, 
+# 
+# :isolator_type, :inverter_number,
+# 
+# :contractor_licence, :contractor_licence_name, :contractor_phone, :contractor_name, :inspection_date
+
+
 class Manual < ActiveRecord::Base
-  attr_accessible :user_id, :eway_payment_id, :feature_image_id, :pdf_ids,
-    :client_address, :client_name, :client_suburb, :client_postcode, :client_state_id, :install_date, :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, :system_config, :system_pv_current, :system_pv_voltage, :system_watts, :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, :sunlight_city, :filled, :trashed, :files_array, :include_performance, :include_wiring, :include_certificate, :isolator_type, :inverter_number,
-    :contractor_licence, :contractor_licence_name, :contractor_phone, :contractor_name, :inspection_date
+  
+  attr_protected :marked
   
   validates_presence_of :client_address, :client_name, :client_suburb, :client_state_id, :install_date, :client_postcode
   
@@ -85,7 +106,7 @@ class Manual < ActiveRecord::Base
   end
   
   def unlocked?
-    paid? || user.subscribed?
+    paid? || user.subscribed? || user.insider
   end
   
   def files_array=(array)
@@ -135,7 +156,6 @@ class Manual < ActiveRecord::Base
   
   def self.all_present?(array)
     array.each do |v|
-      puts "#{v} - #{v.blank?}"
       return false if v.blank?
     end
     true

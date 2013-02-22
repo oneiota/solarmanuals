@@ -20,7 +20,9 @@
     <hr/>
   </div>
   <div class="offset1 span4 alignright">
-    <% if current_user.subscribed? %>
+    <% if current_user.insider %>
+      <p>Insider Account</p>
+    <% elsif current_user.subscribed? %>
       <p>You are subscribed!</p>
       
       <p><%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put %></p>
