@@ -90,11 +90,6 @@ class Manual < ActiveRecord::Base
   end
   
   def completed?
-    [client_address, client_name, client_suburb, client_postcode, client_state_id, install_date, inverter_brand, inverter_model, inverter_output, inverter_number, panels_brand, panels_model, panels_number, system_config, system_pv_current, system_pv_voltage, system_watts, warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship].each do |key|
-      if key.nil? || key.blank?
-        return false
-      end
-    end
     true
   end
   
