@@ -20,9 +20,9 @@ module Paperclip
 
       begin
         parameters = []
-        parameters << "-dNOPAUSE -dBATCH -sDEVICE=pdfwrite -r144 -dUseCIEColor"
+        parameters << "-q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite"
         parameters << "-sOutputFile=:dest"
-        parameters << ":source"
+        parameters << "-c .setpdfwrite -f :source"
 
         parameters = parameters.flatten.compact.join(" ").strip.squeeze(" ")
         
