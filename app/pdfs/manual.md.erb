@@ -74,15 +74,12 @@ Note: If your meter has not been changed within 3 months of your installation co
 * The solar system is a grid interactive inverter system located at:
 <b><%= @manual.client_address %> <%= @manual.client_suburb %></b>
 * The solar panel array size is:
-<b><%= @manual.system_watts %> Watts</b>
+<b><%= @manual.total_array_size %> Watts</b>
 * The electrical configuration is: 
-<b><%= @manual.system_config %></b>
-* PV array Voltage (Open Circuit):
-<b><%= @manual.system_pv_voltage %> Volts DC</b>
-* PV array Current (Short Circuit):
-<b><%= @manual.system_pv_current %> Amps DC</b>
-* Approximate Yearly yield (based on sunlight information from <%= @manual.sunlight_city.capitalize %>): 
+<%= @manual.string_config %>
+<% if @manual.include_performance %>* Approximate Yearly yield (based on sunlight information from <%= @manual.sunlight_city.capitalize %>): 
 <b><%= @graph.yearly_total %> kiloWatt Hours</b>
+<% end %>
 
 
 
@@ -217,7 +214,8 @@ To turn on the system it is the reverse process of the shutdown procedure (step 
 
 ## Panels
 
-|Panel Brand: <b><%= @manual.panels_brand %></b>|Panel Model: <b><%= @manual.panels_model %></b>|Number of Panels: <b><%= @manual.panels_number %></b>|
+|Panel Brand: <b><%= @manual.panels_brand %></b>|Panel Model: <b><%= @manual.panels_model %></b>|
+|Number of Panels: <b><%= @manual.total_panels %></b>|Output: <b><%= @manual.panels_watts %>W</b>|
 
 ### Panel Serial Numbers
 
@@ -229,7 +227,7 @@ See attachments.
 
 ## Inverter
 
-|Inverter Brand: <b><%= @manual.inverter_brand %></b>|Inverter Model: <b><%= @manual.inverter_model %></b>|Inverter Output: <b><%= @manual.inverter_output %></b>|
+|Inverter Brand: <b><%= @manual.inverter_brand %></b>|Inverter Model: <b><%= @manual.inverter_model %></b>|Inverter Output: <b><%= @manual.inverter_output %>kW</b>|
 
 ### Inverter Serial Number
 

@@ -67,35 +67,33 @@
   <div class="span7 offset1">
     <% if @manual.filled %>
 
-      <h3>System Details</h3>
-
-      <p>
-        Output: <strong><%= @manual.system_watts %></strong> W<br/>
-        System config: <strong><%= @manual.system_config %></strong><br/>
-        PV Voltage: <strong><%= @manual.system_pv_voltage %></strong> Volts DC<br/>
-        PV Current <strong><%= @manual.system_pv_current %></strong> Amps DC
-      </p>
-
       <h3>Panel Details</h3>
 
       <p>
-        Brand: <strong><%= @manual.panels_brand %></strong><br/>
-        Model: <strong><%= @manual.panels_model %></strong><br/>
-        Number of Panels: <strong><%= @manual.panels_number %></strong><br/>
-        Serial Numbers:
+        <strong><%= @manual.panels_watts %>W <%= @manual.panels_brand %></strong> <strong><%= @manual.panels_model %></strong>
       </p>
-      <ol>
-        <% @manual.panels_serial_numbers.split(',').each do |number| %>
-          <li><strong><%= number %></strong></li>
+      <% if @manual.panels_serial_numbers %>
+        <ol>
+          <% @manual.panels_serial_numbers.split(',').each do |number| %>
+            <li><strong><%= number %></strong></li>
+          <% end %>
+        </ol>
+      <% end %>
+      <ol class="string-list">
+        <% @manual.panel_strings.each do |string| %>
+          <li><strong><%= string.number %></strong> panels, <strong><%= string.volts %></strong> Volts DC, <strong><%= string.amps %></strong> Amps</li>
         <% end %>
       </ol>
+      
       <h3>Inverter Details</h3>
 
       <p>
         Brand: <strong><%= @manual.inverter_brand %></strong><br/>
         Model: <strong><%= @manual.inverter_model %></strong><br/>
-        Output: <strong><%= @manual.inverter_output %></strong><br/>
-        Serial Number: <strong><%= @manual.inverter_serial %></strong>
+        Output: <strong><%= @manual.inverter_output %></strong> kW<br/>
+        <% if @manual.inverter_serial %>
+          Serial Number: <strong><%= @manual.inverter_serial %></strong>
+        <% end %>
       </p>
 
       <h3>Warranty Details</h3>

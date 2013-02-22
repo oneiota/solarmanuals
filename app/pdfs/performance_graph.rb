@@ -6,7 +6,7 @@ class PerformanceGraph
     @manual = manual
     
     # kw = 2.45
-    kw = @manual.system_watts.to_i / 1000
+    kw = @manual.total_array_size.to_i / 1000
     city = @manual.sunlight_city
     
     @data = Cities.data[city].map do |week|

@@ -13,7 +13,6 @@ module Paperclip
     end
 
     def make
-      puts "==USING GHOSTSCRIPT--"
       src = @file
       dst = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
       dst.binmode

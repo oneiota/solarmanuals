@@ -42,12 +42,24 @@ class Manual < ActiveRecord::Base
   has_many :panel_strings
   accepts_nested_attributes_for :panel_strings, :allow_destroy => true
   
-  def feature_image
-    Image.where(manual_id: id, feature: true).first
+  # dynamic fields
+  
+  def total_panels
+    panel_strings.map{|string| string.number }.inject(:+)
   end
   
-  def self.not_trashed
-    where(:trashed => false)
+  def total_array_size
+    total_panels * panels_watts
+  end
+  
+  def string_config
+    panel_strings.map { |string|
+      "<b>1 string of #{string.number} panels, #{string.volts} Volts DC, #{string.amps} Amps</b>"
+    }.join("\n")
+  end
+  
+  def feature_image
+    Image.where(manual_id: id, feature: true).first
   end
   
   def panels_serials
@@ -68,6 +80,13 @@ class Manual < ActiveRecord::Base
     end
     buffer << "#{line_text}|" unless line_text.blank?
     buffer
+  end
+  
+  
+  # 
+  
+  def self.not_trashed
+    where(:trashed => false)
   end
   
   def completed?

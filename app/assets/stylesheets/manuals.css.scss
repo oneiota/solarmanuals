@@ -236,6 +236,16 @@ label {
   }
 }
 
+.string-list {
+  position: relative;
+  padding-left: 40px;
+  li:before {
+    content: 'String ';
+    position: absolute;
+    left: -20px;
+  }
+}
+
 .field {
   &.inline {
     display: inline-block;
@@ -245,3 +255,4 @@ label {
     }
   }
 }
+
