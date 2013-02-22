@@ -97,22 +97,6 @@ class Manual < ActiveRecord::Base
     Manual.all.keep_if(&:completed?)
   end
   
-  def self.system_details_prefill
-    prefill("system_watts", "system_pv_current", "system_pv_voltage")
-  end
-  
-  def self.panel_details_prefill
-    prefill("panels_brand", "panels_model", "panels_number")
-  end
-  
-  def self.inverter_details_prefill
-    prefill("inverter_brand", "inverter_model", "inverter_output")
-  end
-  
-  def self.warranty_details_prefill
-    prefill("warranty_inverter", "warranty_panels_output_performance", "warranty_panels_product", "warranty_workmanship")
-  end
-  
   
   def validate_pdf_fields?
     paid? && !trashed && filled
@@ -133,14 +117,19 @@ class Manual < ActiveRecord::Base
   end
   
   PREFILL_FIELDS = {
-    'system_details_prefill' => "system_watts, system_pv_current, system_pv_voltage, system_config",
-    'panel_details_prefill' => "panels_brand, panels_model, panels_number",
-    'inverter_details_prefill' => "inverter_brand, inverter_model, inverter_output, inverter_number",
-    'warranty_details_prefill' => "warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship"
+    'panel_details_prefill' => ["panels_brand", "panels_model", "panels_watts"],
+    'inverter_details_prefill' => ["inverter_brand", "inverter_model", "inverter_output", "inverter_number"],
+    'warranty_details_prefill' => ["warranty_inverter", "warranty_panels_output_performance", "warranty_panels_product", "warranty_workmanship"]
   }
   
   def self.find_with_type(id, type)
-    find(id, {:select => PREFILL_FIELDS[type]})
+    select = PREFILL_FIELDS[type]
+    select.join!(", ") if select # could be nil
+    find(id, {:select => select})
+  end
+  
+  def self.prefill_details(type)
+    prefill(*PREFILL_FIELDS[type])
   end
   
   private
