@@ -9,7 +9,8 @@ IMAGE_OPTS = {
 }
 
 LOGO_OPTS = { 
-  :styles => { 
+  :styles => {
+    :original => ["", :jpg],
     :thumb => ["300x", :jpg]
   }, 
   :path => "/logos/:style/:id/:basename.:extension",
