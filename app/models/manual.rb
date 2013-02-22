@@ -124,7 +124,7 @@ class Manual < ActiveRecord::Base
   
   def self.find_with_type(id, type)
     select = PREFILL_FIELDS[type]
-    select.join!(", ") if select # could be nil
+    select = select.join(", ") if select # could be nil
     find(id, {:select => select})
   end
   
