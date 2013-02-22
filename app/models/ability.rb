@@ -8,7 +8,7 @@ class Ability
     can [:create, :destroy, :update, :read, :set_feature], Manual
     
     can :document, Manual do |manual|
-      manual.paid? || manual.user.subscribed?
+      manual.paid? || manual.user.subscribed? || manual.user.insider
     end
     
     can :manage, User do |other_user|
