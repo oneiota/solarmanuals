@@ -6,34 +6,8 @@
     <%= select "system_details", "prefill", Manual.system_details_prefill, { :include_blank => "Select" }, { :class => "select-prefill" } %>
     
   </div>
-  <div class="span5">
-    <div class="field">
-      <%= f.label :system_watts, "Solar Panel Array Size" %>
-      <div class="input-append">
-        <span class="input-container"><%= f.text_field :system_watts, :placeholder => "e.g. 2450" %></span>
-        <span class="add-on">W</span>
-      </div>
-    </div>
-    <div class="field">
-      <%= f.label :system_config, "Electrical Configuration" %>
-      <%= f.text_field :system_config, :placeholder => "eg. 1 string of 10 panels" %>
-    </div>
-    <div class="field">
-      <%= f.label :system_pv_voltage, "PV Array Voltage (Open Circuit)" %>
-      <div class="input-append">
-        <span class="input-container"><%= f.text_field :system_pv_voltage, :placeholder => "eg. 355" %></span>
-        <span class="add-on">Volts DC</span>
-      </div>
-    </div>
-    <div class="field">
-      <%= f.label :system_pv_current, "PV Array Current (Short Circuit)" %>
-      <div class="input-append">
-        <span class="input-container"><%= f.text_field :system_pv_current, :placeholder => "eg. 8.6" %></span>
-        <span class="add-on">Amps DC</span>
-      </div>
-    </div>
-  </div>
 </div>
+
 <hr/>
 <div class="section row">
   <div class="span4">
@@ -44,18 +18,17 @@
     
   </div>
   <div class="span5">
-    <div class="field">
-      <%= f.label :panels_brand, "Panel Brand" %>
-      <%= f.text_field :panels_brand %>
+    <div class="input-append">
+      <span class="input-container"><%= f.text_field :panels_watts, :placeholder => "Size (per panel)" %></span>
+      <span class="add-on">W</span>
     </div>
-    <div class="field">
-      <%= f.label :panels_model, "Panel Model" %>
-      <%= f.text_field :panels_model %>
+    <div class="field inline">
+      <%= f.text_field :panels_brand, :placeholder => "Brand" %>
     </div>
-    <div class="field">
-      <%= f.label :panels_number, "Number of Panels" %>
-      <%= f.text_field :panels_number %>
+    <div class="field inline">
+      <%= f.text_field :panels_model, :placeholder => "Model" %>
     </div>
+
     <div class="field">
       <%= f.label :panels_serial_numbers, "Serial Numbers (comma separated)" %>
       <p class="greyed">Optional - list here unless published in attachments.</p>
@@ -63,6 +36,17 @@
     </div>
   </div>
 </div>
+
+<h4>Panel String Details</h4>
+<div id="string-fields">
+  <%= f.fields_for :panel_strings do |b| %>
+    <%= render 'panel_string_fields', :f => b %>
+  <% end %>
+  
+  <%= link_to_add_fields "+ Add String", f, :panel_strings %>
+  
+</div>
+
 <hr/>
 <div class="section row">
   <div class="span4">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220054417) do
+ActiveRecord::Schema.define(:version => 20130222041932) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -77,11 +77,21 @@ ActiveRecord::Schema.define(:version => 20130220054417) do
     t.boolean  "include_certificate",                :default => false
     t.string   "isolator_type",                      :default => "1000V DC"
     t.integer  "inverter_number",                    :default => 1
+    t.integer  "panels_watts"
   end
 
   create_table "manuals_pdfs", :force => true do |t|
     t.integer "pdf_id"
     t.integer "manual_id"
+  end
+
+  create_table "panel_strings", :force => true do |t|
+    t.integer  "number"
+    t.string   "volts"
+    t.string   "amps"
+    t.integer  "manual_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pdfs", :force => true do |t|

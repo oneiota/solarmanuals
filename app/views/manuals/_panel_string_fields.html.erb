@@ -1,0 +1,25 @@
+<div class="string-fields">
+
+  <%= f.label :number, "Number of panels" %> 
+  <%= f.text_field :number, :class => "inline" %>
+
+  <div>
+  
+    <div class="input-append inline">
+      <span class="input-container"><%= f.text_field :volts %></span>
+      <span class="add-on">Volts DC</span>
+    </div>
+  
+
+    <div class="input-append inline">
+      <span class="input-container"><%= f.text_field :amps %></span>
+      <span class="add-on">Amps</span>
+    </div>
+  
+  </div>
+
+  <%= f.label :_destroy, :class => "checkbox" do %>
+    <%= f.check_box :_destroy %> Remove String
+  <% end %>
+  
+</div>

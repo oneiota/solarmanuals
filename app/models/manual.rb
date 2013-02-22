@@ -39,6 +39,9 @@ class Manual < ActiveRecord::Base
   
   has_and_belongs_to_many :pdfs
   
+  has_many :panel_strings
+  accepts_nested_attributes_for :panel_strings, :allow_destroy => true
+  
   def feature_image
     Image.where(manual_id: id, feature: true).first
   end

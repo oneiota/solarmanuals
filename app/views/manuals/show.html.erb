@@ -15,7 +15,7 @@
     <hr/>
     <% if @manual.completed? %>
       <% if current_user.fields_not_filled? %>
-        <p><strong>Warning:</strong> You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.</p>
+        <p class="alert"><strong>Warning:</strong> You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.</p>
         <hr/>
       <% end %>
       <p id="manuals-actions">

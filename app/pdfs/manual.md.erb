@@ -188,7 +188,7 @@ If the inverter does not respond:
 * Check that the ‘Inverter Switch’ is in the ON position.
 * Shutdown / Start up Procedure
 
-
+In the case of an Earth Fault Alarm, please contact <%= @manual.user.company %> on <%= @manual.user.company_phone %>
 
 
 # Shutdown / Start up Procedure
@@ -246,6 +246,7 @@ See attachments.
 |Panels - Output Performance|<b><%= @manual.warranty_panels_output_performance %></b>|
 |Inverter|<b><%= @manual.warranty_inverter %></b>|
 
+<% if @manual.include_performance %>
 ---
 
 # System Performance Estimate
@@ -264,7 +265,8 @@ Energy Production Estimates:
 * Data is calculated based on average sunlight data for <%= @manual.sunlight_city.titleize %> from 2010-2012 supplied by the Australian Bureau of Meteorology.
 * Calculation for kWh is (System kW * Sunlight Hours * 0.75)
 
-
+<% end %>
+<% if @manual.include_wiring %>
 ---
 
 # Wiring
@@ -273,5 +275,9 @@ Energy Production Estimates:
 
 = draw_diagram
 
+<% end %>
+<% if @manual.include_certificate %>
+
 = certificate
 
+<% end %>

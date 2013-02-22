@@ -56,6 +56,8 @@ class ManualsController < ApplicationController
     @manual.contractor_name ||= current_user.full_name
     @manual.contractor_phone ||= current_user.company_phone
     
+    @manual.panel_strings.build
+    
     @all_manuals = current_user.manuals.keep_if(&:completed?)
   end
 
@@ -65,6 +67,7 @@ class ManualsController < ApplicationController
     @manual.contractor_licence_name ||= current_user.company
     @manual.contractor_name ||= current_user.full_name
     @manual.contractor_phone ||= current_user.company_phone
+    
     
     @all_manuals = current_user.manuals.keep_if(&:completed?)
   end

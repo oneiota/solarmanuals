@@ -89,6 +89,15 @@ input[type=text], input[type=email], input[type=password], textarea {
     width: 270px;
     position: relative;
     font-size: inherit;
+    margin-bottom: 9px;
+    &.inline {
+      width: 130px;
+      display: inline-block;
+      input {
+        width: 110px;
+        margin-right: 6px;
+      }
+    }
     .add-on {
       position: absolute;
       right: 0;
@@ -212,5 +221,27 @@ label {
     color: red;
     margin-left: 20px;
     display: none;
+  }
+}
+
+
+#string-fields {
+  border: #ccc 1px solid;
+  border-bottom: none;
+  background: #fafafa;
+  .string-fields {
+    padding: 20px;
+    border-bottom: #ddd 1px solid;
+    display: block;
+  }
+}
+
+.field {
+  &.inline {
+    display: inline-block;
+    input {
+      width: 110px;
+      margin-right: 6px;
+    }
   }
 }
