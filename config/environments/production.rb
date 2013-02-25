@@ -68,5 +68,10 @@ Solar::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   config.force_ssl = true
-  
+    
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[Exception] ",
+    :sender_address => %{"Exception Notifier" <info@solarmanuals.com.au>},
+    :exception_recipients => %w{info@solarmanuals.com.au}
+    
 end

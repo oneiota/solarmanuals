@@ -44,3 +44,5 @@ gem 'pdf-merger'
 gem 'newrelic_rpm'
 
 gem 'bigcharger'
+
+gem 'exception_notification'
