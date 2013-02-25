@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222041932) do
+ActiveRecord::Schema.define(:version => 20130225004549) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20130222041932) do
     t.string   "isolator_type",                      :default => "1000V DC"
     t.integer  "inverter_number",                    :default => 1
     t.integer  "panels_watts"
+    t.string   "inverter_series"
   end
 
   create_table "manuals_pdfs", :force => true do |t|

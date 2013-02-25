@@ -89,9 +89,10 @@
 
       <p>
         Brand: <strong><%= @manual.inverter_brand %></strong><br/>
+        Series: <strong><%= @manual.inverter_series %></strong><br/>
         Model: <strong><%= @manual.inverter_model %></strong><br/>
         Output: <strong><%= @manual.inverter_output %></strong> kW<br/>
-        <% if @manual.inverter_serial %>
+        <% if @manual.inverter_serial.present? %>
           Serial Number: <strong><%= @manual.inverter_serial %></strong>
         <% end %>
       </p>
@@ -105,20 +106,24 @@
         Inverter: <strong><%= @manual.warranty_inverter %></strong>
       </p>
       
-      <h3>Safety Certificate Details</h3>
+      <% if @manual.include_certificate %>
+        <h3>Safety Certificate Details</h3>
       
-      <p>
-        Date of test: <strong><%= @manual.inspection_date.strftime('%e / %-m / %y') %></strong><br/>
-        Electrical contractor licence number: <strong><%= @manual.contractor_licence %></strong><br/>
-        Name on contractor licence: <strong><%= @manual.contractor_licence_name %></strong><br/>
-        Electrical contractor phone number: <strong><%= @manual.contractor_phone %></strong><br/>
-        Contractor name: <strong><%= @manual.contractor_name %></strong>
-      </p>
+        <p>
+          Date of test: <strong><%= @manual.inspection_date.strftime('%e / %-m / %y') %></strong><br/>
+          Electrical contractor licence number: <strong><%= @manual.contractor_licence %></strong><br/>
+          Name on contractor licence: <strong><%= @manual.contractor_licence_name %></strong><br/>
+          Electrical contractor phone number: <strong><%= @manual.contractor_phone %></strong><br/>
+          Contractor name: <strong><%= @manual.contractor_name %></strong>
+        </p>
+      <% end %>
+      
+      <% if @manual.include_performance %>
+        <h3>Graph</h3>
 
-      <h3>Graph</h3>
-
-      <p>Using <strong><%= @manual.sunlight_city.capitalize %></strong> for sunlight data.</p>
-  
+        <p>Using <strong><%= @manual.sunlight_city.capitalize %></strong> for sunlight data.</p>
+      <% end %>
+      
     <% end %>
   </div>
 </div>

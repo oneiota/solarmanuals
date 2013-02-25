@@ -44,12 +44,13 @@ class Manual < ActiveRecord::Base
   
   # dynamic fields
   
+  # number of panels in each string
   def total_panels
     panel_strings.map{|string| string.number }.inject(:+)
   end
   
   def total_array_size
-    total_panels * panels_watts
+    (total_panels || 0) * (panels_watts || 0) # whiny nils throw exception
   end
   
   def string_config
@@ -117,8 +118,8 @@ class Manual < ActiveRecord::Base
   end
   
   PREFILL_FIELDS = {
-    'panel_details_prefill' => ["panels_brand", "panels_model", "panels_watts"],
-    'inverter_details_prefill' => ["inverter_brand", "inverter_model", "inverter_output", "inverter_number"],
+    'panel_details_prefill' => ["panels_watts", "panels_brand", "panels_model"],
+    'inverter_details_prefill' => ["inverter_brand", "inverter_series", "inverter_model", "inverter_output", "inverter_number"],
     'warranty_details_prefill' => ["warranty_inverter", "warranty_panels_output_performance", "warranty_panels_product", "warranty_workmanship"]
   }
   
