@@ -166,7 +166,7 @@ class Diagram
         :styles => [:regular]
       },
       {
-        :text => "#{@manual.inverter_brand} #{@manual.inverter_model}\n",
+        :text => "#{@manual.inverter_brand} #{@manual.inverter_series} #{@manual.inverter_model}\n",
         :styles => [:bold]
       },
       {

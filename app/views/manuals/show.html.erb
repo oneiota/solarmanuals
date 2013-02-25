@@ -106,6 +106,18 @@
         Inverter: <strong><%= @manual.warranty_inverter %></strong>
       </p>
       
+      <% if @manual.include_performance %>
+        <h3>Graph</h3>
+
+        <p>Using <strong><%= @manual.sunlight_city.capitalize %></strong> for sunlight data.</p>
+      <% end %>
+      
+      <% if @manual.include_wiring %>
+        <h3>Wiring Diagram</h3>
+
+        <p>Isolator type: <strong><%= @manual.isolator_type %></strong></p>
+      <% end %>
+      
       <% if @manual.include_certificate %>
         <h3>Safety Certificate Details</h3>
       
@@ -118,11 +130,6 @@
         </p>
       <% end %>
       
-      <% if @manual.include_performance %>
-        <h3>Graph</h3>
-
-        <p>Using <strong><%= @manual.sunlight_city.capitalize %></strong> for sunlight data.</p>
-      <% end %>
       
     <% end %>
   </div>
