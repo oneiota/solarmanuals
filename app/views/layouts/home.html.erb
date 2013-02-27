@@ -1,0 +1,14 @@
+<%= render "layouts/header" %>
+    
+    <div class="container-fluid content">
+      <% if alert %>
+        <div class="alert alert-error"><%= alert %></div>
+      <% end %>
+      <% if notice %>
+        <div class="alert alert-info"><%= notice %></div>
+      <% end %>
+    </div> <!-- /container -->
+      
+    <%= yield %>  
+    
+<%= render "layouts/footer" %>

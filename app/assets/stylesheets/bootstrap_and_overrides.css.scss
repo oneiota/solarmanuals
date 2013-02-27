@@ -18,6 +18,10 @@ $fontAwesomeSvgPath: "fontawesome-webfont.svg";
   text-align: right;
 }
 
+.navbar-fixed-top {
+  margin: 0; 
+}
+
 @media (max-width: 979px) and (min-width: 768px) {
   .btn {
     i {

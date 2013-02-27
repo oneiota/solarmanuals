@@ -1,7 +1,7 @@
 $footerHeight: 269px;
 $smallFooterHeight: 120px;
 
-$pageWidth: 1240px;
+$pageWidth: 900px;
 
 html,
 body {
@@ -9,7 +9,11 @@ body {
   /* The html and body elements cannot have any padding or margin. */
 }
 
-#wrap {
+.container {
+  max-width: $pageWidth;
+}
+
+.wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
@@ -19,18 +23,18 @@ body {
   padding-bottom: 50px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  @media (max-width: 979px) {
+  @media (max-width: 900px) {
     padding-top: 0;
   }
 }
 
 // small footer
-.signed-in #wrap {
+.signed-in .wrap {
   margin-bottom: -($smallFooterHeight);
 }
 
 .header-width {
-  max-width: $pageWidth - 10;
+  max-width: $pageWidth;
   margin: 0 auto;
 }
 
@@ -50,6 +54,11 @@ body {
   padding: 20px 0;
 }
 
+.feature-vid {
+  background-color: #f1f1f1;
+  padding: 120px;
+  margin-top: 41px;
+}
 /* Lastly, apply responsive CSS fixes as necessary */
 
 .greenfooter footer, .blackfooter footer {

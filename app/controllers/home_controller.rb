@@ -1,4 +1,8 @@
+
+
 class HomeController < ApplicationController
+  
+  layout "home"
   
   skip_before_filter :check_user_flagged!
   
