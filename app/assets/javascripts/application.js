@@ -18,5 +18,4 @@
 //= require spin
 //= require canvasResize
 //= require exif
-//= require twitter/bootstrap
 //= require_tree .

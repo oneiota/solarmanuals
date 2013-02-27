@@ -50,9 +50,6 @@ GEM
     bigcharger (0.1.0)
       curb (~> 0.8.0)
       nokogiri (~> 1.5.0)
-    bootstrap-sass-rails (2.2.2.0)
-      railties (>= 3.1.0)
-      sass-rails (>= 3.1.0)
     builder (3.0.4)
     cancan (1.6.8)
     cocaine (0.4.2)
@@ -181,7 +178,6 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   bigcharger
-  bootstrap-sass-rails
   cancan
   coffee-rails (~> 3.2.1)
   debugger

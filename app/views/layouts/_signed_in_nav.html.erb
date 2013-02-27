@@ -1,0 +1,53 @@
+<h2><%= current_user.full_name %></h2>
+<p>
+  <%= current_user.company %><br/>
+  <%= current_user.full_address %>
+</p>
+
+<p><%= link_to "Update details", edit_user_registration_path %>  ∙  Upload Logo</p>
+
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+<div id="billing-info">
+  
+  <% if current_user.insider %>
+  
+    <p>Insider Account</p>
+    
+  <% elsif current_user.subscribed? %>
+  
+    <p>
+      Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong><br/>
+      Usage <strong><%= currency(current_user.current_charge) %></strong>
+    </p>
+    
+    <p><%= link_to "Details", edit_user_registration_path %></p>
+    
+    <hr/>
+  
+  <% else %>
+  
+    <% if current_user.eway_id %>
+      <%= link_to "Subscribe", subscribe_users_path, :method => :put %>
+    <% else %>
+    
+      <%= link_to "Subscribe", "#", :id => "show-cc-fields" %>
+      <div id="subscribe-cc-fields">
+        <%= form_for current_user, :url => subscribe_users_path do |f| %>
+          <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
+        
+          <%= f.hidden_field :remember, :value => true %>
+        
+          <%= f.submit "Subscribe" %>
+        <% end %>
+      </div>
+    <% end %>
+  
+  <% end %>
+  
+</div>
+
+<div id="user-menu">
+  <%= nav_link "Archive", manuals_path %>
+  <%= nav_link "New Manual", new_manual_path %>
+</div>

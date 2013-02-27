@@ -50,7 +50,10 @@
       
       <h2>Billing</h2>
       <% if current_user.subscribed? %>
+      
         <p>You are subscribed</p>
+        <p><%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put %></p>
+        
         <p>Usage this month: <%= currency(current_user.current_charge) %></p>
       <% end %>
       
@@ -61,6 +64,7 @@
       <% end %>
       
     <% end %>
+    
   </div>
 
 </div>
