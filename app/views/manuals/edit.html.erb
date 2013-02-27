@@ -1,47 +1,4 @@
 <p><%= link_to "← Back", manual_path(@manual) %></p>
 
-<div class="row">
-  
-  <div class="span4">
-  
-      <h3>Client Details</h3>
-      <p>
-        Installed: <%= nicetime(@manual.install_date) %><br/>
-        <strong><%= @manual.client_name %></strong><br/>
-        <%= @manual.client_address %><br/>
-        <%= @manual.client_suburb %><br/>
-        <%= @manual.client_state.name %><br/>
-        <%= @manual.client_postcode %>
-      </p>
-      
-      <% if @manual.unlocked? %>
-        <%= render 'images' %>
-      <% end %>
-      
-    </div>
-    
-    <div class="span7 offset1">
-      
-      <%= form_for(@manual) do |f| %>
-        <% if @manual.errors.any? %>
-          <div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            Check the errors below and try again.
-          </div>
-        <% end %>
-    
-        <% if @manual.unlocked? %>
-          <%= render :partial => 'form', :locals => {  f: f } %>
-        <% end %>
-      
-        <hr/>
-      
-        <div class="actions">
-          <%= f.submit "Save Details", :class => "btn btn-large" %>
-        </div>
-      
-      <% end %>
-      
-    </div>
-  
-</div>
+
+<%= render 'form' %>

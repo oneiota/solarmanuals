@@ -42,6 +42,44 @@ class Manual < ActiveRecord::Base
   has_many :panel_strings
   accepts_nested_attributes_for :panel_strings, :allow_destroy => true
   
+  accepts_nested_attributes_for :user
+  
+  attr_accessor :payment
+  
+  # steps
+  
+  def steps
+    %w{customer panels inverter warranties performance wiring certificate} + (user.subscribed? ? [] : %w{payment})
+  end
+  
+  def step_index(step)
+    steps.index(step)
+  end
+  
+  def past_step?(step)
+    step_index(current_step) > step_index(step)
+  end
+  
+  def before_or_equal_step?(step)
+    current_step_index = step_index(current_step) || 0
+    current_step_index >= step_index(step)    
+  end
+  
+  def current_step?(step)
+    current_step == step
+  end
+  
+  def last_step?
+    current_step == steps.last
+  end
+  
+  def next_step
+    steps[step_index(current_step) + 1]
+  end
+  
+  
+  
+  
   # dynamic fields
   
   # number of panels in each string
@@ -88,10 +126,6 @@ class Manual < ActiveRecord::Base
   
   def self.not_trashed
     where(:trashed => false)
-  end
-  
-  def completed?
-    true
   end
   
   def self.all_completed
@@ -167,5 +201,8 @@ class Manual < ActiveRecord::Base
     end
     true
   end
-
+  
+  
+  
+  
 end

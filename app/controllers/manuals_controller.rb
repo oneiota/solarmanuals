@@ -24,8 +24,6 @@ class ManualsController < ApplicationController
     end
   end
   
-  # GET /manuals
-  # GET /manuals.json
   def index
     @manuals = current_user.active_manuals
 
@@ -52,13 +50,11 @@ class ManualsController < ApplicationController
   def new
     @manual = Manual.new
     @manual.user = current_user
-    @manual.contractor_licence_name ||= current_user.company
-    @manual.contractor_name ||= current_user.full_name
-    @manual.contractor_phone ||= current_user.company_phone
-    
     @manual.panel_strings.build
     
-    @all_manuals = current_user.manuals.keep_if(&:completed?)
+    @manual.current_step = @manual.steps.first
+    
+    @all_manuals = current_user.manuals.keep_if(&:filled)
   end
 
   # GET /manuals/1/edit
@@ -69,7 +65,7 @@ class ManualsController < ApplicationController
     @manual.contractor_phone ||= current_user.company_phone
     
     
-    @all_manuals = current_user.manuals.keep_if(&:completed?)
+    @all_manuals = current_user.manuals.keep_if(&:filled)
   end
 
   # POST /manuals
@@ -77,14 +73,14 @@ class ManualsController < ApplicationController
   def create
     @manual = Manual.new(params[:manual])
     @manual.user = current_user
-    respond_to do |format|
-      if @manual.save
-        format.html { redirect_to @manual, notice: 'Manual was successfully created.' }
-        format.json { render json: @manual, status: :created, location: @manual }
+    if @manual.save
+      if @manual.filled
+        redirect_to @manual, notice: 'Manual was successfully created.'
       else
-        format.html { render action: "new" }
-        format.json { render json: @manual.errors, status: :unprocessable_entity }
+        render action: "new"
       end
+    else
+      render action: "new"
     end
   end
 
@@ -92,12 +88,43 @@ class ManualsController < ApplicationController
   # PUT /manuals/1.json
   def update
     @manual = Manual.find(params[:id])
+    
+    # extract user params since we don't want to assign with assign_attributes
+    user_params = params[:manual].delete(:user)
+    
+    @manual.assign_attributes(params[:manual])
+    
+    # payment step
+    if params[:payment]
+      
+      # don't process payment if one exists (when you hit refresh)
+      unless @manual.eway_payment
+      
+        # new credit card entered
+        if user_params
+          @manual.user.assign_attributes(user_params)
+          @manual.user.validate_card = true
+        
+          # can't rely on normal save validating since we don't necessarily want to keep eway_id
+          unless @manual.user.valid?
+            render 'edit' and return
+          end
+        end
+      
+        @manual.eway_payment = EwayPayment.process_single_payment!(@manual.user)
+      end
+    end
 
     respond_to do |format|
-      if @manual.update_attributes(params[:manual])
-        format.html { redirect_to @manual, notice: 'Manual was successfully updated.' }
-        format.json { head :no_content }
-        format.js
+      if @manual.save
+        if @manual.filled
+          format.html { redirect_to @manual, notice: 'Manual was successfully updated.' }
+          format.json { head :no_content }
+          format.js
+        else
+          format.html { render action: "edit" }
+          format.js
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @manual.errors, status: :unprocessable_entity }
@@ -126,11 +153,5 @@ class ManualsController < ApplicationController
       format.js
     end
   end
-  
-  
-  def pay
     
-  end
-  
-  
 end

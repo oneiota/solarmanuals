@@ -1,0 +1,19 @@
+<%= label_tag "Used previously" %>
+<%= select "warranty_details", "prefill", Manual.prefill_details('warranty_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
+
+<div class="field">
+  <%= f.label :warranty_workmanship, "Installation Workmanship" %>
+  <%= f.text_field :warranty_workmanship, :placeholder => "eg. 2 years from installation date" %>
+</div>
+<div class="field">
+  <%= f.label :warranty_panels_product, "Panels - Product" %>
+  <%= f.text_field :warranty_panels_product, :placeholder => "eg. 10 years" %>
+</div>
+<div class="field">
+  <%= f.label :warranty_panels_output_performance, "Panels - Output Performance" %>
+  <%= f.text_field :warranty_panels_output_performance, :placeholder => "eg. 25 years" %>
+</div>
+<div class="field">
+  <%= f.label :warranty_inverter %>
+  <%= f.text_field :warranty_inverter, :placeholder => "eg. 5 years" %>
+</div>

@@ -1,0 +1,25 @@
+<%= f.label :include_certificate, :class => "checkbox" do %>
+  <%= f.check_box :include_certificate %> Include Safety Certificate
+<% end %>
+<div class="fields">
+  <div class="field">
+    <%= f.label :contractor_licence, "Electrical Contractor Licence Number" %>
+    <%= f.text_field :contractor_licence %>
+  </div>
+  <div class="field">
+    <%= f.label :contractor_licence_name, "Name on contractor licence" %>
+    <%= f.text_field :contractor_licence_name %>
+  </div>
+  <div class="field">
+    <%= f.label :contractor_phone, "Contractor phone number" %>
+    <%= f.text_field :contractor_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :contractor_name, "Contractor name" %>
+    <%= f.text_field :contractor_name %>
+  </div>
+  <div class="field datetime">
+    <%= f.label :inspection_date, "Date of test" %>
+    <%= f.date_select :inspection_date %>
+  </div>
+</div>

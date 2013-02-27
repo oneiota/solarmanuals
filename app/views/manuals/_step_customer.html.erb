@@ -1,0 +1,21 @@
+<div class="field datetime">
+  <%= f.label :install_date %>
+  <%= f.date_select :install_date %>
+</div>
+
+<div class="field">
+  <%= f.text_field :client_name, :placeholder => "Full Name" %>
+</div>
+<div class="field">
+  <%= f.text_field :client_address, :placeholder => "Street Address" %>
+</div>
+<div class="field">
+  <%= f.text_field :client_suburb, :placeholder => "Suburb"  %>
+</div>
+<div class="field">
+  <%= f.text_field :client_postcode, :placeholder => "Post code"  %>
+</div>
+<div class="field">
+  <%= f.label :client_state_id, "State" %>
+  <%= f.collection_select :client_state_id, State.all, :id, :display_name, { :disabled => lambda{|state| state.disabled } } %>
+</div>

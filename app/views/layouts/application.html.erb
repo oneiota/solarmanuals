@@ -82,6 +82,10 @@
       </div>
     </div>
     
+    <% if user_signed_in? %>
+      <%= render 'layouts/signed_in_nav' %>
+    <% end %>
+    
     <div id="wrap">
       <div class="container-fluid content">
         <% if alert %>

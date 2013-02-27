@@ -1,171 +1,35 @@
-<div class="section row">
-  <div class="span4">
-    <h3>Panel Details</h3>
-    
-    <%= label_tag "Used previously" %>
-    <%= select "panel_details", "prefill", Manual.prefill_details('panel_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
-    
-  </div>
-  <div class="span5">
-    <div class="input-append">
-      <span class="input-container"><%= f.text_field :panels_watts, :placeholder => "Size (per panel)" %></span>
-      <span class="add-on">W</span>
-    </div>
-    <div class="field inline">
-      <%= f.text_field :panels_brand, :placeholder => "Brand" %>
-    </div>
-    <div class="field inline">
-      <%= f.text_field :panels_model, :placeholder => "Model" %>
-    </div>
+<ol>
+  <% @manual.steps.each do |step| %>
+    <li>
+    <%= form_for(@manual) do |f| %>
+      <%= content_tag :div, :class => @manual.current_step?(step) ? 'step current' : 'step' do %>
+      
+        <% unless @manual.filled %>
+          <% if @manual.last_step? %>
+            <%= f.hidden_field :filled, :value => 1 %>
+            <%= f.hidden_field :current_step, :value => "" %>
+          <% else %>
+            <%= f.hidden_field :current_step, :value => @manual.next_step %>
+          <% end %>
+        <% end %>
+      
+        <div class="step-title">
+          <%= step.capitalize %>
+        </div>
+        
+        <div class="step-fields">
+          <%= render "step_#{step}", f: f %>
+          
+          <%= f.submit "Continue" %>
 
-    <div class="field">
-      <%= f.label :panels_serial_numbers, "Serial Numbers (comma separated)" %>
-      <p class="greyed">Optional - list here unless published in attachments.</p>
-      <%= f.text_area :panels_serial_numbers, :placeholder => "2001406276, 2001406250, 2001405450", :rows => 4 %>
-    </div>
-  </div>
-</div>
+        </div>
+        
+      <% end %>    
+    
+      <hr/>
 
-<h4>Panel String Details</h4>
-<div id="string-fields">
-  <%= f.fields_for :panel_strings do |b| %>
-    <%= render 'panel_string_fields', :f => b %>
+    <% end %>
+    </li>
+    
   <% end %>
-  
-  <%= link_to_add_fields "+ Add String", f, :panel_strings %>
-  
-</div>
-
-<hr/>
-<div class="section row">
-  <div class="span4">
-    <h3>Inverter Details</h3>
-    
-    <%= label_tag "Used previously" %>
-    <%= select "inverter_details", "prefill", Manual.prefill_details('inverter_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
-    
-  </div>
-  <div class="span5">  
-    <div class="field">
-      <%= f.label :inverter_brand %>
-      <%= f.text_field :inverter_brand %>
-    </div>
-    <div class="field">
-      <%= f.label :inverter_series %>
-      <%= f.text_field :inverter_series %>
-    </div>
-    <div class="field">
-      <%= f.label :inverter_model %>
-      <%= f.text_field :inverter_model %>
-    </div>
-    <div class="field">
-      <%= f.label :inverter_output, "Inverter Output (per inverter)" %>
-      <div class="input-append">
-        <span class="input-container"><%= f.text_field :inverter_output %></span>
-        <span class="add-on">kW</span>
-      </div>
-    </div>
-    <div class="field">
-      <%= f.label :inverter_number, "Number of Inverters" %>
-      <%= f.text_field :inverter_number %>
-    </div>
-    <div class="field">
-      <%= f.label :inverter_serial, "Inverter Serial Number" %>
-      <p class="greyed">Optional - enter here unless published in attachments.</p>
-      <%= f.text_field :inverter_serial %>
-    </div>
-  </div>
-</div>
-<hr/>
-<div class="section row">
-  <div class="span4">
-    <h3>Warranty Details</h3>
-    <%= label_tag "Used previously" %>
-    <%= select "warranty_details", "prefill", Manual.prefill_details('warranty_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
-  </div>
-  <div class="span5">  
-    <div class="field">
-      <%= f.label :warranty_workmanship, "Installation Workmanship" %>
-      <%= f.text_field :warranty_workmanship, :placeholder => "eg. 2 years from installation date" %>
-    </div>
-    <div class="field">
-      <%= f.label :warranty_panels_product, "Panels - Product" %>
-      <%= f.text_field :warranty_panels_product, :placeholder => "eg. 10 years" %>
-    </div>
-    <div class="field">
-      <%= f.label :warranty_panels_output_performance, "Panels - Output Performance" %>
-      <%= f.text_field :warranty_panels_output_performance, :placeholder => "eg. 25 years" %>
-    </div>
-    <div class="field">
-      <%= f.label :warranty_inverter %>
-      <%= f.text_field :warranty_inverter, :placeholder => "eg. 5 years" %>
-    </div>
-  </div>
-</div>
-<hr/>
-<div class="section row">
-  <div class="span4">
-    <h3>Performance Estimates</h3>
-  </div>
-  <div class="span5 showhide">
-    <%= f.label :include_performance, :class => "checkbox" do %>
-      <%= f.check_box :include_performance %> Include Performance Estimate
-    <% end %>
-    <div class="fields">
-      <%= f.label :sunlight_city, "City to use for sunlight data" %>
-      <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
-    </div>
-  </div>
-</div>
-<hr/>
-<div class="section row">
-  <div class="span4">
-    <h3>Wiring</h3>
-  </div>
-  <div class="span5 showhide">
-    <%= f.label :include_wiring, :class => "checkbox" do %>
-      <%= f.check_box :include_wiring %> Include Wiring
-    <% end %>
-    <div class="fields">
-      <%= f.label :isolator_type, "Type of Isolator" %>
-      <%= f.text_field :isolator_type %>
-    </div>
-  </div>
-</div>
-<hr/>
-<div class="section row">
-  <div class="span4">
-    <h3>Safety Certificate Details</h3>
-  </div>
-  <div class="span5 showhide">  
-    <%= f.label :include_certificate, :class => "checkbox" do %>
-      <%= f.check_box :include_certificate %> Include Safety Certificate
-    <% end %>
-    <div class="fields">
-      <div class="field">
-        <%= f.label :contractor_licence, "Electrical Contractor Licence Number" %>
-        <%= f.text_field :contractor_licence %>
-      </div>
-      <div class="field">
-        <%= f.label :contractor_licence_name, "Name on contractor licence" %>
-        <%= f.text_field :contractor_licence_name %>
-      </div>
-      <div class="field">
-        <%= f.label :contractor_phone, "Contractor phone number" %>
-        <%= f.text_field :contractor_phone %>
-      </div>
-      <div class="field">
-        <%= f.label :contractor_name, "Contractor name" %>
-        <%= f.text_field :contractor_name %>
-      </div>
-      <div class="field datetime">
-        <%= f.label :inspection_date, "Date of test" %>
-        <%= f.date_select :inspection_date %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<%= f.hidden_field :filled, :value => true %>
-
+</ol>

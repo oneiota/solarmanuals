@@ -1,0 +1,31 @@
+<%= label_tag "Used previously" %>
+<%= select "inverter_details", "prefill", Manual.prefill_details('inverter_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
+
+<div class="field">
+  <%= f.label :inverter_brand %>
+  <%= f.text_field :inverter_brand %>
+</div>
+<div class="field">
+  <%= f.label :inverter_series %>
+  <%= f.text_field :inverter_series %>
+</div>
+<div class="field">
+  <%= f.label :inverter_model %>
+  <%= f.text_field :inverter_model %>
+</div>
+<div class="field">
+  <%= f.label :inverter_output, "Inverter Output (per inverter)" %>
+  <div class="input-append">
+    <span class="input-container"><%= f.text_field :inverter_output %></span>
+    <span class="add-on">kW</span>
+  </div>
+</div>
+<div class="field">
+  <%= f.label :inverter_number, "Number of Inverters" %>
+  <%= f.text_field :inverter_number %>
+</div>
+<div class="field">
+  <%= f.label :inverter_serial, "Inverter Serial Number" %>
+  <p class="greyed">Optional - enter here unless published in attachments.</p>
+  <%= f.text_field :inverter_serial %>
+</div>

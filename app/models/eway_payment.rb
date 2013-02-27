@@ -11,6 +11,23 @@ class EwayPayment < ActiveRecord::Base
   belongs_to :user
   has_many :manuals
   
+  
+  def self.process_single_payment!(user)
+    @payment = EwayPayment.new
+    @payment.user = user
+    
+    user.eway_id ||= user.create_eway_id
+    
+    @payment.process_payment!(CASUAL_FEE)
+    
+    if @payment.save  
+      # email receipt
+      UserMailer.receipt(@payment).deliver
+    end
+    
+    return @payment
+  end
+  
   def process_payment!(amount)
     
     response = Eway.client.process_payment(

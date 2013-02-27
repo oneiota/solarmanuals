@@ -1,0 +1,31 @@
+<%= label_tag "Used previously" %>
+<%= select "panel_details", "prefill", Manual.prefill_details('panel_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
+
+<div class="input-append">
+  <span class="input-container"><%= f.text_field :panels_watts, :placeholder => "Size (per panel)" %></span>
+  <span class="add-on">W</span>
+</div>
+<div class="field inline">
+  <%= f.text_field :panels_brand, :placeholder => "Brand" %>
+</div>
+<div class="field inline">
+  <%= f.text_field :panels_model, :placeholder => "Model" %>
+</div>
+
+<div class="field">
+  <%= f.label :panels_serial_numbers, "Serial Numbers (comma separated)" %>
+  <p class="greyed">Optional - list here unless published in attachments.</p>
+  <%= f.text_area :panels_serial_numbers, :placeholder => "2001406276, 2001406250, 2001405450", :rows => 4 %>
+</div>
+
+
+
+<h4>Panel String Details</h4>
+<div id="string-fields">
+  <%= f.fields_for :panel_strings do |b| %>
+    <%= render 'panel_string_fields', :f => b %>
+  <% end %>
+
+  <%= link_to_add_fields "+ Add String", f, :panel_strings %>
+
+</div>

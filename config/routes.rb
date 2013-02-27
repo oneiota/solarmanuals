@@ -8,12 +8,11 @@ Solar::Application.routes.draw do
       put :unsubscribe
       get :edit_card
       put :update_card
-      put :single_charge
     end
   end
 
   resources :manuals do
-    post :pay
+    post :single_charge
   end
   
   resources :invoices, :controller => "eway_payments", :only => [:show]

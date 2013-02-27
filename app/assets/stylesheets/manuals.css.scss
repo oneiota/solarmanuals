@@ -8,6 +8,21 @@
   margin-right: 5px;
 }
 
+
+.step {
+  .step-fields {
+    display: none;
+  }
+  
+  &.current {
+    .step-fields {
+      display: block;
+    }
+  }
+}
+
+
+
 .datetime select {
   width: 110px;
 }
