@@ -15,7 +15,7 @@
       <p>Insider Account</p>
     <% elsif current_user.subscribed? %>
       <p>
-        <i class="icon-credit-card"></i>
+        <i class="icon-file-alt"></i>
         Usage <strong><%= currency(current_user.current_charge) %></strong><br/>
         Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong>
       </p>

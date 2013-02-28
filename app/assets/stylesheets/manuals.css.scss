@@ -11,19 +11,6 @@
 }
 
 
-.step {
-  .step-fields {
-    display: none;
-  }
-  
-  &.current {
-    .step-fields {
-      display: block;
-    }
-  }
-}
-
-
 #user-menu {
   border-bottom: 1px dotted;
   margin: 40px 0 0;
@@ -56,36 +43,49 @@
     float: right;
   }
   .step {
-    overflow: hidden;
     width: 100%;
     border-bottom: $black 1px dotted;
-    padding: $baseLineHeight 0;
+    padding: $baseLineHeight 0 0;
     &.after {
       color: $midGrey;
     }
+    .step-inner {
+      @include clearfix;
+      position: relative;
+      top: -$baseLineHeight;
+      margin-bottom: -$baseLineHeight;
+      padding-bottom: $baseLineHeight;
+    }
   }
-  .step-fields {
-    float: left;
-    width: $columnWidth * 10;
-    margin-left: $columnWidth * 2;
+  .step-preview {
+    margin-left: $columnWidth * 4 + $boxPadding;
+    @include regular;
   }
 }
 
+.step {
+  .step-fields {
+    display: none;
+    padding-bottom: $baseLineHeight;
+  }
+  
+  &.current {
+    .step-fields {
+      display: block;
+    }
+  }
+}
 
 .field {
   margin: $baseLineHeight 0;
   @include clearfix;
   .field-label {
-    float: left;
-    width: $columnWidth * 3;
+    @include grid(4);
     text-align: right;
     clear: left;
   }
   .field-input {
-    padding: 0 $boxPadding;
-    float: left;
-    @include box-sizing(border-box);
-    width: $columnWidth * 9;
+    @include grid(8);
   }
   .helper {
     float: left;
@@ -97,10 +97,8 @@
 }
 
 .actions {
-  margin-left: $columnWidth * 3;
-  padding: $boxPadding;
-  float: left;
-  @include box-sizing(border-box);
+  @include grid(8);
+  @include offset(4);
 }
 
 

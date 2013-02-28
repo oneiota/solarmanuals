@@ -58,7 +58,7 @@ $maxSmall: 420px;
 
 @mixin nest {
   margin: 0 -$boxPadding;
-  overflow: hidden;  
+  overflow: hidden;
 }
 
 @mixin round {
@@ -71,11 +71,14 @@ $maxSmall: 420px;
   box-shadow: $values;
 }
 
-
 @mixin grid($cols) {
   width: $columnWidth * $cols;
   padding-left: $boxPadding;
   padding-right: $boxPadding;
   @include box-sizing(border-box);
   float: left;
+}
+
+@mixin offset($cols) {
+  margin-left: $columnWidth * $cols;
 }

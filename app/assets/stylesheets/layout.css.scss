@@ -45,19 +45,20 @@ body {
 #signed-in-top {
   padding: $baseLineHeight 0;
   #user-details {
-    @include grid(4);
+    @include grid(5);
   }
   #billing-info {
-    @include grid(5);
+    @include grid(4);
     @include regular;
     position: relative;
     strong, a {
       font-weight: bold;
     }
-    .icon-credit-card {
+    .icon-file-alt {
       position: absolute;
-      left: -30px;
-      font-size: 2em;
+      left: -27px;
+      top: 3px;
+      font-size: 2.5em;
       color: $grey;
     }
   }

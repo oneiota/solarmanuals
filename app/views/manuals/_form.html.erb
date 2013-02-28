@@ -1,40 +1,40 @@
 <ol id="manual-form">
   <% @manual.steps.each do |step| %>
     <%= content_tag :li, :class => @manual.current_step?(step) ? 'step current' : (@manual.past_step?(step) ? 'step after' : 'step') do %>
-    
-      <% if (@manual.id && @manual.before_step?(step)) || (@manual.id && @manual.filled) %>
-        <div class="edit-step"><%= link_to "Edit", edit_manual_path(@manual, :step => step), :class => "btn" %></div>
-      <% end %>
-    
-      <%= step.capitalize %>
       
-      <% if @manual.before_step?(step) %>
-        <%= @manual.preview_detail(step) %>
-      <% end %>
+      <span class="step-title"><%= step.capitalize %></span>
+      
+      <div class="step-inner">
+      
+        <% if (@manual.id && @manual.before_step?(step)) || (@manual.id && @manual.filled) %>
+          <div class="edit-step"><%= link_to "Edit", edit_manual_path(@manual, :step => step), :class => "btn" %></div>
+        <% end %>
+    
+        <% if (@manual.before_step?(step) || @manual.filled) && !@manual.current_step?(step) %>
+          <span class="step-preview">
+            <%= @manual.preview_detail(step) %>
+          </span>
+        <% end %>
         
-      <%= form_for(@manual) do |f| %>      
-          <% unless @manual.filled %>
-            <% if @manual.last_step? %>
-              <%= f.hidden_field :filled, :value => 1 %>
-              <%= f.hidden_field :current_step, :value => "" %>
-            <% else %>
-              <%= f.hidden_field :current_step, :value => @manual.next_step %>
+        <%= form_for(@manual) do |f| %>
+            <% unless @manual.filled %>
+              <% if @manual.last_step? %>
+                <%= f.hidden_field :filled, :value => 1 %>
+                <%= f.hidden_field :current_step, :value => "" %>
+              <% else %>
+                <%= f.hidden_field :current_step, :value => @manual.next_step %>
+              <% end %>
             <% end %>
-          <% end %>
           
-          
-          
-          <div class="step-fields">
-            <div class="nest">
+            <div class="step-fields nest">
               <%= render "step_#{step}", f: f %>
-            
+          
               <div class="actions">
-                <%= f.submit "Continue" %>
+                  <%= f.submit (@manual.filled ? "Save" : "Save & Continue") %>
               </div>
-            </div>
-          </div>   
-      <% end %>
-      
+            </div>   
+        <% end %>
+     </div> 
     <% end # li %>
   
   <% end %>

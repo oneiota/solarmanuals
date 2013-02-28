@@ -93,10 +93,10 @@ class Manual < ActiveRecord::Base
       "customer" => client_name,
       "panels" => "#{panels_watts}W #{panels_brand} #{panels_model}",
       "inverter" => "#{inverter_brand} #{inverter_series} #{inverter_model}",
-      "warranties" => "...",
-      "performance" => "...",
-      "wiring" => "...",
-      "certificate" => "..."
+      "warranties" => [warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship].join(", ") + " years",
+      "performance" => (include_performance ? 'Yes' : 'No'),
+      "wiring" => (include_wiring ? 'Yes' : 'No'),
+      "certificate" => (include_certificate ? 'Yes' : 'No')
     }[step]
   end
   

@@ -39,6 +39,10 @@ class ManualsController < ApplicationController
     @payment = EwayPayment.new
     @manual = Manual.find_with_type(params[:id], params[:type])
     
+    if params[:step]
+      @manual.current_step = params[:step]
+    end
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @manual }
