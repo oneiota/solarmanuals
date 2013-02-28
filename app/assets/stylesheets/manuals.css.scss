@@ -52,6 +52,7 @@
     .step-inner {
       @include clearfix;
       position: relative;
+      min-height: $baseLineHeight;
       top: -$baseLineHeight;
       margin-bottom: -$baseLineHeight;
       padding-bottom: $baseLineHeight;

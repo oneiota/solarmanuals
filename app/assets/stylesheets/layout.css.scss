@@ -46,6 +46,10 @@ body {
   padding: $baseLineHeight 0;
   #user-details {
     @include grid(5);
+    @include regular;
+    h2, a {
+      font-weight: bold;
+    }
   }
   #billing-info {
     @include grid(4);

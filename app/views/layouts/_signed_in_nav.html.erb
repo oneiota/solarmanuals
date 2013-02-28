@@ -1,12 +1,12 @@
 <div id="signed-in-top" class="nest">
   <div id="user-details">
-    <h2><%= current_user.full_name %></h2>
+    <h2 id="user-name"><%= current_user.full_name %></h2>
     <p>
       <%= current_user.company %><br/>
       <%= current_user.full_address %>
     </p>
 
-    <p><%= link_to "Update details", edit_user_registration_path %>  ∙  Upload Logo</p>
+    <p><%= link_to "Update details", edit_user_registration_path %>  ∙  <%= link_to "Upload Logo", "#" %></p>
   </div>
 
   <div id="billing-info">
