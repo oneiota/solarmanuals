@@ -1,21 +1,47 @@
-<%= label_tag "Used previously" %>
-<%= select "panel_details", "prefill", Manual.prefill_details('panel_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
-
-<div class="input-append">
-  <span class="input-container"><%= f.text_field :panels_watts, :placeholder => "Size (per panel)" %></span>
-  <span class="add-on">W</span>
-</div>
-<div class="field inline">
-  <%= f.text_field :panels_brand, :placeholder => "Brand" %>
-</div>
-<div class="field inline">
-  <%= f.text_field :panels_model, :placeholder => "Model" %>
+<div class="field">
+  <div class="field-label">
+    <%= label_tag "Used previously" %>
+  </div>
+  <div class="field-input">
+    <%= select "panel_details", "prefill", Manual.prefill_details('panel_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
+  </div>
 </div>
 
 <div class="field">
-  <%= f.label :panels_serial_numbers, "Serial Numbers (comma separated)" %>
-  <p class="greyed">Optional - list here unless published in attachments.</p>
-  <%= f.text_area :panels_serial_numbers, :placeholder => "2001406276, 2001406250, 2001405450", :rows => 4 %>
+  <div class="field-label">
+    <%= f.label :panels_watts, "Size (per panel)" %>
+  </div>
+  <div class="field-input input-append">  
+    <span class="input-container"><%= f.text_field :panels_watts %></span>
+    <span class="add-on">Watts</span>
+  </div>
+</div>
+
+<div class="field inline">
+  <div class="field-label">
+    <%= f.label :panels_brand, "Brand" %>
+  </div>
+  <div class="field-input">
+    <%= f.text_field :panels_brand %>
+  </div>
+</div>
+<div class="field inline">
+  <div class="field-label">
+    <%= f.label :panels_model, "Model" %>
+  </div>
+  <div class="field-input">
+    <%= f.text_field :panels_model %>
+  </div>
+</div>
+
+<div class="field">
+  <div class="field-label">
+    <%= f.label :panels_serial_numbers, "Serial Numbers" %>
+    <p class="helper">Optional - list here unless published in attachments.</p>
+  </div>
+  <div class="field-input">
+    <%= f.text_area :panels_serial_numbers, :rows => 4 %>
+  </div>
 </div>
 
 

@@ -1,31 +1,58 @@
-<%= label_tag "Used previously" %>
-<%= select "inverter_details", "prefill", Manual.prefill_details('inverter_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
-
 <div class="field">
-  <%= f.label :inverter_brand %>
-  <%= f.text_field :inverter_brand %>
+  <div class="field-label">
+    <%= label_tag "Used previously" %>
+  </div>
+  <div class="field-input">
+    <%= select "inverter_details", "prefill", Manual.prefill_details('inverter_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
+  </div>
 </div>
 <div class="field">
-  <%= f.label :inverter_series %>
-  <%= f.text_field :inverter_series %>
+  <div class="field-label">
+    <%= f.label :inverter_brand %>
+  </div>
+  <div class="field-input">
+    <%= f.text_field :inverter_brand %>
+  </div>
 </div>
 <div class="field">
-  <%= f.label :inverter_model %>
-  <%= f.text_field :inverter_model %>
+  <div class="field-label">
+    <%= f.label :inverter_series %>
+  </div>
+  <div class="field-input">
+    <%= f.text_field :inverter_series %>
+  </div>
 </div>
 <div class="field">
-  <%= f.label :inverter_output, "Inverter Output (per inverter)" %>
-  <div class="input-append">
+  <div class="field-label">
+    <%= f.label :inverter_model %>
+  </div>
+  <div class="field-input">
+    <%= f.text_field :inverter_model %>
+  </div>
+</div>
+<div class="field">
+  <div class="field-label">
+    <%= f.label :inverter_output, "Inverter Output (per inverter)" %>
+  </div>
+  <div class="field-input input-append">
     <span class="input-container"><%= f.text_field :inverter_output %></span>
     <span class="add-on">kW</span>
   </div>
 </div>
 <div class="field">
-  <%= f.label :inverter_number, "Number of Inverters" %>
-  <%= f.text_field :inverter_number %>
+  <div class="field-label">
+    <%= f.label :inverter_number, "Number of Inverters" %>
+  </div>
+  <div class="field-input">
+    <%= f.text_field :inverter_number %>
+  </div>
 </div>
 <div class="field">
-  <%= f.label :inverter_serial, "Inverter Serial Number" %>
+  <div class="field-label">
+    <%= f.label :inverter_serial, "Inverter Serial Number" %>
+  </div>
   <p class="greyed">Optional - enter here unless published in attachments.</p>
-  <%= f.text_field :inverter_serial %>
+  <div class="field-input">
+    <%= f.text_field :inverter_serial %>
+  </div>
 </div>

@@ -1,36 +1,36 @@
-$green: #39B54A;
+@import 'variables';
 
-.green {
-  color: $green;
+body {
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  font-family: $baseFont;
+  font-weight: bold;
+}
+
+input[type=text],
+input[type=email],
+input[type=password] ,
+input[type=submit],
+textarea {
+  font-size: $baseFontSize;
+  font-family: $baseFont;
+}
+
+.regular {
+  @include regular;
 }
 
 .blue {
-  color: #1B63FF;
+  color: $blue;
 }
 
-.center {
-  text-align: center;
-}
-
-.centerheading {
-  text-align: center;
-  margin: 40px 0 !important;
-}
-
-.heading {
-  margin: 40px 0 !important;
-}
-
-.feature {
-  line-height: 1.2em;
-  font-size: 1.5em;
-}
-
-.indent {
-  text-indent: 2em;
-}
-
-p.greyed {
-  color: #999;
-  font-size: 0.85em;
+a {
+  text-decoration: none;
+  color: $blue;
+  &:hover {
+    color: $darkGrey;
+  }
+  &:focus {
+    outline: none;
+  }
 }

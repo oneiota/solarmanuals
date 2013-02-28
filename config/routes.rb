@@ -27,7 +27,7 @@ Solar::Application.routes.draw do
   put '/images/:id/set_feature', :to => 'images#set_feature', :as => 'set_feature'
   
   authenticated :user do
-    root :to => "manuals#index"
+    root :to => "manuals#new"
   end
   
   get '/faq', to: 'home#faq'  

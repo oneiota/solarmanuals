@@ -1,29 +1,26 @@
-<h2><%= current_user.full_name %></h2>
-<p>
-  <%= current_user.company %><br/>
-  <%= current_user.full_address %>
-</p>
-
-<p><%= link_to "Update details", edit_user_registration_path %>  ∙  Upload Logo</p>
-
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+<div id="user-details">
+  <h2><%= current_user.full_name %></h2>
+  <p>
+    <%= current_user.company %><br/>
+    <%= current_user.full_address %>
+  </p>
+
+  <p><%= link_to "Update details", edit_user_registration_path %>  ∙  Upload Logo</p>
+</div>
 
 <div id="billing-info">
   
-  <% if current_user.insider %>
-  
+  <% if current_user.insider %>  
     <p>Insider Account</p>
-    
   <% elsif current_user.subscribed? %>
-  
     <p>
       Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong><br/>
       Usage <strong><%= currency(current_user.current_charge) %></strong>
     </p>
     
     <p><%= link_to "Details", edit_user_registration_path %></p>
-    
-    <hr/>
   
   <% else %>
   
@@ -48,6 +45,6 @@
 </div>
 
 <div id="user-menu">
+  <%= nav_link "New Manual", root_path %>  
   <%= nav_link "Archive", manuals_path %>
-  <%= nav_link "New Manual", new_manual_path %>
 </div>

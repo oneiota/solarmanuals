@@ -1,3 +1,5 @@
+@import 'variables';
+
 #new-manual {
   padding: 25px 0;
   font-size: 1.75em;
@@ -22,252 +24,98 @@
 }
 
 
-
-.datetime select {
-  width: 110px;
-}
-#manuals-archive-table {
-  margin-top: 2em;
-  tr.success:hover td {
-    background: #bee0b0;
-  }
-  tr {
-    min-height: 25px;
-    &:hover {
-      td {
-        background: #f5f5f5;
-      }
-      .index-controls a {
-        opacity: 1;
-      }
-    }
-  }
-  td {
-    padding: 0;
-  }
-  td.paid-icon {
-    text-align: center;
-  }
+#user-menu {
+  border-bottom: 1px dotted;
+  margin: 40px 0 0;
+  padding-left: 20px;
   a {
-    display: block;
-    padding: 8px;
-    color: #222;
-    &:hover {
-      text-decoration: none;
-    }
-  }
-  .delete-btn {
     display: inline-block;
-    color: red;
+    margin-left: 5px;
+    background: #fff;
+    padding: 7px 15px 8px;
+    border: #ccc 1px dotted;
+    border-bottom: none;
+    &.active {
+      padding-top: 10px;
+      color: $black;
+      border-color: $darkGrey;
+      border-bottom: #fff 1px solid;
+      margin-bottom: -1px;
+    }
     &:hover {
-      text-decoration: underline;
-    }
-  }
-  .index-controls {
-    text-align: right;
-    width: 50px;
-    a {
-      opacity: 0;
+      border-color: $darkGrey;
+      border-bottom-color: #fff;
     }
   }
 }
 
 
-.control-group {
-  margin: 0 !important;
-  position: relative;
-}
-
-.help-inline {
-  position: absolute;
-  left: 280px;
-  top: 8px;
-}
-
-input[type=text], input[type=email], input[type=password], textarea {
-  width: 250px;
-  background: #eee;
-  border: none;
-  padding: 7px 10px;
-  box-shadow: none !important;
-  font-size: 12px;
-  border-radius: 4px !important;
-  &:focus {
-    outline: none;
-    border: none;
-    background: #dedede;
-  }
-}
-
-.new_manual, .edit_manual {
-  .input-append {
-    width: 270px;
-    position: relative;
-    font-size: inherit;
-    margin-bottom: 9px;
-    &.inline {
-      width: 130px;
-      display: inline-block;
-      input {
-        width: 110px;
-        margin-right: 6px;
-      }
-    }
-    .add-on {
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      background: #fff;
-      z-index: 10;
-      border-color: #eee;
-      height: 18px;
-      padding: 7px;
-    }
-    .input-container {
-      display: block;
-    }
-  }
-}
-
-
-.error {
-  input[type=text], textarea {
-    background: #f2dede;
-  }
-}
-
-label {
-  color: #555;
-}
-
-.subscribe.btn {
-  padding-top: 20px;
-  padding-bottom: 15px;
-  color: #abdaa7;
-  .above {
-    display: block;
-    margin-bottom: 5px;
-    color: #fff;
-    font-size: 1.75em;
-  }
-}
-
-#subscription-loading {
-  display: none;
-  text-align: center;
-  color: #999;
-}
-
-.icon-minus {
-  opacity: 0.3;
-}
-
-#manuals-actions {
-  width: 100%;
-  .btn {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-}
-#download-pdf {
-  float: left;
-  width: 50%;
-  margin-right: 10px;
-  @media (max-width: 979px) {
+#manual-form {
+  list-style: decimal inside;
+  .step {
+    overflow: hidden;
     width: 100%;
-    margin: inherit;
-    padding: 0;
-  }
-}
-
-#edit-manual {
-  overflow: hidden;
-  display: block;
-}
-
-
-
-.alert-info {
-  a {
-    color: #444;
-    text-decoration: underline;
-    &:hover {
-      color: #111;
+    border-bottom: $black 1px dotted;
+    padding: $baseLineHeight 0;
+    &.after {
+      color: $midGrey;
     }
   }
-}
-
-
-.info {
-  color: #39B54A;
-}
-
-.not-on-file {
-  color: #c09853;
-  font-weight: normal;
-}
-
-#user-logo {
-  margin-bottom: 1em;
-}
-
-.logo-form {
-  display: none;
-}
-
-.pdfs-submit-btn, #upload-pdf-fields {
-  display: none;
-}
-
-#manuals-pdf-boxes {
-  &.loading {
-    min-height: 100px;
+  .step-fields {
+    float: left;
+    width: $columnWidth * 10;
+    margin-left: $columnWidth * 2;
   }
 }
 
-.checkbox {
-  &:hover {
-    .delete-pdf-link {
-      display: inline;
-    }
-  }
-  .delete-pdf-link {
-    color: red;
-    margin-left: 20px;
-    display: none;
-  }
-}
-
-
-#string-fields {
-  border: #ccc 1px solid;
-  border-bottom: none;
-  background: #fafafa;
-  .string-fields {
-    padding: 20px;
-    border-bottom: #ddd 1px solid;
-    display: block;
-  }
-}
-
-.string-list {
-  position: relative;
-  padding-left: 40px;
-  li:before {
-    content: 'String ';
-    position: absolute;
-    left: -20px;
-  }
-}
 
 .field {
-  &.inline {
-    display: inline-block;
-    input {
-      width: 110px;
-      margin-right: 6px;
-    }
+  margin: $baseLineHeight 0;
+  @include clearfix;
+  .field-label {
+    float: left;
+    width: $columnWidth * 3;
+    text-align: right;
+    clear: left;
+  }
+  .field-input {
+    padding: 0 $boxPadding;
+    float: left;
+    @include box-sizing(border-box);
+    width: $columnWidth * 9;
+  }
+  .helper {
+    float: left;
+    text-align: right;
+    font-size: (12em/16);
+    line-height: 16px;
+    color: $midGrey;
   }
 }
 
+.actions {
+  margin-left: $columnWidth * 3;
+  padding: $boxPadding;
+  float: left;
+  @include box-sizing(border-box);
+}
+
+
+input[type=text],
+input[type=email],
+input[type=password],
+textarea {
+  border: $grey 1px solid;
+  padding: 5px 10px;
+  margin-top: -3px;
+  @include round;
+  &:focus {
+    border-color: $blue;
+    outline: none;
+    @include box-shadow(0 0 0 1px $blue);
+  }
+}
+
+select {
+  padding: 5px 10pc;
+}

@@ -1,11 +1,13 @@
 <%= render "layouts/header" %>
-
-    <% if user_signed_in? %>
-      <%= render 'layouts/signed_in_nav' %>
-    <% end %>
-    
     <div id="wrap">
-      <div class="container-fluid content">
+      
+      <% if user_signed_in? %>
+        <div class="container">
+          <%= render 'layouts/signed_in_nav' %>
+        </div>
+      <% end %>
+      
+      <div class="container content">
         <% if alert %>
           <div class="alert alert-error"><%= alert %></div>
         <% end %>

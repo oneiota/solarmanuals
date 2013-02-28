@@ -1,0 +1,71 @@
+$pageWidth: 900px;
+
+$boxPadding: percentage(15px / $pageWidth);
+
+$baseFont: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$baseFontSize: 16px;
+$baseLineHeight: 22px;
+
+$footerHeight: 269px;
+$smallFooterHeight: 120px;
+
+$green: #39B54A;
+$blue: #1b63ff;
+
+$black: #000;
+$darkGrey: #333;
+$midGrey: #999;
+$grey: #ccc;
+$lightGrey: #eee;
+
+$columnWidth: percentage(($pageWidth / 12) / $pageWidth);
+
+$half: $columnWidth * 6;
+$third: $columnWidth * 4;
+$sixth: $columnWidth * 2;
+
+// media
+$minBig: 769px;
+$maxBig: 768px;
+$maxSmall: 420px;
+
+@mixin regular {
+  font-weight: normal;
+}
+
+@mixin box-sizing($layout) {
+  -webkit-box-sizing: $layout;
+  -moz-box-sizing: $layout;
+  box-sizing: $layout;
+}
+
+// bootstrap
+@mixin clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin nest {
+  margin: 0 -$boxPadding;
+  overflow: hidden;  
+}
+
+@mixin round {
+  border-radius: 4px;
+}
+
+@mixin box-shadow($values) {
+  -moz-box-sizing: $values;
+  -webkit-box-shadow: $values;
+  box-shadow: $values;
+}

@@ -1,11 +1,30 @@
-.features {
-  h2 {
-    color: #1B63FF;
-    font-size: 24px;
-  }
-}
+@import 'variables';
 
-.pricebutton {
-  position: relative;
-  top: 35px;
+#features {
+  @include nest;
+  .feature {
+    width: $third;
+    float: left;
+    padding: $boxPadding;
+    @include box-sizing(border-box);
+    img {
+      width: 100%;
+      height: auto;
+    }
+    @media (min-width: $minBig) {
+      &:nth-child(3n-2) {
+        clear: left;
+      }      
+    }
+    @media (max-width: $maxBig) {
+      width: $half;
+      &:nth-child(2n-1) {
+        clear: left;
+      }
+    }
+    @media (max-width: $maxSmall) {
+      clear: none;
+      width: 100%;
+    }
+  }
 }

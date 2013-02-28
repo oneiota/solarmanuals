@@ -1,21 +1,22 @@
-label.inline {
-  display: inline;
+@import 'variables';
+
+select {
+  height: $baseLineHeight;
+  line-height: $baseLineHeight;
+  font-size: $baseFontSize;
+  padding: 10px;
 }
 
-.card_form {
-  .control-group {
-    display: inline-block;
+input[type=submit],
+.btn {
+  background: #fff;
+  border: 2px solid;
+  color: $blue;
+  padding: 5px 15px;
+  font-weight: bold;
+  @include round;
+  &:hover {
+    color: $darkGrey;
+    cursor: pointer;
   }
-  .help-inline {
-    display: none;
-  }
-}
-
-.expiry, .cvn {
-  display: inline-block !important;
-  width: 50px !important;
-}
-
-.cvn {
-  margin-left: 20px;
 }

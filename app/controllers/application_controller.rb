@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  layout :devise_layouts
+  
+  def devise_layouts
+    (devise_controller? && action_name == 'new') ? 'home' : 'application'
+  end
+  
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end

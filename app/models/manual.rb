@@ -57,12 +57,15 @@ class Manual < ActiveRecord::Base
   end
   
   def past_step?(step)
-    step_index(current_step) > step_index(step)
+    current_step_index < step_index(step)
   end
   
   def before_or_equal_step?(step)
-    current_step_index = step_index(current_step) || 0
     current_step_index >= step_index(step)    
+  end
+  
+  def current_step_index
+    step_index(current_step) || 0
   end
   
   def current_step?(step)
@@ -74,7 +77,7 @@ class Manual < ActiveRecord::Base
   end
   
   def next_step
-    steps[step_index(current_step) + 1]
+    steps[(step_index(current_step) || 0) + 1]
   end
   
   

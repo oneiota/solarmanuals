@@ -1,21 +1,37 @@
 <div class="field datetime">
   <%= f.label :install_date %>
-  <%= f.date_select :install_date %>
+  <div class="field-input">
+    <%= f.date_select :install_date %>
+  </div>
 </div>
 
 <div class="field">
-  <%= f.text_field :client_name, :placeholder => "Full Name" %>
+  <%= f.label :client_name, "Full Name" %>
+  <div class="field-input">
+    <%= f.text_field :client_name %>
+  </div>
 </div>
 <div class="field">
-  <%= f.text_field :client_address, :placeholder => "Street Address" %>
+  <%= f.label :client_address, "Street Address" %>
+  <div class="field-input">
+    <%= f.text_field :client_address %>
+  </div>
 </div>
 <div class="field">
-  <%= f.text_field :client_suburb, :placeholder => "Suburb"  %>
+  <%= f.label :client_suburb, "Suburb" %>
+  <div class="field-input">
+    <%= f.text_field :client_suburb %>
+  </div>
 </div>
 <div class="field">
-  <%= f.text_field :client_postcode, :placeholder => "Post code"  %>
+  <%= f.label :client_postcode, "Postcode" %>
+  <div class="field-input">
+    <%= f.text_field :client_postcode %>
+  </div>
 </div>
 <div class="field">
   <%= f.label :client_state_id, "State" %>
-  <%= f.collection_select :client_state_id, State.all, :id, :display_name, { :disabled => lambda{|state| state.disabled } } %>
+  <div class="field-input">
+    <%= f.collection_select :client_state_id, State.all, :id, :display_name, { :disabled => lambda{|state| state.disabled } } %>
+  </div>
 </div>
