@@ -41,3 +41,28 @@ body {
     margin-right: $boxPadding;
   }
 }
+
+#signed-in-top {
+  padding: $baseLineHeight 0;
+  #user-details {
+    @include grid(4);
+  }
+  #billing-info {
+    @include grid(5);
+    @include regular;
+    position: relative;
+    strong, a {
+      font-weight: bold;
+    }
+    .icon-credit-card {
+      position: absolute;
+      left: -30px;
+      font-size: 2em;
+      color: $grey;
+    }
+  }
+  #sign-out {
+    @include grid(3);
+    text-align: right;
+  }  
+}

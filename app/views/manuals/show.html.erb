@@ -1,113 +1,20 @@
-<p><%= link_to "← Back", root_url %></p>
+<h2><%= @manual.client_name %></h2>
 
-<div class="row-fluid">
-  <div class="span4">
-    <h3>Client Details</h3>
-    <p>
-      Installed: <%= nicetime(@manual.install_date) %><br/>
-      <strong><%= @manual.client_name %></strong><br/>
-      <%= @manual.client_address %><br/>
-      <%= @manual.client_suburb %><br/>
-      <%= @manual.client_postcode %><br/>
-      <%= @manual.client_state.name %>
-    </p>
-    
+<% if @manual.filled %>
+  <% if current_user.fields_not_filled? %>
+    <p class="alert"><strong>Warning:</strong> You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.</p>
     <hr/>
-    <% if @manual.filled %>
-      <% if current_user.fields_not_filled? %>
-        <p class="alert"><strong>Warning:</strong> You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.</p>
-        <hr/>
-      <% end %>
-      <p id="manuals-actions">
-        <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary", id: "download-pdf" %>
-        <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn", id: "edit-manual" %>
-      </p>
-    <% elsif @manual.unlocked? %>
+  <% end %>
+  <p id="manuals-actions">
+    <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary", id: "download-pdf" %>
+    <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn", id: "edit-manual" %>
+  </p>
+  
+  <% if @manual.unlocked? %>  
+    <%= render 'pdfs_form' %>
+    <%= render 'images' %>
+  <% end %>
+  
+<% end %>
 
-      <p><%= link_to 'Continue filling details', edit_manual_path(@manual), :class => "btn btn-large btn-block btn-primary" %></p>
-
-    <% else %>
-      
-      
-    <% end %>
-    
-    <% if @manual.unlocked? %>
-      
-      <%= render 'pdfs_form' %>
-      
-      <%= render 'images' %>
-      
-    <% end %>
-    
-    
-  </div>
-  <div class="span7 offset1">
-    <% if @manual.filled %>
-
-      <h3>Panel Details</h3>
-
-      <p>
-        <strong><%= @manual.panels_watts %>W <%= @manual.panels_brand %></strong> <strong><%= @manual.panels_model %></strong>
-      </p>
-      <% if @manual.panels_serial_numbers %>
-        <ol>
-          <% @manual.panels_serial_numbers.split(',').each do |number| %>
-            <li><strong><%= number %></strong></li>
-          <% end %>
-        </ol>
-      <% end %>
-      <ol class="string-list">
-        <% @manual.panel_strings.each do |string| %>
-          <li><strong><%= string.number %></strong> panels, <strong><%= string.volts %></strong> Volts DC, <strong><%= string.amps %></strong> Amps</li>
-        <% end %>
-      </ol>
-      
-      <h3>Inverter Details</h3>
-
-      <p>
-        Brand: <strong><%= @manual.inverter_brand %></strong><br/>
-        Series: <strong><%= @manual.inverter_series %></strong><br/>
-        Model: <strong><%= @manual.inverter_model %></strong><br/>
-        Output: <strong><%= @manual.inverter_output %></strong> kW<br/>
-        <% if @manual.inverter_serial.present? %>
-          Serial Number: <strong><%= @manual.inverter_serial %></strong>
-        <% end %>
-      </p>
-
-      <h3>Warranty Details</h3>
-
-      <p>
-        Workmanship: <strong><%= @manual.warranty_workmanship %></strong><br/>
-        Panels - Product: <strong><%= @manual.warranty_panels_product %></strong><br/>
-        Panels - Output Performance: <strong><%= @manual.warranty_panels_output_performance %></strong><br/>
-        Inverter: <strong><%= @manual.warranty_inverter %></strong>
-      </p>
-      
-      <% if @manual.include_performance %>
-        <h3>Graph</h3>
-
-        <p>Using <strong><%= @manual.sunlight_city.capitalize %></strong> for sunlight data.</p>
-      <% end %>
-      
-      <% if @manual.include_wiring %>
-        <h3>Wiring Diagram</h3>
-
-        <p>Isolator type: <strong><%= @manual.isolator_type %></strong></p>
-      <% end %>
-      
-      <% if @manual.include_certificate %>
-        <h3>Safety Certificate Details</h3>
-      
-        <p>
-          Date of test: <strong><%= @manual.inspection_date.strftime('%e / %-m / %y') %></strong><br/>
-          Electrical contractor licence number: <strong><%= @manual.contractor_licence %></strong><br/>
-          Name on contractor licence: <strong><%= @manual.contractor_licence_name %></strong><br/>
-          Electrical contractor phone number: <strong><%= @manual.contractor_phone %></strong><br/>
-          Contractor name: <strong><%= @manual.contractor_name %></strong>
-        </p>
-      <% end %>
-      
-      
-    <% end %>
-  </div>
-</div>
+<%= render 'form' %>

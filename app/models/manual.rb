@@ -60,12 +60,16 @@ class Manual < ActiveRecord::Base
     current_step_index < step_index(step)
   end
   
+  def before_step?(step)
+    current_step_index > step_index(step)    
+  end
+  
   def before_or_equal_step?(step)
     current_step_index >= step_index(step)    
   end
   
   def current_step_index
-    step_index(current_step) || 0
+    step_index(current_step) || 99
   end
   
   def current_step?(step)
@@ -77,9 +81,24 @@ class Manual < ActiveRecord::Base
   end
   
   def next_step
-    steps[(step_index(current_step) || 0) + 1]
+    steps[current_step_index + 1]
   end
   
+  def step_back
+    self.current_step = steps[current_step_index - 1]
+  end
+
+  def preview_detail(step)
+    {
+      "customer" => client_name,
+      "panels" => "#{panels_watts}W #{panels_brand} #{panels_model}",
+      "inverter" => "#{inverter_brand} #{inverter_series} #{inverter_model}",
+      "warranties" => "...",
+      "performance" => "...",
+      "wiring" => "...",
+      "certificate" => "..."
+    }[step]
+  end
   
   
   

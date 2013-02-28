@@ -52,6 +52,9 @@
 
 #manual-form {
   list-style: decimal inside;
+  .edit-step {
+    float: right;
+  }
   .step {
     overflow: hidden;
     width: 100%;
@@ -114,6 +117,19 @@ textarea {
     outline: none;
     @include box-shadow(0 0 0 1px $blue);
   }
+}
+
+.error {
+  input {
+    @include box-shadow(0 0 0 1px $red);
+  }
+}
+
+.help-inline {
+  color: $red;
+  @include regular;
+  margin-left: 10px;
+  font-size: 14px;
 }
 
 select {

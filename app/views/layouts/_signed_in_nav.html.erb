@@ -1,47 +1,49 @@
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-
-<div id="user-details">
-  <h2><%= current_user.full_name %></h2>
-  <p>
-    <%= current_user.company %><br/>
-    <%= current_user.full_address %>
-  </p>
-
-  <p><%= link_to "Update details", edit_user_registration_path %>  ∙  Upload Logo</p>
-</div>
-
-<div id="billing-info">
-  
-  <% if current_user.insider %>  
-    <p>Insider Account</p>
-  <% elsif current_user.subscribed? %>
+<div id="signed-in-top" class="nest">
+  <div id="user-details">
+    <h2><%= current_user.full_name %></h2>
     <p>
-      Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong><br/>
-      Usage <strong><%= currency(current_user.current_charge) %></strong>
+      <%= current_user.company %><br/>
+      <%= current_user.full_address %>
     </p>
+
+    <p><%= link_to "Update details", edit_user_registration_path %>  ∙  Upload Logo</p>
+  </div>
+
+  <div id="billing-info">
+  
+    <% if current_user.insider %>  
+      <p>Insider Account</p>
+    <% elsif current_user.subscribed? %>
+      <p>
+        <i class="icon-credit-card"></i>
+        Usage <strong><%= currency(current_user.current_charge) %></strong><br/>
+        Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong>
+      </p>
     
-    <p><%= link_to "Details", edit_user_registration_path %></p>
+      <p><%= link_to "Details", edit_user_registration_path %></p>
   
-  <% else %>
-  
-    <% if current_user.eway_id %>
-      <%= link_to "Subscribe", subscribe_users_path, :method => :put %>
     <% else %>
+  
+      <% if current_user.eway_id %>
+        <%= link_to "Subscribe", subscribe_users_path, :method => :put %>
+      <% else %>
     
-      <%= link_to "Subscribe", "#", :id => "show-cc-fields" %>
-      <div id="subscribe-cc-fields">
-        <%= form_for current_user, :url => subscribe_users_path do |f| %>
-          <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
+        <%= link_to "Subscribe", "#", :id => "show-cc-fields" %>
+        <div id="subscribe-cc-fields">
+          <%= form_for current_user, :url => subscribe_users_path do |f| %>
+            <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
         
-          <%= f.hidden_field :remember, :value => true %>
+            <%= f.hidden_field :remember, :value => true %>
         
-          <%= f.submit "Subscribe" %>
-        <% end %>
-      </div>
+            <%= f.submit "Subscribe" %>
+          <% end %>
+        </div>
+      <% end %>
+  
     <% end %>
   
-  <% end %>
-  
+  </div>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :id => "sign-out" %>
 </div>
 
 <div id="user-menu">

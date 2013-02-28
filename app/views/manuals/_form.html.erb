@@ -1,7 +1,16 @@
 <ol id="manual-form">
   <% @manual.steps.each do |step| %>
     <%= content_tag :li, :class => @manual.current_step?(step) ? 'step current' : (@manual.past_step?(step) ? 'step after' : 'step') do %>
+    
+      <% if (@manual.id && @manual.before_step?(step)) || (@manual.id && @manual.filled) %>
+        <div class="edit-step"><%= link_to "Edit", edit_manual_path(@manual, :step => step), :class => "btn" %></div>
+      <% end %>
+    
       <%= step.capitalize %>
+      
+      <% if @manual.before_step?(step) %>
+        <%= @manual.preview_detail(step) %>
+      <% end %>
         
       <%= form_for(@manual) do |f| %>      
           <% unless @manual.filled %>
@@ -12,8 +21,9 @@
               <%= f.hidden_field :current_step, :value => @manual.next_step %>
             <% end %>
           <% end %>
-      
-        
+          
+          
+          
           <div class="step-fields">
             <div class="nest">
               <%= render "step_#{step}", f: f %>
@@ -23,10 +33,6 @@
               </div>
             </div>
           </div>   
-      <% end %>
-      
-      <% if @manual.id %>
-        <div class="edit-step"><%= link_to "Edit", edit_manual_path(@manual) %></div>
       <% end %>
       
     <% end # li %>

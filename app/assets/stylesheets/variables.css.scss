@@ -11,6 +11,7 @@ $smallFooterHeight: 120px;
 
 $green: #39B54A;
 $blue: #1b63ff;
+$red: #e2464d;
 
 $black: #000;
 $darkGrey: #333;
@@ -68,4 +69,13 @@ $maxSmall: 420px;
   -moz-box-sizing: $values;
   -webkit-box-shadow: $values;
   box-shadow: $values;
+}
+
+
+@mixin grid($cols) {
+  width: $columnWidth * $cols;
+  padding-left: $boxPadding;
+  padding-right: $boxPadding;
+  @include box-sizing(border-box);
+  float: left;
 }

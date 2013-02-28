@@ -60,10 +60,11 @@ class ManualsController < ApplicationController
   # GET /manuals/1/edit
   def edit
     @manual = Manual.find(params[:id])
-    @manual.contractor_licence_name ||= current_user.company
-    @manual.contractor_name ||= current_user.full_name
-    @manual.contractor_phone ||= current_user.company_phone
+    if params[:step]
+      @manual.current_step = params[:step]
+    end
     
+    @manual.panel_strings.build unless @manual.panel_strings.count > 0
     
     @all_manuals = current_user.manuals.keep_if(&:filled)
   end
@@ -80,6 +81,7 @@ class ManualsController < ApplicationController
         render action: "new"
       end
     else
+      @manual.step_back
       render action: "new"
     end
   end
