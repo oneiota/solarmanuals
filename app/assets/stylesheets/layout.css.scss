@@ -20,7 +20,6 @@ body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  max-width: $pageWidth;
   margin: $baseLineHeight auto (-($footerHeight));
   padding-bottom: 50px;
   @include box-sizing(border-box);
