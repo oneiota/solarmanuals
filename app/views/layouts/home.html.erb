@@ -2,20 +2,19 @@
 
 
     
-    <div id="header" class="container">
-      
-      <ul id="home-menu">
-        <li><a id="logo" href="/">Installer Technologies</a></li>
-        <li><%= link_to "Get Started", new_user_registration_path %></li>
-        <li><a href="/#features" class="scroll">Features</a></li>
-        <li><a href="/#pricing" class="scroll">Pricing</a></li>
-        <li><a href="/#included" class="scroll">What's Included</a></li>
-        <li><a href="/#contact" class="scroll">Contact</a></li>
-      </ul>
-      <ul class="nav pull-right">
-        <li><%= link_to "Sign In", new_user_session_path %></li>
-      </ul>
-  
+    <div id="header">
+      <div id="home-nav" class="container">
+        <ul id="home-menu">
+          <li id="logo"><h1><a href="/">Installer Technologies</a></h1></li>
+          <li><%= link_to "Get Started", new_user_registration_path %></li>
+          <li><a href="/#features" class="scroll">Features</a></li>
+          <li><a href="/#pricing" class="scroll">Pricing</a></li>
+          <li><a href="/#included" class="scroll">What's Included</a></li>
+          <li><a href="/#contact" class="scroll">Contact</a></li>
+          <li id="sign-in"><%= link_to "Sign In", new_user_session_path %></li>
+        </ul>
+        
+      </div>
     </div>
     
     <%= yield %>
