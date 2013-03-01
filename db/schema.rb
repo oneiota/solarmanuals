@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227004147) do
+ActiveRecord::Schema.define(:version => 20130301011210) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -57,12 +57,12 @@ ActiveRecord::Schema.define(:version => 20130227004147) do
     t.string   "warranty_panels_product"
     t.string   "warranty_panels_output_performance"
     t.string   "warranty_inverter"
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+    t.datetime "created_at",                                                                               :null => false
+    t.datetime "updated_at",                                                                               :null => false
     t.string   "sunlight_city"
     t.integer  "user_id"
-    t.boolean  "filled",                             :default => false
-    t.boolean  "trashed",                            :default => false
+    t.boolean  "filled",                                                           :default => false
+    t.boolean  "trashed",                                                          :default => false
     t.integer  "client_state_id"
     t.integer  "contractor_licence"
     t.string   "contractor_licence_name"
@@ -71,15 +71,16 @@ ActiveRecord::Schema.define(:version => 20130227004147) do
     t.datetime "inspection_date"
     t.string   "client_postcode"
     t.integer  "eway_payment_id"
-    t.boolean  "marked",                             :default => false
-    t.boolean  "include_performance",                :default => false
-    t.boolean  "include_wiring",                     :default => false
-    t.boolean  "include_certificate",                :default => false
-    t.string   "isolator_type",                      :default => "1000V DC"
-    t.integer  "inverter_number",                    :default => 1
+    t.boolean  "marked",                                                           :default => false
+    t.boolean  "include_performance",                                              :default => false
+    t.boolean  "include_wiring",                                                   :default => false
+    t.boolean  "include_certificate",                                              :default => false
+    t.string   "isolator_type",                                                    :default => "1000V DC"
+    t.integer  "inverter_number",                                                  :default => 1
     t.integer  "panels_watts"
     t.string   "inverter_series"
     t.string   "current_step"
+    t.decimal  "performance_multiplier",             :precision => 8, :scale => 2, :default => 0.75
   end
 
   create_table "manuals_pdfs", :force => true do |t|

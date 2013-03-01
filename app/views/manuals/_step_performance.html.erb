@@ -1,8 +1,24 @@
-
-<%= f.label :include_performance, :class => "checkbox" do %>
-  <%= f.check_box :include_performance %> Include Performance Estimate
-<% end %>
-<div class="fields">
-  <%= f.label :sunlight_city, "City to use for sunlight data" %>
-  <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
+<div class="field">
+  <div class="field-label">
+    <%= f.label :include_performance, "Include Performance Estimate" %>
+  </div>
+  <div class="field-input">
+    <%= f.check_box :include_performance %>
+  </div>
+</div>
+<div class="field">
+  <div class="field-label">
+    <%= f.label :performance_multiplier %>
+  </div>
+  <div class="field-input">
+    <%= f.select :performance_multiplier, @manual.multipliers %>
+  </div>
+</div>
+<div class="field">
+  <div class="field-label">
+    <%= f.label :sunlight_city, "City to use for sunlight data" %>
+  </div>
+  <div class="field-input">
+    <%= f.select :sunlight_city, Cities.names.map { |city| [city.capitalize, city] } %>
+  </div>
 </div>

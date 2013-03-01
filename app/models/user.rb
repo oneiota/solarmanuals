@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :pdfs
   
   def active_manuals
-    manuals.where(:trashed => false).order('created_at DESC').includes(:eway_payment)
+    manuals.where(:trashed => false).order('install_date DESC').includes(:eway_payment)
   end
   
   def full_name

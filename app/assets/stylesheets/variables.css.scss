@@ -1,6 +1,10 @@
-$pageWidth: 900px;
+$gutter: 24px;
 
-$boxPadding: percentage(15px / $pageWidth);
+$pageWidth: 900px;
+$innerPageWidth: $pageWidth - ($gutter * 2);
+$boxPadding: percentage(($gutter / 2) / $innerPageWidth);
+$pagePadding: percentage($gutter / $pageWidth);
+
 
 $baseFont: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $baseFontSize: 16px;
@@ -25,6 +29,7 @@ $midGrey: #999;
 $grey: #ccc;
 $lightGrey: #eee;
 
+// nest class pull it back out pageWidth
 $columnWidth: percentage(($pageWidth / 12) / $pageWidth);
 
 $half: $columnWidth * 6;
@@ -63,7 +68,9 @@ $maxSmall: 420px;
 }
 
 @mixin nest {
-  margin: 0 -$boxPadding;
+  $margin: percentage($gutter / $innerPageWidth);
+  margin: 0 -$margin;
+  padding: 0 $boxPadding;
   overflow: hidden;
 }
 
@@ -87,4 +94,8 @@ $maxSmall: 420px;
 
 @mixin offset($cols) {
   margin-left: $columnWidth * $cols;
+}
+
+@mixin push($cols) {
+  margin-right: $columnWidth * $cols;
 }

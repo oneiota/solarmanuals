@@ -1,25 +1,40 @@
-<div class="string-fields">
+<li>
+  <div class="background"></div>        
+  <fieldset class="string-fields">
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :number, "Number of panels" %> 
+      </div>
+      <div class="field-input">
+        <%= f.text_field :number, :class => "inline" %>
+      </div>
+    </div>
 
-  <%= f.label :number, "Number of panels" %> 
-  <%= f.text_field :number, :class => "inline" %>
-
-  <div>
-  
-    <div class="input-append inline">
-      <span class="input-container"><%= f.text_field :volts %></span>
-      <span class="add-on">Volts DC</span>
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :volts, "Voltage"%>
+      </div>
+      <div class="field-input input-append">
+        <span class="input-container"><%= f.text_field :volts %></span>
+        <span class="add-on">Volts DC</span>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :amps, "Current" %>
+      </div>
+      <div class="field-input input-append inline">
+        <span class="input-container"><%= f.text_field :amps %></span>
+        <span class="add-on">Amps</span>
+      </div>
     </div>
   
-
-    <div class="input-append inline">
-      <span class="input-container"><%= f.text_field :amps %></span>
-      <span class="add-on">Amps</span>
+    <div class="field">
+      <div class="field-label">&nbsp;</div>
+      <div class="field-input">
+        <%= f.hidden_field :_destroy %>
+        <%= link_to "Remove this string", "#", :class => "remove_fields" %>
+      </div>
     </div>
-  
-  </div>
-
-  <%= f.label :_destroy, :class => "checkbox" do %>
-    <%= f.check_box :_destroy %> Remove String
-  <% end %>
-  
-</div>
+  </fieldset>
+</li>

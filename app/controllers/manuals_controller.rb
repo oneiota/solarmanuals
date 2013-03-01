@@ -120,7 +120,11 @@ class ManualsController < ApplicationController
         @manual.eway_payment = EwayPayment.process_single_payment!(@manual.user)
       end
     end
-
+    
+    if @manual.valid? && @manual.filled
+      @manual.current_step = nil
+    end
+    
     respond_to do |format|
       if @manual.save
         if @manual.filled

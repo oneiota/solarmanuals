@@ -263,7 +263,7 @@ Energy Production Estimates:
 
 
 * Data is calculated based on average sunlight data for <%= @manual.sunlight_city.titleize %> from 2010-2012 supplied by the Australian Bureau of Meteorology.
-* Calculation for kWh is (System kW * Sunlight Hours * 0.75)
+* Calculation for kWh is (System kW * Sunlight Hours * <%= @manual.performance_multiplier %>)
 
 <% end %>
 <% if @manual.include_wiring %>

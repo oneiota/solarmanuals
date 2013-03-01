@@ -17,7 +17,9 @@
         <% end %>
         
         <%= form_for(@manual) do |f| %>
-            <% unless @manual.filled %>
+            <% if @manual.filled %>
+              <%= f.hidden_field :current_step, :value => step %>
+            <% else %>
               <% if @manual.last_step? %>
                 <%= f.hidden_field :filled, :value => 1 %>
                 <%= f.hidden_field :current_step, :value => "" %>

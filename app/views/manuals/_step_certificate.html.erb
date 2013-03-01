@@ -1,35 +1,49 @@
-<%= f.label :include_certificate, :class => "checkbox" do %>
-  <%= f.check_box :include_certificate %> Include Safety Certificate
-<% end %>
-<div class="fields">
-  <div class="field">
-    <%= f.label :contractor_licence, "Electrical Contractor Licence Number" %>
-    <div class="field-input">
-      <%= f.text_field :contractor_licence %>
-    </div>
+<div class="field">
+  <div class="field-label">
+    <%= f.label :include_certificate %>
   </div>
-  <div class="field">
+  <div class="field-input">
+    <%= f.check_box :include_certificate %>
+  </div>
+</div>
+
+<div class="field">
+  <div class="field-label">
+    <%= f.label :contractor_licence, "Contractor licence number" %>
+  </div>
+  <div class="field-input">
+    <%= f.text_field :contractor_licence %>
+  </div>
+</div>
+<div class="field">
+  <div class="field-label">
     <%= f.label :contractor_licence_name, "Name on contractor licence" %>
-    <div class="field-input">
-      <%= f.text_field :contractor_licence_name %>
-    </div>
   </div>
-  <div class="field">
+  <div class="field-input">
+    <%= f.text_field :contractor_licence_name %>
+  </div>
+</div>
+<div class="field">
+  <div class="field-label">
     <%= f.label :contractor_phone, "Contractor phone number" %>
-    <div class="field-input">
-      <%= f.text_field :contractor_phone %>
-    </div>
+  </div>  
+  <div class="field-input">
+    <%= f.text_field :contractor_phone %>
   </div>
-  <div class="field">
+</div>
+<div class="field">
+  <div class="field-label">
     <%= f.label :contractor_name, "Contractor name" %>
-    <div class="field-input">
-      <%= f.text_field :contractor_name %>
-    </div>
   </div>
-  <div class="field datetime">
+  <div class="field-input">
+    <%= f.text_field :contractor_name %>
+  </div>
+</div>
+<div class="field datetime">
+  <div class="field-label">
     <%= f.label :inspection_date, "Date of test" %>
-    <div class="field-input">
-      <%= f.date_select :inspection_date %>
-    </div>
+  </div>  
+  <div class="field-input">
+    <%= f.date_select :inspection_date %>
   </div>
 </div>

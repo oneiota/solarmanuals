@@ -1,33 +1,23 @@
 <table class="table" id="manuals-archive-table">
   <tr>
     <th width="20">Paid</th>
-    <th>Client name</th>
-    <th class="hidden-phone">Client address</th>
-    <th class="hidden-phone">Client suburb</th>
+    <th>Name</th>
+    <th class="hidden-phone">Address</th>
     <th>Install date</th>
     <th></th>
   </tr>
-
-<% @manuals.each do |manual| %>
-  <%= content_tag :tr, class: (manual.filled? ? 'success': '') do %>
-    <td class="paid-icon">
-      <%= link_to content_tag(:i, "", class: (manual.paid? ? 'icon-ok' : 'icon-minus')), manual %>
-    </td>
-    <td><%= link_to manual.client_name, manual %></td>
-    <td class="hidden-phone"><%= link_to manual.client_address, manual %></td>
-    <td class="hidden-phone"><%= link_to manual.client_suburb, manual %></td>
-    <td><%= link_to nicetime(manual.install_date), manual %></td>
-    <td class="index-controls">
-    <%= link_to 'Delete', manual, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-btn" %></td>
+  <% @manuals.each do |manual| %>
+    <%= content_tag :tr, class: (manual.filled ? '': 'incomplete') do %>
+      <td class="paid-icon">
+        <%= link_to content_tag(:i, "", class: (manual.paid? ? 'icon-ok' : (manual.marked ? 'icon-tag' : 'icon-minus'))), manual %>
+      </td>
+      <td><%= link_to manual.client_name, manual %></td>
+      <td class="hidden-phone"><%= link_to manual.display_address, manual %></td>
+      <td><%= link_to nicetime(manual.install_date), manual %></td>
+      <td class="index-controls">
+      <%= link_to 'Delete', manual, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-btn" %></td>
+    <% end %>
   <% end %>
-<% end %>
 
 
-<% if @manuals.count == 0 %>
-  <tr>
-    <td colspan="5"><a>No manuals yet.</a></td>
-  </tr>
-<% end %>
 </table>
-
-

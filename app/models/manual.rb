@@ -1,25 +1,3 @@
-# :user_id, :eway_payment_id, :feature_image_id, :pdf_ids,
-# 
-# :client_address, :client_name, :client_suburb, :client_postcode, :client_state_id, :install_date, 
-# 
-# :inverter_brand, :inverter_model, :inverter_output, :inverter_serial, 
-# :panels_brand, :panels_model, :panels_number, :panels_serial_numbers, 
-# 
-# :system_config, :system_pv_current, :system_pv_voltage, :system_watts, 
-# 
-# :warranty_inverter, :warranty_panels_output_performance, :warranty_panels_product, :warranty_workmanship, 
-# 
-# :sunlight_city, 
-# 
-# :filled, :trashed, :files_array, 
-# 
-# :include_performance, :include_wiring, :include_certificate, 
-# 
-# :isolator_type, :inverter_number,
-# 
-# :contractor_licence, :contractor_licence_name, :contractor_phone, :contractor_name, :inspection_date
-
-
 class Manual < ActiveRecord::Base
   
   attr_protected :marked
@@ -46,10 +24,16 @@ class Manual < ActiveRecord::Base
   
   attr_accessor :payment
   
+  after_save :build_strings
+  
+  def build_strings
+    panel_strings.build unless panel_strings.count > 0
+  end
+  
   # steps
   
   def steps
-    %w{customer panels inverter warranties performance wiring certificate} + (user.subscribed? ? [] : %w{payment})
+    %w{customer panels inverter warranties performance wiring certificate} + (user.subscribed? || paid? ? [] : %w{payment})
   end
   
   def step_index(step)
@@ -93,8 +77,8 @@ class Manual < ActiveRecord::Base
       "customer" => client_name,
       "panels" => "#{panels_watts}W #{panels_brand} #{panels_model}",
       "inverter" => "#{inverter_brand} #{inverter_series} #{inverter_model}",
-      "warranties" => [warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship].join(", ") + " years",
-      "performance" => (include_performance ? 'Yes' : 'No'),
+      "warranties" => [warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship].join(", "),
+      "performance" => (include_performance ? "#{sunlight_city.capitalize}, #{(performance_multiplier * 100).to_i}%" : 'No'),
       "wiring" => (include_wiring ? 'Yes' : 'No'),
       "certificate" => (include_certificate ? 'Yes' : 'No')
     }[step]
@@ -106,7 +90,7 @@ class Manual < ActiveRecord::Base
   
   # number of panels in each string
   def total_panels
-    panel_strings.map{|string| string.number }.inject(:+)
+    panel_strings.map{|string| (string.number || 0) }.inject(:+)
   end
   
   def total_array_size
@@ -117,6 +101,10 @@ class Manual < ActiveRecord::Base
     panel_strings.map { |string|
       "<b>1 string of #{string.number} panels, #{string.volts} Volts DC, #{string.amps} Amps</b>"
     }.join("\n")
+  end
+  
+  def display_address
+    "#{client_address} #{client_suburb}, #{client_postcode}"
   end
   
   def feature_image
@@ -176,7 +164,7 @@ class Manual < ActiveRecord::Base
   PREFILL_FIELDS = {
     'panel_details_prefill' => ["panels_watts", "panels_brand", "panels_model"],
     'inverter_details_prefill' => ["inverter_brand", "inverter_series", "inverter_model", "inverter_output", "inverter_number"],
-    'warranty_details_prefill' => ["warranty_inverter", "warranty_panels_output_performance", "warranty_panels_product", "warranty_workmanship"]
+    'warranty_details_prefill' => ["warranty_workmanship", "warranty_panels_product", "warranty_panels_output_performance", "warranty_inverter"]
   }
   
   def self.find_with_type(id, type)
@@ -189,13 +177,21 @@ class Manual < ActiveRecord::Base
     prefill(*PREFILL_FIELDS[type])
   end
   
+  
+  # [ {key: 10%, value: 0.10}, {key: 15%, value: 0.15}, ... , {key: 100%, value: 1.0}]
+  def multipliers
+    (10..100).step(5).map{|n| ["#{n}%", (n / 100.0)] }
+  end
+  
+  
+  
+  
   private
   
   
   def self.unique_values(*fields)
     manuals = []
     all(:select => fields.concat(['id']).join(", ")).each do |m|
-
       # hash exists in array (minus id)
       unless manuals.map{ |m| m.except("id") }.include? m.attributes.except("id")
         manuals << m.attributes

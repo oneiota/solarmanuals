@@ -44,7 +44,7 @@
   }
   .step {
     width: 100%;
-    border-bottom: $black 1px dotted;
+    border-top: $black 1px dotted;
     padding: $baseLineHeight 0 0;
     &.after {
       color: $midGrey;
@@ -67,6 +67,7 @@
 .step {
   .step-fields {
     display: none;
+    margin-top: $baseLineHeight;
     padding-bottom: $baseLineHeight;
   }
   
@@ -78,7 +79,8 @@
 }
 
 .field {
-  margin: $baseLineHeight 0;
+  margin-top: $baseLineHeight;
+  margin-bottom: $baseLineHeight;
   @include clearfix;
   .field-label {
     @include grid(4);
@@ -102,6 +104,53 @@
   @include offset(4);
 }
 
+
+#string-fields {
+  counter-reset: item;
+  margin-top: $baseLineHeight * 2;
+  position: relative;
+  li:before {
+    content: "String " counter(item);
+    counter-increment: item;
+    position: absolute;
+    left: $boxPadding;
+    z-index: 1;
+    background: white;
+    top: -22px;
+    left: 100px;
+    padding: 0 10px;
+  }
+  .string-fields {
+    position: relative;
+    z-index: 1;
+  }
+  li {
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    padding: 1px 0 1px;
+  }
+  .background {
+    position: absolute;
+    top: -12px;
+    bottom: 0;
+    border: $grey 2px solid;
+    left: $columnWidth;
+    right: $columnWidth;
+    z-index: 0;
+  }
+}
+
+
+.add-fields {
+  @include grid(8);
+  @include offset(4);
+  margin-bottom: $baseLineHeight;
+}
+
+.remove_fields {
+  color: $red;
+}
 
 input[type=text],
 input[type=email],
@@ -131,6 +180,25 @@ textarea {
   font-size: 14px;
 }
 
-select {
-  padding: 5px 10pc;
+
+#manuals-archive-table {
+  width: 100%;
+  th {
+    padding: 5px 10px;
+    text-align: left;
+  }
+  tr {
+    &.incomplete {
+      a {
+        color: $midGrey;
+      }
+    }
+    &:hover {
+      background: $lightGrey;
+    }
+    a {
+      padding: 5px 10px;
+      display: block;
+    }
+  }
 }

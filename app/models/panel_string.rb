@@ -4,7 +4,7 @@ class PanelString < ActiveRecord::Base
   belongs_to :manual
   
   def total
-    number * manual.panels_watts
+    (number || 0) * manual.panels_watts
   end
   
 end

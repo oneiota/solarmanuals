@@ -1,8 +1,17 @@
-<%= f.label :include_wiring, :class => "checkbox" do %>
-  <%= f.check_box :include_wiring %> Include Wiring
-<% end %>
-<div class="fields">
-  <%= f.label :isolator_type, "Type of Isolator" %>
-  <%= f.text_field :isolator_type %>
+<div class="field">
+  <div class="field-label">
+    <%= f.label :include_wiring %>
+  </div>
+  <div class="field-input">
+    <%= f.check_box :include_wiring %>
+  </div>
+</div>
+<div class="field">
+  <div class="field-label">
+    <%= f.label :isolator_type, "Type of Isolator" %>
+  </div>
+  <div class="field-input">
+    <%= f.text_field :isolator_type %>
+  </div>
 </div>
     

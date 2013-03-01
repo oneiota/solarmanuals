@@ -8,15 +8,13 @@ body {
 }
 
 .container {
-  max-width: $pageWidth;
-  margin: 0 auto;
   background: #fff;
-  overflow: hidden;
   @include box-sizing(border-box);
-  padding: $boxPadding;
+  padding: $pagePadding;
 }
 
 #wrap {
+  max-width: $pageWidth;
   min-height: 100%;
   height: auto !important;
   height: 100%;
@@ -42,7 +40,8 @@ body {
 }
 
 #signed-in-top {
-  padding: $baseLineHeight 0;
+  padding-top: $baseFontSize;
+  padding-bottom: $baseLineHeight;
   #user-details {
     @include grid(5);
     @include regular;

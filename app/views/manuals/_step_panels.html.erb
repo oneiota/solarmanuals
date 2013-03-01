@@ -45,13 +45,11 @@
 </div>
 
 
-
-<h4>Panel String Details</h4>
-<div id="string-fields">
+<ol id="string-fields">
   <%= f.fields_for :panel_strings do |b| %>
     <%= render 'panel_string_fields', :f => b %>
   <% end %>
-
-  <%= link_to_add_fields "+ Add String", f, :panel_strings %>
-
-</div>
+  <div class="add-fields">
+    <%= link_to_add_fields "Add another string", f, :panel_strings %>
+  </div>
+</ol>

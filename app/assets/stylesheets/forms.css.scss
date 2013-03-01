@@ -4,11 +4,11 @@ select {
   height: $baseLineHeight;
   line-height: $baseLineHeight;
   font-size: $baseFontSize;
-  padding: 10px;
 }
 
 input[type=submit],
 .btn {
+  margin: 0;
   background: #fff;
   border: 2px solid;
   color: $blue;

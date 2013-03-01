@@ -12,7 +12,11 @@
     <%= f.label :client_name, "Full Name" %>
   </div>
   <div class="field-input">
-    <%= f.text_field :client_name %>
+    <% if @manual.new_record? %>
+      <%= f.text_field :client_name %>
+    <% else %>
+      <%= @manual.client_name %>
+    <% end %>
   </div>
 </div>
 <div class="field">

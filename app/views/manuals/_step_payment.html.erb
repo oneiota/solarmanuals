@@ -1,23 +1,32 @@
-<p>You can unlock this manual for a fee of <strong>$5</strong>AU or <%= link_to "subscribe", root_url %> for unlimited access.</p>
+<div class="field">
+  <div class="field-label">&nbsp;</div>
+  <div class="field-input">
+    Total <strong><%= currency(CASUAL_FEE) %></strong>
+  </div>
+</div>
 
-<%= hidden_field_tag :payment, '1' %>
+  <%= hidden_field_tag :payment, '1' %>
 
-<%= f.fields_for [:user_attributes, @manual.user] do |b| %>
+  <%= f.fields_for [:user_attributes, @manual.user] do |b| %>
 
-  <% if current_user.eway_id %>
+    <% if current_user.eway_id %>
 
-    <p>Using stored credit card number <strong><%= format_card(current_user.stored_cc_number) %></strong></p>
+      <p>Using stored credit card number <strong><%= format_card(current_user.stored_cc_number) %></strong></p>
   
-    <p><%= link_to "Change payment details", edit_card_users_path %></p>
+      <p><%= link_to "Change payment details", edit_card_users_path %></p>
   
-  <% else %>
+    <% else %>
 
-    <%= render :partial => "shared/cc_fields", :locals => {f: b} %>
-  
-    <%= b.label :remember, :class => "checkbox" do %>
-      <%= b.check_box :remember %> Remember details
+      <%= render :partial => "shared/cc_fields", :locals => {f: b} %>
+      <div class="field">
+        <div class="field-label">
+          <%= b.label :remember %>
+        </div>
+        <div class="field-input">
+          <%= b.check_box :remember %> 
+        </div>
+      </div>
+
     <% end %>
-
-  <% end %>
   
-<% end %>
+  <% end %>

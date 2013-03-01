@@ -10,7 +10,7 @@ class PerformanceGraph
     city = @manual.sunlight_city
     
     @data = Cities.data[city].map do |week|
-      (week / 7) * kw * 0.75
+      (week / 7) * kw * @manual.performance_multiplier
     end
     
   end

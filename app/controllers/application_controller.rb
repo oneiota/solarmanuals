@@ -20,9 +20,14 @@ class ApplicationController < ActionController::Base
   before_filter :check_user_flagged!
   
   def check_user_flagged!
-    if current_user && current_user.flagged
-      flash[:alert] ||= "Your last payment failed. Please update your credit card details."
-      render "users/edit_card"
+    if current_user
+      if current_user.flagged
+        flash[:alert] ||= "Your last payment failed. Please update your credit card details."
+        render "users/edit_card"
+      elsif current_user.subscribed && current_user.eway_id = nil
+        flash[:alert] ||= "Payment details couldn't be found. Please re-enter them"
+        render "users/edit_card"
+      end
     end
   end
   
