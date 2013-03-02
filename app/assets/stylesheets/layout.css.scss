@@ -6,23 +6,37 @@ body {
   background: $lightGrey;
 }
 
-#wrap {
-  max-width: $pageWidth;
+.wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: $baseLineHeight auto (-($footerHeight));
   padding-bottom: 50px;
-  background: #fff;
-  @include box-sizing(border-box);
+  margin: $baseLineHeight auto (-($footerHeight));
   @include clearfix;
   @media (max-width: 900px) {
     padding-top: 0;
+  }
+  .inner-wrap {
+    margin: 0 auto;
+    background: #fff;
+    max-width: $pageWidth;
+    &.fluid {
+      max-width: 100%;
+      .container {
+        margin: 0 auto;
+        max-width: $pageWidth;
+        padding: 0;
+        .inner-container {
+          padding: $pagePadding;
+        }
+      }
+    }
   }
 }
 
 .container {
   @include box-sizing(border-box);
+  max-width: $pageWidth;
   padding: $pagePadding;
 }
 

@@ -41,15 +41,15 @@
 }
 
 #pdf-uploads {
-  @include grid(6);
+  @include grid(5);
+  @include push(1);
 }
 
 #manual-pdfs-boxes {
    margin-top: 1em;
-   font-size: $smallFontSize;
    .pdf {
      label {
-       width: 200px;
+       width: 75%;
        overflow: hidden;
        white-space: nowrap;
        text-overflow: ellipsis;
@@ -62,7 +62,7 @@
      .delete-pdf-link {
        float: right;
        text-align: right;
-       width: 50px;
+       width: 20%;
        display: inline-block;
      }
      
