@@ -57,14 +57,27 @@ class UsersController < ApplicationController
   
   def subscribe
     @user = current_user
+  end
+  
+  def create_subscription
+    @user = current_user
     @user.subscribed = true
-    @user.eway_id ||= @user.create_eway_id(params[:user])
+    
+    if params[:user]
+      @user.assign_attributes(params[:user])
+      @user.validate_card = true
+      unless @user.valid?
+        render action: 'subscribe' and return
+      end
+    end
+    
+    @user.eway_id ||= @user.create_eway_id
     
     # so we know to first charge them in a month
     @user.last_payed_at = Time.now
     
     @user.save
-    redirect_to root_url
+    redirect_to root_url, :notice => "You have successfully subscribed."
   end
   
   def unsubscribe
@@ -78,7 +91,7 @@ class UsersController < ApplicationController
     
     @user.subscribed = false
     @user.save
-    redirect_to root_url
+    redirect_to root_url, :notice => "You have unsubscribed."
   end
 
   

@@ -14,10 +14,15 @@ input[type=submit],
 textarea {
   font-size: $baseFontSize;
   font-family: $baseFont;
+  line-height: $baseLineHeight;
 }
 
 .regular {
   @include regular;
+}
+
+strong, b {
+  font-weight: bold;
 }
 
 .blue {
@@ -37,6 +42,36 @@ a {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: $bigFontSize;
   line-height: 1.5em;
+}
+
+p {
+  margin-bottom: $baseLineHeight;
+}
+
+.help {
+  display: inline-block;
+  font-size: $smallFontSize;
+  line-height: 1.5em;
+  color: $midGrey;
+}
+
+dl {
+  margin-bottom: $baseLineHeight;
+  @include clearfix;
+  @include nest;
+  dt, dd {
+    line-height: $baseLineHeight;
+    float: left;
+  }
+  dt {
+    @include grid(4);
+    @include regular;
+    clear: left;
+    text-align: right;
+  }
+  dd {
+    padding-left: $boxPadding;
+  }
 }

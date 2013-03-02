@@ -1,0 +1,46 @@
+<div class="nest">
+  <div id="subscribe">
+    <p>You are registered as a casual user. We recommend subscribing if you are producing more than six user manuals per month.</p>
+
+    <%= render 'shared/rates_table' %>
+    
+    <p class="regular">
+      <strong>First 30 days are free</strong><br/>
+      If you subscribe today you will not be billed until <%= nicetime(Time.now() + 1.month) %>.
+    </p>
+    
+    <p class="regular">
+      <strong>Cancellation</strong><br/>
+      If you choose to cancel your subscription, you will only be billed for the month in which you cancel.
+    </p>
+    
+    <% if @user.eway_id %>
+      <dl>
+        <dt>Stored Card</dt>
+        <dd><%= @user.full_name %><br/>
+        <%= format_card(@user.stored_cc_number) %><br/>
+        <%= link_to "Change credit card", "#", :class => "show-cc-fields" %>
+        <%= link_to "Use this card", "#", :class => "hide-cc-fields" %>
+        </dd>
+      </dl>
+    <% end %>
+    
+    <div id="subscribe-cc-fields" class="<%= @user.eway_id ? 'hidden' : '' %> nest">
+      <%= form_for current_user, :url => create_subscription_users_path do |f| %>
+        <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
+        <%= f.hidden_field :remember, :value => true %>
+        
+        <div class="actions">
+          <%= f.submit "Subscribe" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="nest">
+      <div class="actions">
+        <% if @user.eway_id %>
+          <%= link_to "Subscribe Now", create_subscription_users_path, :method => :put, :class => "btn subscribe-now" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

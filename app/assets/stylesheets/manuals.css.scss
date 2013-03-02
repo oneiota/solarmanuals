@@ -36,6 +36,42 @@
   }
 }
 
+#manual-uploads {
+  @include nest;
+}
+
+#pdf-uploads {
+  @include grid(6);
+}
+
+#manual-pdfs-boxes {
+   margin-top: 1em;
+   font-size: $smallFontSize;
+   .pdf {
+     label {
+       width: 200px;
+       overflow: hidden;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       display: inline-block;
+       float: left;
+       input {
+         float: left;
+       }
+     }
+     .delete-pdf-link {
+       float: right;
+       text-align: right;
+       width: 50px;
+       display: inline-block;
+     }
+     
+   }
+}
+
+#image-uploads {
+  @include grid(6);
+}
 
 #manual-form {
   list-style: decimal inside;
@@ -78,26 +114,7 @@
   }
 }
 
-.field {
-  margin-top: $baseLineHeight;
-  margin-bottom: $baseLineHeight;
-  @include clearfix;
-  .field-label {
-    @include grid(4);
-    text-align: right;
-    clear: left;
-  }
-  .field-input {
-    @include grid(8);
-  }
-  .helper {
-    float: left;
-    text-align: right;
-    font-size: (12em/16);
-    line-height: 16px;
-    color: $midGrey;
-  }
-}
+
 
 .actions {
   @include grid(8);

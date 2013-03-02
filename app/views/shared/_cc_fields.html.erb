@@ -1,24 +1,26 @@
-<div class="field">
-  <div class="field-label">
-    <%= f.label :cc_number, "Credit Card Number" %>
+<div class="cc-fields">
+  <div class="field">
+    <div class="field-label">
+      <%= f.label :cc_number, "Credit Card Number" %>
+    </div>
+    <div class="field-input">
+      <%= f.text_field :cc_number %>
+    </div>
   </div>
-  <div class="field-input">
-    <%= f.text_field :cc_number %>
-  </div>
-</div>
     
-<div class="field">
-  <div class="field-label">Expiry</div>
-  <div class="field-input">
-    <%= f.text_field :cc_expiry_month, :size => 2, :maxlength => 2, :placeholder => "MM", :class => "expiry" %> / 
-    <%= f.text_field :cc_expiry_year, :size => 2, :maxlength => 2, :placeholder => "YY", :class => "expiry" %>
+  <div class="field">
+    <div class="field-label">Expiry</div>
+    <div class="field-input">
+      <%= f.text_field :cc_expiry_month, :size => 2, :maxlength => 2, :placeholder => "MM", :class => "expiry" %> / 
+      <%= f.text_field :cc_expiry_year, :size => 2, :maxlength => 2, :placeholder => "YY", :class => "expiry" %>
+    </div>
   </div>
-</div>
-<div class="field">
-  <div class="field-label">
-    <%= f.label :cvn, "Security Code" %>
-  </div>
-  <div class="field-input">
-    <%= f.text_field :cvn, :size => 3, :maxlength => 3, :class => "cvn" %>
+  <div class="field">
+    <div class="field-label">
+      <%= f.label :cvn, "Security Code" %>
+    </div>
+    <div class="field-input">
+      <%= f.text_field :cvn, :size => 3, :maxlength => 3, :class => "cvn" %>
+    </div>
   </div>
 </div>

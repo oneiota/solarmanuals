@@ -1,6 +1,13 @@
 <%= render "layouts/header" %>
     <div id="wrap">
       
+        <% if alert %>
+          <div class="alert alert-error"><%= alert %></div>
+        <% end %>
+        <% if notice %>
+          <div class="alert alert-info"><%= notice %></div>
+        <% end %>
+      
       <% if user_signed_in? %>
         <div class="container">
           <%= render 'layouts/signed_in_nav' %>
@@ -8,12 +15,6 @@
       <% end %>
       
       <div class="container content">
-        <% if alert %>
-          <div class="alert alert-error"><%= alert %></div>
-        <% end %>
-        <% if notice %>
-          <div class="alert alert-info"><%= notice %></div>
-        <% end %>
       
         <%= yield %>
         

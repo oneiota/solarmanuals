@@ -8,15 +8,53 @@ select {
 
 input[type=submit],
 .btn {
-  margin: 0;
+  margin: 0 10px 0 0;
+  display: inline-block;
   background: #fff;
-  border: 2px solid;
+  border: $blue 2px solid;
   color: $blue;
   padding: 5px 15px;
   font-weight: bold;
   @include round;
   &:hover {
     color: $darkGrey;
+    border-color: $darkGrey;
     cursor: pointer;
+  }
+  &.primary {
+    background: $blue;
+    color: #fff;
+    &:hover {
+      background: $darkGrey;
+      border-color: $darkGrey;
+    }
+  }
+}
+
+.field {
+  margin-top: $baseLineHeight;
+  margin-bottom: $baseLineHeight;
+  @include clearfix;
+  .field-label {
+    @include grid(4);
+    text-align: right;
+    clear: left;
+  }
+  .field-input {
+    @include grid(8);
+  }
+  .helper {
+    float: left;
+    text-align: right;
+    font-size: (12em/16);
+    line-height: 16px;
+    color: $midGrey;
+  }
+}
+
+.cc-fields {
+  .field {
+    margin-top: $baseLineHeight / 2;
+    margin-bottom: $baseLineHeight / 2;
   }
 }

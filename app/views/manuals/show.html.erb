@@ -1,20 +1,25 @@
-<h2><%= @manual.client_name %></h2>
+<div id="manual-info">
 
-<% if @manual.filled %>
-  <% if current_user.fields_not_filled? %>
-    <p class="alert"><strong>Warning:</strong> You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.</p>
-    <hr/>
-  <% end %>
-  <p id="manuals-actions">
-    <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn btn-primary", id: "download-pdf" %>
-    <%= link_to 'Edit Details', edit_manual_path(@manual), :class => "btn", id: "edit-manual" %>
-  </p>
+  <% if @manual.filled %>
+    <% if current_user.fields_not_filled? %>
+      <p class="alert"><strong>Warning:</strong> You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.</p>
+    <% end %>
   
-  <% if @manual.unlocked? %>  
-    <%= render 'pdfs_form' %>
-    <%= render 'images' %>
+    <h1 id="manual-title"><%= @manual.client_name %></h1>
+    
+    <p id="manual-actions">
+      <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn primary", id: "download-pdf" %>
+    </p>
+    
+    <div id="manual-uploads">
+      <% if @manual.unlocked? %>  
+        <%= render 'pdfs_form' %>
+        <%= render 'images' %>
+      <% end %>
+    </div>
   <% end %>
-  
-<% end %>
+
+</div>
 
 <%= render 'form' %>
+

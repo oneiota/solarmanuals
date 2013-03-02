@@ -1,19 +1,22 @@
-<hr/>
+<div id="image-uploads">
+  
+  
+  
+  <%= form_for @manual, :url => { :action => :update }, :html => { :multipart => true } do |f| %>
+    <p>
+      Photos&nbsp;&nbsp;∙&nbsp;&nbsp;<a href="#" id="upload-manual-images">Upload</a><br/>
+      <span class="help">We recommend uploading large image files, preferably greater than 2 megapixels.</span>
+    </p>
+    <%= f.file_field :files_array, :multiple => true,  :accept => "image/*" %>
+    <%= f.submit "Attach Images", :class => "btn", :id => "submit_manual_images_btn" %>
+  <% end %>
 
-<%= form_for @manual, :url => { :action => :update }, :html => { :multipart => true } do |f| %>
-  <p><a href="#" id="upload-manual-images" class="btn btn-large"><i class="icon-upload"></i> Add Photos</a></p>
-  <%= f.file_field :files_array, :multiple => true,  :accept => "image/*" %>
-  <%= f.submit "Attach Images", :class => "btn", :id => "submit_manual_images_btn" %>
-<% end %>
 
-<p class="greyed">We recommend uploading large image files, preferably greater than 2 megapixels.</p>
-
-<hr/>
-
-<div id="manual-images-container">
-  <div id="manual-images">
-    <% @manual.images.each do |image| %>
-      <%= render :partial => 'manuals/image', :locals => { image: image } %>
-    <% end %>
+  <div id="manual-images-container">
+    <div id="manual-images">
+      <% @manual.images.each do |image| %>
+        <%= render :partial => 'manuals/image', :locals => { image: image } %>
+      <% end %>
+    </div>
   </div>
 </div>

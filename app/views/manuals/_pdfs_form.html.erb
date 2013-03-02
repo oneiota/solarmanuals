@@ -1,27 +1,26 @@
-<hr/>
-
-<%= form_for current_user, :html => { :multipart => true, :class => 'upload-pdfs-form' } do |f| %>  
-  <%= link_to "<i class='icon-file'></i> Add PDF Attachments".html_safe, "#", id: 'upload-pdfs-btn', class: 'btn btn-block btn-large' %>
-  <div id="upload-pdf-fields">
-    <%= f.file_field :pdfs_array, :multiple => true, class: 'upload-pdfs-input' %>
-    <%= hidden_field_tag :redirect, manual_path(@manual) %>
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<p class="greyed">Eg. system component warranties and manufacturer user guides.</p>
-
-<div id="manual-pdfs-boxes">
-  <% if current_user.pdfs.count > 0 %>
-    <p><strong>Attach PDFs to this manual:</strong></p>
+<div id="pdf-uploads">
+  <%= form_for current_user, :html => { :multipart => true, :class => 'upload-pdfs-form' } do |f| %>  
+    Attachments&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Upload".html_safe, "#", id: 'upload-pdfs-btn' %><br/>
+    <span class="help">System component warranties, manufacturer user guides...</span>
+    <div id="upload-pdf-fields">
+      <%= f.file_field :pdfs_array, :multiple => true, class: 'upload-pdfs-input' %>
+      <%= hidden_field_tag :redirect, manual_path(@manual) %>
+      <%= f.submit %>
+    </div>
   <% end %>
-  <%= form_for @manual, :remote => true do |f| %>
-    <% current_user.pdfs.each do |pdf| %>
-      <%= label_tag dom_id(pdf), :class => 'checkbox' do %>
-        <%= check_box_tag 'manual[pdf_ids][]', pdf.id, @manual.pdf_ids.include?(pdf.id), id: dom_id(pdf), :class => 'pdf-checkbox' %> 
-        <%= pdf.file_file_name %> <%= link_to "Delete", pdf_path(pdf), :method => :delete, :remote => true, :confirm => "Delete #{pdf.file_file_name}?", :class => 'delete-pdf-link'%>
+
+  <div id="manual-pdfs-boxes">
+    <%= form_for @manual, :remote => true do |f| %>
+      <% current_user.pdfs.each do |pdf| %>
+        <p class="pdf">
+          <%= label_tag dom_id(pdf), :class => 'checkbox' do %>
+            <%= check_box_tag 'manual[pdf_ids][]', pdf.id, @manual.pdf_ids.include?(pdf.id), id: dom_id(pdf), :class => 'pdf-checkbox' %> 
+            <%= pdf.file_file_name %>
+          <% end %>
+          <%= link_to "Delete", pdf_path(pdf), :method => :delete, :remote => true, :confirm => "Delete #{pdf.file_file_name}?", :class => 'delete-pdf-link'%>
+        </p>
       <% end %>
+      <%= f.submit "Update PDFs list", class: 'pdfs-submit-btn' %>
     <% end %>
-    <%= f.submit "Update PDFs list", class: 'pdfs-submit-btn' %>
-  <% end %>
+  </div>
 </div>

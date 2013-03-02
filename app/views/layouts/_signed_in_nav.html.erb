@@ -3,43 +3,29 @@
     <h2 id="user-name"><%= current_user.full_name %></h2>
     <p>
       <%= current_user.company %><br/>
-      <%= current_user.full_address %>
+      <%= current_user.full_address %><br/>
+      <%= link_to "Update details", edit_user_registration_path %>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Upload Logo", "#" %>
     </p>
-
-    <p><%= link_to "Update details", edit_user_registration_path %>  ∙  <%= link_to "Upload Logo", "#" %></p>
   </div>
 
   <div id="billing-info">
-  
+    <i class="icon-file-alt"></i>  
     <% if current_user.insider %>  
       <p>Insider Account</p>
     <% elsif current_user.subscribed? %>
       <p>
-        <i class="icon-file-alt"></i>
+        <strong>Subscribed</strong><br/>
         Usage <strong><%= currency(current_user.current_charge) %></strong><br/>
-        Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong>
+        Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong><br/>
+        <%= link_to "Details", edit_user_registration_path %>
       </p>
-    
-      <p><%= link_to "Details", edit_user_registration_path %></p>
   
     <% else %>
-  
-      <% if current_user.eway_id %>
-        <%= link_to "Subscribe", subscribe_users_path, :method => :put %>
-      <% else %>
-    
-        <%= link_to "Subscribe", "#", :id => "show-cc-fields" %>
-        <div id="subscribe-cc-fields">
-          <%= form_for current_user, :url => subscribe_users_path do |f| %>
-            <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
-        
-            <%= f.hidden_field :remember, :value => true %>
-        
-            <%= f.submit "Subscribe" %>
-          <% end %>
-        </div>
-      <% end %>
-  
+        <p>
+          <strong>Casual User</strong><br/>
+          <strong><%= currency(CASUAL_FEE) %> <span class="help">Per Manual</span></strong><br/>
+          <%= link_to "Subscribe", subscribe_users_path %>
+        </p>  
     <% end %>
   
   </div>

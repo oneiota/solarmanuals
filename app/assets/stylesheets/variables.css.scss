@@ -12,9 +12,7 @@ $baseLineHeight: 24px;
 
 $smallFontSize: 12px;
 $bigFontSize: 24px;
-
 $smallFontSize: 12px;
-
 
 $footerHeight: 269px;
 $smallFooterHeight: 120px;
@@ -22,6 +20,7 @@ $smallFooterHeight: 120px;
 $green: #39B54A;
 $blue: #1b63ff;
 $red: #e2464d;
+$yellow: #faff9e;
 
 $black: #000;
 $darkGrey: #333;
@@ -68,9 +67,11 @@ $maxSmall: 420px;
 }
 
 @mixin nest {
-  $margin: percentage($gutter / $innerPageWidth);
-  margin: 0 -$margin;
-  padding: 0 $boxPadding;
+  $margin: -(percentage($gutter / $innerPageWidth));
+  margin-left: $margin;
+  margin-right: $margin;
+  padding-left: $boxPadding;
+  padding-right: $boxPadding;
   overflow: hidden;
 }
 

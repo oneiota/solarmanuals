@@ -58,7 +58,9 @@ $ ->
   
   $('.pdf-checkbox').on 'change', ->
     $(this).closest('form').submit()
-      
+  
+  $('#upload-pdf-fields, .pdfs-submit-btn').hide()
+  
   $('#upload-pdfs-btn').on 'click', (e) ->
     e.preventDefault()
     $('.upload-pdfs-input').trigger 'click'

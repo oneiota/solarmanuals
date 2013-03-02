@@ -3,14 +3,7 @@
 html,
 body {
   height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
   background: $lightGrey;
-}
-
-.container {
-  background: #fff;
-  @include box-sizing(border-box);
-  padding: $pagePadding;
 }
 
 #wrap {
@@ -20,11 +13,17 @@ body {
   height: 100%;
   margin: $baseLineHeight auto (-($footerHeight));
   padding-bottom: 50px;
+  background: #fff;
   @include box-sizing(border-box);
   @include clearfix;
   @media (max-width: 900px) {
     padding-top: 0;
   }
+}
+
+.container {
+  @include box-sizing(border-box);
+  padding: $pagePadding;
 }
 
 .nest {
@@ -40,8 +39,6 @@ body {
 }
 
 #signed-in-top {
-  padding-top: $baseFontSize;
-  padding-bottom: $baseLineHeight;
   #user-details {
     @include grid(5);
     @include regular;
@@ -68,4 +65,21 @@ body {
     @include grid(3);
     text-align: right;
   }  
+}
+
+
+.alert {
+  padding: $baseFontSize $pagePadding;
+  background: $yellow;
+  line-height: $baseLineHeight;
+  .icon-remove {
+    float: right;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.container .alert {
+  margin-top: -$pagePadding;
 }

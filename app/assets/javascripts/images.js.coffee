@@ -18,7 +18,7 @@ $ ->
   
   if window.FormData && canvasSupported
     $("#manual_files_array, #submit_manual_images_btn").hide()
-    $("#upload-manual-images").css("display", "block").on "click", (e) ->
+    $("#upload-manual-images").css("display", "inline").on "click", (e) ->
       e.preventDefault()
       $("#manual_files_array").trigger("click")
     
