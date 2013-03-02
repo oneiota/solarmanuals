@@ -5,25 +5,42 @@
   top:0;
   background: black;
   width:100%;
+  //border-bottom: 1px $lightGrey solid;
   ul {
-    display: inline;
+    display: $lightGrey;
+  }
+  a {
+    color: white;
   }
 }
 
 #home-nav {
   background: black;
   font-size: 14px;
+  padding: 0.5%;
   li {
     float:left;
     margin-right: $boxPadding;
+    position: relative;
+    top: 10px;
   }
   #sign-in {
     float: right;
     margin-right: 0;
+    i {
+      color: white;
+      margin-left: 0.5em;
+    }
+    a {
+      &:hover {
+        color: $grey;
+      }
+    }
   }  
   #logo {
     font-weight: 200;
     display: table-cell;
+    top: 0px;
   }
 }
 
