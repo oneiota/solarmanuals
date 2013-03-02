@@ -11,19 +11,17 @@ body {
   height: auto !important;
   height: 100%;
   padding-bottom: 50px;
-  margin: $baseLineHeight auto (-($footerHeight));
+  margin: 42px auto (-($footerHeight));
   @include clearfix;
   @media (max-width: 900px) {
     padding-top: 0;
   }
   .inner-wrap {
     margin: 0 auto;
-    background: #fff;
     max-width: $pageWidth;
     &.fluid {
       max-width: 100%;
       .container {
-        margin: 0 auto;
         max-width: $pageWidth;
         padding: 0;
         .inner-container {
@@ -38,18 +36,11 @@ body {
   @include box-sizing(border-box);
   max-width: $pageWidth;
   padding: $pagePadding;
+  margin: 0 auto;
 }
 
 .nest {
   @include nest;
-}
-
-
-#home-menu {
-  li {
-    display: inline-block;
-    margin-right: $boxPadding;
-  }
 }
 
 #signed-in-top {

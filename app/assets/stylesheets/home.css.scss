@@ -11,6 +11,9 @@
   }
   a {
     color: white;
+    &:hover {
+      color: $blue;
+    }
   }
 }
 
@@ -19,8 +22,9 @@
   font-size: 14px;
   padding: 0.5%;
   li {
+    display: inline-block;
     float:left;
-    margin-right: $boxPadding;
+    margin-right: $boxPadding * 2;
     position: relative;
     top: 10px;
   }
@@ -33,7 +37,10 @@
     }
     a {
       &:hover {
-        color: $grey;
+        color: $blue;
+        i {
+          color: $blue;
+        }
       }
     }
   }  
@@ -44,7 +51,72 @@
   }
 }
 
+.getstarted {
+  margin-bottom: 2.66667%;
+  .btn {
+    font-size: 1.8em;
+    background: $blue;
+    border: none;
+    color: white;
+    padding: 20px;
+  }
+}
 
+.video {
+  background: $darkGrey;
+}
+
+.hometitle {
+  font-size: 24px;
+  line-height: 1.5em;
+  margin: 1.5em 0;
+}
+
+.pricing {
+  background: white;
+  .pricing-item {
+    border-radius: 15px;
+    padding: 1em;
+    border: 1px $grey solid;
+    margin-bottom: 1.5em;
+    @include grid(4);
+    @include offset(1);
+    @include push(1);
+    h2 {
+      font-size: 20px;
+      margin-bottom: 1em;
+    }
+  }
+}
+
+.pricing-table {
+  position: relative;
+  border-radius: 15px;
+  padding: 1em;
+  border: 1px $grey solid;
+  margin-bottom: 1.5em;
+  @include grid(10);
+  @include offset(1);
+  @include push(1);
+  h2 {
+    font-size: 20px;
+    margin-bottom: 1em;
+  }
+}
+
+.dotted {
+  border-color: #ccc;
+  border-style: dashed;
+  margin-bottom: 1em;
+}
+
+.icon-remove {
+  position: absolute;
+  top: 0.3em;
+  right: 0.4em;
+  font-size: 1.5em;
+  color: grey;
+}
 
 #features {
   @include nest;
