@@ -1,6 +1,6 @@
-<div class="inner-wrap">
+<div class="inner-wrap fluid video">
   <div class="container">
-    <div class="center">
+    <div class="inner-container center">
       <h1>CEC compliant, grid connect user manuals without fuss.</h1>
       <p><a class="btn btn-primary btn-large disabled">Play <i class="icon-play icon-white"></i></a></p>
     </div>
@@ -9,17 +9,18 @@
 
 <div class="inner-wrap">
   <div class="container">
-    <button class="btn btn-large btn-block btn-info paddingtopbot" type="button">Download Sample &nbsp;<i class="icon-file icon-white"></i></button>
-    <div class="">
-    <%= link_to new_user_registration_path, :class => "btn btn-large btn-block btn-success paddingtopbot" do %> 
+    <div class="center getstarted">
+    <%= link_to new_user_registration_path, :class => "btn" do %> 
       Get Started &nbsp;
-      <i class="icon-ok icon-white"></i>
+      <i class="icon-arrow-right icon-white"></i>
     <% end %>
     </div>
 
     <hr/>
   
     <!-- Example row of columns -->
+  
+    <h2 class="center hometitle">Features</h2>
   
     <div id="features">
       <div class="feature">
@@ -56,12 +57,33 @@
   </div>
 </div>
     
-<div class="inner-wrap fluid">
+<div class="inner-wrap fluid pricing">
   <div class="container">
-    <div class="inner-container">
-      <div id="pricing">  
-        <h2 class="center">Pricing</h2>
-      </div> 
+    <div class="inner-container nest">
+        <h2 class="center hometitle">Pricing</h2>
+        <div class="pricing-item center">
+          <h2>One-off use</h2>
+          <h4 class="blue">$5 per manual</h4>
+          <p>&nbsp;</p>
+          <hr class="dotted"/>
+          <p>Casual rate flexibility<br/>Pay as you go</p>
+        </div>
+        <div class="pricing-item center">
+          <h2>Subscriber</h2>
+          <h4 class="blue">$30 monthly subscription fee</h4>
+          <p>inc. <span class="blue">10 free</span> manuals per month</p>
+          <hr class="dotted"/>
+          <p>Rates as low as $1.50 per manual<br/><a href="#">Click here</a> to view rates</p>
+        </div>
+    </div>
+    <div class="inner-container nest">
+      <div class="pricing-table">
+        <a href="#"><i class="icon-remove"></i></a>
+        <h2 class="center">Subscriber Pricing Rates</h2>
+        <%= render "shared/rates_table" %>
+        <h3 class="center">The more you use the cheaper it becomes<br/></h3>
+        <p class="center help">Price paid per-manual scales according to your usage for your current month. This allows users who generate a large amount of manuals to benefit from cheaper rates. Your current month starts from the day you subscribe and runs until the same corresponding day of the next calendar month. For example if you signed up on May 6th your first month would end on June 5th.</p>
+      </div>
     </div>
   </div>
 </div>
