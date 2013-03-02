@@ -4,6 +4,7 @@ Solar::Application.routes.draw do
   
   resources :users, only: [:show, :update] do
     collection do 
+      get :billing
       get :subscribe
       put :create_subscription
       put :unsubscribe

@@ -72,7 +72,7 @@ $maxSmall: 420px;
   margin-right: $margin;
   padding-left: $boxPadding;
   padding-right: $boxPadding;
-  overflow: hidden;
+  @include clearfix;
 }
 
 @mixin round {

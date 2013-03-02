@@ -39,6 +39,10 @@ class ManualsController < ApplicationController
     @payment = EwayPayment.new
     @manual = Manual.find_with_type(params[:id], params[:type])
     
+    if @manual[:filled] && !@manual.paid?
+      @manual.current_step = "payment"
+    end
+    
     if params[:step]
       @manual.current_step = params[:step]
     end
@@ -102,17 +106,16 @@ class ManualsController < ApplicationController
     
     # payment step
     if params[:payment]
-      
       # don't process payment if one exists (when you hit refresh)
       unless @manual.eway_payment
-      
         # new credit card entered
         if user_params
           @manual.user.assign_attributes(user_params)
           @manual.user.validate_card = true
-        
           # can't rely on normal save validating since we don't necessarily want to keep eway_id
           unless @manual.user.valid?
+            @manual.current_step = "payment"
+            flash[:alert] = "Invalid credit card details."
             render 'edit' and return
           end
         end

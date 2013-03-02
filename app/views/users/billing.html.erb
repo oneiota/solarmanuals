@@ -1,0 +1,19 @@
+<% unless current_user.insider %>  
+  <% if current_user.subscribed? %>
+    <p>You are subscribed</p>
+    <p><%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put %></p>
+    <p>Usage this month: <%= currency(current_user.current_charge) %></p>
+  <% end %>
+  
+  <h4>Invoices</h4>
+  <% @payments_months.sort.each do |month, payments| %>
+  
+    <h2><%= month.strftime('%B') %></h2>
+    
+    <% payments.each do |payment| %>
+      <%= link_to "#{nicetime(payment.created_at)} #{currency(payment.return_amount)}", invoice_path(payment) %><br/>
+    <% end %>
+    
+  <% end %>
+  
+<% end %>

@@ -75,3 +75,14 @@ dl {
     padding-left: $boxPadding;
   }
 }
+
+hr {
+  border-bottom: 1px dotted;
+  border-top: none;
+  margin: $baseLineHeight 0;
+}
+
+.nest hr {
+  margin-left: $boxPadding;
+  margin-right: $boxPadding;
+}

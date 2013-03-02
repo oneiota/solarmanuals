@@ -1,38 +1,73 @@
-<h3>Your name</h3>
-
-<div><%= f.text_field :first_name, :placeholder => "First name", :autocomplete => false %></div>
-
-<div><%= f.text_field :last_name, :placeholder => "Last name", :autocomplete => false %></div>
+<div class="field">
+  <div class="field-label"><%= f.label :first_name %></div>
+  <div class="field-input"><%= f.text_field :first_name, :placeholder => "First name" %></div>
+</div>
+<div class="field">
+  <div class="field-label"><%= f.label :last_name %></div>
+  <div class="field-input"><%= f.text_field :last_name, :placeholder => "Last name" %></div>
+</div>
 
 <hr/>
 
-<h3>Your details</h3>
+<div class="actions"><h3>Installation Details</h3></div>
 
 <% unless user_signed_in? %>
   <p class="info">You can fill these in later.</p>
 <% end %>
 
+<div class="field">
+  <div class="field-label"><%= f.label :accreditation, "CEC Accreditation Number" %></div>
+  <div class="field-input"><%= f.text_field :accreditation %></div>
+</div>
 
-<div><%= f.text_field :accreditation, :placeholder => "CEC Accreditation Number", :autocomplete => false %></div>
+<div class="field">
+  <div class="field-label"><%= f.label :contractor_license_number, "Contractor Licence Number" %></div>
+  <div class="field-input"><%= f.text_field :contractor_license_number %></div>
+</div>
 
-<p><strong>Company Details</strong></p>
+<hr/>
 
-<div><%= f.text_field :company, :placeholder => "Company / Trading name", :autocomplete => false %></div>
+<div class="actions">Company Details</div>
 
-<div><%= f.text_field :abn, :placeholder => 'ABN', :autocomplete => false %></div>
+<div class="field">
+  <div class="field-label"><%= f.label :company, "Company Name" %></div>
+  <div class="field-input"><%= f.text_field :company %></div>
+</div>
 
-<p><strong>Address</strong></p>
+<div class="field">
+  <div class="field-label"><%= f.label :abn, "ABN" %></div>
+  <div class="field-input"><%= f.text_field :abn %></div>
+</div>
 
-<div><%= f.text_field :company_address, :placeholder => 'Street Address', :autocomplete => false %></div>
+<div class="actions">Address</div>
 
-<div><%= f.text_field :company_suburb, :placeholder => 'Suburb', :autocomplete => false %></div>
+<div class="field">
+  <div class="field-label"><%= f.label :company_address, "Street Address" %></div>
+  <div class="field-input"><%= f.text_field :company_address %></div>
+</div>
 
-<div><%= f.text_field :company_postcode, :placeholder => 'Postcode', :autocomplete => false %></div>
+<div class="field">
+  <div class="field-label"><%= f.label :company_suburb, "Suburb" %></div>
+  <div class="field-input"><%= f.text_field :company_suburb %></div>
+</div>
+<div class="field">
+  <div class="field-label"><%= f.label :company_postcode, "Postcode" %></div>
+  <div class="field-input"><%= f.text_field :company_postcode %></div>
+</div>
 
-<p><strong>Contact Details</strong></p>
+<div class="actions">Contact Details</div>
 
-<div><%= f.text_field :contact_email, :placeholder => 'Contact Email', :autocomplete => false %></div>
+<div class="field">
+  <div class="field-label"><%= f.label :contact_email, "Contact Email" %></div>
+  <div class="field-input"><%= f.text_field :contact_email %></div>
+</div>
 
-<div><%= f.text_field :company_phone, :placeholder => 'Phone number', :autocomplete => false %></div>
+<div class="field">
+  <div class="field-label"><%= f.label :company_phone, "Phone" %></div>
+  <div class="field-input"><%= f.text_field :company_phone %></div>
+</div>
 
-<div><%= f.text_field :company_fax, :placeholder => 'Fax number', :autocomplete => false %></div>
+<div class="field">
+  <div class="field-label"><%= f.label :company_fax, "Fax" %></div>
+  <div class="field-input"><%= f.text_field :company_fax %></div>
+</div>

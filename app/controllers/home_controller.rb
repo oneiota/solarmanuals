@@ -1,8 +1,4 @@
-
-
 class HomeController < ApplicationController
-  
-  layout "home"
   
   skip_before_filter :check_user_flagged!
   
@@ -12,6 +8,7 @@ class HomeController < ApplicationController
   def privacy; end
   def refunds; end
   def delivery; end
+  def security; end
 
   
 end

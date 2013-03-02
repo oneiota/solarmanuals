@@ -55,6 +55,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def billing
+    @user = current_user
+    @payments = current_user.eway_payments.reverse
+    @payments_months = @payments.group_by{ |p| p.created_at.beginning_of_month }
+  end
+  
   def subscribe
     @user = current_user
   end

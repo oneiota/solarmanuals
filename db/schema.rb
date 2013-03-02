@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301011210) do
+ActiveRecord::Schema.define(:version => 20130302075731) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -111,14 +111,14 @@ ActiveRecord::Schema.define(:version => 20130301011210) do
   end
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.string   "email",                     :default => "",    :null => false
+    t.string   "encrypted_password",        :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",             :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -138,12 +138,13 @@ ActiveRecord::Schema.define(:version => 20130301011210) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.boolean  "insider",                :default => false
-    t.boolean  "subscribed",             :default => false
+    t.boolean  "insider",                   :default => false
+    t.boolean  "subscribed",                :default => false
     t.string   "eway_id"
     t.string   "stored_cc_number"
     t.datetime "last_payed_at"
-    t.boolean  "flagged",                :default => false
+    t.boolean  "flagged",                   :default => false
+    t.string   "contractor_license_number"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

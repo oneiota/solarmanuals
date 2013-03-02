@@ -155,6 +155,11 @@ class Manual < ActiveRecord::Base
     paid? || user.subscribed? || user.insider
   end
   
+  
+  def marked?
+    marked && user.subscribed?
+  end
+  
   def files_array=(array)
     array.each do |file|
       images.build(:file => file)

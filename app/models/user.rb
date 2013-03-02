@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  attr_accessible :email, :password, :password_confirmation, :current_password, :remember_me, :first_name, :last_name, :company, :accreditation, :abn, :company_address, :company_suburb, :company_postcode, :contact_email, :company_phone, :company_fax, :logo, :pdfs_array, :subscribed, :eway_id, :stored_cc_number, :cc_number, :cc_expiry_month, :cc_expiry_year, :cvn, :remember
+         
+  
+  attr_protected :insider
   
   has_attached_file :logo, LOGO_OPTS
   validates_attachment :logo,

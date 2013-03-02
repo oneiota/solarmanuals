@@ -32,7 +32,7 @@
               <%= render "step_#{step}", f: f %>
           
               <div class="actions">
-                  <%= f.submit (@manual.filled ? "Save" : "Save & Continue") %>
+                  <%= f.submit (@manual.filled ? "Save" : "Save & Continue"), :class => "primary" %>
               </div>
             </div>   
         <% end %>

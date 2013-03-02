@@ -9,7 +9,7 @@
   <% @manuals.each do |manual| %>
     <%= content_tag :tr, class: (manual.filled ? '': 'incomplete') do %>
       <td class="paid-icon">
-        <%= link_to content_tag(:i, "", class: (manual.paid? ? 'icon-ok' : (manual.marked ? 'icon-tag' : 'icon-minus'))), manual %>
+        <%= link_to content_tag(:i, "", class: (manual.paid? ? 'icon-ok' : (manual.marked? ? 'icon-tag' : 'icon-minus'))), manual %>
       </td>
       <td><%= link_to manual.client_name, manual %></td>
       <td class="hidden-phone"><%= link_to manual.display_address, manual %></td>

@@ -1,10 +1,10 @@
 <div id="signed-in-top" class="nest">
-  <div id="user-details">
-    <h2 id="user-name"><%= current_user.full_name %></h2>
+  <div id="user-details">    
     <p>
+      <strong><%= current_user.full_name %></strong><br/>
       <%= current_user.company %><br/>
       <%= current_user.full_address %><br/>
-      <%= link_to "Update details", edit_user_registration_path %>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Upload Logo", "#" %>
+      <%= link_to "Update details", edit_user_registration_path %>
     </p>
   </div>
 
@@ -14,15 +14,14 @@
       <p>Insider Account</p>
     <% elsif current_user.subscribed? %>
       <p>
-        <strong>Subscribed</strong><br/>
+        <strong>Subscribed</strong>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Details", billing_users_path %><br/>
         Usage <strong><%= currency(current_user.current_charge) %></strong><br/>
-        Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong><br/>
-        <%= link_to "Details", edit_user_registration_path %>
+        Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong>
       </p>
   
     <% else %>
         <p>
-          <strong>Casual User</strong><br/>
+          <strong>Casual User</strong>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Details", billing_users_path %><br/>
           <strong><%= currency(CASUAL_FEE) %> <span class="help">Per Manual</span></strong><br/>
           <%= link_to "Subscribe", subscribe_users_path %>
         </p>  

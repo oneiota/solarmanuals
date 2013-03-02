@@ -36,6 +36,18 @@
   }
 }
 
+
+#manual-title {
+  margin: 3em 0 1em;
+}
+
+#manual-actions {
+  margin-bottom: $baseLineHeight * 5;
+  a {
+    margin: 0;
+  }
+}
+
 #manual-uploads {
   @include nest;
 }
@@ -72,6 +84,7 @@
 #image-uploads {
   @include grid(6);
 }
+
 
 #manual-form {
   list-style: decimal inside;
@@ -113,14 +126,6 @@
     }
   }
 }
-
-
-
-.actions {
-  @include grid(8);
-  @include offset(4);
-}
-
 
 #string-fields {
   counter-reset: item;
@@ -167,6 +172,7 @@
 
 .remove_fields {
   color: $red;
+  border-color: $red;
 }
 
 input[type=text],

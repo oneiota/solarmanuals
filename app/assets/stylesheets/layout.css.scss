@@ -10,7 +10,6 @@ body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  padding-bottom: 50px;
   margin: $baseLineHeight auto (-($footerHeight));
   @include clearfix;
   @media (max-width: 900px) {
@@ -54,14 +53,14 @@ body {
 
 #signed-in-top {
   #user-details {
-    @include grid(5);
+    @include grid(4);
     @include regular;
     h2, a {
       font-weight: bold;
     }
   }
   #billing-info {
-    @include grid(4);
+    @include grid(5);
     @include regular;
     position: relative;
     strong, a {
@@ -96,4 +95,5 @@ body {
 
 .container .alert {
   margin-top: -$pagePadding;
+  margin-bottom: $baseLineHeight;
 }
