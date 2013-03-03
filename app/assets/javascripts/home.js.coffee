@@ -9,3 +9,13 @@ $ ->
 	$(".home.index .brand").on 'click', (e) ->
     e.preventDefault()
     $("html, body").animate { scrollTop: 0 }, 1000
+    
+  $(".showrates").on 'click', (e) ->
+    e.preventDefault()
+    $(".pricing-holder").slideToggle();
+    
+  $(".icon-remove").on 'click', (e) ->
+    e.preventDefault()
+    $(".pricing-holder").slideToggle();
+    
+  $(".pricing-holder").hide();      
