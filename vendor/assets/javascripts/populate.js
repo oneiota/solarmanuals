@@ -188,7 +188,7 @@ jQuery.fn.populate = function(obj, options) {
 						case 'submit':
 						default:
 							value			= value == null ? '' : value;
-							element.value	= value;
+							if(!element.value) element.value	= value;
 							
 					}
 						

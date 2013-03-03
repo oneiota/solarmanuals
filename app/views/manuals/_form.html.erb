@@ -27,8 +27,11 @@
                 <%= f.hidden_field :current_step, :value => @manual.next_step %>
               <% end %>
             <% end %>
-          
+            
+            <%= f.hidden_field :prefill_id %>
+            
             <div class="step-fields nest">
+              
               <%= render "step_#{step}", f: f %>
           
               <div class="actions">

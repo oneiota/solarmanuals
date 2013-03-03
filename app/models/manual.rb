@@ -22,7 +22,7 @@ class Manual < ActiveRecord::Base
   
   accepts_nested_attributes_for :user
   
-  attr_accessor :payment
+  attr_accessor :payment, :prefill_id
   
   after_save :build_strings
   
@@ -171,12 +171,6 @@ class Manual < ActiveRecord::Base
     'inverter_details_prefill' => ["inverter_brand", "inverter_series", "inverter_model", "inverter_output", "inverter_number"],
     'warranty_details_prefill' => ["warranty_workmanship", "warranty_panels_product", "warranty_panels_output_performance", "warranty_inverter"]
   }
-  
-  def self.find_with_type(id, type)
-    select = PREFILL_FIELDS[type]
-    select = select.join(", ") if select # could be nil
-    find(id, {:select => select})
-  end
   
   def self.prefill_details(type)
     prefill(*PREFILL_FIELDS[type])

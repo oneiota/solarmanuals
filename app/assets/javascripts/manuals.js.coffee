@@ -26,22 +26,28 @@ $ ->
     $(this).closest("form").submit()
     $("#subscription-loading").show()
   
+  prefillFields = (id, type) ->
+    $.ajax
+      url: '/manuals/'+id
+      dataType: 'json'
+      data: 
+        type: type
+      success: (data) ->
+        strings = data.manual.panel_strings_attributes.length
+        if (fieldsets = $('.string-fields').length) < strings
+          for i in [1..(strings - fieldsets)] by 1
+            $('.add_fields').trigger('click')
+        
+        $('form').populate data,
+          resetForm: false
+          useIndices: true
   
   $(".select-prefill").on 'change', ->
-    params = {
-      type: $(this).attr('id')
-    }
-    $.ajax
-      url: '/manuals/'+$(this).val()
-      dataType: 'json'
-      data: params
-      success: (data) ->
-        realData = {
-          'manual' : data
-        }
-        $('form').populate realData,
-          resetForm: false
+    prefillFields($(this).val(), $(this).attr('id'))
   
+  # auto prefill if prefill_id field from previous guy
+  if (prefill_id = $('#manual_prefill_id').val())
+    prefillFields(prefill_id, $('.select-prefill').attr('id'))
   
   $('.pdf-checkbox').on 'change', ->
     $(this).closest('form').submit()
@@ -80,9 +86,9 @@ $ ->
     
   # http://railscasts.com/episodes/196-nested-model-form-revised?view=asciicast  
   $('form').on 'click', '.add_fields', (event) ->
-    time = new Date().getTime()
+    id = $('.string-fields').length
     regexp = new RegExp($(this).data('id'), 'g')
-    $(this).parent().before($(this).data('fields').replace(regexp, time))
+    $(this).parent().before($(this).data('fields').replace(regexp, id))
     event.preventDefault()
     
   $('form').on 'click', '.remove_fields', (event) ->

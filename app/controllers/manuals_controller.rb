@@ -37,7 +37,8 @@ class ManualsController < ApplicationController
   # GET /manuals/1.json
   def show
     @payment = EwayPayment.new
-    @manual = Manual.find_with_type(params[:id], params[:type])
+    #@manual, @strings = Manual.find_with_type(params[:id], params[:type])
+    @maunal = Manual.find(params[:id])
     
     if @manual[:filled] && !@manual.paid?
       @manual.current_step = "payment"
