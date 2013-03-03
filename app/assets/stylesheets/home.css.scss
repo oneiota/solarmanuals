@@ -26,7 +26,7 @@
     float:left;
     margin-right: $boxPadding * 2;
     position: relative;
-    top: 10px;
+    top: 4px;
   }
   #sign-in {
     float: right;
@@ -47,23 +47,32 @@
   #logo {
     font-weight: 200;
     display: table-cell;
-    top: 0px;
+    top: -6px;
   }
 }
 
 .getstarted {
   margin-bottom: 2.66667%;
-  .btn {
-    font-size: 1.8em;
-    background: $blue;
-    border: none;
+}
+
+.davesbtn {
+  font-size: 1.8em;
+  background: $blue;
+  border: none;
+  color: white;
+  padding: 20px;
+  &:hover {
     color: white;
-    padding: 20px;
+    background: $darkGrey;
   }
 }
 
 .video {
   background: $darkGrey;
+}
+
+.features {
+  background: white;
 }
 
 .hometitle {
@@ -73,8 +82,9 @@
 }
 
 .pricing {
-  background: white;
+  background: $lightGrey;
   .pricing-item {
+    background: white;
     border-radius: 15px;
     padding: 1em;
     border: 1px $grey solid;
@@ -90,9 +100,10 @@
 }
 
 .pricing-table {
+  background: white;
   position: relative;
   border-radius: 15px;
-  padding: 1em;
+  padding: 1em 0;
   border: 1px $grey solid;
   margin-bottom: 1.5em;
   @include grid(10);
@@ -102,6 +113,27 @@
     font-size: 20px;
     margin-bottom: 1em;
   }
+  .help {
+    margin: 0;
+  }
+}
+
+.rates-table {
+  @include grid(10);
+  @include offset(1);
+  @include push(1);
+  margin-bottom: 1em;
+    
+    td {
+      text-align: right;
+      padding: 0px 20px 0px 0px;
+      width: 50%;
+    }
+    td.r-col {
+      text-align: left;
+      padding: 0px 0px 0px 20px;
+      border-left: 1px solid $lightGrey;
+    }
 }
 
 .dotted {
@@ -117,6 +149,36 @@
   font-size: 1.5em;
   color: grey;
 }
+
+.whatsincluded {
+  background: white;
+  hr {
+    margin-bottom: 1em;
+  }
+}
+
+.included-list-holder {
+  @include nest;
+  .included-list {
+    @include grid(6);
+    ul {
+      list-style: disc inside;    
+    }
+  }
+  .manual-pic {
+    @include grid(6);
+    img {
+      width:100%;
+      height: auto;
+    }
+    .btn {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+
 
 #features {
   @include nest;

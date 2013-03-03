@@ -1,5 +1,33 @@
 @import 'variables';
 
+.homefooter {
+  @include nest;
+  .arrow-down {
+    display: none;
+  }
+  .icon-comment {
+   position: relative;
+   top:-4px;
+   left: 10px;
+  }
+  @media (max-width: $maxSmall) {
+    .arrow-down {
+      display: block;
+    }
+  }
+}
+
+.foot1 {
+  @include grid(1);
+}
+.foot3 {
+  @include grid(3);
+}
+.foot4 {
+  @include grid(4);
+}
+
+
 
 // small footer
 .signed-in .wrap {

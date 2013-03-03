@@ -7,53 +7,56 @@
   </div>
 </div>
 
-<div class="inner-wrap">
+<div class="inner-wrap fluid features">
   <div class="container">
-    <div class="center getstarted">
-    <%= link_to new_user_registration_path, :class => "btn" do %> 
-      Get Started &nbsp;
-      <i class="icon-arrow-right icon-white"></i>
-    <% end %>
-    </div>
-
-    <hr/>
+    <div class="inner-container">
+      <div class="center getstarted">
+      <%= link_to new_user_registration_path, :class => "davesbtn btn" do %> 
+        Get Started &nbsp;
+        <i class="icon-arrow-right icon-white"></i>
+      <% end %>
+      </div>
   
-    <!-- Example row of columns -->
-  
-    <h2 class="center hometitle">Features</h2>
-  
-    <div id="features">
-      <div class="feature">
-        <img src="<%= asset_path("tick.gif")%>" alt="CEC Compliant Format" />
-        <h2>CEC compliant format</h2>
-        <p>Feel confident knowing the grid connect user manual you provide will be created in a format that is 100% CEC compliant. Stop wasting time and money drafting manuals that you may be penalised for.</p>
-      </div>
-      <div class="feature">
-        <img src="<%= asset_path("easy.gif")%>" alt="Easy Grid Connect Manuals" />
-        <h2>Easy and professional</h2>
-        <p>Enter your business details, client information and install details and our system will generate a professional looking grid connect user manual. Featuring data rich graphs and diagrams to match your customers location and setup.</p>
-      </div>
-      <div class="feature">
-        <img src="<%= asset_path("mobile.gif")%>" alt="Record solar installs" />
-        <h2>Record jobs on the go</h2>
-        <p>Limit your liability by automatically keeping a comprehensive record of your installs. Subscribers have the added bonus of uploading and archiving images of completed installs from their smart phone via our web app.</p>
-      </div>
-      <div class="feature">
-       <img src="<%= asset_path("dollars.gif")%>" alt="Flexible pricing" />
-        <h2>Flexibly priced</h2>
-        <p>Our flexible pricing allows you to pay a fixed casual price on a per user manual basis or subscribe to a monthly no contract service and generate limitless manuals plus enjoy additional features aswell.</p>
-      </div>
-      <div class="feature">
-        <img src="<%= asset_path("graph.gif")%>" alt="Average power generation" />
-        <h2>Hassle-free graphs</h2>
-        <p>Simply select your customers location and a relevant average power generation graph is formulated based on data relevant to that city. Easy.</p>
-      </div>
-      <div class="feature">
-        <img src="<%= asset_path("diagram.gif")%>" alt="Automated wiring diagrams" />
-        <h2>Automatic diagrams</h2>
-        <p>Simple and easy to understand system diagrams are automatically created and labelled with the components used in your install.</p>
+      <hr/>
+    
+      <!-- Example row of columns -->
+    
+      <h2 class="center hometitle">Features</h2>
+    
+      <div id="features">
+        <div class="feature">
+          <img src="<%= asset_path("tick.gif")%>" alt="CEC Compliant Format" />
+          <h2 class="subhead">CEC compliant format</h2>
+          <p>Feel confident knowing the grid connect user manual you provide will be created in a format that is 100% CEC compliant. Stop wasting time and money drafting manuals that you may be penalised for.</p>
+        </div>
+        <div class="feature">
+          <img src="<%= asset_path("easy.gif")%>" alt="Easy Grid Connect Manuals" />
+          <h2 class="subhead">Easy and professional</h2>
+          <p>Enter your business details, client information and install details and our system will generate a professional looking grid connect user manual. Featuring data rich graphs and diagrams to match your customers location and setup.</p>
+        </div>
+        <div class="feature">
+          <img src="<%= asset_path("mobile.gif")%>" alt="Record solar installs" />
+          <h2 class="subhead">Record jobs on the go</h2>
+          <p>Limit your liability by automatically keeping a comprehensive record of your installs. Subscribers have the added bonus of uploading and archiving images of completed installs from their smart phone via our web app.</p>
+        </div>
+        <div class="feature">
+         <img src="<%= asset_path("dollars.gif")%>" alt="Flexible pricing" />
+          <h2 class="subhead">Flexibly priced</h2>
+          <p>Our flexible pricing allows you to pay a fixed casual price on a per user manual basis or subscribe to a monthly no contract service and generate limitless manuals plus enjoy additional features aswell.</p>
+        </div>
+        <div class="feature">
+          <img src="<%= asset_path("graph.gif")%>" alt="Average power generation" />
+          <h2 class="subhead">Hassle-free graphs</h2>
+          <p>Simply select your customers location and a relevant average power generation graph is formulated based on data relevant to that city. Easy.</p>
+        </div>
+        <div class="feature">
+          <img src="<%= asset_path("diagram.gif")%>" alt="Automated wiring diagrams" />
+          <h2 class="subhead">Automatic diagrams</h2>
+          <p>Simple and easy to understand system diagrams are automatically created and labelled with the components used in your install.</p>
+       </div>
      </div>
-   </div>
+     
+    </div>
   </div>
 </div>
     
@@ -73,10 +76,10 @@
           <h4 class="blue">$30 monthly subscription fee</h4>
           <p>inc. <span class="blue">10 free</span> manuals per month</p>
           <hr class="dotted"/>
-          <p>Rates as low as $1.50 per manual<br/><a href="#">Click here</a> to view rates</p>
+          <p>From as low as $1.50 per manual<br/><a class="showrates" href="#">Click here</a> to view rates</p>
         </div>
     </div>
-    <div class="inner-container nest">
+    <div class="pricing-holder inner-container nest">
       <div class="pricing-table">
         <a href="#"><i class="icon-remove"></i></a>
         <h2 class="center">Subscriber Pricing Rates</h2>
@@ -88,46 +91,46 @@
   </div>
 </div>
 
-<div class="inner-wrap">
+<div class="inner-wrap fluid whatsincluded">
   <div class="container">
+    <div class="inner-container">
 
-  
-    <h2 id="included" class="marginbottom">What's Included</h2>
-  
-    <div>
-      <div class="span6">
-        <p class="feature marginbottom">Enter your installation details and our user manual generator will create a customised user manual including:</p>
-        <hr class="hidden-phone"/>
-        <p class="green feature">Customised Cover Page</p>
-        <p class="indent">Including your logo, your details and photo of system</p>
-        <br/>
-        <p class="green feature">Solar Power Explained</p>
-        <p class="indent">How solar power works</p>
-        <p class="indent">How a grid connected solar power system works</p>
-        <p class="indent">The electricity meter</p>
-        <p class="indent">Troubleshooting instructions</p>
-        <p class="indent">Safety procedures</p>
-        <p class="indent">Shutdown/start up procedure</p>
-        <p class="indent">System maintenance schedule</p>
-        <br/>
-        <p class="green feature">Installed System Details</p>
-        <p class="indent">System outlined</p>
-        <p class="indent">System components</p>
-      	<p class="indent">System performance including graph</p>
-      	<p class="indent">Wiring diagram of the installed system</p>
-      	<p class="indent">Warranties</p>
-      	<br/>
-      	<p class="green feature">Certificate of Testing and Compliance</p>
-      	<br/>
-      	<p class="green feature">Installation Checklist</p>
+    <h2 class="center hometitle">What's Included</h2>
+     
+      <div class="included-list-holder">    
+        <div class="included-list">
+          <p>Enter your installation details and our user manual generator will create a customised user manual including</p>
+          <p class="subhead">Customised Cover Page</p>
+          <ul><li>Including your logo, your details and photo of system</ul></li>
+          <br/>
+          <p class="subhead">Solar Power Explained</ul></li>
+          <ul><li>How solar power works</ul></li>
+          <ul><li>How a grid connected solar power system works</ul></li>
+          <ul><li>The electricity meter</ul></li>
+          <ul><li>Troubleshooting instructions</ul></li>
+          <ul><li>Safety procedures</ul></li>
+          <ul><li>Shutdown/start up procedure</ul></li>
+          <ul><li>System maintenance schedule</ul></li>
+          <br/>
+          <p class="subhead">Installed System Details</p>
+          <ul><li>System outlined</ul></li>
+          <ul><li>System components</ul></li>
+        	<ul><li>System performance including graph</ul></li>
+        	<ul><li>Wiring diagram of the installed system</ul></li>
+        	<ul><li>Warranties</ul></li>
+        	<br/>
+        	<p class="subhead">Certificate of Testing and Compliance</p>
+        	<br/>
+        	<p class="subhead">Installation Checklist</p>
+        </div>
+        
+        <div class="manual-pic">
+          <img src="<%= asset_path("manual.gif")%>" alt="Grid Connect User Manual" />
+          <button class="btn davesbtn" type="button">Download Sample &nbsp;<i class="icon-file icon-white"></i></button>
+        </div>
+        
       </div>
-      
-      <div class="hidden-phone ">
-        <img src="<%= asset_path("manual.gif")%>" alt="Grid Connect User Manual" />
-      </div>
-      <button class="btn btn-large btn-block btn-info paddingtopbot margintop" type="button">Download Sample &nbsp;<i class="icon-file icon-white"></i></button>
-     </div>
   
+    </div>
   </div>
-
 </div>

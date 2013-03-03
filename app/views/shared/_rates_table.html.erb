@@ -1,25 +1,42 @@
-<dl>
-  <dt>Subscription Fee</dt>
-  <dd><%= currency(SUBSCRIPTION_FEE) %> <span class="help">Per Month</span></dd>
+<table class="rates-table">
+  <tr>
+    <td>Amount of manuals<br/>generated per month</td>
+    <td class="r-col">Price per manual</td>
+  </tr>
+   
+  <tr> 
+    <td>&nbsp;</td>
+    <td class="r-col">&nbsp;</td>
+  </tr>
   
-  <dt>&nbsp;</dt>
-  <dd>+</dd>
+  <tr>  
+    <td>First 10 manuals</td>
+    <td class="r-col"><span class="blue">Free</span> <span class="help">Included with subscription</span></td>
+  </tr>
   
-  <dt>First 10 manuals</dt>
-  <dd><%= currency(0) %></dd>
+  <tr>  
+    <td>11 to 100</td>
+    <td class="r-col"><%= currency(250)%> <span class="help">Per manual</span></td>
+  </tr>
   
-  <dt>Up to 100</dt>
-  <dd><%= currency(250)%></dd>
+  <tr>  
+    <td>Up to 250</td>
+    <td class="r-col"><%= currency(225)%> <span class="help">Per manual</span></td>
+  </tr>
   
-  <dt>Up to 250</dt>
-  <dd><%= currency(225)%></dd>
+  <tr>  
+    <td>Up to 500</td>
+    <td class="r-col"><%= currency(200)%> <span class="help">Per manual</span></td>
+  </tr>
   
-  <dt>Up to 500</dt>
-  <dd><%= currency(200)%></dd>
+  <tr>  
+    <td>Up to 1000</td>
+    <td class="r-col"><%= currency(175)%> <span class="help">Per manual</span></td>
+  </tr>
   
-  <dt>Up to 1000</dt>
-  <dd><%= currency(175)%></dd>
+  <tr>  
+    <td>Over 1000</td>
+    <td class="r-col"><%= currency(150)%> <span class="help">Per manual</span></td>
+  </tr>
   
-  <dt>Over 1000</dt>
-  <dd><%= currency(150)%></dd>
-</dl>
+</table>  
