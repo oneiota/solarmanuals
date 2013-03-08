@@ -1,5 +1,6 @@
 
 <%= hidden_field_tag :payment, '1' %>
+<%= hidden_field_tag :new_card, (current_user.eway_id ? '0' : '1') %>
 
 <%= f.fields_for [:user_attributes, @manual.user] do |b| %>
   
@@ -11,12 +12,20 @@
   </div>
   
   <% if current_user.eway_id %>
-
-    <p>Using stored credit card number <strong><%= format_card(current_user.stored_cc_number) %></strong></p>
-
-    <p><%= link_to "Change payment details", edit_card_users_path %></p>
-
-  <% else %>
+    <div class="field">
+      <div class="field-label">&nbsp;</div>
+      <div class="field-input">
+        <p class="regular">Using stored credit card number<br/><strong><%= format_card(current_user.stored_cc_number) %></strong></p>
+        <p>
+          <%= link_to "Change credit card", "#", :class => "show-cc-fields" %>
+          <%= link_to "Use this card", "#", :class => "hide-cc-fields" %>
+        </p>
+      </div>
+    </div>
+    
+  <% end %>
+  
+  <div id="subscribe-cc-fields" class="<%= current_user.eway_id ? 'hidden' : '' %>">
 
     <%= render :partial => "shared/cc_fields", :locals => {f: b} %>
     <div class="field">
@@ -29,6 +38,6 @@
       </div>
     </div>
 
-  <% end %>
+  </div>
 
 <% end %>

@@ -110,18 +110,25 @@ class ManualsController < ApplicationController
       # don't process payment if one exists (when you hit refresh)
       unless @manual.eway_payment
         # new credit card entered
-        if user_params
+        if user_params && params[:new_card] == '1'
           @manual.user.assign_attributes(user_params)
           @manual.user.validate_card = true
           # can't rely on normal save validating since we don't necessarily want to keep eway_id
           unless @manual.user.valid?
             @manual.current_step = "payment"
             flash[:alert] = "Invalid credit card details."
-            render 'edit' and return
+            render 'edit'
+            return
           end
-        end
+          @manual.user.create_eway_id
+       end
       
         @manual.eway_payment = EwayPayment.process_single_payment!(@manual.user)
+        
+        # forget eway_id
+        if params[:new_card] == '1' && @manual.user.remember == '0'
+          @manual.user.eway_id = nil
+        end
       end
     end
     

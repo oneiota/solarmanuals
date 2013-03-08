@@ -120,14 +120,27 @@ class User < ActiveRecord::Base
   
   def create_eway_id
     self.eway_id = Eway.client.create_customer(
+      'CustomerRef' => self.id,
       'Title' => 'Mr.',
       'FirstName' => first_name,
       'LastName' => last_name,
+      'Company' => '',
       'Country' => 'au',
+      'Email' => '',
+      'Address' => '',
+      'Suburb' => '',
+      'State' => '',
+      'PostCode' => '',
+      'Phone' => '',
+      'Mobile' => '',
+      'Fax' => '',
+      'URL' => '',
+      'JobDesc' => '',
+      'Comments' => '',
       'CCNumber' => cc_number,
+      'CCNameOnCard' => '',
       'CCExpiryMonth' => cc_expiry_month,
-      'CCExpiryYear' => cc_expiry_year,
-      'CVN' => cvn
+      'CCExpiryYear' => cc_expiry_year
     )
     
     if remember == '1'

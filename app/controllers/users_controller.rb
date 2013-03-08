@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   rescue_from BigCharger::Error do |e|
     flash[:alert] = e.message
-    redirect_to update_card_users_path
+    redirect_to edit_card_users_path
   end
   
   def show
@@ -33,7 +33,6 @@ class UsersController < ApplicationController
   def update_card
     @user = current_user
     @user.assign_attributes(params[:user])
-    
     @user.validate_card = true    
     # validate card details
     unless @user.valid?
@@ -52,6 +51,9 @@ class UsersController < ApplicationController
       @user.flagged = false
       @user.save
       redirect_to root_url, :notice => "Payment details updated."
+    else
+      puts "hello"
+      redirect_to root_url
     end
   end
   

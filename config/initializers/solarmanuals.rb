@@ -1,3 +1,3 @@
-SUBSCRIPTION_FEE = 3000
+SUBSCRIPTION_FEE = Rails.env.development? ? 10 : 3000
 FREE_MANUALS = 10
-CASUAL_FEE = 500
+CASUAL_FEE = Rails.env.development? ? 10 : 500

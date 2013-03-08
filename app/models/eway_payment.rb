@@ -16,7 +16,10 @@ class EwayPayment < ActiveRecord::Base
     @payment = EwayPayment.new
     @payment.user = user
     
-    user.eway_id ||= user.create_eway_id
+    # create new eway id if we don't have one yet, or they've entered new details
+    if !user.eway_id || user.cc_number
+      user.eway_id = user.create_eway_id
+    end
     
     @payment.process_payment!(CASUAL_FEE)
     
