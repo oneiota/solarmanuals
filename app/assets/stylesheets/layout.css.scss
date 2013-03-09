@@ -18,15 +18,17 @@ body {
   }
   .inner-wrap {
     margin: 0 auto;
-    background: #fff;
     max-width: $pageWidth;
+    background: $lightGrey;
     &.fluid {
       max-width: 100%;
       .container {
         max-width: $pageWidth;
+        background: #fff;
         padding: 0;
         .inner-container {
           padding: $pagePadding;
+          @include clearfix;
         }
       }
     }
@@ -38,6 +40,7 @@ body {
   max-width: $pageWidth;
   padding: $pagePadding;
   margin: 0 auto;
+  position: relative;
 }
 
 .nest {
@@ -89,4 +92,8 @@ body {
 .container .alert {
   margin-top: -$pagePadding;
   margin-bottom: $baseLineHeight;
+}
+
+#header .alert {
+  margin: 0;
 }

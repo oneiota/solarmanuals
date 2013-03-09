@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   layout :devise_layouts
   
   def devise_layouts
-    (devise_controller? && action_name == 'new') ? 'home' : 'application'
+    (devise_controller? && %w{create new}.include?(action_name)) ? 'home' : 'application'
   end
   
   rescue_from CanCan::AccessDenied do |exception|

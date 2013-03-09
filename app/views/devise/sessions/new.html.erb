@@ -1,17 +1,30 @@
 <div id="user-box">
-
-  <h2>Sign in</h2>
+  <div class="actions">
+    <h2>Sign in</h2>
+  </div>
 
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <div><%= f.email_field :email, :placeholder => "Email" %></div>
+  
+    <div class="field">
+      <div class="field-label"><%= f.label :email%></div>
+      <div class="field-input"><%= f.email_field :email %></div>
+    </div>
 
-    <div><%= f.password_field :password, :placeholder => "Password" %></div>
+    <div class="field">
+      <div class="field-label"><%= f.label :password %></div>
+      <div class="field-input"><%= f.password_field :password %></div>
+    </div>
+    
+    <div class="field">
+      <div class="field-label"><%= f.label :remember_me %></div>
+      <div class="field-input">
+        <%= f.check_box :remember_me %>        
+      </div>
+    </div>
+    <div class="actions">
+      <p><%= f.submit "Sign in", :class => "btn primary" %></p>
+    </div>
 
-    <%= f.label :remember_me, :class => "checkbox" do %>
-      <%= f.check_box :remember_me %> Remember me
-    <% end %>
-
-    <p><%= f.submit "Sign in", :class => "btn btn-primary btn-block sign-in-btn" %></p>
   <% end %>
   
   <hr/>

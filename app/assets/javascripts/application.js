@@ -18,4 +18,5 @@
 //= require spin
 //= require canvasResize
 //= require exif
+//= require sticky
 //= require_tree .

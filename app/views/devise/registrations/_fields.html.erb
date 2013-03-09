@@ -1,19 +1,15 @@
 <div class="field">
   <div class="field-label"><%= f.label :first_name %></div>
-  <div class="field-input"><%= f.text_field :first_name, :placeholder => "First name" %></div>
+  <div class="field-input"><%= f.text_field :first_name %></div>
 </div>
 <div class="field">
   <div class="field-label"><%= f.label :last_name %></div>
-  <div class="field-input"><%= f.text_field :last_name, :placeholder => "Last name" %></div>
+  <div class="field-input"><%= f.text_field :last_name %></div>
 </div>
 
 <hr/>
 
-<div class="actions"><h3>Installation Details</h3></div>
-
-<% unless user_signed_in? %>
-  <p class="info">You can fill these in later.</p>
-<% end %>
+<div class="actions"><h3>Installer Details</h3></div>
 
 <div class="field">
   <div class="field-label"><%= f.label :accreditation, "CEC Accreditation Number" %></div>

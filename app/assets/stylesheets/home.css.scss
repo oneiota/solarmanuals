@@ -1,16 +1,13 @@
 @import 'variables';
 
 #header {
-  position: fixed;
-  top:0;
-  background: black;
-  width:100%;
-  //border-bottom: 1px $lightGrey solid;
+  width: 100%;
+  max-width: 100%;
+  z-index: 10;
   ul {
     display: $lightGrey;
   }
   a {
-    color: white;
     &:hover {
       color: $blue;
     }
@@ -18,9 +15,7 @@
 }
 
 #home-nav {
-  background: black;
-  font-size: 14px;
-  padding: 0.5%;
+  border-bottom: 1px $lightGrey solid;
   li {
     display: inline-block;
     float:left;
@@ -32,7 +27,6 @@
     float: right;
     margin-right: 0;
     i {
-      color: white;
       margin-left: 0.5em;
     }
     a {
@@ -44,58 +38,61 @@
       }
     }
   }  
-  #logo {
-    font-weight: 200;
-    display: table-cell;
-    top: -6px;
-  }
-}
-
-.getstarted {
-  margin-bottom: 2.66667%;
-}
-
-.davesbtn {
-  font-size: 1.8em;
-  background: $blue;
-  border: none;
-  color: white;
-  padding: 20px;
-  &:hover {
-    color: white;
-    background: $darkGrey;
-  }
-}
-
-.video {
-  background: $darkGrey;
-}
-
-.features {
-  background: white;
-}
-
-.hometitle {
-  font-size: 24px;
-  line-height: 1.5em;
-  margin: 1.5em 0;
-}
-
-.pricing {
-  background: $lightGrey;
-  .pricing-item {
-    background: white;
-    border-radius: 15px;
-    padding: 1em;
-    border: 1px $grey solid;
-    margin-bottom: 1.5em;
-    @include grid(4);
-    @include offset(1);
-    @include push(1);
-    h2 {
-      font-size: 20px;
-      margin-bottom: 1em;
+  #logo h1 {
+    font-size: $baseFontSize;
+    a {
+      color: $black;
     }
+    &:after {
+      content: '•';
+      display: inline-block;
+      margin-left: 20px;
+    }
+  }
+}
+
+#intro {
+  @include grid(6);
+  @include push(6);
+  h1, p {
+    margin: ($baseLineHeight*2) 0;
+  }
+  h1 {
+    font-size: 36px;
+    line-height: $baseLineHeight * 2;
+  }
+  p {
+    color: $midGrey;
+    font-weight: 500;
+  }
+}
+
+#papers {
+  background: url('papers.png') 0 0 no-repeat;
+  position: absolute;
+  right: -70px;
+  height: 480px;
+  width: 435px;
+  z-index: 11;
+}
+
+.section-title {
+  text-align: center;
+  margin: ($baseLineHeight*2) 0;
+}
+
+.pricing-item {
+  background: white;
+  border-radius: 15px;
+  padding: 1em;
+  border: 1px $grey solid;
+  margin-bottom: 1.5em;
+  @include grid(4);
+  @include offset(1);
+  @include push(1);
+  h2 {
+    font-size: 20px;
+    margin-bottom: 1em;
   }
 }
 
@@ -142,14 +139,6 @@
   margin-bottom: 1em;
 }
 
-.icon-remove {
-  position: absolute;
-  top: 0.3em;
-  right: 0.4em;
-  font-size: 1.5em;
-  color: grey;
-}
-
 .whatsincluded {
   background: white;
   hr {
@@ -162,7 +151,11 @@
   .included-list {
     @include grid(6);
     ul {
-      list-style: disc inside;    
+      list-style: disc inside;
+      li {
+        font-weight: 500;
+        color: $midGrey;
+      }  
     }
   }
   .manual-pic {
@@ -183,10 +176,15 @@
 #features {
   @include nest;
   .feature {
-    width: $third;
-    float: left;
-    padding: $boxPadding;
-    @include box-sizing(border-box);
+    @include regular;
+    @include grid(4);
+    h2 {
+      font-weight: bold;
+    }
+    p {
+      font-weight: 500;
+      color: $midGrey;
+    }
     img {
       width: 100%;
       height: auto;

@@ -1,13 +1,9 @@
 <%= render "layouts/header" %>
 <div class="wrap">
   <div class="inner-wrap">
-    <% if alert %>
-      <div class="alert alert-error"><%= alert %></div>
-    <% end %>
-    <% if notice %>
-      <div class="alert alert-info"><%= notice %></div>
-    <% end %>
-  
+    
+    <%= render :partial => 'shared/flash' %>
+    
     <% if user_signed_in? %>
       <div class="container">
         <%= render 'layouts/signed_in_nav' %>

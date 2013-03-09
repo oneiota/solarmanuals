@@ -1,4 +1,6 @@
 $ ->
+  $('#header').sticky()
+  
   $(".home.index .navbar a.scroll").on 'click', (e) ->
     e.preventDefault()
     scrltarget = $(this).attr('href').substr(1)

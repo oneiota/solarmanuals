@@ -1,8 +1,10 @@
+@import 'variables';
+
 #user-box {
-  width: 300px;
+  @include clearfix;
+  width: 500px;
   margin: 50px auto 0;
   padding: 10px 30px;
-  border: 1px solid #ddd;
   input[type=text],
   input[type=email],
   input[type=password] {
@@ -11,9 +13,5 @@
     box-sizing: border-box;
     padding: 7px 10px;
     height: auto;
-  }
-  .btn {
-    padding: 10px 0;
-    margin: 1em 0;
   }
 }

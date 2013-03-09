@@ -69,6 +69,7 @@ module Solar
 end
 
 ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+  puts "ERROR"
   html = %(<div class="field_with_errors">#{html_tag}</div>).html_safe
   
   form_fields = [
