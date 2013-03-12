@@ -24,7 +24,6 @@ body {
       max-width: 100%;
       .container {
         max-width: $pageWidth;
-        background: #fff;
         padding: 0;
         .inner-container {
           padding: $pagePadding;
@@ -41,6 +40,7 @@ body {
   padding: $pagePadding;
   margin: 0 auto;
   position: relative;
+  background: #fff;
 }
 
 .nest {

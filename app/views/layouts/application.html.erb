@@ -2,7 +2,7 @@
 <div class="wrap">
   <div class="inner-wrap">
     
-    <%= render :partial => 'shared/flash' %>
+    <%= render 'shared/flash', { flash: flash } %>
     
     <% if user_signed_in? %>
       <div class="container">

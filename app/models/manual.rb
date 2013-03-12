@@ -155,6 +155,10 @@ class Manual < ActiveRecord::Base
     paid? || user.subscribed? || user.insider
   end
   
+  def filled?
+    paid? || filled || current_step.nil?
+  end
+  
   
   def marked?
     marked && user.subscribed?

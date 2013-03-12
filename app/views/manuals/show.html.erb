@@ -1,6 +1,6 @@
 <div id="manual-info">
   <% if @manual.unlocked? %>
-    <% if @manual.filled %>
+    <% if @manual.filled? %>
       <% if current_user.fields_not_filled? %>
         <p class="alert"><strong>Warning:</strong> You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.</p>
       <% end %>
@@ -8,7 +8,7 @@
       <h1 id="manual-title"><%= @manual.client_name %></h1>
     
       <p id="manual-actions">
-        <%= link_to '<i class="icon-download-alt"></i> Download PDF'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn primary", id: "download-pdf" %>
+        <%= link_to '<i class="icon-download-alt"></i> Download Manual'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn primary", id: "download-pdf" %>
       </p>
     
       <div id="manual-uploads">
