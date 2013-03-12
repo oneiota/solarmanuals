@@ -10,9 +10,10 @@ body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  padding-bottom: 50px;
-  margin: 42px auto (-($footerHeight));
+  padding: 42px 0 50px;
+  margin: 0 auto (-($footerHeight));
   @include clearfix;
+  @include box-sizing(border-box);
   @media (max-width: 900px) {
     padding-top: 0;
   }
