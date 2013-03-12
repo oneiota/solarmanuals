@@ -73,5 +73,7 @@ Solar::Application.configure do
     :email_prefix => "[Exception] ",
     :sender_address => %{"Exception Notifier" <info@solarmanuals.com.au>},
     :exception_recipients => %w{info@solarmanuals.com.au}
-    
+  
+  config.action_mailer.default_url_options = { :host => 'solarmanuals.com.au' }
+  
 end

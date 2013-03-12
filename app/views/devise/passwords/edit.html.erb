@@ -1,16 +1,20 @@
 <div id="user-box">
 
-  <h2>Change your password</h2>
-
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>
     <%= f.hidden_field :reset_password_token %>
-
-    <div><%= f.password_field :password, :placeholder => "New password" %></div>
-
-    <div><%= f.password_field :password_confirmation, :placeholder => "Confirm new password" %></div>
-
-    <div><%= f.submit "Change my password", :class => "btn btn-block" %></div>
+    
+    <div class="field">
+      <div class="field-label"><%= f.label :password, "New Password" %></div>
+      <div class="field-input"><%= f.password_field :password %></div>
+    </div>
+    
+    <div class="field">
+      <div class="field-label"><%= f.label :password_confirmation, "Confirm New Password" %></div>
+      <div class="field-input"><%= f.password_field :password_confirmation %></div>
+    </div>
+    
+    <div class="actions"><%= f.submit "Change my password", :class => "btn" %></div>
   <% end %>
   
   <hr/>

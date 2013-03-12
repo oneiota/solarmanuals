@@ -1,15 +1,16 @@
 <div id="user-box">
-
-  <h2>Forgot your password?</h2>
   
-  <p>Enter your email below and we'll send you instructions to reset your password.</p>
+  <p class="actions">Enter your email below and we'll send you instructions to reset your password.</p>
 
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
     <%= devise_error_messages! %>
 
-    <div><%= f.email_field :email, :placeholder => "Email" %></div>
+    <div class="field">
+      <div class="field-label"><%= f.label :email %></div>
+      <div class="field-input"><%= f.email_field :email %></div>
+    </div>
 
-    <div><%= f.submit "Send", :class => "btn btn-block btn-primary" %></div>
+    <div class="actions"><%= f.submit "Send", :class => "btn btn-block btn-primary" %></div>
     
     <hr/>
     
