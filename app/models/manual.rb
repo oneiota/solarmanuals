@@ -33,7 +33,7 @@ class Manual < ActiveRecord::Base
   # steps
   
   def steps
-    %w{customer panels inverter warranties performance wiring} + (user.subscribed? || paid? ? [] : %w{payment})
+    %w{customer panels inverter warranties performance wiring} + (user.subscribed? || paid? || user.insider ? [] : %w{payment})
   end
   
   def step_index(step)
