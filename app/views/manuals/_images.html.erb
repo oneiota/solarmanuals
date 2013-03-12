@@ -1,11 +1,10 @@
 <div id="image-uploads">
-  
-  
-  
   <%= form_for @manual, :url => { :action => :update }, :html => { :multipart => true } do |f| %>
     <p>
-      Photos&nbsp;&nbsp;∙&nbsp;&nbsp;<a href="#" id="upload-manual-images">Upload</a><br/>
-      <span class="help">We recommend uploading large image files, preferably greater than 2 megapixels.</span>
+      Photos&nbsp;&nbsp;∙&nbsp;&nbsp;<a href="#" id="upload-manual-images">Add Photos</a><br/>
+      <% if @manual.images.count > 0 %>
+        <span class="regular">Click to set cover image</span>
+      <% end %>
     </p>
     <%= f.file_field :files_array, :multiple => true,  :accept => "image/*" %>
     <%= f.submit "Attach Images", :class => "btn", :id => "submit_manual_images_btn" %>

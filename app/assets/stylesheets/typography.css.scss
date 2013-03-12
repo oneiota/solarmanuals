@@ -82,3 +82,7 @@ hr {
   margin-left: $boxPadding;
   margin-right: $boxPadding;
 }
+
+ul.list {
+  list-style: disc inside;
+}
