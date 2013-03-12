@@ -33,6 +33,7 @@ $ ->
       data: 
         type: type
       success: (data) ->
+        console.log(data)
         strings = data.manual.panel_strings_attributes.length
         if (fieldsets = $('.string-fields').length) < strings
           for i in [1..(strings - fieldsets)] by 1

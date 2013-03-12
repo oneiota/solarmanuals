@@ -63,9 +63,9 @@
       
         <tr>
           <td>Casual manual fee</td>
-          <td><%= currency(CASUAL_FEE) %></td>
+          <td><%= currency(@payment.return_amount) %></td>
           <td>1</td>
-          <td><%= currency(CASUAL_FEE) %></td>
+          <td><%= currency(@payment.return_amount) %></td>
         </tr>
       
       <% end %>

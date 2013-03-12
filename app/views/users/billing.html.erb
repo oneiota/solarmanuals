@@ -1,19 +1,52 @@
 <% unless current_user.insider %>  
   <% if current_user.subscribed? %>
-    <p>You are subscribed</p>
-    <p><%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put %></p>
-    <p>Usage this month: <%= currency(current_user.current_charge) %></p>
+    <p>
+      You are subscribed. <%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put %><br/>
+      <span class="regular">Usage this month</span> <%= currency(current_user.current_charge) %>
+    </p>
   <% end %>
+  
+  <div id="invoice-graph">
+    <% @payments_months.each_with_index do |month, index| %>
+    
+      <% date, payments = month %>
+      <% total = payments.map(&:return_amount).inject(:+) %>
+      <% if (index == 0) && current_user.subscribed; total = current_user.current_charge; end %>
+      
+      <%= link_to '#', :class => 'month', 'data-count' => total, 'data-month' => date.strftime('%B') do %>
+        <span class="info">
+          <%= date.strftime('%B') %><br/>
+          <%= currency(total || 0) %>
+        </span>
+      <% end %>
+    <% end %>
+  </div>
+  
   
   <h4>Invoices</h4>
-  <% @payments_months.sort.each do |month, payments| %>
-  
-    <h2><%= month.strftime('%B') %></h2>
-    
-    <% payments.each do |payment| %>
-      <%= link_to "#{nicetime(payment.created_at)} #{currency(payment.return_amount)}", invoice_path(payment) %><br/>
+  <div id="invoices">
+    <% @payments_months.each do |month, payments| %>
+      <% if payments.size > 0 %>
+        <%= link_to month.strftime('%B'), '#', :class => 'month', 'data-month' => month.strftime('%B') %>
+        <div class="invoices-list" data-month='<%= month.strftime("%B") %>'>
+          <table class="table">
+            <tr>
+              <th>Date</th>
+              <th>Qty</th>
+              <th>Type</th>
+              <th>Total</th>
+            </tr>
+            <% payments.each do |payment| %>
+              <tr>
+                <td><%= link_to payment.created_at.strftime('%B %-d'), invoice_path(payment), :target => '_blank' %></td>
+                <td><%= link_to payment.manuals.count, invoice_path(payment), :target => '_blank' %></td>
+                <td><%= link_to (payment.subscription ? 'Subscription' : 'One-off'), invoice_path(payment), :target => '_blank' %></td>
+                <td><%= link_to currency(payment.return_amount), invoice_path(payment), :target => '_blank' %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% end %>
     <% end %>
-    
-  <% end %>
-  
+  </div>
 <% end %>

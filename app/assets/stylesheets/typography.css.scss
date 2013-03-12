@@ -86,3 +86,24 @@ hr {
 ul.list {
   list-style: disc inside;
 }
+
+.hidden {
+  display: none;
+}
+
+.table {
+  width: 100%;
+  th {
+    padding: 5px 10px;
+    text-align: left;
+  }
+  tr {
+    &:hover {
+      background: $lightGrey;
+    }
+    a {
+      padding: 5px 10px;
+      display: block;
+    }
+  }
+}
