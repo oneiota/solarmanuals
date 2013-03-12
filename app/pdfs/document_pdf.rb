@@ -50,14 +50,18 @@ class DocumentPdf < Prawn::Document
     # attach PDFs
     
     @manual.pdfs.each do |pdf|
-      go_to_page(page_count)
+      begin
+        go_to_page(page_count)
       
-      pdf_url = pdf.file(:processed)
-      new_pdf = open(pdf_url)
-      template_page_count = count_pdf_pages(new_pdf)
+        pdf_url = pdf.file(:processed)
+        new_pdf = open(pdf_url)
+        template_page_count = count_pdf_pages(new_pdf)
       
-      (1..template_page_count).each do |template_page_number|
-        start_new_page(:template => new_pdf, :template_page => template_page_number)
+        (1..template_page_count).each do |template_page_number|
+          start_new_page(:template => new_pdf, :template_page => template_page_number)
+        end
+      rescue
+        next
       end
     end
     

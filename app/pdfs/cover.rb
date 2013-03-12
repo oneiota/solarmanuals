@@ -8,14 +8,21 @@ class Cover
     @manual = manual
   end
   
+  def company_text
+    @doc.text "#{@manual.user.company}", :align => :center, :size => 20    
+  end
+  
   def draw
-    
     if @manual.user.logo?
-      logo_uri = @manual.user.logo.url(:original)
-      logo = open(logo_uri)
-      @doc.image logo, :scale => dpi_ratio, :position => :center
+      begin
+        logo_uri = @manual.user.logo.url(:original)
+        logo = open(logo_uri)
+        @doc.image logo, :scale => dpi_ratio, :position => :center
+      rescue OpenURI::HTTPError
+        company_text
+      end
     else
-      @doc.text "#{@manual.user.company}", :align => :center, :size => 20
+      company_text
     end
     
     @doc.move_down 16*3
@@ -33,6 +40,7 @@ class Cover
     @doc.text_box "#{@manual.user.company}\n#{address_line}#{phone_line}System installed by #{@manual.user.full_name} / Accreditation No. #{@manual.user.accreditation}", :at => [0, 16*7], :width => @doc.bounds.width, :style => :bold, :align => :center
     
     @doc.text_box "This document has been prepared as a reference and maintenance manual for the owner of the above PV power system.", :at => [50, 16*2], :width => @doc.bounds.width - 100, :align => :center
+    
   end
   
   def address_line
@@ -53,6 +61,8 @@ class Cover
       cover_image = open(uri)
       @doc.image cover_image, :position => :center, :scale => dpi_ratio
     end
+  rescue OpenURI::HTTPError
+    # do nothing
   end
 
   def dpi_ratio
