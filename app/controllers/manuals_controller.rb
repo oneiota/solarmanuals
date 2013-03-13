@@ -100,8 +100,10 @@ class ManualsController < ApplicationController
   def update
     @manual = Manual.find(params[:id])
     
-    # extract user params since we don't want to assign with assign_attributes
-    user_params = params[:manual].delete(:user)
+    if params[:manual]
+      # extract user params since we don't want to assign with assign_attributes
+      user_params = params[:manual].delete(:user)
+    end
     
     @manual.assign_attributes(params[:manual])
     
