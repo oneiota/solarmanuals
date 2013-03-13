@@ -5,10 +5,14 @@ class Ability
     
     user ||= User.new
     
-    can [:create, :destroy, :update, :read, :set_feature], Manual
+    can :create, Manual
+    
+    can [:destroy, :update, :read, :set_feature], Manual do |manual|
+      manual.user == user || user.insider
+    end
     
     can :document, Manual do |manual|
-      manual.paid? || manual.user.subscribed? || manual.user.insider
+      manual.paid? || manual.user.subscribed? || user.insider
     end
     
     can :manage, User do |other_user|
