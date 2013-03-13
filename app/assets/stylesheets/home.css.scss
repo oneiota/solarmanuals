@@ -84,39 +84,6 @@
   margin: ($baseLineHeight*2) 0;
 }
 
-.pricing-item {
-  background: white;
-  border-radius: 15px;
-  padding: 1em;
-  border: 1px $grey solid;
-  margin-bottom: 1.5em;
-  @include grid(4);
-  @include offset(1);
-  @include push(1);
-  h2 {
-    font-size: 20px;
-    margin-bottom: 1em;
-  }
-}
-
-.pricing-table {
-  background: white;
-  position: relative;
-  border-radius: 15px;
-  padding: 1em 0;
-  border: 1px $grey solid;
-  margin-bottom: 1.5em;
-  @include grid(10);
-  @include offset(1);
-  @include push(1);
-  h2 {
-    font-size: 20px;
-    margin-bottom: 1em;
-  }
-  .help {
-    margin: 0;
-  }
-}
 
 .rates-table {
   @include grid(10);
@@ -207,5 +174,53 @@
       clear: none;
       width: 100%;
     }
+  }
+}
+
+
+#pricing {
+  margin-bottom: $baseLineHeight * 2;
+  @include nest;
+  > div {
+    text-align: center;
+    padding-top: $baseLineHeight;
+    @include round;
+  }
+  .primary-section {
+    @include grid(10);
+    @include push(1);
+    @include offset(1);
+    position: relative;
+    z-index: 5;
+    @include box-shadow(0 0 15px #ccc);
+  }
+  .secondary-section {
+    @include grid(8);
+    @include push(2);
+    @include offset(2);
+    background: #eee;
+  }
+  h3 {
+    margin-bottom: $baseLineHeight;
+  }
+  .price {
+    margin-bottom: $baseLineHeight;
+    margin-left: 7%;
+    font-size: 3em;
+    .small, .currency {
+      font-size: $baseFontSize;
+    }
+    .small {
+      color: $midGrey;
+    }
+  }
+  p {
+    max-width: 400px;
+    margin: 0 auto $baseLineHeight;
+    @include clearfix;
+  }
+  .greyed {
+    color: $midGrey;
+    font-weight: 500;
   }
 }

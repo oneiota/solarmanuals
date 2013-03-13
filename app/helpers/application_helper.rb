@@ -9,7 +9,7 @@ module ApplicationHelper
   end
   
   def currency(cents)
-    "$%.2f" % (cents / 100.0) + " AUD"
+    ("$%.2f" % (cents / 100.0) + "<span class='currency'> AUD</span>").html_safe
   end
   
   def format_card(number)

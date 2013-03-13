@@ -5,10 +5,7 @@
     <h1>Grid-Connect Solar PV User Manuals</h1>
     <p>Automatically generate CEC compliant manuals complete with useful procedures and safety instructions, installation photos, performance estimates, wiring diagram and more.</p>
     <p>
-      <%= link_to new_user_registration_path, :class => "btn primary" do %> 
-      Get Started Now &nbsp;
-      <i class="icon-arrow-right icon-white"></i>
-      <% end %>
+      <%= render 'get_started' %>
     </p>
   </div>
 </div>
@@ -50,35 +47,40 @@
 
 <hr/>
 
-<div id="pricing">
-  <h2 class="section-title">Pricing</h2>
-  <div class="nest">
-   <div class="pricing-item center">
-     <h2>One-off use</h2>
-     <h4 class="blue">$5 per manual</h4>
-     <p>&nbsp;</p>
-     <hr class="dotted"/>
-     <p>Casual rate flexibility<br/>Pay as you go</p>
-   </div>
-   <div class="pricing-item center">
-     <h2>Subscriber</h2>
-     <h4 class="blue">$30 monthly subscription fee</h4>
-     <p>inc. <span class="blue">10 free</span> manuals per month</p>
-     <hr class="dotted"/>
-     <p>From as low as $1.50 per manual<br/><a class="showrates" href="#">Click here</a> to view rates</p>
-   </div>
-  </div>
+<h2 class="section-title">Pricing</h2>
 
-  <div class="pricing-holder nest">
-    <div class="pricing-table">
-      <a href="#"><i class="icon-remove"></i></a>
-      <h2 class="center">Subscriber Pricing Rates</h2>
-      <%= render "shared/rates_table" %>
-      <h3 class="center">The more you use the cheaper it becomes<br/></h3>
-      <p class="center help">Price paid per-manual scales according to your usage for your current month. This allows users who generate a large amount of manuals to benefit from cheaper rates. Your current month starts from the day you subscribe and runs until the same corresponding day of the next calendar month. For example if you signed up on May 6th your first month would end on June 5th.</p>
+<div id="pricing">
+  <div class="secondary-section first">
+    <h3>Casual Users</h3>
+    <div class="price">
+      <%= currency(CASUAL_FEE) %> <span class="small">Per Manual</span>
     </div>
+    <p>No on-going fees</p>
+    <p><%= render 'get_started' %></p>
+  </div>
+  <div class="primary-section">
+    <h3>Subscribers</h3>
+    <div class="price">
+      <%= currency(300) %> <span class="small">Per Manual</span> 
+    </div>
+    <p>
+      <%= currency(SUBSCRIPTION_FEE) %> per month subscription fee<br/>
+      <span class="regular">Includes <strong>10 FREE</strong> manuals</span>
+    </p>
+    <p class="greyed">
+      First charge occurs one month after signing up<br/>
+      Recommended for installers generating
+      more than 8 manuals per month
+    </p>
+    <p><%= render 'get_started' %></p>
+  </div>
+  <div class="secondary-section last">
+    <h3>Enterprise</h3>
+    <p>If you plan on doing large numbers of manuals, please contact us for a quote.</p>
+    <p><%= link_to 'info@solarmanuals.com.au', 'mailto:info@solarmanuals.com.au' %></p>
   </div>
 </div>
+
 <hr/>
 
 <h2 class="section-title">What’s Included</h2>
