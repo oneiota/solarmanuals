@@ -55,6 +55,7 @@
 #pdf-uploads {
   @include grid(5);
   @include push(1);
+  margin-bottom: $baseLineHeight * 3;
 }
 
 #manual-pdfs-boxes {
