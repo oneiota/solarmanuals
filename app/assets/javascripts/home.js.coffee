@@ -1,5 +1,4 @@
 $ ->
-  $('#header').sticky()
   
   $(".home.index .navbar a.scroll").on 'click', (e) ->
     e.preventDefault()

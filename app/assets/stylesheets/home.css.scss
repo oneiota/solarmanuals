@@ -3,7 +3,10 @@
 #header {
   width: 100%;
   max-width: 100%;
-  z-index: 10;
+  z-index: 12;
+  position: fixed;
+  top: 0;
+  background: #fff;
   ul {
     display: $lightGrey;
   }

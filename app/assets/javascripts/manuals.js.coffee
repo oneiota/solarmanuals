@@ -27,11 +27,19 @@ $ ->
     $("#subscription-loading").show()
   
   prefillFields = (id, type) ->
+    console.log(id + " " + type)
+    d = new Date()
     $.ajax
-      url: '/manuals/'+id
+      url: '/manuals/'+id+'.json?_='+d.getTime()
       dataType: 'json'
+      type: 'GET'
+      contentType: "application/json"
+      cache: false
       data: 
         type: type
+      error: (xmlhttp, status, error) ->
+        console.log(status)
+        console.log(JSON.stringify(error))
       success: (data) ->
         console.log(data)
         strings = data.manual.panel_strings_attributes.length

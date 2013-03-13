@@ -19,4 +19,5 @@
 //= require canvasResize
 //= require exif
 //= require sticky
+//= require reduce
 //= require_tree .
