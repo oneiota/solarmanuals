@@ -202,7 +202,7 @@ class ManualsController < ApplicationController
     @manual.duplicate = true
     
     if @manual.save
-      redirect_to @manual, :notice => "Fill in new customer details and check over the fields to duplicate."
+      redirect_to @manual, :notice => "Manual was duplicated. Fill in new customer details and check over the fields to complete."
     else
       redirect_to manuals_path, :alert => @manual.errors.full_messages.join(" ")
     end
