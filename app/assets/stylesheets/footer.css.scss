@@ -26,6 +26,9 @@
 .foot4 {
   @include grid(4);
 }
+.foot8 {
+  @include grid(8);
+}
 
 
 
@@ -100,7 +103,7 @@
   a {
     color: white;
     &:hover {
-      color: white;
+      color: $midGrey;
     }
   }
 }
