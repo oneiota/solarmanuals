@@ -14,14 +14,14 @@
       <p>Insider Account</p>
     <% elsif current_user.subscribed? %>
       <p>
-        <strong>Subscribed</strong>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Details", billing_users_path %><br/>
+        <strong>Subscribed</strong>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Billing Details", billing_users_path %><br/>
         Usage <strong><%= currency(current_user.current_charge) %></strong><br/>
         Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong>
       </p>
   
     <% else %>
         <p>
-          <strong>Casual User</strong>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Details", billing_users_path %><br/>
+          <strong>Casual User</strong>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Billing Details", billing_users_path %><br/>
           <strong><%= currency(CASUAL_FEE) %> <span class="help">Per Manual</span></strong><br/>
           <%= link_to "Subscribe", subscribe_users_path %>
         </p>  

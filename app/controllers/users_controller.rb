@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     end
     
     if @user.create_eway_id
-      if @user.flagged
+      if @user.flagged && @user.is_billable?
         @payment = EwayPayment.new
         @payment.user = @user
         unless @payment.process_subscription!
@@ -101,7 +101,10 @@ class UsersController < ApplicationController
     unless @user.last_payed_at.nil?
       @payment = EwayPayment.new
       @payment.user = @user
-      @payment.process_unsubscribe_payment!
+      unless @payment.process_subscription!
+        flash[:alert] = "Payment failed: #{@payment.errors[:base].first}. You have not been unsubscribed. Please update your credit card details and try again."
+        redirect_to edit_card_users_path and return
+      end
     end
     
     @user.subscribed = false

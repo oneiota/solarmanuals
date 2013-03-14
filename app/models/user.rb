@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   
-  attr_protected :insider
+  attr_protected :insider, :eway_id, :subscribed
   
   has_attached_file :logo, LOGO_OPTS
   validates_attachment :logo,

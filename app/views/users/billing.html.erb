@@ -1,12 +1,12 @@
 <% unless current_user.insider %>  
   <% if current_user.subscribed? %>
     <p>
-      You are subscribed. <%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put %><br/>
+      You are subscribed. <%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put, :confirm => "You will be charged for your current usage of #{strip_tags(currency(current_user.current_charge))}.\n\nAre you sure you want to unsubscribe?".html_safe %><br/>
       <span class="regular">Your next charge will be</span> <%= currency(current_user.current_charge) %> <span class="regular">on <%= nicetime(current_user.last_payed_at + 1.month) %></span>
     </p>
     <p>
       <% if @user.eway_id %>
-        Stored Card 
+        <span class="regular">Stored Card</span> 
         <%= format_card(@user.stored_cc_number) %><br/>
         <%= link_to "Change credit card", edit_card_users_path %>
       <% end %>

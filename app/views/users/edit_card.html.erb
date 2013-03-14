@@ -1,5 +1,5 @@
 <%= form_for current_user, :url => update_card_users_path, :html => { :class => "card_form" } do |f| %>
-  <% if current_user.flagged %>
+  <% if current_user.flagged && current_user.is_billable? %>
     <p>
       We will try to reprocess the last payment with the new details.<br/>
       <strong>Total:</strong> <%= currency(current_user.current_charge) %>
