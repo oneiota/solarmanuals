@@ -16,6 +16,7 @@ button,
   color: $blue;
   padding: 5px 15px;
   font-weight: bold;
+  font-size: $baseFontSize;
   @include round;
   &:hover {
     color: $darkGrey;
