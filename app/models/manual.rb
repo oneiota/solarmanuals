@@ -170,19 +170,6 @@ class Manual < ActiveRecord::Base
     end
   end
   
-  PREFILL_FIELDS = {
-    'panel_details_prefill' => ["panels_watts", "panels_brand", "panels_model"],
-    'inverter_details_prefill' => ["inverter_brand", "inverter_series", "inverter_model", "inverter_output", "inverter_number"],
-    'warranty_details_prefill' => ["warranty_workmanship", "warranty_panels_product", "warranty_panels_output_performance", "warranty_inverter"],
-    'performance_prefill' => ['include_performance', 'performance_multiplier', 'sunlight_city'],
-    'wiring_prefill' => ['include_wiring', 'isolator_type']
-  }
-  
-  def self.prefill_details(type)
-    prefill(*PREFILL_FIELDS[type])
-  end
-  
-  
   # [ {key: 10%, value: 0.10}, {key: 15%, value: 0.15}, ... , {key: 100%, value: 1.0}]
   def multipliers
     (10..100).step(5).map{|n| ["#{n}%", (n / 100.0)] }
@@ -193,30 +180,6 @@ class Manual < ActiveRecord::Base
   
   private
   
-  
-  def self.unique_values(*fields)
-    manuals = []
-    all(:select => fields.concat(['id']).join(", ")).each do |m|
-      # hash exists in array (minus id)
-      unless manuals.map{ |m| m.except("id") }.include? m.attributes.except("id")
-        manuals << m.attributes
-      end
-    end
-    manuals
-  end
-  
-  def self.prefill(*fields)
-    manuals = unique_values(fields)
-    manuals.delete_if do |manual|
-      !(all_present?(manual.values))
-    end
-    manuals.collect do |m|
-      values = fields.map do |field|
-        m[field]
-      end
-      [values.join(", "), m['id']]
-    end
-  end
   
   def self.all_present?(array)
     array.each do |v|

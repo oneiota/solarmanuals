@@ -1,14 +1,5 @@
 <div class="field">
   <div class="field-label">
-    <%= label_tag "Used previously" %>
-  </div>
-  <div class="field-input">
-    <%= select "panel_details", "prefill", Manual.prefill_details('panel_details_prefill'), { :include_blank => "Select" }, { :class => "select-prefill" } %>
-  </div>
-</div>
-
-<div class="field">
-  <div class="field-label">
     <%= f.label :panels_watts, "Size (per panel)" %>
   </div>
   <div class="field-input input-append">  

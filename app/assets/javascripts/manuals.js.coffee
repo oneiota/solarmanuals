@@ -26,38 +26,6 @@ $ ->
     $(this).closest("form").submit()
     $("#subscription-loading").show()
   
-  prefillFields = (id, type) ->
-    console.log(id + " " + type)
-    d = new Date()
-    $.ajax
-      url: '/manuals/'+id+'.json?_='+d.getTime()
-      dataType: 'json'
-      type: 'GET'
-      contentType: "application/json"
-      cache: false
-      data: 
-        type: type
-      error: (xmlhttp, status, error) ->
-        console.log(status)
-        console.log(JSON.stringify(error))
-      success: (data) ->
-        console.log(data)
-        strings = data.manual.panel_strings_attributes.length
-        if (fieldsets = $('.string-fields').length) < strings
-          for i in [1..(strings - fieldsets)] by 1
-            $('.add_fields').trigger('click')
-        
-        $('form').populate data,
-          resetForm: false
-          useIndices: true
-  
-  $(".select-prefill").on 'change', ->
-    prefillFields($(this).val(), $(this).attr('id'))
-  
-  # auto prefill if prefill_id field from previous guy
-  if (prefill_id = $('#manual_prefill_id').val())
-    prefillFields(prefill_id, $('.select-prefill').attr('id'))
-  
   $('.pdf-checkbox').on 'change', ->
     $(this).closest('form').submit()
   
