@@ -53,6 +53,22 @@ p, ul, blockquote {
   color: $midGrey;
 }
 
+.page-heading {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 1em 0 2em 0;
+}
+
+.section-heading {
+  
+}
+
+.terms {
+  p, li {
+    color: $midGrey;  
+  }
+}
+
 dl {
   margin-bottom: $baseLineHeight;
   @include clearfix;
