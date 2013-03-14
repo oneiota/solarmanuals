@@ -39,6 +39,7 @@ class UsersController < ApplicationController
       render action: "edit_card" and return
     end
     
+    # this should only be for users whose monthly payment failed
     if @user.create_eway_id
       if @user.flagged && @user.is_billable?
         @payment = EwayPayment.new

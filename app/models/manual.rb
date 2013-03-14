@@ -2,7 +2,7 @@ class Manual < ActiveRecord::Base
   
   attr_protected :marked
   
-  validates_presence_of :client_address, :client_name, :client_suburb, :client_state_id, :install_date, :client_postcode
+  validates_presence_of :client_address, :client_name, :client_suburb, :client_state_id, :install_date, :client_postcode, :if => :not_duplicate?
   
   validates_numericality_of :system_pv_current, :system_pv_voltage, :system_watts, :inverter_output, :inverter_number, :if => :validate_pdf_fields?, :allow_blank => true
   
@@ -22,7 +22,7 @@ class Manual < ActiveRecord::Base
   
   accepts_nested_attributes_for :user
   
-  attr_accessor :payment, :prefill_id
+  attr_accessor :payment, :prefill_id, :duplicate
   
   after_save :build_strings
   
@@ -225,6 +225,9 @@ class Manual < ActiveRecord::Base
     true
   end
   
+  def not_duplicate?
+    !duplicate
+  end
   
   
   

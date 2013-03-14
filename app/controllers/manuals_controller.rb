@@ -176,5 +176,36 @@ class ManualsController < ApplicationController
       format.js
     end
   end
+  
+  
+  def duplicate
+    @to_dup = Manual.find(params[:manual_id])
+    @manual = @to_dup.dup
+    @manual.assign_attributes({
+      :client_name => "",
+      :client_address => "",
+      :client_suburb => "",
+      :client_postcode => "",
+      :install_date => Time.now,
+      :filled => false,
+      :eway_payment => nil,
+      :created_at => Time.now,
+      :updated_at => Time.now,
+      :current_step => 'customer'
+    })
+    
+    @to_dup.panel_strings.each do |ps|
+      @manual.panel_strings << ps.dup
+    end
+    
+    @manual.marked = false
+    @manual.duplicate = true
+    
+    if @manual.save
+      redirect_to @manual, :notice => "Fill in new customer details and check over the fields to duplicate."
+    else
+      redirect_to manuals_path, :alert => @manual.errors.full_messages.join(" ")
+    end
+  end
     
 end

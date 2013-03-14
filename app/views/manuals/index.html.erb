@@ -5,6 +5,7 @@
     <th class="hidden-phone">Address</th>
     <th>Install date</th>
     <th></th>
+    <th></th>
   </tr>
   <% @manuals.each do |manual| %>
     <%= content_tag :tr, class: (manual.filled ? '': 'incomplete') do %>
@@ -15,7 +16,10 @@
       <td class="hidden-phone"><%= link_to manual.display_address, manual %></td>
       <td><%= link_to nicetime(manual.install_date), manual %></td>
       <td class="index-controls">
-      <%= link_to 'Delete', manual, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-btn" %></td>
+        <%= link_to "Duplicate", manual_duplicate_path(manual) %>         
+      </td>
+      <td class="index-controls">
+        <%= link_to 'Delete', manual, method: :delete, data: { confirm: 'Are you sure?' }, :class => "delete-btn" %></td>
     <% end %>
   <% end %>
 

@@ -7,7 +7,7 @@ class Ability
     
     can :create, Manual
     
-    can [:destroy, :update, :read, :set_feature], Manual do |manual|
+    can [:destroy, :update, :read, :set_feature, :duplicate], Manual do |manual|
       manual.user == user || user.insider
     end
     
