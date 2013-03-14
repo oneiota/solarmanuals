@@ -1,17 +1,32 @@
 <div class="nest">
   <div id="subscribe">
     <p>You are registered as a casual user. We recommend subscribing if you are producing more than six user manuals per month.</p>
-
-    <%= render 'shared/rates_table' %>
+    
+    <dl>
+      <dt>Casual Rates</dt>
+      <dd>
+        <%= currency(CASUAL_FEE) %> <span class="help">Per Manual</span><br/>
+        No on-going fees
+      </dd>
+    </dl>
+        
+    <dl>
+      <dt>Subscription Rates</dt>
+      <dd>
+        <%= currency(SUBSCRIPTION_MANUAL_FEE) %> <span class="help">Per Manual</span><br/>
+        <%= currency(SUBSCRIPTION_FEE) %> monthly fee<br/>
+        <span class="regular"><%= FREE_MANUALS %> free manuals per month</span>
+      </dd>
+    </dl>
     
     <p class="regular">
-      <strong>First 30 days are free</strong><br/>
+      <strong>First 30 days free</strong><br/>
       If you subscribe today you will not be billed until <%= nicetime(Time.now() + 1.month) %>.
     </p>
     
     <p class="regular">
       <strong>Cancellation</strong><br/>
-      If you choose to cancel your subscription, you will only be billed for the month in which you cancel.
+      If you choose to cancel your subscription, you will be billed for the month in which you cancel.
     </p>
     
     <% if @user.eway_id %>
