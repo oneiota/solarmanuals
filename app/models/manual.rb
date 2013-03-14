@@ -104,7 +104,7 @@ class Manual < ActiveRecord::Base
   end
   
   def display_address
-    "#{client_address} #{client_suburb}, #{client_postcode}"
+    "#{client_address}"
   end
   
   def feature_image
