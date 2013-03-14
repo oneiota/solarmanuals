@@ -49,10 +49,10 @@ class UsersController < ApplicationController
         end
       end
       @user.flagged = false
+      @user.stored_cc_number = nil
       @user.save
       redirect_to root_url, :notice => "Payment details updated."
     else
-      puts "hello"
       redirect_to root_url
     end
   end
