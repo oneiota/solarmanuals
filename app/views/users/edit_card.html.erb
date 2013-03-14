@@ -5,6 +5,8 @@
       <strong>Total:</strong> <%= currency(current_user.current_charge) %>
     </p>
   <% end %>
-  <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
-  <%= f.submit "Update Details", :class => "btn" %>
+  <div class="nest">
+    <%= render :partial => "shared/cc_fields", :locals => {f: f} %>
+    <div class="actions"><%= f.submit "Update Details", :class => "btn" %></div>
+  </div>
 <% end %>

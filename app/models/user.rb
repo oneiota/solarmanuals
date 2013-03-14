@@ -78,40 +78,24 @@ class User < ActiveRecord::Base
     manuals.where(:eway_payment_id => nil, :marked => true)
   end
   
-  def manuals_tier(number)
-    tiers = {
-      100 => 250,
-      250 => 225,
-      500 => 200,
-      1000 => 175,
-      9999999 => 150
-    }
-    
-    if number > 10
-      tiers.each do |tier_max, price_per_manual|
-        if number <= tier_max
-          return { :tier => tier_max, :price => price_per_manual }
-        end
-      end
-    end
+  def billable_manuals(number)
+    ms = number - FREE_MANUALS
+    ms < 0 ? 0 : ms
   end
   
   def manuals_charge(number)
-    tier = manuals_tier(number)
-    if tier
-      return (number - 10) * tier[:price]
-    end
-    return 0
+    billable_manuals(number) * SUBSCRIPTION_MANUAL_FEE
   end
   
   def current_charge
-    manuals_charge(unpaid_marked_manuals.count) + 3000
+    charge = manuals_charge(billable_manuals(unpaid_marked_manuals.count))
+    charge + SUBSCRIPTION_FEE
   end
   
   # payments
   
   def self.billable
-    where(:subscribed => true).where('last_payed_at <= ?', 1.minute.ago).where('eway_id IS NOT NULL').where(:insider => false)
+    where(:subscribed => true).where('last_payed_at <= ?', SUBSCRIPTION_INTERVAL.ago).where('eway_id IS NOT NULL').where(:insider => false)
   end
   
   def is_billable?

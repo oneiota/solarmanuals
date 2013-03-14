@@ -39,16 +39,16 @@
           <tr>
             <td>Free manuals</td>
             <td><%= currency(0) %></td>
-            <td><%= @total_manuals > 10 ? 10 : @total_manuals %></td>
+            <td><%= @total_manuals > FREE_MANUALS ? FREE_MANUALS : @total_manuals %></td>
             <td><%= currency(0) %></td>
           </tr>
         <% end %>
     
-        <% if @total_manuals > 10 %>
+        <% if @total_manuals > FREE_MANUALS %>
           <tr>
             <td>Paid manuals</td>
-            <td><%= currency(@payment.user.manuals_tier(@total_manuals)[:price]) %></td>
-            <td><%= @total_manuals - 10 %></td>
+            <td><%= currency(SUBSCRIPTION_MANUAL_FEE) %></td>
+            <td><%= @payment.user.billable_manuals(@total_manuals) %></td>
             <td><%= currency(@payment.user.manuals_charge(@total_manuals)) %></td>
           </tr>
         <% end %>

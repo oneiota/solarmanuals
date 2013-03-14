@@ -25,7 +25,7 @@ $ ->
   max = amounts.reduce (a,b) -> Math.max a, b
   $months.each (i) ->
     maxHeight = 100
-    height = amounts[i] / maxHeight + 2
+    height = (amounts[i] / max) * maxHeight + 2
     $(this).append($('<i>').css('height', height))
   
   $('.month').on 'click', (e) ->

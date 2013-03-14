@@ -2,7 +2,14 @@
   <% if current_user.subscribed? %>
     <p>
       You are subscribed. <%= link_to "Unsubscribe", unsubscribe_users_path, :method => :put %><br/>
-      <span class="regular">Usage this month</span> <%= currency(current_user.current_charge) %>
+      <span class="regular">Your next charge will be</span> <%= currency(current_user.current_charge) %> <span class="regular">on <%= nicetime(current_user.last_payed_at + 1.month) %></span>
+    </p>
+    <p>
+      <% if @user.eway_id %>
+        Stored Card 
+        <%= format_card(@user.stored_cc_number) %><br/>
+        <%= link_to "Change credit card", edit_card_users_path %>
+      <% end %>
     </p>
   <% end %>
   
@@ -11,7 +18,6 @@
     
       <% date, payments = month %>
       <% total = payments.map(&:return_amount).inject(:+) %>
-      <% if (index == 0) && current_user.subscribed; total = current_user.current_charge; end %>
       
       <%= link_to '#', :class => 'month', 'data-count' => total, 'data-month' => date.strftime('%B') do %>
         <span class="info">
