@@ -231,13 +231,13 @@ textarea {
   right: 20px;
   p {
     @include clearfix;
+    clear: left;
     margin: 0 0 0.5em 0;
-    float: right;
     text-align: right;
     display: block;
-    width: 150px;
   }
   input {
+    clear: left;
     font-size: 12px;
     padding: 0 5px;
   }
