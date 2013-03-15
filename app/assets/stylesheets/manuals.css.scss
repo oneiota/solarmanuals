@@ -225,3 +225,26 @@ textarea {
 }
 
 
+
+#serial-range {
+  position: absolute;
+  right: 20px;
+  p {
+    @include clearfix;
+    margin: 0 0 0.5em 0;
+    float: right;
+    text-align: right;
+    display: block;
+    width: 150px;
+  }
+  input {
+    font-size: 12px;
+    padding: 0 5px;
+  }
+  label {
+    width: 50px;
+    margin-right: 10px;
+    text-align: right;
+    display: inline-block;
+  }
+}

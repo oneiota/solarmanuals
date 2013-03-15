@@ -36,6 +36,7 @@ button,
 .field {
   margin-top: $baseLineHeight;
   margin-bottom: $baseLineHeight;
+  position: relative;
   @include clearfix;
   .field-label {
     @include grid(4);

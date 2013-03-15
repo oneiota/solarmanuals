@@ -73,4 +73,12 @@ $ ->
     $(this).closest('li').slideUp()
     event.preventDefault()
     
-    
+  $('#serial-range input').on 'keydown', (e) ->
+    if e.which == 13
+      e.preventDefault()
+      from = parseInt($('#range-from').val())
+      to = parseInt($('#range-to').val())
+      if from && to
+        serials = [from..to]      
+        $('#manual_panels_serial_numbers').val(serials.join(', '))
+      
