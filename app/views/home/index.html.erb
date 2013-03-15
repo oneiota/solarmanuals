@@ -12,6 +12,8 @@
 
 <hr/>
 
+<h2 class="section-title">Features</h2>
+
 <div id="features">
   <div class="feature">
     <img src="<%= asset_path("tick.gif")%>" alt="CEC Compliant Format" />
@@ -85,7 +87,7 @@
 
 <h2 class="section-title">What’s Included</h2>
 
-<div class="included-list-holder">    
+<div id="included" class="included-list-holder">    
   <div class="included-list">
     <p>Enter your installation details and our user manual generator will create a customised user manual including</p>
     <p class="subhead">Customised Cover Page</p>
@@ -110,13 +112,11 @@
       <li>Wiring diagram of the installed system</li>
       <li>Warranties</li>
     </ul>
-    <p class="subhead">Certificate of Testing and Compliance (QLD)</p>
-    <!-- <p class="subhead">Installation Checklist</p> -->
   </div>
   
   <div class="manual-pic">
     <img src="<%= asset_path("manual.gif")%>" alt="Grid Connect User Manual" />
-    <%= link_to "Download Sample", SAMPLE_PATH, :class => "btn" %>
+    <%= link_to "Download Sample", SAMPLE_PATH, :class => "btn primary" %>
   </div>
   
 </div>

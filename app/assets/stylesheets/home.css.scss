@@ -79,11 +79,6 @@
   z-index: 11;
 }
 
-.section-title {
-  text-align: center;
-  margin: ($baseLineHeight*2) 0;
-}
-
 
 .rates-table {
   @include grid(10);

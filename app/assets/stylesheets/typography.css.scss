@@ -53,20 +53,12 @@ p, ul, blockquote {
   color: $midGrey;
 }
 
-.page-heading {
+.section-title {
   text-align: center;
   font-size: 1.5em;
   margin: 1em 0 2em 0;
-}
-
-.section-heading {
-  
-}
-
-.terms {
-  p, li {
-    color: $midGrey;  
-  }
+  line-height: 1.5em;
+  margin: ($baseLineHeight*2) 0;
 }
 
 dl {
