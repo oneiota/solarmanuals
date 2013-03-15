@@ -63,11 +63,14 @@ class UsersController < ApplicationController
     @payments = current_user.eway_payments.reverse
     @payments_months = @payments.group_by{ |p| p.created_at.beginning_of_month }.sort.reverse!.first(12)
     
-    # fill out remainder of year with empty values
-    month = @payments_months.last.first
-    (12 - @payments_months.size).times do
-      month -= 1.month
-      @payments_months << [month, []]
+    if @payments_months.size > 0
+      month = @payments_months.last.first
+    
+      # fill out remainder of year with empty values
+      (12 - @payments_months.size).times do
+        month -= 1.month
+        @payments_months << [month, []]
+      end
     end
   end
   

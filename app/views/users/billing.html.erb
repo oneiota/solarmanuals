@@ -11,48 +11,57 @@
         <%= link_to "Change credit card", edit_card_users_path %>
       <% end %>
     </p>
+  <% else %>
+    <p>You are registered as a casual user. <%= link_to "Subscribe now", subscribe_users_path %></p>
   <% end %>
   
-  <div id="invoice-graph">
-    <% @payments_months.each_with_index do |month, index| %>
+  <% if @payments_months.size > 0 %>
+  
+    <div id="invoice-graph">
+      <% @payments_months.each_with_index do |month, index| %>
     
-      <% date, payments = month %>
-      <% total = payments.map(&:return_amount).inject(:+) %>
+        <% date, payments = month %>
+        <% total = payments.map(&:return_amount).inject(:+) %>
       
-      <%= link_to '#', :class => 'month', 'data-count' => total, 'data-month' => date.strftime('%B') do %>
-        <span class="info">
-          <%= date.strftime('%B') %><br/>
-          <%= currency(total || 0) %>
-        </span>
+        <%= link_to '#', :class => 'month', 'data-count' => total, 'data-month' => date.strftime('%B') do %>
+          <span class="info">
+            <%= date.strftime('%B') %><br/>
+            <%= currency(total || 0) %>
+          </span>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
   
-  
-  <h4>Invoices</h4>
-  <div id="invoices">
-    <% @payments_months.each do |month, payments| %>
-      <% if payments.size > 0 %>
-        <%= link_to month.strftime('%B'), '#', :class => 'month', 'data-month' => month.strftime('%B') %>
-        <div class="invoices-list" data-month='<%= month.strftime("%B") %>'>
-          <table class="table">
-            <tr>
-              <th>Date</th>
-              <th>Qty</th>
-              <th>Type</th>
-              <th>Total</th>
-            </tr>
-            <% payments.each do |payment| %>
+    <h4>Invoices</h4>
+    <div id="invoices">
+      <% @payments_months.each do |month, payments| %>
+        <% if payments.size > 0 %>
+          <%= link_to month.strftime('%B'), '#', :class => 'month', 'data-month' => month.strftime('%B') %>
+          <div class="invoices-list" data-month='<%= month.strftime("%B") %>'>
+            <table class="table">
               <tr>
-                <td><%= link_to payment.created_at.strftime('%B %-d'), invoice_path(payment), :target => '_blank' %></td>
-                <td><%= link_to payment.manuals.count, invoice_path(payment), :target => '_blank' %></td>
-                <td><%= link_to (payment.subscription ? 'Subscription' : 'One-off'), invoice_path(payment), :target => '_blank' %></td>
-                <td><%= link_to currency(payment.return_amount), invoice_path(payment), :target => '_blank' %></td>
+                <th>Date</th>
+                <th>Qty</th>
+                <th>Type</th>
+                <th>Total</th>
               </tr>
-            <% end %>
-          </table>
-        </div>
+              <% payments.each do |payment| %>
+                <tr>
+                  <td><%= link_to payment.created_at.strftime('%B %-d'), invoice_path(payment), :target => '_blank' %></td>
+                  <td><%= link_to payment.manuals.count, invoice_path(payment), :target => '_blank' %></td>
+                  <td><%= link_to (payment.subscription ? 'Subscription' : 'One-off'), invoice_path(payment), :target => '_blank' %></td>
+                  <td><%= link_to currency(payment.return_amount), invoice_path(payment), :target => '_blank' %></td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+    
+  <% else %>
+    <p>You have no invoices to display.</p>
+  <% end %>
+  
 <% end %>
+  
