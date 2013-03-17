@@ -3,6 +3,7 @@
 en:
   errors:
     messages:
+      blank: "* required"
       expired: "has expired, please request a new one"
       not_found: "not found"
       already_confirmed: "was already confirmed, please try signing in"
@@ -10,6 +11,7 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+      
 
   devise:
     failure:

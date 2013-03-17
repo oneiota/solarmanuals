@@ -1,22 +1,13 @@
 $ ->
   
-  $(".home.index .navbar a.scroll").on 'click', (e) ->
+  $(".home #home-menu a.scroll").on 'click', (e) ->
     e.preventDefault()
     scrltarget = $(this).attr('href').substr(1)
-    $("html, body").animate { scrollTop: $(scrltarget).offset().top - 100 }, 'slow', (e) ->
+    $("html, body").animate { scrollTop: $(scrltarget).offset().top - 200 }, 'slow', (e) ->
 		  console.log("done")
-		  #$('#device').css('height', '0px')
+		  $('#device').css('height', '0px')
 		  
-	$(".home.index .brand").on 'click', (e) ->
-    e.preventDefault()
-    $("html, body").animate { scrollTop: 0 }, 1000
+	$(".home #home-menu #logo a").on 'click', (e) ->
+	 e.preventDefault()
+	 $("html, body").animate { scrollTop: 0 }, 1000
     
-  $(".showrates").on 'click', (e) ->
-    e.preventDefault()
-    $(".pricing-holder").slideToggle();
-    
-  $(".icon-remove").on 'click', (e) ->
-    e.preventDefault()
-    $(".pricing-holder").slideToggle();
-    
-  $(".pricing-holder").hide();      

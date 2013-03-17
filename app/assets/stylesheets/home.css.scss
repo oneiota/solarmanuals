@@ -55,33 +55,84 @@
 }
 
 #intro {
-  @include grid(6);
-  @include push(6);
-  h1, p {
-    margin: ($baseLineHeight*2) 0;
-  }
+  @include grid(7);
   h1 {
+    margin: ($baseLineHeight*2) 0 ($baseLineHeight*1) 0;
+    color: white;
     font-size: 36px;
     line-height: $baseLineHeight * 2;
+    letter-spacing: -0.5px;
   }
   p {
     color: $midGrey;
     font-weight: 500;
+    span {
+      color: white;
+      border-bottom: 1px dotted white;
+    }
+  }
+  .primary {
+    &:hover {
+      background: white;
+      border-color: white;
+      color: $darkGrey;
+    } 
   }
 }
 
-#papers {
-  background: url('papers.png') 0 0 no-repeat;
-  position: absolute;
-  right: -70px;
-  height: 480px;
-  width: 435px;
-  z-index: 11;
+#intro-holder, #intro-container {
+  background-color: $darkGrey;
 }
 
-.section-title {
-  text-align: center;
-  margin: ($baseLineHeight*2) 0;
+#notice-holder, #notice-container {
+  background-color: $yellow;
+}
+
+.notice {
+   @include grid(7);
+   h2 {
+    margin: 0;
+    font-size: 36px;
+    line-height: 48px;
+    letter-spacing: -0.5px;
+   }
+}
+
+.notice-body {
+  @include grid(5);
+  p {
+     margin: 0;
+     font-size: 0.9em;
+     line-height: $baseLineHeight * 0.75;
+   }
+}
+
+.papers {
+  @include grid(5);
+  margin: 0 auto;
+  position: relative;
+}
+
+.slideshow {
+  float: right;
+  div {
+    position: absolute;
+    top:0;
+    left:50%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      margin: 0;
+      -webkit-box-shadow:  0px 0px 10px 0px #333333;
+      box-shadow:  0px 0px 10px 0px #333333;
+      }
+   } 
 }
 
 
@@ -224,3 +275,4 @@
     font-weight: 500;
   }
 }
+

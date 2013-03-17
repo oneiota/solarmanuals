@@ -12,3 +12,7 @@
  *= require reset
  *= require_tree .
  */
+
+label.required:after {
+    content: " *";
+}
