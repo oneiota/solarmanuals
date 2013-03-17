@@ -1,6 +1,6 @@
-<div id="intro-holder">
+<div id="intro-holder" class="inner-wrap fluid">
   <div id="intro-container" class="container">
-      <div class="nest">
+    <div class="inner-container nest">
         <div id="intro">
           <h1>We make compliance for solar installers easy.</h1>
           <p>Automatically generate CEC compliant manuals complete with useful procedures and safety instructions, installation photos, performance estimates, wiring diagram and more.</p><p>Your first manual is <span>free</span> so give it a shot.</p>
@@ -16,15 +16,15 @@
             <div class="cycle"><img src="<%= asset_path("page4_web.jpg")%>" alt="Solar System Compnents"/></div>
           </div>
         </div>
-      </div>
+    </div>
   </div>
 </div>
 
-<div id="notice-holder">
+<div id="notice-holder" class="inner-wrap fluid">
   <div id="notice-container" class="container">
-    <div class="nest">
-      <div class="notice"><h2>Are you up to scratch<br/>with CEC compliance?</h2></div>
-      <div class="notice-body"><p>Did you know that installs completed after October 2012 require full documentation to be issued to the customer by the installer.<br/><br/>Failing to, or giving incomplete documentation can lead to loss of points or suspension of your accreditation.</p></div>
+    <div class="inner-container nest">
+        <div class="notice"><h2>Are you up to scratch<br/>with CEC compliance?</h2></div>
+        <div class="notice-body"><p>Did you know that installs completed after October 2012 require full documentation to be issued to the customer by the installer.<br/><br/>Failing to, or giving incomplete documentation can lead to loss of points or suspension of your accreditation.</p></div>
     </div>
   </div>
 </div>
@@ -82,7 +82,6 @@
             <%= currency(CASUAL_FEE) %> <span class="small">Per Manual</span>
           </div>
           <p>No on-going fees</p>
-          <p><%= render 'get_started' %></p>
         </div>
         <div class="primary-section">
           <h3>Subscribers</h3>
@@ -96,7 +95,6 @@
           <p class="greyed">
             First charge occurs one month after signing up
           </p>
-          <p><%= render 'get_started' %></p>
         </div>
         <div class="secondary-section last">
           <h3>Enterprise</h3>
@@ -104,6 +102,8 @@
           <p><%= link_to 'info@solarmanuals.com.au', 'mailto:info@solarmanuals.com.au' %></p>
         </div>
       </div>
+      
+      <div class="center pricing-btn"><%= render 'get_started' %></div>
       
       <hr/>
       

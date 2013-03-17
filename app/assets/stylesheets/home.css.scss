@@ -68,7 +68,6 @@
     font-weight: 500;
     span {
       color: white;
-      border-bottom: 1px dotted white;
     }
   }
   .primary {
@@ -89,7 +88,8 @@
 }
 
 .notice {
-   @include grid(7);
+   @include grid(6);
+   @include push(1);
    h2 {
     margin: 0;
     font-size: 36px;
@@ -114,7 +114,6 @@
 }
 
 .slideshow {
-  float: right;
   div {
     position: absolute;
     top:0;
@@ -152,6 +151,10 @@
       padding: 0px 0px 0px 20px;
       border-left: 1px solid $lightGrey;
     }
+}
+
+.pricing-btn {
+ margin-bottom: 3em;
 }
 
 .dotted {

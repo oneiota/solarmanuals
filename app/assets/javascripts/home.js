@@ -41,7 +41,7 @@ $(document).ready(function(){
 	        },
 	});
 	
-	$('.slideshow').css('width','85%');
+	$('.slideshow').css('width','80%');
 		
 	function randomMinToMax(min,max) {
 		var result = (max - min) + 1;
