@@ -57,7 +57,7 @@
         <div class="feature">
          <img src="<%= asset_path("dollars.gif")%>" alt="Flexible pricing" />
           <h2 class="subhead">Flexibly priced</h2>
-          <p>Our flexible pricing allows you to pay a fixed casual price on a per user manual basis or subscribe to a monthly no contract service and generate limitless manuals.</p>
+          <p>Pay a fixed casual price on a per manual basis or subscribe to a monthly no contract service that includes 10 free manuals each month and a discounted rate per manual thereafter.</p>
         </div>
         <div class="feature">
           <img src="<%= asset_path("graph.gif")%>" alt="Average power generation" />
@@ -91,12 +91,10 @@
           </div>
           <p>
             <%= currency(SUBSCRIPTION_FEE) %> per month subscription fee<br/>
-            <span class="regular">Includes <strong>10 FREE</strong> manuals</span>
+            <span class="regular">Includes <strong>10 FREE</strong> manuals each month</span>
           </p>
           <p class="greyed">
-            First charge occurs one month after signing up<br/>
-            Recommended for installers generating
-            more than six manuals per month
+            First charge occurs one month after signing up
           </p>
           <p><%= render 'get_started' %></p>
         </div>
