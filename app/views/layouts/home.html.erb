@@ -8,24 +8,19 @@
               <li id="logo"><h1><a href="/">Installer Technologies</a></h1></li>
               <li><a href="/#features" class="scroll">Features</a></li>
               <li><a href="/#pricing" class="scroll">Pricing</a></li>
-              <li><a href="/#included" class="scroll">What's Included</a></li>
+              <li><a href="/#sample" class="scroll">Sample</a></li>
               <li><a href="/#contact" class="scroll">Contact</a></li>
-              <li><a href="/users/sign_up">Get Started</a></li>
+              <li><a href="/users/sign_up">Try It</a></li>
               <li id="sign-in"><%= link_to new_user_session_path do %>Sign In<i class="icon-user"></i><%end%></li>
             </ul>
           </div>
       </div>
     </div>
     
-    <div class="inner-wrap fluid">
-      <%= render 'shared/flash', { flash: flash } %>
-      <div class="container">
-        <div class="inner-container">
+      <%= render 'shared/flash', { flash: flash } %> 
     
-          <%= yield %>
-        </div>
-      </div>
-    </div>
+      <%= yield %>
+          
     <div id="push"></div>
   </div>
 
