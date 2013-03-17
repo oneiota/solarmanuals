@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       if current_user.flagged
         flash[:alert] ||= "Your last payment failed. Please update your credit card details."
         render "users/edit_card"
-      elsif current_user.subscribed && current_user.eway_id = nil
+      elsif current_user.subscribed && current_user.eway_id == nil
         flash[:alert] ||= "Payment details couldn't be found. Please re-enter them"
         render "users/edit_card"
       end
