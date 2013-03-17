@@ -49,7 +49,7 @@ $(document).ready(function(){
 		return result2;
 		console.log(result2);
 	}
-
+	
 });
 
     

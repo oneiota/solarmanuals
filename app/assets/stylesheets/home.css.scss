@@ -115,13 +115,13 @@
 
 .slideshow {
   div {
+    display: none;
     position: absolute;
     top:0;
     left:50%;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    display: block;
     img {
       position: absolute;
       top: 0;
