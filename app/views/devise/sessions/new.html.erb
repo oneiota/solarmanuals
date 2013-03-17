@@ -1,32 +1,41 @@
-<div id="user-box">
-  <div class="actions">
-    <h2>Sign in</h2>
-  </div>
+<div class="inner-wrap fluid">
+  <div class="container">
 
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  
-    <div class="field">
-      <div class="field-label"><%= f.label :email%></div>
-      <div class="field-input"><%= f.email_field :email %></div>
-    </div>
+    <div class="nest">
 
-    <div class="field">
-      <div class="field-label"><%= f.label :password %></div>
-      <div class="field-input"><%= f.password_field :password %></div>
-    </div>
-    
-    <div class="field">
-      <div class="field-label"><%= f.label :remember_me %></div>
-      <div class="field-input">
-        <%= f.check_box :remember_me %>        
+      <div id="user-box">
+        <div class="actions">
+          <h2>Sign in</h2>
+        </div>
+      
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        
+          <div class="field">
+            <div class="field-label"><%= f.label :email%></div>
+            <div class="field-input"><%= f.email_field :email %></div>
+          </div>
+      
+          <div class="field">
+            <div class="field-label"><%= f.label :password %></div>
+            <div class="field-input"><%= f.password_field :password %></div>
+          </div>
+          
+          <div class="field">
+            <div class="field-label"><%= f.label :remember_me %></div>
+            <div class="field-input">
+              <%= f.check_box :remember_me %>        
+            </div>
+          </div>
+          <div class="actions">
+            <p><%= f.submit "Sign in", :class => "btn primary" %></p>
+          </div>
+      
+        <% end %>
+        
+        <hr/>
+        <%= render "devise/shared/links" %>
       </div>
-    </div>
-    <div class="actions">
-      <p><%= f.submit "Sign in", :class => "btn primary" %></p>
-    </div>
 
-  <% end %>
-  
-  <hr/>
-  <%= render "devise/shared/links" %>
+    </div>
+  </div>
 </div>

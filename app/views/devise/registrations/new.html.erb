@@ -1,29 +1,41 @@
-<p class="regular actions">Already have an account? <strong><%= link_to "Sign in here", new_user_session_path %></strong></p>
+<div class="inner-wrap fluid">
+  <div class="container">
 
-<hr/>
+    <div class="nest">
+    
+    <p></p>
+      
+    <p class="regular actions">Already have an account? <strong><%= link_to "Sign in here", new_user_session_path %></strong></p>
+    
+    <hr/>
+    
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      
+      <h3 class="actions">Create a new account</h3>
+      
+      <div class="field">
+        <div class="field-label"><%= f.label :email %></div>
+        <div class="field-input"><%= f.email_field :email %></div>
+      </div>
+    
+      <div class="field">
+        <div class="field-label"><%= f.label :password %></div>
+        <div class="field-input"><%= f.password_field :password %></div>
+      </div>
+      
+      <p class="actions help">We’ll use this email and password to log you in next time</p>
+    
+      <hr/>
+      
+      <%= render :partial => 'fields', :locals => { f: f } %>
+    
+      <hr/>
+      
+      <div class="actions"><%= f.submit "Continue", :class => "btn btn-large btn-primary" %></div>
+      
+    <% end %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  
-  <h3 class="actions">Create a new account</h3>
-  
-  <div class="field">
-    <div class="field-label"><%= f.label :email %></div>
-    <div class="field-input"><%= f.email_field :email %></div>
+    </div>
+
   </div>
-
-  <div class="field">
-    <div class="field-label"><%= f.label :password %></div>
-    <div class="field-input"><%= f.password_field :password %></div>
-  </div>
-  
-  <p class="actions help">We’ll use this email and password to log you in next time</p>
-
-  <hr/>
-  
-  <%= render :partial => 'fields', :locals => { f: f } %>
-
-  <hr/>
-  
-  <div class="actions"><%= f.submit "Continue", :class => "btn btn-large btn-primary" %></div>
-  
-<% end %>
+</div>
