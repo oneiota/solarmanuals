@@ -1,3 +1,4 @@
+# encoding: utf-8
 class UserMailer < ActionMailer::Base
   add_template_helper(ApplicationHelper)
   
@@ -21,4 +22,12 @@ class UserMailer < ActionMailer::Base
     
     mail(:to => payment.user.email, :subject => "[Installer Technologies] Payment Receipt")
   end
+  
+  def welcome(user)
+    @user = user
+    mail(:to => user.email, :subject => "Welcome to SolarManuals.com.au")
+  end
+  
+  
+  
 end

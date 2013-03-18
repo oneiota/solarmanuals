@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
   has_many :pdfs
   accepts_nested_attributes_for :pdfs
   
+  
+  after_create :send_welcome_mail
+  
+  
   def active_manuals
     manuals.where(:trashed => false).order('install_date DESC').includes(:eway_payment)
   end
@@ -107,7 +111,10 @@ class User < ActiveRecord::Base
   end
   
   def is_first_manual?(manual)
-    manual.id == first_manual.id
+    if manuals.count > 0
+      return manual.id == first_manual.id
+    end
+    return true
   end
   
   def create_eway_id
@@ -158,7 +165,8 @@ class User < ActiveRecord::Base
     return self.stored_cc_number
   end
   
-  
-  
+  def send_welcome_mail
+    UserMailer.welcome(self).deliver
+  end
   
 end
