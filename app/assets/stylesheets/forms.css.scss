@@ -48,6 +48,9 @@ button,
   }
   .field-input {
     @include grid(8);
+    p {
+      margin-top: $baseLineHeight;
+    }
   }
   .helper {
     float: left;

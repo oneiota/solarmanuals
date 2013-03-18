@@ -86,6 +86,7 @@ class ManualsController < ApplicationController
       if @manual.filled
         redirect_to @manual, notice: 'Manual was successfully created.'
       else
+        flash[:notice] = 'Your manual has been saved and been added to "My Installs".'
         render action: "new"
       end
     else

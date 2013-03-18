@@ -12,6 +12,7 @@
   </div>
   <div class="field-input">
     <%= f.select :performance_multiplier, @manual.multipliers %>
+    <p class="help">System performance is estimated by taking the maximum possible output (calculated from average sunlight hours for that city and system kilowatts) then multiplying by the above percentage.<br/><br/>The percentage represents system loss that may occur due to inverter loss, cable length, manufactures output tolerance, soiling of panels, climate and tempreture, orientation of the roof/panels and shading.<br/><br/>Please consider the above when selecting an appropriate multiplier. CEC documentation states it is better to be conservative in expectation as to avoid over estimating performance.</p>
   </div>
 </div>
 <div class="field">

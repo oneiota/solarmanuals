@@ -33,5 +33,5 @@
 
 <div id="user-menu">
   <%= nav_link "New Manual", root_path %>  
-  <%= nav_link "Archive", manuals_path %>
+  <%= nav_link "My Installs (#{current_user.active_manuals.count})", manuals_path %>
 </div>
