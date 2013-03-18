@@ -33,7 +33,7 @@ class Manual < ActiveRecord::Base
   # steps
   
   def steps
-    %w{customer panels inverter warranties performance wiring} + (user.subscribed? || paid? || user.insider ? [] : %w{payment})
+    %w{customer panels inverter warranties performance wiring} + (user.subscribed? || paid? || user.insider || user.manuals.count == 0 ? [] : %w{payment})
   end
   
   def step_index(step)
@@ -148,7 +148,7 @@ class Manual < ActiveRecord::Base
   end
   
   def paid?
-    !!eway_payment
+    (!!eway_payment) || user.manuals.count == 1
   end
   
   def unlocked?
