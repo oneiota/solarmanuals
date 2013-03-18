@@ -20,4 +20,5 @@
 //= require exif
 //= require sticky
 //= require reduce
+//= require underscore
 //= require_tree .

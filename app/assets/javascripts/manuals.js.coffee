@@ -79,6 +79,11 @@ $ ->
       from = parseInt($('#range-from').val())
       to = parseInt($('#range-to').val())
       if from && to
-        serials = [from..to]      
-        $('#manual_panels_serial_numbers').val(serials.join(', '))
-      
+        serials = [from..to]
+        existing = $('#manual_panels_serial_numbers').val()
+        existingArray = _.map existing.split(","), (s) ->
+          s.replace(/\ /g,'')
+        result = _.reject existingArray.concat(serials), (s) ->
+          !s
+        $('#manual_panels_serial_numbers').val(result.join(', '))
+        $('#range-from, #range-to').val('')
