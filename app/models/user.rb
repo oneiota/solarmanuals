@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   end
   
   def unpaid_marked_manuals
-    manuals.where(:eway_payment_id => nil, :marked => true)
+    manuals.where(:marked => true).reject(&:paid?)
   end
   
   def billable_manuals(number)
@@ -100,6 +100,14 @@ class User < ActiveRecord::Base
   
   def is_billable?
     User.billable.include?(self)
+  end
+  
+  def first_manual
+    manuals.order('created_at ASC').first
+  end
+  
+  def is_first_manual?(manual)
+    manual.id == first_manual.id
   end
   
   def create_eway_id

@@ -147,8 +147,12 @@ class Manual < ActiveRecord::Base
     paid? && !trashed && filled
   end
   
+  def free_one?
+    user.is_first_manual?(self)
+  end
+  
   def paid?
-    (!!eway_payment) || user.manuals.count == 1
+    (!!eway_payment) || free_one?
   end
   
   def unlocked?
