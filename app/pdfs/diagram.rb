@@ -36,7 +36,7 @@ class Diagram
       
       data = [
         {
-          :text => "#{string.number} x 245W",
+          :text => "#{string.number} x #{@manual.panels_watts}",
           :styles => [:bold]
         },
         {
