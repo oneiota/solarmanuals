@@ -29,22 +29,25 @@ $ ->
   $('.pdf-checkbox').on 'change', ->
     $(this).closest('form').submit()
   
-  $('#upload-pdf-fields, .pdfs-submit-btn').hide()
+  if $('html').hasClass('shit')
+    $("#upload-pdfs-btn").hide()
+  else
+    $('#upload-pdf-fields, .pdfs-submit-btn').hide()
   
-  $('#upload-pdfs-btn').on 'click', (e) ->
-    e.preventDefault()
-    $('.upload-pdfs-input').trigger 'click'
-  
-  $('.upload-pdfs-input').on 'change', ->
-    # check file extensions are .pdf
-    for f in this.files
-      # http://stackoverflow.com/a/1203361/917850
-      if f.name.split('.').pop() != 'pdf'
-        return alert('Please choose PDF files')
+    $('#upload-pdfs-btn').on 'click', (e) ->
+      e.preventDefault()
+      $('.upload-pdfs-input').trigger 'click'
+    
+    $('.upload-pdfs-input').on 'change', ->
+      if this.files
+        # check file extensions are .pdf
+        for f in this.files
+          if f.name.split('.').pop() != 'pdf'
+            return alert('Please choose PDF files')
         
-    $('#upload-pdfs-btn').text('Uploading...')
-    $('body').addClass('submitting')
-    $('.upload-pdfs-form').submit()
+      $('#upload-pdfs-btn').text('Uploading...')
+      $('body').addClass('submitting')
+      $('.upload-pdfs-form').submit()
   
   # hide checkbox after confirming to delete PDF
   $(document).on 'confirm:complete', (e, answer) ->

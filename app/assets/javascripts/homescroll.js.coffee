@@ -1,7 +1,5 @@
 $ ->
   
-  console.log("sup");
-  
   $(".home.index #home-menu a.scroll").on 'click', (e) ->
     e.preventDefault()
     scrltarget = $(this).attr('href').substr(1)

@@ -13,7 +13,7 @@
     <div id="upload-pdf-fields">
       <%= f.file_field :pdfs_array, :multiple => true, class: 'upload-pdfs-input' %>
       <%= hidden_field_tag :redirect, manual_path(@manual) %>
-      <%= f.submit %>
+      <%= f.submit "Add Attachments" %>
     </div>
   <% end %>
 
