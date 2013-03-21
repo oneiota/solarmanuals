@@ -1,11 +1,15 @@
 @import 'variables';
 
+.shit #identity {
+  display: none;
+}
+
 #identity {
-    width: 20%;
-    padding-left: $boxPadding;
-    padding-right: $boxPadding;
-    float: left;
-    @include box-sizing(border-box);
+  width: 20%;
+  padding-left: $boxPadding;
+  padding-right: $boxPadding;
+  float: left;
+  @include box-sizing(border-box);
   #logo-holder {
     position: relative;
     display: inline-block;
