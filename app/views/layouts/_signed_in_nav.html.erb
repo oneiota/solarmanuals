@@ -1,15 +1,26 @@
 <div id="signed-in-top" class="nest">
+  
+  <div id="identity">
+    <%= render "users/logo" %>
+  </div>
+  
   <div id="user-details">    
-    <p>
-      <strong><%= current_user.full_name %></strong><br/>
-      <%= current_user.company %><br/>
-      <%= current_user.full_address %><br/>
-      <%= link_to "Update details", edit_user_registration_path %>
-    </p>
+    <div class="user-icon"><i class="icon-user"></i></div>
+    <div class="user-deets">
+      <p>
+        <strong><%= current_user.full_name %></strong><br/>
+        <%= current_user.company %><br/>
+        <%= current_user.full_address %><br/>
+        <%= link_to "Account Details", edit_user_registration_path %>
+      </p>
+    </div>
   </div>
 
   <div id="billing-info">
-    <i class="icon-file-alt"></i>  
+    
+    <div class="bill-icon"><i class="icon-file-alt"></i></div>
+    
+    <div class="bill-deets">
     <% if current_user.insider %>  
       <p>Insider Account</p>
     <% elsif current_user.subscribed? %>
@@ -21,14 +32,24 @@
   
     <% else %>
         <p>
-          <strong>Casual User</strong>&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Billing Details", billing_users_path %><br/>
-          <strong><%= currency(CASUAL_FEE) %> <span class="help">Per Manual</span></strong><br/>
-          <%= link_to "Subscribe", subscribe_users_path %>
+          <strong>Casual User</strong><br/>
+          <strong><%= currency(CASUAL_FEE) %> <span class="help">Per Manual</span></strong><br/><br/>
+          <%= link_to "Billing Details", billing_users_path %>
         </p>  
     <% end %>
-  
+    </div>
   </div>
-  <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :id => "sign-out" %>
+  
+  <div id="signout-holder">
+    <%= link_to destroy_user_session_path, :method => :delete, :id => "sign-out" do %>
+      Sign Out <i class="icon-signout icon-white"></i>
+    <% end %>
+    <br/><br/>
+    <%= link_to  subscribe_users_path, :class => "btn primary" do %> 
+      Subscribe
+    <% end %>
+  </div>
+  
 </div>
 
 <div id="user-menu">

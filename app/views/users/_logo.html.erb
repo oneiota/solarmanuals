@@ -1,14 +1,18 @@
-<%= link_to "#", :id => "upload-logo-btn" do  %>
-  <% if current_user.logo? %>
-   <%= image_tag current_user.logo %>
-  <% else %>
-   Add Your Logo
-  <% end %>  
-<% end %>
-
-<%= form_for current_user, :html => { :class => "logo-form" } do |f| %>
-  <%= f.file_field :logo %>
-  <%= f.submit %>
-<% end %>
-
+<div id="logo-holder">
+  <div id="logo-upload">
+  <%= link_to "#", :id => "upload-logo-btn", class: current_user.logo? ? "gotlogo" : "nologo" do  %>
+    <% if current_user.logo? %>
+     <%= image_tag current_user.logo(:thumb) %>
+     <span class="edit-logo">Change<br/>Your<br/>Logo</span>
+    <% else %>
+     Add<br/>Your<br/>Logo
+    <% end %>  
+  <% end %>
+  
+  <%= form_for current_user, :html => { :class => "logo-form" } do |f| %>
+    <%= f.file_field :logo %>
+    <%= f.submit %>
+  <% end %>
+  </div>
+</div>
 

@@ -1,22 +1,4 @@
 <div class="nest">
-  <div class="field">
-    <div class="field-label">
-      &nbsp;
-      <% if current_user.logo? %>
-        <p><%= image_tag current_user.logo %></p>
-      <% end %>
-    </div>
-    <div class="field-input">
-      <h3>Logo</h3>
-      <%= link_to current_user.logo? ? "Upload new logo" : "Upload Logo", "#", :id => "upload-logo-btn" %>
-      <%= form_for current_user, :html => { :class => "logo-form" } do |f| %>
-        <%= f.file_field :logo %>
-        <%= f.submit %>
-      <% end %>
-    </div>
-  </div>
-
-  <hr/>
 
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
 

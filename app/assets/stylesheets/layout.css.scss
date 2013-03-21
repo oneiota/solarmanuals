@@ -48,36 +48,6 @@ body {
   @include nest;
 }
 
-#signed-in-top {
-  #user-details {
-    @include grid(4);
-    @include regular;
-    h2, a {
-      font-weight: bold;
-    }
-  }
-  #billing-info {
-    @include grid(5);
-    @include regular;
-    position: relative;
-    strong, a {
-      font-weight: bold;
-    }
-    .icon-file-alt {
-      position: absolute;
-      left: -27px;
-      top: 3px;
-      font-size: 2.5em;
-      color: $grey;
-    }
-  }
-  #sign-out {
-    @include grid(3);
-    text-align: right;
-  }  
-}
-
-
 .alert {
   padding: $baseFontSize $pagePadding;
   background: $yellow;
