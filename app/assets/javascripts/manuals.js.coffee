@@ -26,13 +26,18 @@ $ ->
     $(this).closest("form").submit()
     $("#subscription-loading").show()
   
-  $('.pdf-checkbox').on 'change', ->
-    $(this).closest('form').submit()
+  #$('.pdfs-submit-btn').hide()
+  #$('.pdf-checkbox').on 'change', ->
+  #  $(this).closest('form').submit()
+  
+  $('.delete-pdf-link').on 'click', (e) ->
+    e.preventDefault()
+    r = window.fonri
   
   if $('html').hasClass('shit')
     $("#upload-pdfs-btn").hide()
   else
-    $('#upload-pdf-fields, .pdfs-submit-btn').hide()
+    $('#upload-pdf-fields').hide()
   
     $('#upload-pdfs-btn').on 'click', (e) ->
       e.preventDefault()
@@ -52,7 +57,7 @@ $ ->
   # hide checkbox after confirming to delete PDF
   $(document).on 'confirm:complete', (e, answer) ->
     if answer
-      $(e.target).closest('label').hide()
+      $(e.target).closest('.pdf').hide()
   
   # show/hide checkboxes
   $('.showhide input[type=checkbox]:not(:checked)').each ->

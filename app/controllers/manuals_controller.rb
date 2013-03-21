@@ -105,6 +105,10 @@ class ManualsController < ApplicationController
       user_params = params[:manual].delete(:user)
     end
     
+    if params[:pdf_list]
+      params[:manual] ||= { :pdf_ids => [] }
+    end
+    
     @manual.assign_attributes(params[:manual])
     
     # payment step

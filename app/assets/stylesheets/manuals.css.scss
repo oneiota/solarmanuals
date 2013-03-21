@@ -59,27 +59,34 @@
 }
 
 #manual-pdfs-boxes {
-   margin-top: 1em;
-   .pdf {
-     label {
-       width: 75%;
-       overflow: hidden;
-       white-space: nowrap;
-       text-overflow: ellipsis;
-       display: inline-block;
-       float: left;
-       input {
-         float: left;
-       }
-     }
-     .delete-pdf-link {
-       float: right;
-       text-align: right;
-       width: 20%;
-       display: inline-block;
-     }
-     
-   }
+  float: left;
+  width: 100%;
+  margin-top: 1em;
+  .pdf {
+    @include clearfix;
+    margin-bottom: 0;
+    label {
+      width: 75%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: inline-block;
+      float: left;
+      input {
+        float: left;
+      }
+    }
+    .delete-pdf-link {
+      float: right;
+      text-align: right;
+      width: 20%;
+      display: inline-block;
+    }
+  }
+  .pdfs-submit-btn {
+    float: left;
+    margin-top: 1em;
+  }
 }
 
 #image-uploads {
