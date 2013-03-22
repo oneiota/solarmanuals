@@ -8,7 +8,7 @@
       <h1 id="manual-title"><%= @manual.client_name %></h1>
     
       <p id="manual-actions">
-        <%= link_to '<i class="icon-download-alt"></i> Download Manual'.html_safe, manual_document_path(@manual, :format => :pdf), :target => '_blank', :class => "btn primary", id: "download-pdf" %>&nbsp;&nbsp;&nbsp;
+        <%= link_to '<i class="icon-download-alt"></i> Download Manual'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn primary", id: "download-pdf" %>&nbsp;&nbsp;&nbsp;
         <%= link_to 'Duplicate', manual_duplicate_path(@manual), :class => 'btn' %>
       </p>
     
