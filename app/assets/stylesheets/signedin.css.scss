@@ -1,9 +1,5 @@
 @import 'variables';
 
-html.shit #upload-logo-btn {
-  display: none;
-}
-
 #identity {
     width: 20%;
     padding-left: $boxPadding;
@@ -23,6 +19,9 @@ html.shit #upload-logo-btn {
       height: 100%;
       vertical-align: middle;
       z-index: 1;
+      form {
+        display: none;
+      }
       #upload-logo-btn {
         display: table-cell;
         background: white;
@@ -53,6 +52,10 @@ html.shit #upload-logo-btn {
       }
     }
   }
+}
+
+html.shit #upload-logo-btn {
+  display: none !important;
 }
 
 #signed-in-top {

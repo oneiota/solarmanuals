@@ -1,5 +1,6 @@
 $ ->
-  $(".logo-form").hide()
+  if !$("html").hasClass('shit')
+    $(".logo-form").hide()
 
   $("#upload-logo-btn").on "click", (e) ->
     e.preventDefault()

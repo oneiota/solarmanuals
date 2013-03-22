@@ -86,3 +86,8 @@ button,
     margin: 6px 6px 0 0;
   }
 }
+
+
+label.required:after {
+    content: " *";
+}
