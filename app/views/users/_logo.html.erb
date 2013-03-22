@@ -3,7 +3,7 @@
   <%= link_to "#", :id => "upload-logo-btn", class: current_user.logo? ? "gotlogo" : "nologo" do  %>
     <% if current_user.logo? %>
      <%= image_tag current_user.logo(:thumb) %>
-     <span class="edit-logo">Change<br/>Your<br/>Logo</span>
+     <span class="edit-logo">Update<br/>Logo</span>
     <% else %>
      Add<br/>Your<br/>Logo
     <% end %>  

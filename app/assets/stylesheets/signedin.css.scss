@@ -1,15 +1,15 @@
 @import 'variables';
 
-.shit #identity {
+html.shit #upload-logo-btn {
   display: none;
 }
 
 #identity {
-  width: 20%;
-  padding-left: $boxPadding;
-  padding-right: $boxPadding;
-  float: left;
-  @include box-sizing(border-box);
+    width: 20%;
+    padding-left: $boxPadding;
+    padding-right: $boxPadding;
+    float: left;
+    @include box-sizing(border-box);
   #logo-holder {
     position: relative;
     display: inline-block;
