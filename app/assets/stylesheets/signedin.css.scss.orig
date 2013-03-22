@@ -1,0 +1,132 @@
+@import 'variables';
+
+<<<<<<< HEAD
+.shit #identity {
+=======
+html.shit #upload-logo-btn {
+>>>>>>> Changed copy and added class fo IE
+  display: none;
+}
+
+#identity {
+  width: 20%;
+  padding-left: $boxPadding;
+  padding-right: $boxPadding;
+  float: left;
+  @include box-sizing(border-box);
+  #logo-holder {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height:150px;
+    width:150px;
+    #logo-upload {
+      position: relative;
+      display: table;
+      width: 100%;
+      height: 100%;
+      vertical-align: middle;
+      z-index: 1;
+      #upload-logo-btn {
+        display: table-cell;
+        background: white;
+        vertical-align: middle;
+        text-align: center;
+        img {
+          width:100%;
+          height: auto;
+        }
+        .edit-logo {
+          display: none;
+        }
+        &:hover {
+          background: $lightGrey;
+          vertical-align: middle;
+          text-align: center;
+          img {
+            display: none;
+          }
+          .edit-logo {
+            display: block;
+            color: $blue;
+          }
+        }
+      }
+      #upload-logo-btn.nologo  {
+        background: $lightGrey;
+      }
+    }
+  }
+}
+
+#signed-in-top {
+  p {
+    margin: 0;
+  }
+  #user-details {
+    border-right: $grey 1px solid;
+    width: 30%;
+    padding-left: $boxPadding;
+    padding-right: $boxPadding;
+    @include box-sizing(border-box);
+    float: left;
+    @include regular;
+    h2, a {
+      font-weight: bold;
+    }
+  }
+  #billing-info {
+    border-right: $grey 1px solid;
+    width: 30%;
+    padding-left: $boxPadding;
+    padding-right: $boxPadding;
+    @include box-sizing(border-box);
+    float: left;
+    @include regular;
+    position: relative;
+    strong, a {
+      font-weight: bold;
+    }
+ 
+  }
+  #signout-holder  {
+    width: 20%;
+    padding-left: $boxPadding;
+    padding-right: $boxPadding;
+    @include box-sizing(border-box);
+    float: left;
+    text-align: right; 
+  }
+  .icon-signout {
+    position: relative;
+    top: 1px;
+    left: 3px;
+    font-size: 1.2em;
+  }
+  
+  .user-icon, .bill-icon {
+    @include grid(3);
+    .icon-user {
+      font-size: 2.5em;
+      color: $grey;
+      position: relative;
+      top:10px;
+      left:10px;
+    }
+    .icon-file-alt {
+      font-size: 2.5em;
+      color: $grey;
+      position: relative;
+      top:10px;
+      left:10px;  
+    }
+  }
+  .bill-deets, .user-deets {
+    @include grid(9);
+  }
+  
+}
+
+
+
+
