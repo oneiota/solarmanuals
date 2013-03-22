@@ -36,8 +36,8 @@ class Cover
     @doc.move_down 16*5
     
     @doc.text "Prepared for #{@manual.client_name} \n#{@manual.client_address} \n#{@manual.client_suburb}, #{@manual.client_state.name} #{@manual.client_postcode}", :align => :center
-
-    @doc.text_box "#{@manual.user.company}\n#{address_line}#{phone_line}System installed by #{@manual.user.full_name} / Accreditation No. #{@manual.user.accreditation}", :at => [0, 16*7], :width => @doc.bounds.width, :style => :bold, :align => :center
+    
+    @doc.text_box "Installed #{@manual.install_date.strftime('%-d %B %Y')}\n#{@manual.user.company}\n#{address_line}#{phone_line}#{@manual.user.full_name} / Accreditation No. #{@manual.user.accreditation}", :at => [0, 16*8], :width => @doc.bounds.width, :style => :bold, :align => :center
     
     @doc.text_box "This document has been prepared as a reference and maintenance manual for the owner of the above PV power system.", :at => [50, 16*2], :width => @doc.bounds.width - 100, :align => :center
     
