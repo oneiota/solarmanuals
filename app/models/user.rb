@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_attachment :logo,
     :size => { :in => 0..2.megabytes }
   
-  attr_accessor :current_password, :cc_number, :cc_expiry_month, :cc_expiry_year, :cvn, :remember, :validate_card
+  attr_accessor :current_password, :cc_number, :cc_expiry_month, :cc_expiry_year, :cvn, :remember, :validate_card, :terms
   
   validates :cc_number, :length => { :is => 16 }, :if => :should_validate_card?
   validates :cc_expiry_month, :length => { :is => 2 }, :if => :should_validate_card?
@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
   end
   
   validates_presence_of :first_name, :last_name
+  
+  validate :agree_terms, :on => :create
+  
+  def agree_terms
+    unless terms == '1'
+      errors[:terms] = "You must agree."
+    end
+  end
   
   has_many :manuals
   has_many :eway_payments
