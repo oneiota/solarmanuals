@@ -8,16 +8,11 @@ class Diagram
     @modules_left = 300
     @left = -30
     
-    @inverter_top = 500 - ((@manual.panel_strings.count-1) * 60)
-    @inverter_width = 160
-    
-    @ellipse_size = 2
-    
   end
   
   def draw
     
-    @start_y = @doc.cursor + ((@manual.panel_strings.count-1) * 10)
+    @start_y = @doc.cursor - 30
     
     modules
     isolators
@@ -26,128 +21,108 @@ class Diagram
   end
   
   def modules
-    
-    @manual.panel_strings.each_with_index do |string, index|
-      
-      top = @start_y - (90 * index)
-      @doc.stroke do
-        @doc.rectangle [@left + @modules_left, top], @modules_width, 80
-      end
-      
-      data = [
-        {
-          :text => "#{string.number} x #{@manual.panels_watts}",
-          :styles => [:bold]
-        },
-        {
-          :text => " panels\nModel: "
-        },
-        {
-          :text => "#{@manual.panels_brand} #{@manual.panels_model}\n",
-          :styles => [:bold]
-        },
-        {
-          :text => "Total: "
-        },
-        {
-          :text => "#{string.total}W Array \n#{string.volts} Volts DC, #{string.amps} Amps",
-          :styles => [:bold]
-        }
-      ]
-      
-      @doc.formatted_text_box data, :at => [@left + @modules_left + 10, top - 10], :width => @modules_width - 20, :height => 80
-      
+    @doc.stroke do
+      @doc.rectangle [@left + @modules_left, @start_y], @modules_width, 60 + (@manual.panel_strings.count * 19)
     end
     
-    @doc.text_box "#{@manual.panel_strings.count * 2} x #{@manual.isolator_type} Isolators", :at => [@left + @modules_left - 150, @start_y - 70]
+    if !@manual.panel_strings
+      return
+    end
+    
+    i = 0
+    strings = @manual.panel_strings.inject("") do |result, str|
+      i += 1
+      "#{result}\n#{i.to_s}. #{str.number} panels: #{str.volts} V, #{str.amps} Amps"
+    end
+    
+    data = [
+      {
+        :text => "#{@manual.panels_brand} #{@manual.panels_model} #{@manual.panels_watts}W",
+        :styles => [:bold]
+      },
+      {
+        :text => "\nStrings:"
+      },
+      {
+        :text => strings,
+        :styles => [:bold]
+      }
+    ]
+    
+    @doc.formatted_text_box data, :at => [@left + @modules_left + 20, @start_y - 20], :width => 160, :height => 60 + (@manual.panel_strings.count * 19)
     
   end
   
   def isolators
+    gap = 40
+    left = @left + @modules_left
+    @top = @start_y - gap
     
-    @manual.panel_strings.each_with_index do |string, index|
-    
-      gap = 20
-      left = @left + @modules_left
-      @top = @start_y - 30 - (index * 90)
-    
-      # first two lines
-      @doc.stroke do
-        @doc.move_to [left, @top]
-        @doc.line_to [left - 40, @top]
-        @doc.move_to [left, @top - gap]
-        @doc.line_to [left - 40, @top - gap]
-      end
-    
-      # first switch
-      left = left - 40
-      @doc.fill_ellipse [left, @top], @ellipse_size
-      @doc.fill_ellipse [left, @top - gap], @ellipse_size
-      @doc.stroke do
-        @doc.move_to [left, @top]
-        @doc.line_to [left - 15, @top + 15]
-        @doc.move_to [left, @top - gap]
-        @doc.line_to [left - 15, @top - gap + 15]
-      end
-      
-      
-      left = left - 20
-      corner_left = left - 100 - gap # default
-      
-      inverter_left = @left + 30
-      if (@string_count = @manual.panel_strings.count) == 1
-        corner_left = inverter_left + (@inverter_width / 2) + gap - (gap / 2) # middle
-      else
-        # space evenly across 
-        space = (@inverter_width - gap - 60) / (@string_count - 1)
-        corner_left = inverter_left + 30 + (space * index) + gap
-      end
-      
-    
-      # corner lines
-      @doc.stroke do
-        # outer line
-        @doc.move_to [left, @top]
-        @doc.line_to [corner_left - gap, @top]
-        @doc.line_to [corner_left - gap, @inverter_top + 50]
-      
-        # inner line
-        @doc.move_to [left, @top - gap]
-        @doc.line_to [corner_left, @top - gap]
-        @doc.line_to [corner_left, @inverter_top + 50]
-      end
-      
-      left = corner_left
-    
-      # second switch
-      @doc.fill_ellipse [left, @inverter_top + 50], @ellipse_size
-      @doc.fill_ellipse [left - gap, @inverter_top + 50], @ellipse_size
-      @doc.stroke do
-        # inner line diagonal
-        @doc.move_to [left, @inverter_top + 50]
-        @doc.line_to [left - 15, @inverter_top + 35]
-        # outer line diagonal
-        @doc.move_to [left - gap, @inverter_top + 50]
-        @doc.line_to [left - gap - 15, @inverter_top + 35]
-      
-        # inner lines to inverter
-        @top = @inverter_top + 30
-        @doc.move_to [left, @top]
-        @doc.line_to [left, @top - 30]
-      
-        @doc.move_to [left - gap, @top]
-        @doc.line_to [left - gap, @top - 30]
-        @top = @top - 30
-      end
-      
+    # first two lines
+    @doc.stroke do
+      @doc.move_to [left, @top]
+      @doc.line_to [left - 40, @top]
+      @doc.move_to [left, @top - gap]
+      @doc.line_to [left - 40, @top - gap]
     end
+    
+    # first switch
+    left = left - 40
+    @doc.fill_ellipse [left, @top], 4
+    @doc.fill_ellipse [left, @top - gap], 4
+    @doc.stroke do
+      @doc.move_to [left, @top]
+      @doc.line_to [left - 20, @top + 20]
+      @doc.move_to [left, @top - gap]
+      @doc.line_to [left - 20, @top - 20]
+    end
+    
+    
+    # lines into corner
+    left = left - 30
+    top_left = [left - 100 - gap, @top]
+    @doc.stroke do
+      # outer line
+      @doc.move_to [left, @top]
+      @doc.line_to top_left
+      @doc.line_to [left - 100 - gap, @top - gap - 70]
+      
+      # inner line
+      @doc.move_to [left, @top - gap]
+      @doc.line_to [left - 100, @top - gap]
+      @top = @top - gap - 70
+      @doc.line_to [left - 100, @top]
+    end
+    
+    @doc.text_box "#{@manual.isolator_type} Isolators", :at => [left - 70, @top + 20]
+    
+    # second switch
+    left = left - 100
+    @doc.fill_ellipse [left, @top], 4
+    @doc.fill_ellipse [left - gap, @top], 4
+    @doc.stroke do
+      # inner line diagonal
+      @doc.move_to [left, @top]
+      @doc.line_to [left - 20, @top - 20]
+      # outer line diagonal
+      @doc.move_to [left - gap, @top]
+      @doc.line_to [left - gap - 20, @top - 20]
+      
+      # inner lines to inverter
+      @top = @top - 20
+      @doc.move_to [left, @top]
+      @doc.line_to [left, @top - 30]
+      
+      @doc.move_to [left - gap, @top]
+      @doc.line_to [left - gap, @top - 30]
+      @top = @top - 30
+    end
+    
   end
   
   def inverter
     width = 160
     height = 100
-    
-    @top = @inverter_top
     
     @doc.stroke do
       # rectangle / line
@@ -166,7 +141,7 @@ class Diagram
         :styles => [:regular]
       },
       {
-        :text => "#{@manual.inverter_brand} #{@manual.inverter_series} #{@manual.inverter_model}\n",
+        :text => "#{@manual.inverter_brand} #{@manual.inverter_model}\n",
         :styles => [:bold]
       },
       {
@@ -212,7 +187,6 @@ class Diagram
   end
   
   def switch_board
-    
     left = @left + 110
     # single line
     @doc.stroke do
@@ -226,24 +200,22 @@ class Diagram
     
     @doc.text_box "Switch Board", :style => :bold, :at => [@left + 40, @top - 255], :width => 140, :align => :center
     
+    label1 = "WARNING DC VOLTAGE\nOPEN CIRCUIT VOLTAGE\nSHORT CIRCUIT CURRENT"
+    @doc.text_box label1, :at => [@left + 300, @top - 140], :style => :bold, :align => :center, :width => 200
+    @doc.stroke do
+      @doc.rectangle [@left + 300, @top - 125], 200, 75
+    end
+    
+    label2 = "WARNING DUAL SUPPLY\nISOLATE BOTH SOLAR AND NORMAL SUPPLY BEFORE WORKING ON SWITCHBOARD"
+    @doc.text_box label2, :at => [@left + 300, @top - 230], :width => 200, :style => :bold, :align => :center
+    @doc.stroke do
+      @doc.rectangle [@left + 300, @top - 215], 200, 95
+    end
+    
     label3 = "SOLAR\nSUPPLY\nMAIN\nSWITCH"
     @doc.text_box label3, :at => [left + 40, @top - 70], :align => :center, :width => 80, :style => :bold
     @doc.stroke do
       @doc.rectangle [left + 40, @top - 55], 80, 95
-    end
-    
-    @top = 200
-    
-    label1 = "WARNING DC VOLTAGE\nOPEN CIRCUIT VOLTAGE\nSHORT CIRCUIT CURRENT"
-    @doc.text_box label1, :at => [@left + 300, @top], :style => :bold, :align => :center, :width => 200
-    @doc.stroke do
-      @doc.rectangle [@left + 300, @top + 15], 200, 75
-    end
-    
-    label2 = "WARNING DUAL SUPPLY\nISOLATE BOTH SOLAR AND NORMAL SUPPLY BEFORE WORKING ON SWITCHBOARD"
-    @doc.text_box label2, :at => [@left + 300, @top - 100], :width => 200, :style => :bold, :align => :center
-    @doc.stroke do
-      @doc.rectangle [@left + 300, @top - 85], 200, 95
     end
     
   end
