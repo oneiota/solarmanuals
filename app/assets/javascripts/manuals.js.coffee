@@ -55,17 +55,25 @@ $ ->
       fields.show()
     else
       fields.hide()
-    
+  
+  do visibleRemoveButtons = ->
+    fields = $('.remove_fields')
+    fields.show()
+    if $('.remove_fields:visible').length == 1
+      fields.hide()
+  
   # http://railscasts.com/episodes/196-nested-model-form-revised?view=asciicast  
   $('form').on 'click', '.add_fields', (event) ->
     id = $('.string-fields').length
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).parent().before($(this).data('fields').replace(regexp, id))
     event.preventDefault()
+    visibleRemoveButtons()
     
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
-    $(this).closest('li').slideUp()
+    $(this).closest('li').slideUp ->
+      visibleRemoveButtons()
     event.preventDefault()
     
   $('#serial-range input').on 'keydown', (e) ->
