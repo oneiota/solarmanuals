@@ -2,7 +2,7 @@
 
   <%= image_tag image.file.url(:thumb) %>
   <span class="featured">Cover image</span>
-  <%= link_to "Set as cover image", set_feature_path(image.id, :format => :js), :method => :put, :remote => true, :class => "set-feature" %>
-  <%= link_to "x", image_path(image, :format => :js), :method => :delete, :remote => true, :class => "delete-image" %>
+  <%= link_to "Set as cover image", set_feature_path(image.id), :method => :put, :class => "set-feature" %>
+  <%= link_to "x", image_path(image), :method => :delete, :class => "delete-image", :confirm => "Delete image?" %>
 
 <% end %>

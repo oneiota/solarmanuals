@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
-    render nothing: true
+    redirect_to :back, :notice => "Image deleted"
   end
   
   # PUT
@@ -12,6 +12,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     @image.feature = true
     @image.save
+    redirect_to @image.manual, :notice => "Feature image updated"
   end
   
 end

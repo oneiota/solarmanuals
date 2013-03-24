@@ -172,16 +172,6 @@ class ManualsController < ApplicationController
     end
   end
   
-  def set_feature
-    @manual = Manual.find(params[:id])
-    @manual.feature_image = Image.find(params[:feature_id])
-    @manual.save
-    respond_to do |format|
-      format.js
-    end
-  end
-  
-  
   def duplicate
     @to_dup = Manual.find(params[:manual_id])
     @manual = @to_dup.dup

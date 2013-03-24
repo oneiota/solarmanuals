@@ -1,8 +1,4 @@
 $ ->
-  $(document).on 'click', ".delete-image", (e) ->
-    r = window.confirm "Delete image?"
-    if r
-      $(this).closest(".manual-image").hide()
   
   canvasSupported = !!document.createElement("canvas").getContext
   
