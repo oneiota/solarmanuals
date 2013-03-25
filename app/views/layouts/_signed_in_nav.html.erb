@@ -45,8 +45,8 @@
       Sign Out <i class="icon-signout icon-white"></i>
     <% end %>
     <br/><br/>
-    <%= link_to  subscribe_users_path, :class => "btn primary" do %> 
-      Subscribe
+    <% unless current_user.subscribed %>
+      <%= link_to "Subscribe", subscribe_users_path, :class => "btn primary" %>
     <% end %>
   </div>
   
