@@ -8,11 +8,15 @@
      Add<br/>Your<br/>Logo
     <% end %>  
   <% end %>
-  
-  <%= form_for current_user, :html => { :class => "logo-form" } do |f| %>
-    <%= f.file_field :logo %>
-    <%= f.submit %>
-  <% end %>
   </div>
 </div>
+
+<div id="logo-submit">
+  <p class="help">Hit 'Browse' below to search your computer for your new logo file in JPG or PNG format. Please ensure your logo's file size is less than 2 megabytes.</p>
+  <%= form_for current_user, :html => { :class => "logo-form" } do |f| %>
+    <%= f.file_field :logo %>
+    <%= f.submit "Update Logo" %>
+  <% end %>
+</div>  
+
 

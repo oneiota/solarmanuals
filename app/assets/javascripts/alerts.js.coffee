@@ -1,4 +1,11 @@
 $ ->
   x = $("<i class='icon-remove'>")
-  $('.alert').append(x).on 'click', ->
-    $(this).slideUp(200)
+  
+  $('#notice').each ->
+    $(this).children('.warning-notice').append(x)
+    $(this).on 'click', ->
+      message_id = $(this).data('id')
+      if message_id
+        $.post '/users/read_message', 
+          message_id: message_id    
+      $(this).slideUp(200)

@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
   
   helper_method :fallback
   
+  helper_method :get_notices
+  
   def fallback(field)
     field.blank? ? "<span class='not-on-file'>Please enter...</span>".html_safe : field
   end
@@ -31,4 +33,21 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def get_notices
+    
+    notices = {}
+    
+    if current_user
+      notices = current_user.flash_message || {}
+    end
+    
+    f = flash.to_hash || {}
+    f.each do |name, msg|
+      f[name] = [nil, msg]
+    end
+        
+    notices.merge(f)
+
+  end
+    
 end

@@ -10,6 +10,7 @@ Solar::Application.routes.draw do
       put :unsubscribe
       get :edit_card
       put :update_card
+      post :read_message
     end
   end
 

@@ -54,8 +54,35 @@
   }
 }
 
-html.shit #upload-logo-btn {
-  display: none !important;
+#logo-submit {
+   display: none;
+}
+
+/* IE STYLIN */
+
+html.shit { 
+  #upload-logo-btn {
+    cursor: default !important;
+    &:hover {
+      background: transparent !important;
+      img {
+        display: block !important;
+      }
+      .edit-logo {
+        display: none !important;
+      }
+    }
+  }
+  #upload-logo-btn.nologo {
+    &:hover {
+      background: $lightGrey !important;
+      color: $blue;
+    }
+  }
+}
+
+html.shit #logo-submit {
+  display: inherit !important;
 }
 
 #signed-in-top {

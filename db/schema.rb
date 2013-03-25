@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130302075731) do
+ActiveRecord::Schema.define(:version => 20130324044152) do
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"
@@ -87,6 +87,21 @@ ActiveRecord::Schema.define(:version => 20130302075731) do
     t.integer "pdf_id"
     t.integer "manual_id"
   end
+
+  create_table "messages", :force => true do |t|
+    t.text     "content"
+    t.string   "flashtype",  :default => "notice"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "messages_users", :id => false, :force => true do |t|
+    t.integer "message_id"
+    t.integer "user_id"
+  end
+
+  add_index "messages_users", ["message_id", "user_id"], :name => "index_messages_users_on_message_id_and_user_id"
+  add_index "messages_users", ["user_id", "message_id"], :name => "index_messages_users_on_user_id_and_message_id"
 
   create_table "panel_strings", :force => true do |t|
     t.integer  "number"

@@ -1,5 +1,14 @@
 @import 'variables';
 
+/* IE Styling of forms */
+
+html.shit {
+  input[type=submit] {
+    display: block;
+    margin-top: 1em;
+  }
+}
+
 select {
   height: $baseLineHeight;
   line-height: $baseLineHeight;

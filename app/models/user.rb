@@ -36,9 +36,22 @@ class User < ActiveRecord::Base
   has_many :pdfs
   accepts_nested_attributes_for :pdfs
   
+  has_and_belongs_to_many :messages
   
   after_create :send_welcome_mail
   
+  def unread_message
+    if messages.count > 0
+      return Message.where('id NOT IN (?)', messages).first
+    end
+    Message.first
+  end
+  
+  def flash_message
+    if unread_message 
+      return {unread_message.flashtype.to_sym => [unread_message.id, unread_message.content.html_safe]}
+    end
+  end
   
   def active_manuals
     manuals.where(:trashed => false).order('install_date DESC').includes(:eway_payment)
