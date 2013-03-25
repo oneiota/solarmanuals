@@ -15,3 +15,11 @@
     height: auto;
   }
 }
+
+html .ie-notice {
+  display: none; 
+}
+
+html.shit .ie-notice {
+  display: block; 
+}

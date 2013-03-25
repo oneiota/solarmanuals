@@ -5,6 +5,7 @@
     <%= render 'shared/flash', { flash: flash } %>
     
     <% if user_signed_in? %>
+    <%= render "shared/ie_notice" %>
       <div class="container">
         <%= render 'layouts/signed_in_nav' %>
       </div>
