@@ -16,3 +16,16 @@ if State.count == 0
     State.create! params
   end
 end
+  
+Message.destroy_all
+  
+messages = [
+"Make manuals faster - You can duplicate saved manuals for installs that have similar details. Simply hit 'My Installs' to view your saved manuals, then select 'Duplicate' next to the manual you wish to copy", 
+"Did you know that installers are liable to provide complete documentaion to all customers for jobs completed from October 2012 onwards"
+]
+
+messages.each do |message|
+  params = { content: message }
+  Message.create! params
+  puts "created : " + message
+end

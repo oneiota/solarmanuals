@@ -1,0 +1,25 @@
+.warning-notice {
+  display: block;
+  position: relative; 
+  display: table;
+  > * {
+    display: table-cell !important;
+  }
+  i {
+    font-size: 2.5em;
+    vertical-align: middle;
+    float: none !important;
+  }
+  i.icon-remove {
+    font-size: 1.5em;
+  }
+  p {
+    margin-bottom: 0;
+    padding: 0 6em;
+    width: 100%;
+  }
+}
+
+#alert {
+  background: #ff6969;
+}

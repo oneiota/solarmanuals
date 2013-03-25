@@ -86,6 +86,8 @@ class UsersController < ApplicationController
       @user.assign_attributes(params[:user])
       @user.validate_card = true
       unless @user.valid?
+        @user.subscribed = false
+        flash[:alert] = "Invalid credit card"
         render action: 'subscribe' and return
       end
     end
@@ -116,5 +118,11 @@ class UsersController < ApplicationController
     redirect_to root_url, :notice => "You have unsubscribed."
   end
 
+  def read_message
+    @user = current_user
+    message = Message.find(params[:message_id])
+    @user.messages << message
+    render nothing: true
+  end
   
 end
