@@ -17,7 +17,7 @@ class Cover
       begin
         logo_uri = @manual.user.logo.url(:original)
         logo = open(logo_uri)
-        @doc.image logo, :scale => dpi_ratio, :position => :center
+        @doc.image logo, :position => :center, :fit => [1000, 100]
       rescue OpenURI::HTTPError
         company_text
       end
@@ -33,7 +33,7 @@ class Cover
     
     feature_image
     
-    @doc.move_down 16*5
+    @doc.move_down 16*2
     
     @doc.text "Prepared for #{@manual.client_name} \n#{@manual.client_address} \n#{@manual.client_suburb}, #{@manual.client_state.name} #{@manual.client_postcode}", :align => :center
     
@@ -59,7 +59,7 @@ class Cover
     if @manual.feature_image && @manual.feature_image.file?
       uri = @manual.feature_image.file.url(:original)
       cover_image = open(uri)
-      @doc.image cover_image, :position => :center, :scale => dpi_ratio
+      @doc.image cover_image, :position => :center, :fit => [1000, 290]
     end
   rescue OpenURI::HTTPError
     # do nothing
