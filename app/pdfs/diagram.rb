@@ -4,9 +4,9 @@ class Diagram
     @manual = manual
     
     
-    @modules_width = 200
-    @modules_left = 300
-    @left = -30
+    @modules_width = 230
+    @modules_left = 320
+    @left = -60
     
   end
   
@@ -32,7 +32,7 @@ class Diagram
     i = 0
     strings = @manual.panel_strings.inject("") do |result, str|
       i += 1
-      "#{result}\n#{i.to_s}. #{str.number} panels: #{str.volts} V, #{str.amps} Amps"
+      "#{result}\n#{i.to_s}. #{str.number} panels: #{str.total_volts} V, #{str.amps} Amps"
     end
     
     data = [
@@ -77,44 +77,45 @@ class Diagram
       @doc.line_to [left - 20, @top - 20]
     end
     
+    @side_left = @left + 90
     
     # lines into corner
     left = left - 30
-    top_left = [left - 100 - gap, @top]
+    top_left = [@side_left, @top]
     @doc.stroke do
       # outer line
       @doc.move_to [left, @top]
       @doc.line_to top_left
-      @doc.line_to [left - 100 - gap, @top - gap - 70]
+      @doc.line_to [@side_left, @top - gap - 70]
       
       # inner line
       @doc.move_to [left, @top - gap]
-      @doc.line_to [left - 100, @top - gap]
+      @doc.line_to [@side_left + gap, @top - gap]
       @top = @top - gap - 70
-      @doc.line_to [left - 100, @top]
+      @doc.line_to [@side_left + gap, @top]
     end
     
     @doc.text_box "#{@manual.isolator_type} Isolators", :at => [left - 70, @top + 20]
     
     # second switch
-    left = left - 100
-    @doc.fill_ellipse [left, @top], 4
-    @doc.fill_ellipse [left - gap, @top], 4
+    
+    @doc.fill_ellipse [@side_left + gap, @top], 4
+    @doc.fill_ellipse [@side_left, @top], 4
     @doc.stroke do
       # inner line diagonal
-      @doc.move_to [left, @top]
-      @doc.line_to [left - 20, @top - 20]
+      @doc.move_to [@side_left, @top]
+      @doc.line_to [@side_left - 20, @top - 20]
       # outer line diagonal
-      @doc.move_to [left - gap, @top]
-      @doc.line_to [left - gap - 20, @top - 20]
+      @doc.move_to [@side_left + gap, @top]
+      @doc.line_to [@side_left + gap - 20, @top - 20]
       
       # inner lines to inverter
       @top = @top - 20
-      @doc.move_to [left, @top]
-      @doc.line_to [left, @top - 30]
+      @doc.move_to [@side_left, @top]
+      @doc.line_to [@side_left, @top - 30]
       
-      @doc.move_to [left - gap, @top]
-      @doc.line_to [left - gap, @top - 30]
+      @doc.move_to [@side_left + gap, @top]
+      @doc.line_to [@side_left + gap, @top - 30]
       @top = @top - 30
     end
     

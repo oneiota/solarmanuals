@@ -7,4 +7,8 @@ class PanelString < ActiveRecord::Base
     (number || 0) * (manual.panels_watts || 0)
   end
   
+  def total_volts
+    (number || 0) * (volts.to_f || 0)
+  end
+  
 end

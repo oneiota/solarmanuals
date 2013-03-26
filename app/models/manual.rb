@@ -99,7 +99,7 @@ class Manual < ActiveRecord::Base
   
   def string_config
     panel_strings.map { |string|
-      "<b>1 string of #{string.number} panels, #{string.volts} Volts DC, #{string.amps} Amps</b>"
+      "<b>1 string of #{string.number} panels, #{string.total_volts} Volts DC, #{string.amps} Amps</b>"
     }.join("\n")
   end
   

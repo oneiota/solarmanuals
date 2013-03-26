@@ -17,7 +17,7 @@ class Cover
       begin
         logo_uri = @manual.user.logo.url(:original)
         logo = open(logo_uri)
-        @doc.image logo, :position => :center, :fit => [1000, 100]
+        @doc.image logo, :position => :center, :fit => [500, 100]
       rescue OpenURI::HTTPError
         company_text
       end
@@ -59,7 +59,7 @@ class Cover
     if @manual.feature_image && @manual.feature_image.file?
       uri = @manual.feature_image.file.url(:original)
       cover_image = open(uri)
-      @doc.image cover_image, :position => :center, :fit => [1000, 290]
+      @doc.image cover_image, :position => :center, :fit => [500, 290]
     end
   rescue OpenURI::HTTPError
     # do nothing
