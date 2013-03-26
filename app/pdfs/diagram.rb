@@ -49,7 +49,7 @@ class Diagram
       }
     ]
     
-    @doc.formatted_text_box data, :at => [@left + @modules_left + 20, @start_y - 20], :width => 160, :height => 60 + (@manual.panel_strings.count * 19)
+    @doc.formatted_text_box data, :at => [@left + @modules_left + 15, @start_y - 15], :width => @modules_width - 30, :height => 60 + (@manual.panel_strings.count * 19)
     
   end
   
