@@ -32,7 +32,7 @@ class Diagram
     i = 0
     strings = @manual.panel_strings.inject("") do |result, str|
       i += 1
-      "#{result}\n#{i.to_s}. #{str.number} panels: #{str.total_volts} V, #{str.amps} Amps"
+      "#{result}\n#{i.to_s}. #{str.number} panels: #{str.volts} V, #{str.amps} Amps"
     end
     
     data = [

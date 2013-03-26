@@ -2,8 +2,9 @@
   <% if @manual.unlocked? %>
     <% if @manual.filled? %>
       <p class="alert">
+        Your manual is ready for download. You can now attach PDFs or add images and select a cover image.
         <% if current_user.fields_not_filled? %>
-          You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.
+          <br/>You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.
         <% end %>
       </p>
       
