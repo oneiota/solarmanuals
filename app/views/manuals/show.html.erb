@@ -2,22 +2,39 @@
   <% if @manual.unlocked? %>
     <% if @manual.filled? %>
       <p class="alert">
-        Your manual is ready for download. You can now attach PDFs or add images and select a cover image.
         <% if current_user.fields_not_filled? %>
-          <br/><br/>You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.
+          You should <%= link_to "fill in all your company details", edit_user_registration_path %> to ensure this manual contains correct information.
         <% end %>
       </p>
-      <h1 id="manual-title"><%= @manual.client_name %></h1>
-    
-      <p id="manual-actions">
-        <%= link_to '<i class="icon-download-alt"></i> Download Manual'.html_safe, manual_document_path(@manual, :format => :pdf), :class => "btn primary", id: "download-pdf" %>&nbsp;&nbsp;&nbsp;
-        <%= link_to 'Duplicate', manual_duplicate_path(@manual), :class => 'btn' %>
-      </p>
-    
+      
       <div id="manual-uploads">
-        <%= render 'pdfs_form' %>
         <%= render 'images' %>
+        <hr/>
+        <%= render 'pdfs_form' %>
       </div>
+      
+      <div>Attachment Checklist <i class="icon-ok"></i><br/>
+          <p class="help">Before downloading your manual be sure to check you have attached the following:</p>
+          
+          <%= form_for @manual, :url => manual_document_path(@manual, :format => :pdf) do |f| %>
+          
+            <% Checklist.all.each do |checklist| %>
+              <%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
+              <%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
+            <% end %>
+            
+            <div id="manual-actions">              
+              <p>Download your completed manual below</p>
+              <button type="submit" class="btn primary" id="download-pdf">
+                <i class='icon-download-alt'></i> Download Manual
+              </button>
+            </div>
+            
+          <% end %>    
+      </div>
+      
+      
+      
     <% end %>
   <% end %>
 </div>

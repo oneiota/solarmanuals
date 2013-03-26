@@ -7,6 +7,9 @@ class ManualsController < ApplicationController
   def document
     @manual = Manual.find(params[:id])
     
+    
+    @manual.assign_attributes(params[:manual])
+    
     if @manual.user.subscribed?
       @manual.marked = true
       @manual.save

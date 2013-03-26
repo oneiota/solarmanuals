@@ -22,6 +22,8 @@ class Manual < ActiveRecord::Base
   
   accepts_nested_attributes_for :user
   
+  has_and_belongs_to_many :checklists
+  
   attr_accessor :payment, :prefill_id, :duplicate
   
   after_save :build_strings

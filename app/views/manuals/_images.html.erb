@@ -1,9 +1,8 @@
 <div id="image-uploads">
   <%= form_for @manual, :url => { :action => :update }, :html => { :multipart => true } do |f| %>
-    <p>
-      Photos&nbsp;&nbsp;∙&nbsp;&nbsp;<a href="#" id="upload-manual-images">Add Photos</a><br/>
+    <p>Attach Installation Images <i class="icon-picture"></i><br/>
       <% if @manual.images.count > 0 %>
-        <span class="regular">Click to set cover image</span>
+        <span class="help">Click to set a cover image - this image will appear on the front page of your manual</span>
       <% end %>
     </p>
     <%= f.file_field :files_array, :multiple => true,  :accept => "image/*" %>
@@ -18,4 +17,5 @@
       <% end %>
     </div>
   </div>
+  <a href="#" id="upload-manual-images" class="btn">Add Images</a>
 </div>

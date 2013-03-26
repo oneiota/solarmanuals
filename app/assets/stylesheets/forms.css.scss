@@ -35,6 +35,7 @@ button,
   &.primary {
     background: $blue;
     color: #fff;
+    line-height: $baseLineHeight;
     &:hover {
       background: $darkGrey;
       border-color: $darkGrey;

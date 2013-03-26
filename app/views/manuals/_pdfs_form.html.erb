@@ -1,15 +1,7 @@
 <div id="pdf-uploads">
-  <div>Attachment Checklist
-    <ul class="regular list">
-      <li>Panel manufacturer warranties</li>
-      <li>Performance warranties</li>
-      <li>Inverter warranties</li>
-      <li>Safety and compliance certificate</li>
-    </ul>
-  </div>
-  
+  <p>Attach Additional Documentation <i class="icon-file-alt"></i><br/><span class="help">Upload images or complete pdf documents that will be combined and attached to the appendix of your manual</span></p>
   <%= form_for current_user, :html => { :multipart => true, :class => 'upload-pdfs-form' } do |f| %>  
-    Attachments&nbsp;&nbsp;∙&nbsp;&nbsp;<%= link_to "Add Attachments", "#", id: 'upload-pdfs-btn' %><br/>
+  <%= link_to "Add Attachments", "#", id: 'upload-pdfs-btn', class: 'btn' %><br/>
     <div id="upload-pdf-fields">
       <%= f.file_field :pdfs_array, :multiple => true, class: 'upload-pdfs-input' %>
       <%= hidden_field_tag :redirect, manual_path(@manual) %>

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324044152) do
+ActiveRecord::Schema.define(:version => 20130326052127) do
+
+  create_table "checklists", :force => true do |t|
+    t.text "question"
+  end
+
+  create_table "checklists_manuals", :id => false, :force => true do |t|
+    t.integer "checklist_id"
+    t.integer "manual_id"
+  end
+
+  add_index "checklists_manuals", ["checklist_id", "manual_id"], :name => "index_checklists_manuals_on_checklist_id_and_manual_id"
+  add_index "checklists_manuals", ["manual_id", "checklist_id"], :name => "index_checklists_manuals_on_manual_id_and_checklist_id"
 
   create_table "eway_payments", :force => true do |t|
     t.integer  "user_id"

@@ -1,5 +1,9 @@
 @import 'variables';
 
+form input[type=checkbox] {
+  margin-right: 1em;
+}
+
 #new-manual {
   padding: 25px 0;
   font-size: 1.75em;
@@ -42,7 +46,7 @@
 }
 
 #manual-actions {
-  margin-bottom: $baseLineHeight * 5;
+  margin: $baseLineHeight * 4 0;
   a {
     margin: 0;
   }
@@ -53,9 +57,10 @@
 }
 
 #pdf-uploads {
-  @include grid(5);
-  @include push(1);
+
+  @include grid(12);
   margin-bottom: $baseLineHeight * 3;
+
 }
 
 #manual-pdfs-boxes {
@@ -90,7 +95,8 @@
 }
 
 #image-uploads {
-  @include grid(6);
+  @include grid(12);
+  margin-bottom: $baseLineHeight * 2;
 }
 
 
