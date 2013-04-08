@@ -7,7 +7,10 @@
       <div class="step-inner">
       
         <% if (@manual.id && @manual.before_step?(step)) || (@manual.id && @manual.filled) %>
-          <div class="edit-step"><%= link_to "Edit", edit_manual_path(@manual, :step => step), :class => "btn" %></div>
+        
+          <% unless @manual.current_step?(step) %>
+            <div class="edit-step"><%= link_to "Edit", edit_manual_path(@manual, :step => step), :class => "btn" %></div>
+          <% end %>
         <% end %>
     
         <% if (@manual.before_step?(step) || @manual.filled) && !@manual.current_step?(step) %>
