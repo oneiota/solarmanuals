@@ -1,0 +1,13 @@
+@import 'variables';
+
+#signature_box {
+  border: #ccc 5px dashed;
+  @include box-sizing(border-box);
+  margin-bottom: 1em;
+}
+
+#signature {
+  [type=file] {
+    display: none;
+  }
+}

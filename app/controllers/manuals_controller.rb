@@ -1,5 +1,6 @@
 class ManualsController < ApplicationController
   layout "pdf", :only => [:document]
+  layout "blank", :only => [:installer_signature, :contractor_signature]
   
   before_filter :authenticate_user!
   load_and_authorize_resource
@@ -204,5 +205,14 @@ class ManualsController < ApplicationController
       redirect_to manuals_path, :alert => @manual.errors.full_messages.join(" ")
     end
   end
-    
+  
+  
+  def installer_signature
+    @manual = Manual.find(params[:manual_id])
+  end
+  
+  def contractor_signature
+    @manual = Manual.find(params[:manual_id])    
+  end
+  
 end

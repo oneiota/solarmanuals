@@ -17,6 +17,8 @@ Solar::Application.routes.draw do
   resources :manuals do
     post :single_charge
     get :duplicate
+    get :installer_signature
+    get :contractor_signature
   end
   
   resources :invoices, :controller => "eway_payments", :only => [:show]

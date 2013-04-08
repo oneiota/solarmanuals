@@ -24,7 +24,7 @@ class Manual < ActiveRecord::Base
   
   has_and_belongs_to_many :checklists
   
-  attr_accessor :payment, :prefill_id, :duplicate
+  attr_accessor :payment, :prefill_id, :duplicate, :installer_signature, :contractor_signature
   
   after_save :build_strings
   
@@ -35,7 +35,7 @@ class Manual < ActiveRecord::Base
   # steps
   
   def steps
-    %w{customer panels inverter warranties performance wiring} + (user.subscribed? || paid? || user.insider || user.manuals.count == 0 ? [] : %w{payment})
+    %w{customer panels inverter warranties performance wiring signature} + (user.subscribed? || paid? || user.insider || user.manuals.count == 0 ? [] : %w{payment})
   end
   
   def step_index(step)
