@@ -1,6 +1,6 @@
 class ManualsController < ApplicationController
   layout "pdf", :only => [:document]
-  layout "blank", :only => [:installer_signature, :contractor_signature]
+  layout "blank", :only => [:installer_signature, :contractor_signature, :signature_success]
   
   before_filter :authenticate_user!
   load_and_authorize_resource
@@ -109,10 +109,6 @@ class ManualsController < ApplicationController
       user_params = params[:manual].delete(:user)
     end
     
-    if params[:pdf_list]
-      params[:manual] ||= { :pdf_ids => [] }
-    end
-    
     @manual.assign_attributes(params[:manual])
     
     # payment step
@@ -148,7 +144,10 @@ class ManualsController < ApplicationController
     
     respond_to do |format|
       if @manual.save
-        if @manual.filled
+        if params[:manual] && 
+          ( params[:manual][:installer_signature] || params[:manual][:contractor_signature] )
+          format.html { redirect_to manual_signature_success_path(@manual) }
+        elsif @manual.filled
           format.html { redirect_to @manual, notice: 'Manual was successfully updated.' }
           format.json { head :no_content }
           format.js

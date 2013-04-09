@@ -19,6 +19,7 @@ Solar::Application.routes.draw do
     get :duplicate
     get :installer_signature
     get :contractor_signature
+    get :signature_success
   end
   
   resources :invoices, :controller => "eway_payments", :only => [:show]

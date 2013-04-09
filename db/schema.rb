@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326052127) do
+ActiveRecord::Schema.define(:version => 20130409001302) do
 
   create_table "checklists", :force => true do |t|
     t.text "question"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(:version => 20130326052127) do
     t.string   "inverter_series"
     t.string   "current_step"
     t.decimal  "performance_multiplier",             :precision => 8, :scale => 2, :default => 0.75
+    t.integer  "installer_signature_id"
+    t.integer  "contractor_signature_id"
   end
 
   create_table "manuals_pdfs", :force => true do |t|
@@ -126,6 +128,15 @@ ActiveRecord::Schema.define(:version => 20130326052127) do
 
   create_table "pdfs", :force => true do |t|
     t.integer  "user_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  create_table "signatures", :force => true do |t|
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"

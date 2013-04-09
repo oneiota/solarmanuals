@@ -5,7 +5,7 @@ class Ability
     
     user ||= User.new
     
-    can :create, Manual
+    can [:create, :signature_success], Manual
     
     can [:destroy, :update, :read, :set_feature, :duplicate, :installer_signature, :contractor_signature], Manual do |manual|
       manual.user == user || user.insider

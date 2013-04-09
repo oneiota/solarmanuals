@@ -24,9 +24,12 @@ class Manual < ActiveRecord::Base
   
   has_and_belongs_to_many :checklists
   
-  attr_accessor :payment, :prefill_id, :duplicate, :installer_signature, :contractor_signature
+  attr_accessor :payment, :prefill_id, :duplicate
   
   after_save :build_strings
+  
+  belongs_to :installer_signature, :class_name => "Signature"
+  belongs_to :contractor_signature, :class_name => "Signature"
   
   def build_strings
     panel_strings.build unless panel_strings.count > 0
@@ -183,6 +186,28 @@ class Manual < ActiveRecord::Base
   
   
   
+  # signatures
+  
+  # attr_reader :installer_signature, :contractor_signature
+  
+  def create_file(data)
+    data = data.split(',').pop
+    image = StringIO.new(Base64.decode64(data))
+    image.class.class_eval { attr_accessor :original_filename, :content_type }
+    image.original_filename = 'signature.png'
+    image.content_type = 'image/png'
+    image
+  end
+  
+  def installer_signature=(image)
+    sig = Signature.create :file => create_file(image)
+    self.installer_signature_id = sig.id
+  end
+  
+  def contractor_signature=(image)
+    sig = Signature.create :file => create_file(image)
+    self.contractor_signature = sig.id
+  end
   
   private
   

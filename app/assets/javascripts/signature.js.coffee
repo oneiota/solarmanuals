@@ -1,11 +1,11 @@
 $ ->
   
-  $(window).on 'load', (e) ->
-    
+  $(window).on 'load', (e) ->  
     $('#signature_box').length && $('#signature_box').sketch()
   
   $('#signature form').on 'submit', (e) ->
-    $('.file', this).attr('value', $('#signature_box')[0].toDataURL())
+    data = $('#signature_box')[0].toDataURL()
+    $('.file', this).attr('value', data)
   
   $('#sign-btn').on 'click', (e) ->
     e.preventDefault()

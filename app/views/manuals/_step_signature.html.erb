@@ -1,13 +1,14 @@
 <div class="field">
   
-  <div class="actions">Accredited Installer</div>
+  <div class="field-label">&nbsp;</div>
   
-  <div class="field-label">
-    Installer is <%= label_tag :account_installer, current_user.full_name %>
+  <div class="field-input">
+    <%= check_box_tag :account_installer, '1', true %> 
+    <%= label_tag :account_installer, "Accredited Installer is #{current_user.full_name}" %>
   </div>
   
-  <div class="field-input"><%= check_box_tag :account_installer, '1', true %></div>
 </div>
+
 <div class="field">
   <% unless @manual.new_record? %>
     <div class="actions"><%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %></div>
