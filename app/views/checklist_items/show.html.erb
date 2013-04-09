@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Checklist group:</b>
+  <%= @checklist_item.checklist_group_id %>
+</p>
+
+<p>
+  <b>Label:</b>
+  <%= @checklist_item.label %>
+</p>
+
+<p>
+  <b>Helper:</b>
+  <%= @checklist_item.helper %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @checklist_item.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_checklist_item_path(@checklist_item) %> |
+<%= link_to 'Back', checklist_items_path %>

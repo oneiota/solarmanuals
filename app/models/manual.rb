@@ -10,19 +10,24 @@ class Manual < ActiveRecord::Base
   
   belongs_to :eway_payment
   
-  has_many :images
+  has_many :images, :dependent => :destroy
   accepts_nested_attributes_for :images
   
   belongs_to :client_state, :class_name => "State"
   
   has_and_belongs_to_many :pdfs
   
-  has_many :panel_strings
+  has_many :panel_strings, :dependent => :destroy
   accepts_nested_attributes_for :panel_strings, :allow_destroy => true
   
   accepts_nested_attributes_for :user
   
   has_and_belongs_to_many :checklists
+  
+  has_many :checklist_responses, :dependent => :destroy
+  has_many :checklist_items, :through => :checklist_responses
+  
+  accepts_nested_attributes_for :checklist_responses  
   
   attr_accessor :payment, :prefill_id, :duplicate
   
@@ -38,7 +43,7 @@ class Manual < ActiveRecord::Base
   # steps
   
   def steps
-    %w{customer panels inverter warranties performance wiring signature} + (user.subscribed? || paid? || user.insider || user.manuals.count == 0 ? [] : %w{payment})
+    %w{customer panels inverter warranties performance wiring checklist signature} + (user.subscribed? || paid? || user.insider || user.manuals.count == 0 ? [] : %w{payment})
   end
   
   def step_index(step)
