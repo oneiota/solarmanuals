@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  manual_id: 1
+  checklist_item_id: 1
+  response: MyString
+
+two:
+  manual_id: 1
+  checklist_item_id: 1
+  response: MyString

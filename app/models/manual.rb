@@ -24,6 +24,9 @@ class Manual < ActiveRecord::Base
   
   has_and_belongs_to_many :checklists
   
+  has_many :checklist_responses
+  has_many :checklist_items, through => :checklist_responses
+  
   attr_accessor :payment, :prefill_id, :duplicate
   
   after_save :build_strings

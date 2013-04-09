@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326052127) do
+ActiveRecord::Schema.define(:version => 20130409052034) do
+
+  create_table "checklist_groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "checklist_items", :force => true do |t|
+    t.integer  "checklist_group_id"
+    t.text     "label"
+    t.string   "helper"
+    t.string   "field_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "checklist_responses", :force => true do |t|
+    t.integer  "manual_id"
+    t.integer  "checklist_item_id"
+    t.string   "response"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "checklists", :force => true do |t|
     t.text "question"

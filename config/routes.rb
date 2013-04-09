@@ -1,5 +1,8 @@
 Solar::Application.routes.draw do
 
+  resources :checklist_items
+
+
   devise_for :users
   
   resources :users, only: [:show, :update] do
