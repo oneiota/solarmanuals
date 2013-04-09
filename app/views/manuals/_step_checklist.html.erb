@@ -1,0 +1,23 @@
+<% @manual.checklist_responses.build ChecklistItem.all.map{|m| {:checklist_item_id => m.id }} %>
+
+
+<%= f.fields_for :checklist_responses do |b| %>
+
+  <div class="field">
+    <div class="field-label">
+      <%= b.object.checklist_item.helper.html_safe %>
+    </div>
+    
+    <div class="field-input">
+      <% if b.object.checklist_item %>
+        <%= b.hidden_field :checklist_item_id, :value => b.object.checklist_item.id %>
+        
+        <%= b.send(b.object.checklist_item.field_type, :response) %>
+        
+        <%= b.label :response, b.object.checklist_item.label %>
+        
+      <% end %>
+    </div>
+  </div>
+  
+<% end %>
