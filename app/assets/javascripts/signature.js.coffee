@@ -1,6 +1,7 @@
+
 $ ->
-  
-  $(window).on 'load', (e) ->  
+    
+  $(window).on 'load', (e) ->
     $('#signature_box').length && $('#signature_box').sketch()
   
   $('#signature form').on 'submit', (e) ->
@@ -12,4 +13,4 @@ $ ->
     w = window.open $(this).attr('href'), 'sig', 'height=400,width=700,toolbar=no'
     w.onunload = ->
       if w.location.origin != 'null'
-        console.log 'closed'
+        window.location.reload()

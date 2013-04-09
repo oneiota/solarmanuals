@@ -214,4 +214,8 @@ class ManualsController < ApplicationController
     @manual = Manual.find(params[:manual_id])    
   end
   
+  def signature_success
+    @manual = Manual.find(params[:manual_id])
+  end
+  
 end
