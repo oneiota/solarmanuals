@@ -5,6 +5,14 @@
 
   <div class="field">
     <% if b.object.checklist_item %>
+    
+    <div class="field-label help">
+      &nbsp;
+        
+        <%= b.object.checklist_item.helper.html_safe %>
+    
+    </div>
+    
     <div class="field-input">
 
         <%= b.hidden_field :checklist_item_id, :value => b.object.checklist_item.id %>
@@ -15,12 +23,6 @@
 
     </div>
     
-    <div class="field-label help">
-      &nbsp;
-        
-        <%= b.object.checklist_item.helper.html_safe %>
-    
-    </div>
     <% end %>
     
   </div>
