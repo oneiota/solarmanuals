@@ -61,6 +61,12 @@ button,
     p {
       margin-top: $baseLineHeight;
     }
+    p.help {
+      margin: 0;
+    }
+    input {
+      vertical-align: top;
+    }
   }
   .helper {
     float: left;
@@ -69,6 +75,12 @@ button,
     line-height: 16px;
     color: $midGrey;
   }
+}
+
+.checklist {
+  padding: 2em 0;
+  border-bottom: 1px #ccc solid;
+  margin: 0 0 1em 0;
 }
 
 .actions {

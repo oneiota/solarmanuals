@@ -3,28 +3,27 @@
 
 <%= f.fields_for :checklist_responses do |b| %>
 
-  <div class="field">
+  <div class="field checklist">
+    
     <% if b.object.checklist_item %>
     
-    <div class="field-label help">
-      &nbsp;
+    <div class="field-label">
         
-        <%= b.object.checklist_item.helper.html_safe %>
+        <%= b.label :response, b.object.checklist_item.label %>
     
     </div>
     
     <div class="field-input">
-
         <%= b.hidden_field :checklist_item_id, :value => b.object.checklist_item.id %>
         
-        <%= b.label :response, b.object.checklist_item.label %>
-        
         <%= b.send(b.object.checklist_item.field_type, :response) %>
+
+        <p class="help"><%= b.object.checklist_item.helper.html_safe %></p>
 
     </div>
     
     <% end %>
     
   </div>
-  
+    
 <% end %>
