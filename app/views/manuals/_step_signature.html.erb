@@ -1,6 +1,8 @@
-<% if @manual.installer_signature %>
-  <%= image_tag @manual.installer_signature.file %>
-<% end %>
+<div id="installer-signature">
+  <% if @manual.installer_signature %>
+    <%= image_tag @manual.installer_signature.file %>
+  <% end %>
+</div>
 
 <div class="field">
   <div class="field-label">&nbsp;</div>
@@ -13,15 +15,22 @@
 <div class="field">
   <% unless @manual.new_record? %>
     <div class="actions">
-      <%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %> 
-      <%= link_to 'Email Signature Request', '#' %>
+      <%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %>
     </div>
   <% end %>
 </div>
 
-<% if @manual.contractor_signature %>
-  <%= image_tag @manual.installer_signature.file %>
-<% end %>
+<div class="field" id="installer_signature_email">
+  <div class="field-label"><%= f.label :installer_signature_email %></div>
+  <div class="field-input"><%= f.email_field :installer_signature_email %></div>
+</div>
+
+
+<div id="contractor-signature">
+  <% if @manual.contractor_signature %>
+    <%= image_tag @manual.contractor_signature.file %>
+  <% end %>
+</div>
 
 <div class="field">
   <div class="field-label">&nbsp;</div>
