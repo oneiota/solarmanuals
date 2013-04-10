@@ -65,7 +65,7 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["Number of MPPTs","","text_field"]
+          ["Number of MPPTs?","","text_field"]
         ]
       ],
     
@@ -73,16 +73,16 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["PV array tilt","","text_field"],
-          ["PV array orientation","","text_field"],
-          ["Array frame is certified to AS1170.2 for installation location","","check_box"],
-          ["Array frame is installed to manufacturer’s instructions","","check_box"],
-          ["No galvanically dissimilar metals are in contact with the array frames or supports","","check_box"],
-          ["Roof penetrations are suitably sealed and weatherproofed","","check_box"],
-          ["PV wiring losses are less than 3%at the maximum current output of the array","","check_box"],
-          ["Where PV array comprises multiple strings-string protection has been provided","","check_box"],
-          ["Wiring is protected from mechanical damage and is appropriately supported","","check_box"],
-          ["Weatherproof PV array isolator mounted adjacent to the array","(Rating:................................Vdc, ................Adc)","check_box"]
+          ["PV array tilt?","","text_field"],
+          ["PV array orientation?","","text_field"],
+          ["Array frame is certified to AS1170.2 for installation location?","","check_box"],
+          ["Array frame is installed to manufacturer’s instructions?","","check_box"],
+          ["No galvanically dissimilar metals are in contact with the array frames or supports?","","check_box"],
+          ["Roof penetrations are suitably sealed and weatherproofed?","","check_box"],
+          ["PV wiring losses are less than 3%at the maximum current output of the array?","","check_box"],
+          ["Where PV array comprises multiple strings-string protection has been provided?","","check_box"],
+          ["Wiring is protected from mechanical damage and is appropriately supported?","","check_box"],
+          ["Weatherproof PV array isolator mounted adjacent to the array?","(Rating:................................Vdc, ................Adc)","check_box"]
         ]
       ],
     
@@ -90,8 +90,8 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["All low voltage wiring has been installed by a licensed electrical tradesperson","","check_box"],
-          ["All wiring has been tested and approved by qualified electrical tradesperson","","check_box"]
+          ["All low voltage wiring has been installed by a licensed electrical tradesperson?","","check_box"],
+          ["All wiring has been tested and approved by qualified electrical tradesperson?","","check_box"]
         ]
       ],
     
@@ -99,12 +99,12 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["PV array isolator mounted adjacent to the inverter","(Rating:......................................Vdc, ................Adc)","check_box"],
-          ["Isolator is mounted on output of the inverter","(where required)","check_box"],
-          ["Lockable AC circuit breaker mounted within the switchboard to act as the inverter main switch for the PV/inverter system","(Rating ........... A )","check_box"],
-          ["Inverter is installed as per manufacturer’s specification","","check_box"],
-          ["Inverter ceases supplying power within two seconds of a loss of AC mains","","check_box"],
-          ["Inverter does not resume supplying power until mains have been present for more than 60 seconds.","","check_box"]
+          ["PV array isolator mounted adjacent to the inverter?","(Rating:......................................Vdc, ................Adc)","check_box"],
+          ["Isolator is mounted on output of the inverter?","(where required)","check_box"],
+          ["Lockable AC circuit breaker mounted within the switchboard to act as the inverter main switch for the PV/inverter system?","(Rating ........... A )","check_box"],
+          ["Inverter is installed as per manufacturer’s specification?","","check_box"],
+          ["Inverter ceases supplying power within two seconds of a loss of AC mains?","","check_box"],
+          ["Inverter does not resume supplying power until mains have been present for more than 60 seconds?","","check_box"]
         ]
       ],
     
@@ -112,9 +112,9 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["Circuit checked","(record a description of the circuit checked below)","text_field"],
-          ["Continuity of all string, sub-array and array cables","","check_box"],
-          ["Continuity of all earth connections","(including module frame)","check_box"]
+          ["Circuit checked","(record a description of the circuit)","text_field"],
+          ["Continuity of all string, sub-array and array cables?","","check_box"],
+          ["Continuity of all earth connections?","(including module frame)","check_box"]
         ]
       ],
     
@@ -137,10 +137,10 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["On switchboard to which inverter is directly connected","<img src='/assets/AS4777_1.gif'/>","check_box"],
-          ["Is permanently fixed at the main switch","<img src='/assets/AS4777_2.gif'/>","check_box"],
-          ["Is permanently fixed at the solar main switch","<img src='/assets/AS4777_3.gif'/>","check_box"],
-          ["If the solar system is connected to a distribution board then the following sign is located on main switchboard and all intermediate distribution boards","<img src='/assets/AS4777_4.gif'/>","check_box"]
+          ["On switchboard to which inverter is directly connected?","<img src='/assets/AS4777_1.gif'/>","check_box"],
+          ["Is permanently fixed at the main switch?","<img src='/assets/AS4777_2.gif'/>","check_box"],
+          ["Is permanently fixed at the solar main switch?","<img src='/assets/AS4777_3.gif'/>","check_box"],
+          ["If the solar system is connected to a distribution board then the following sign is located on main switchboard and all intermediate distribution boards?","<img src='/assets/AS4777_4.gif'/>","check_box"]
         ]
       ],
     
@@ -148,13 +148,13 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["Is permanently fixed on array junction boxes (black on yellow)","<img src='/assets/ASNZS5033_1.gif'/>","check_box"],
-          ["Fire emergency information is permanently fixed on the main switchboard and/or meter box (if not installed together)","<img src='/assets/ASNZS5033_2.gif'/>","check_box"],
-          ["PV DC isolation is clearly identified","<img src='/assets/ASNZS5033_3.gif'/>","check_box"],
-          ["Is placed adjacent to the inverter when multiple isolation/disconnection devices are used that are not ganged together","<img src='/assets/ASNZS5033_5.gif'/>","check_box"],
-          ["Exterior surface of wiring enclosures labelled ‘SOLAR’","<img src='/assets/ASNZS5033_4.gif'/>","check_box"],
-          ["Shutdown procedure is permanently fixed at inverter and/or on main switchboard","","check_box"],
-          ["Any other signage as required by the local electricity distributor","","check_box"]
+          ["Is permanently fixed on array junction boxes (black on yellow)?","<img src='/assets/ASNZS5033_1.gif'/>","check_box"],
+          ["Fire emergency information is permanently fixed on the main switchboard and/or meter box (if not installed together)?","<img src='/assets/ASNZS5033_2.gif'/>","check_box"],
+          ["PV DC isolation is clearly identified?","<img src='/assets/ASNZS5033_3.gif'/>","check_box"],
+          ["Is placed adjacent to the inverter when multiple isolation/disconnection devices are used that are not ganged together?","<img src='/assets/ASNZS5033_5.gif'/>","check_box"],
+          ["Exterior surface of wiring enclosures labelled ‘SOLAR’?","<img src='/assets/ASNZS5033_4.gif'/>","check_box"],
+          ["Shutdown procedure is permanently fixed at inverter and/or on main switchboard?","","check_box"],
+          ["Any other signage as required by the local electricity distributor?","","check_box"]
         ]
       ]
   }
