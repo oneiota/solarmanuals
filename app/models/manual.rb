@@ -31,7 +31,7 @@ class Manual < ActiveRecord::Base
   
   attr_accessor :payment, :prefill_id, :duplicate
   
-  after_save :build_strings
+  after_save :build_strings, :send_signature_emails
   
   belongs_to :installer_signature, :class_name => "Signature"
   belongs_to :contractor_signature, :class_name => "Signature"
@@ -211,6 +211,16 @@ class Manual < ActiveRecord::Base
   def contractor_signature_data=(image)
     sig = Signature.create :file => create_file(image)
     self.contractor_signature_id = sig.id
+  end
+  
+  def send_signature_emails
+    if contractor_signature_email_changed? && contractor_signature_email.present?
+      SignatureMailer.contractor_signature_request(self, contractor_signature_email).deliver
+    end
+    
+    if installer_signature_email_changed? && installer_signature_email.present?
+      SignatureMailer.installer_signature_request(self, installer_signature_email).deliver
+    end
   end
   
   private

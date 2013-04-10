@@ -30,7 +30,7 @@ $ ->
   $('#account_installer, #account_contractor').on 'change', (e) ->
     showHideSigFields()
 
-  $('#sign-btn').on 'click', (e) ->
+  $('.sign-btn').on 'click', (e) ->
     e.preventDefault()
     w = window.open $(this).attr('href'), 'sig', 'height=400,width=700,toolbar=no'
     w.onunload = ->

@@ -15,7 +15,7 @@
 <div class="field" id="installer-signature-sign">
   <% unless @manual.new_record? %>
     <div class="actions">
-      <%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %>
+      <%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn sign-btn', :target => "_blank" %>
     </div>
   <% end %>
 </div>
@@ -46,7 +46,7 @@
 <div class="field" id="contractor-signature-sign">
   <% unless @manual.new_record? %>
     <div class="actions">
-      <%= link_to 'Sign', manual_contractor_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %>
+      <%= link_to 'Sign', manual_contractor_signature_path(@manual), :class => 'btn sign-btn', :target => "_blank" %>
     </div>
   <% end %>
 </div>
