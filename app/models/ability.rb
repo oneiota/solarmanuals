@@ -19,6 +19,5 @@ class Ability
       user == other_user
     end
     
-    
   end
 end

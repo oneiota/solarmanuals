@@ -1,19 +1,32 @@
-
+<% if @manual.installer_signature %>
   <%= image_tag @manual.installer_signature.file %>
+<% end %>
 
-  <div class="field">
-  
-    <div class="field-label">&nbsp;</div>
-  
-    <div class="field-input">
-      <%= check_box_tag :account_installer, '1', true %> 
-      <%= label_tag :account_installer, "Accredited Installer is #{current_user.full_name}" %>
+<div class="field">
+  <div class="field-label">&nbsp;</div>
+  <div class="field-input">
+    <%= check_box_tag :account_installer, '1', true %> 
+    <%= label_tag :account_installer, "Accredited Installer is #{current_user.full_name}" %>
+  </div>
+</div>
+
+<div class="field">
+  <% unless @manual.new_record? %>
+    <div class="actions">
+      <%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %> 
+      <%= link_to 'Email Signature Request', '#' %>
     </div>
-  
-  </div>
+  <% end %>
+</div>
 
-  <div class="field">
-    <% unless @manual.new_record? %>
-      <div class="actions"><%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %></div>
-    <% end %>
+<% if @manual.contractor_signature %>
+  <%= image_tag @manual.installer_signature.file %>
+<% end %>
+
+<div class="field">
+  <div class="field-label">&nbsp;</div>
+  <div class="field-input">
+    <%= check_box_tag :account_contractor, '1', true %> 
+    <%= label_tag :account_contractor, "Licenced Contractor is #{current_user.full_name}" %>
   </div>
+</div>
