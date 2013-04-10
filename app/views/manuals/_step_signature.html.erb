@@ -7,12 +7,12 @@
 <div class="field">
   <div class="field-label">&nbsp;</div>
   <div class="field-input">
-    <%= check_box_tag :account_installer, '1', true %> 
+    <%= check_box_tag :account_installer, '1', @manual.installer_signature_email.blank? %> 
     <%= label_tag :account_installer, "Accredited Installer is #{current_user.full_name}" %>
   </div>
 </div>
 
-<div class="field">
+<div class="field" id="installer-signature-sign">
   <% unless @manual.new_record? %>
     <div class="actions">
       <%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %>
@@ -20,9 +20,12 @@
   <% end %>
 </div>
 
-<div class="field" id="installer_signature_email">
+<div class="field" id="installer-signature-email">
   <div class="field-label"><%= f.label :installer_signature_email %></div>
-  <div class="field-input"><%= f.email_field :installer_signature_email %></div>
+  <div class="field-input">
+    <%= f.email_field :installer_signature_email %>
+    <p class="help">An email with a link to sign the document will be sent.</p>
+  </div>
 </div>
 
 
@@ -35,12 +38,12 @@
 <div class="field">
   <div class="field-label">&nbsp;</div>
   <div class="field-input">
-    <%= check_box_tag :account_contractor, '1', true %> 
+    <%= check_box_tag :account_contractor, '1', @manual.contractor_signature_email.blank? %> 
     <%= label_tag :account_contractor, "Licenced Contractor is #{current_user.full_name}" %>
   </div>
 </div>
 
-<div class="field">
+<div class="field" id="contractor-signature-sign">
   <% unless @manual.new_record? %>
     <div class="actions">
       <%= link_to 'Sign', manual_contractor_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %>
@@ -48,7 +51,10 @@
   <% end %>
 </div>
 
-<div class="field" id="installer_signature_email">
+<div class="field" id="contractor-signature-email">
   <div class="field-label"><%= f.label :contractor_signature_email %></div>
-  <div class="field-input"><%= f.email_field :contractor_signature_email %></div>
+  <div class="field-input">
+    <%= f.email_field :contractor_signature_email %>
+    <p class="help">An email with a link to sign the document will be sent.</p>
+  </div>
 </div>
