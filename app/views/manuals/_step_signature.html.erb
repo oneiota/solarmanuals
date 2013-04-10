@@ -39,3 +39,16 @@
     <%= label_tag :account_contractor, "Licenced Contractor is #{current_user.full_name}" %>
   </div>
 </div>
+
+<div class="field">
+  <% unless @manual.new_record? %>
+    <div class="actions">
+      <%= link_to 'Sign', manual_contractor_signature_path(@manual), :class => 'btn', :target => "_blank", :id => "sign-btn" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="field" id="installer_signature_email">
+  <div class="field-label"><%= f.label :contractor_signature_email %></div>
+  <div class="field-input"><%= f.email_field :contractor_signature_email %></div>
+</div>

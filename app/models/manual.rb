@@ -192,11 +192,10 @@ class Manual < ActiveRecord::Base
   
   
   # signatures
-  
-  # attr_reader :installer_signature, :contractor_signature
+  attr_reader :installer_signature_data, :contractor_signature_data
   
   def create_file(data)
-    data = data.split(',').pop
+    data = data.to_s.split(',').pop
     image = StringIO.new(Base64.decode64(data))
     image.class.class_eval { attr_accessor :original_filename, :content_type }
     image.original_filename = 'signature.png'
@@ -204,14 +203,14 @@ class Manual < ActiveRecord::Base
     image
   end
   
-  def installer_signature=(image)
+  def installer_signature_data=(image)
     sig = Signature.create :file => create_file(image)
     self.installer_signature_id = sig.id
   end
   
-  def contractor_signature=(image)
+  def contractor_signature_data=(image)
     sig = Signature.create :file => create_file(image)
-    self.contractor_signature = sig.id
+    self.contractor_signature_id = sig.id
   end
   
   private

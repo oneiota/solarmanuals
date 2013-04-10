@@ -2,7 +2,7 @@
   <canvas id="signature_box" height="200" width="640"></canvas>
 
   <%= form_for @manual do |f| %>
-    <%= f.hidden_field controller.action_name, :class => 'file' %>
+    <%= f.hidden_field controller.action_name + "_data", :class => 'file' %>
     <%= f.submit "Complete" %>
   <% end %>
 </div>
