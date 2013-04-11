@@ -120,8 +120,14 @@ if ChecklistGroup.count == 0
     
     "System Check" => 
       [
-        "WARNING:<br/><br/>IF A STRING IS REVERSED AND CONNECTED TO OTHERS, FIRE MAY RESULT.<br/><br/>IF POLARITY IS REVERSED AT THE INVERTER DAMAGE MAY OCCUR TO THE INVERTER.",
-        []
+        "WARNING: IF A STRING IS REVERSED AND CONNECTED TO OTHERS, FIRE MAY RESULT. IF POLARITY IS REVERSED AT THE INVERTER DAMAGE MAY OCCUR TO THE INVERTER.",
+        [
+          ["Sub-arrays where required - N/A","We do not currently support sub-array systems",""],
+          ["PV array at PV array switch-disconnector - Voltage","V","text_field"],
+          ["PV array at PV array switch-disconnector - Short Circuit","A","text_field"],
+          ["PV array at PV array switch-disconnector - Operating Current","A","text_field"],
+          ["Irradiance at time of recording the current","W/m2","text_field"]
+        ]
       ],
     
     "INSULATION RESISTANCE MEASUREMENTS" => 
@@ -174,12 +180,14 @@ if ChecklistGroup.count == 0
     
     items.each do |item_array|
       label, helper, field_type = item_array
+      
       params = { 
         :checklist_group_id => group.id,
         :label => label,
         :helper => helper,
         :field_type => field_type
       }
+      
       ChecklistItem.create params
       puts "\tCreated #{label}"
     end

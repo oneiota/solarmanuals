@@ -1,43 +1,61 @@
-<% if @manual.checklist_responses.count == 0 # prevent dupes %>
-  <% @manual.checklist_responses.build ChecklistItem.all.map{|m| {:checklist_item_id => m.id }} %>
-<% end %>
 
-<% previous_group_id = nil %>
-
-<%= f.fields_for :checklist_responses, @manual.checklist_responses.sort_by(&:checklist_item_id) do |b| %>
-
-  <% if previous_group_id != b.object.checklist_item.checklist_group_id %>
-    <div class="checklist-group-header">
-      <%= b.object.checklist_item.checklist_group.name %>
-      <%= b.object.checklist_item.checklist_group.description.html_safe %>
-    </div>
-  <% end %> 
+<div class="checklist-container">
   
-  <% previous_group_id = b.object.checklist_item.checklist_group_id %>
-  
-
-  <div class="field checklist">
-    
-    <% if b.object.checklist_item %>
-    
-    <div class="field-label">
-        
-        <%= b.label :response, b.object.checklist_item.label %>
-    
-    </div>
-    
-    <div class="field-input">
-      
-        <%= b.hidden_field :checklist_item_id, :value => b.object.checklist_item.id %>
-        
-        <%= b.send(b.object.checklist_item.field_type, :response) %>
-
-        <p class="help"><%= b.object.checklist_item.helper.html_safe %></p>
-
-    </div>
-    
-    <% end %>
-    
+  <div class="checklist-heading">
+      <p>Installation and commissioning checklist</p>
+      <p>General</p>
+      <p class="help">WARNING: Where short circuit currents are required, follow AS/NZS 5033 Appendix D for the steps that shall be undertaken to measure the short circuit current safely.</p>
+      <p class="help">NOTE: Some projects require that short circuit currents are recorded as part of the contractual commissioning; otherwise a record of the actual operating current of each string is sufficient. This could be done by using the meter on the inverter or by using a clamp meter when the system is operational.</p>
+      <p>Insulation resistance measurement</p>
+      <p class="help">WARNING: PV array dc circuits are live during daylight and, unlike a conventional ac circuit, cannot be isolated before performing this test. Follow AS/NZS 5033 Appendix D4 for the steps that shall be undertaken to measure the insulation resistance safely.</p>
   </div>
+  
+  <% if @manual.checklist_responses.count == 0 # prevent dupes %>
+    <% @manual.checklist_responses.build ChecklistItem.all.map{|m| {:checklist_item_id => m.id }} %>
+  <% end %>
+  
+  <% previous_group_id = nil %>
+  
+  <%= f.fields_for :checklist_responses, @manual.checklist_responses.sort_by(&:checklist_item_id) do |b| %>  
     
-<% end %>
+    <% if previous_group_id != b.object.checklist_item.checklist_group_id %>
+      <div class="checklist-heading">
+        <p><%= b.object.checklist_item.checklist_group.name %></p>
+        <p class="help"><%= b.object.checklist_item.checklist_group.description.html_safe %></p>
+      </div>
+    <% end %> 
+    
+    <% previous_group_id = b.object.checklist_item.checklist_group_id %>
+    
+  
+    <div class="field checklist">
+      
+      <% if b.object.checklist_item %>
+      
+      <div class="checklist-label">
+          
+          <%= b.label :response, b.object.checklist_item.label %>
+      
+      </div>
+      
+      <div class="checklist-input">
+        
+          <% if b.object.checklist_item.field_type.present? %>
+            
+            <%= b.hidden_field :checklist_item_id, :value => b.object.checklist_item.id %>
+            
+            <%= b.send(b.object.checklist_item.field_type, :response) %>
+          
+            <p class="help"><%= b.object.checklist_item.helper.html_safe %></p>
+          
+          <% end %>
+      
+      </div>
+      
+      <% end %>
+      
+    </div>
+      
+  <% end %>
+  
+</div>
