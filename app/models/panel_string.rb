@@ -1,5 +1,5 @@
 class PanelString < ActiveRecord::Base
-  attr_accessible :amps, :manual_id, :number, :volts
+  attr_accessible :amps, :manual_id, :number, :volts, :polarity, :short_circuit
   
   belongs_to :manual
   

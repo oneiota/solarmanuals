@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411014440) do
+ActiveRecord::Schema.define(:version => 20130411042649) do
 
   create_table "checklist_groups", :force => true do |t|
     t.string   "name"
@@ -150,8 +150,12 @@ ActiveRecord::Schema.define(:version => 20130411014440) do
     t.string   "volts"
     t.string   "amps"
     t.integer  "manual_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "polarity"
+    t.string   "short_circuit"
+    t.string   "tilt"
+    t.string   "orientation"
   end
 
   create_table "pdfs", :force => true do |t|
