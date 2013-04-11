@@ -48,12 +48,32 @@ button,
   margin-bottom: $baseLineHeight;
   position: relative;
   @include clearfix;
+  .checklist-label {
+    @include grid(6);
+    text-align: right;
+    clear: left;
+    img {
+      max-width: 50%;
+    }
+  }
   .field-label {
     @include grid(4);
     text-align: right;
     clear: left;
     img {
       max-width: 50%;
+    }
+  }
+  .checklist-input {
+    @include grid(6);
+    p {
+      margin-top: $baseLineHeight;
+    }
+    p.help {
+      margin: 0;
+    }
+    input {
+      vertical-align: top;
     }
   }
   .field-input {
@@ -77,11 +97,36 @@ button,
   }
 }
 
+.checklist-container {
+  padding: 0 4em;
+  label {
+    font-weight: normal;
+  }
+  img {
+    width:100%;
+    margin: 0 auto;
+    height: auto;
+    display: inline-block;
+  }
+  &* > {
+    box-sizing: border-box;
+  }
+  .checklist-heading {
+    border-top: 1px solid $lightGrey;
+    margin-top: 3em;
+    padding-top: 3em;
+    &:first-child {
+      border: none;
+    }
+  }
+}
+/*
 .checklist {
   padding: 2em 0;
   border-bottom: 1px #ccc solid;
   margin: 0 0 1em 0;
 }
+*/
 
 .actions {
   @include grid(8);
