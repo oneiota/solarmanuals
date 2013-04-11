@@ -8,17 +8,22 @@ replaceContractorSig = (url) ->
   replaceSig $('#contractor-signature'), url
 
 showHideSigFields = ->
-  installerChecked = $('#account_installer').is(':checked')
+  $('#contractor-signature, #installer-signature').show()
+  
+  installerChecked = $('#manual_account_installer').is(':checked')
   $('#installer-signature-sign').toggle(installerChecked)
   $('#installer-signature-email').toggle(!installerChecked)
   
-  contractorChecked = $('#account_contractor').is(':checked')
+  contractorChecked = $('#manual_account_contractor').is(':checked')
   $('#contractor-signature-sign').toggle(contractorChecked)
   $('#contractor-signature-email').toggle(!contractorChecked)
   
+  if installerChecked && contractorChecked
+    $('#contractor-signature-sign').hide()
+    $('#contractor-signature').hide()
+  
 $ ->
-
-        
+  
   $(window).on 'load', (e) ->
     $('#signature_box').length && $('#signature_box').sketch()
   
@@ -27,7 +32,7 @@ $ ->
     $('.file', this).attr('value', data)
     
   showHideSigFields()
-  $('#account_installer, #account_contractor').on 'change', (e) ->
+  $('#manual_account_installer, #manual_account_contractor').on 'change', (e) ->
     showHideSigFields()
 
   $('.sign-btn').on 'click', (e) ->

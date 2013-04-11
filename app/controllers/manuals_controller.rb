@@ -145,7 +145,7 @@ class ManualsController < ApplicationController
     respond_to do |format|
       if @manual.save
         if params[:manual] && 
-          ( params[:manual][:installer_signature_data] || params[:manual][:contractor_signature_data] )
+          ( params[:manual][:installer_signature_attributes] || params[:manual][:contractor_signature_attributes] )
           format.html { redirect_to manual_signature_success_path(@manual) }
         elsif @manual.filled
           format.html { redirect_to @manual, notice: 'Manual was successfully updated.' }
@@ -188,7 +188,11 @@ class ManualsController < ApplicationController
       :eway_payment => nil,
       :created_at => Time.now,
       :updated_at => Time.now,
-      :current_step => 'customer'
+      :current_step => 'customer',
+      :installer_signature_id => nil,
+      :contractor_signature_id => nil,
+      :installer_signature_email => nil,
+      :contractor_signature_email => nil
     })
     
     @to_dup.panel_strings.each do |ps|
@@ -208,10 +212,12 @@ class ManualsController < ApplicationController
   
   def installer_signature
     @manual = Manual.find(params[:manual_id])
+    @manual.build_installer_signature
   end
   
   def contractor_signature
     @manual = Manual.find(params[:manual_id])    
+    @manual.build_contractor_signature
   end
   
   def signature_success

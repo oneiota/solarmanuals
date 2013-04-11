@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410012113) do
+ActiveRecord::Schema.define(:version => 20130411014440) do
 
   create_table "checklist_groups", :force => true do |t|
     t.string   "name"
@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(:version => 20130410012113) do
     t.integer  "contractor_signature_id"
     t.string   "installer_signature_email"
     t.string   "contractor_signature_email"
+    t.boolean  "account_installer",                                                :default => true
+    t.boolean  "account_contractor",                                               :default => true
   end
 
   create_table "manuals_pdfs", :force => true do |t|
@@ -167,6 +169,8 @@ ActiveRecord::Schema.define(:version => 20130410012113) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.string   "name"
+    t.string   "licence"
   end
 
   create_table "states", :force => true do |t|

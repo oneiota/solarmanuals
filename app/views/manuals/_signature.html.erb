@@ -1,8 +1,24 @@
-<div id="signature">
+<div id="signature">  
+  
   <canvas id="signature_box" height="200" width="640"></canvas>
-
   <%= form_for @manual do |f| %>
-    <%= f.hidden_field controller.action_name + "_data", :class => 'file' %>
-    <%= f.submit "Complete" %>
+  
+    <%= f.fields_for (controller.action_name + "_attributes"), @manual.send(controller.action_name) do |b| %>
+    
+      <% unless params[:account] %>
+      
+        <%= b.label :name, "Your Name" %> 
+        <%= b.text_field :name %><br/>
+      
+        <%= b.label :licence, (controller.action_name == 'installer_signature' ? 'CEC Accreditation Number' : 'Electrical Contractor Licence Number') %> 
+        <%= b.text_field :licence %><br/>
+        
+      <% end %>
+      
+      <%= b.hidden_field "signature_data", :class => 'file' %>
+      
+    <% end %>
+    
+    <%= f.submit "Accept" %>
   <% end %>
 </div>

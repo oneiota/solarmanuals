@@ -36,6 +36,9 @@ class Manual < ActiveRecord::Base
   belongs_to :installer_signature, :class_name => "Signature"
   belongs_to :contractor_signature, :class_name => "Signature"
   
+  accepts_nested_attributes_for :installer_signature
+  accepts_nested_attributes_for :contractor_signature
+  
   def build_strings
     panel_strings.build unless panel_strings.count > 0
   end
@@ -189,28 +192,22 @@ class Manual < ActiveRecord::Base
     (10..100).step(5).map{|n| ["#{n}%", (n / 100.0)] }
   end
   
-  
-  
   # signatures
-  attr_reader :installer_signature_data, :contractor_signature_data
   
-  def create_file(data)
-    data = data.to_s.split(',').pop
-    image = StringIO.new(Base64.decode64(data))
-    image.class.class_eval { attr_accessor :original_filename, :content_type }
-    image.original_filename = 'signature.png'
-    image.content_type = 'image/png'
-    image
+  def installer_name
+    (installer_signature && installer_signature.name) || (user && user.full_name)
   end
   
-  def installer_signature_data=(image)
-    sig = Signature.create :file => create_file(image)
-    self.installer_signature_id = sig.id
+  def contractor_name
+    (contractor_signature && contractor_signature.name) || (user && user.full_name)
   end
   
-  def contractor_signature_data=(image)
-    sig = Signature.create :file => create_file(image)
-    self.contractor_signature_id = sig.id
+  def installer_accreditation
+    (installer_signature && installer_signature.licence) || (user && user.accreditation)
+  end
+  
+  def contractor_licence_number
+    (contractor_signature && contractor_signature.licence) || (user && user.contractor_license_number)
   end
   
   def send_signature_emails
@@ -223,8 +220,11 @@ class Manual < ActiveRecord::Base
     end
   end
   
-  private
+  def contractor_signature
+    Signature.find_by_id(contractor_signature_id) || Signature.find_by_id(installer_signature_id)
+  end
   
+  private
   
   def self.all_present?(array)
     array.each do |v|

@@ -7,15 +7,15 @@
 <div class="field">
   <div class="field-label">&nbsp;</div>
   <div class="field-input">
-    <%= check_box_tag :account_installer, '1', @manual.installer_signature_email.blank? %> 
-    <%= label_tag :account_installer, "Accredited Installer is #{current_user.full_name}" %>
+    <%= f.check_box :account_installer %> 
+    <%= f.label :account_installer, "Accredited Installer is #{current_user.full_name}" %>
   </div>
 </div>
 
 <div class="field" id="installer-signature-sign">
   <% unless @manual.new_record? %>
     <div class="actions">
-      <%= link_to 'Sign', manual_installer_signature_path(@manual), :class => 'btn sign-btn', :target => "_blank" %>
+      <%= link_to 'Sign', manual_installer_signature_path(@manual, :account => 1), :class => 'btn sign-btn', :target => "_blank" %>
     </div>
   <% end %>
 </div>
@@ -38,15 +38,15 @@
 <div class="field">
   <div class="field-label">&nbsp;</div>
   <div class="field-input">
-    <%= check_box_tag :account_contractor, '1', @manual.contractor_signature_email.blank? %> 
-    <%= label_tag :account_contractor, "Licenced Contractor is #{current_user.full_name}" %>
+    <%= f.check_box :account_contractor %> 
+    <%= f.label :account_contractor, "Licenced Contractor is #{current_user.full_name}" %>
   </div>
 </div>
 
 <div class="field" id="contractor-signature-sign">
   <% unless @manual.new_record? %>
     <div class="actions">
-      <%= link_to 'Sign', manual_contractor_signature_path(@manual), :class => 'btn sign-btn', :target => "_blank" %>
+      <%= link_to 'Sign', manual_contractor_signature_path(@manual, :account => 1), :class => 'btn sign-btn', :target => "_blank" %>
     </div>
   <% end %>
 </div>
