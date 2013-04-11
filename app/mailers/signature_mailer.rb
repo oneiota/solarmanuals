@@ -8,9 +8,4 @@ class SignatureMailer < ActionMailer::Base
     mail(:to => email, :subject => "[Installer Technologies] Signature Request from #{manual.user.full_name}")
   end
   
-  def contractor_signature_request(manual, email)
-    @manual = manual
-    mail(:to => email, :subject => "[Installer Technologies] Signature Request from #{manual.user.full_name}")
-  end
-  
 end

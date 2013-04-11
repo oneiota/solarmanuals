@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411053027) do
+ActiveRecord::Schema.define(:version => 20130411061443) do
 
   create_table "checklist_groups", :force => true do |t|
     t.string   "name"
@@ -118,9 +118,7 @@ ActiveRecord::Schema.define(:version => 20130411053027) do
     t.string   "current_step"
     t.decimal  "performance_multiplier",             :precision => 8, :scale => 2, :default => 0.75
     t.integer  "installer_signature_id"
-    t.integer  "contractor_signature_id"
     t.string   "installer_signature_email"
-    t.string   "contractor_signature_email"
     t.boolean  "account_installer",                                                :default => true
     t.boolean  "account_contractor",                                               :default => true
     t.boolean  "account_designer",                                                 :default => true

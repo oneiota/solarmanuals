@@ -198,30 +198,15 @@ class Manual < ActiveRecord::Base
     (installer_signature && installer_signature.name) || (user && user.full_name)
   end
   
-  def contractor_name
-    (contractor_signature && contractor_signature.name) || (user && user.full_name)
-  end
-  
   def installer_accreditation
     (installer_signature && installer_signature.licence) || (user && user.accreditation)
   end
   
-  def contractor_licence_number
-    (contractor_signature && contractor_signature.licence) || (user && user.contractor_license_number)
-  end
   
-  def send_signature_emails
-    if contractor_signature_email_changed? && contractor_signature_email.present?
-      SignatureMailer.contractor_signature_request(self, contractor_signature_email).deliver
-    end
-    
+  def send_signature_emails  
     if installer_signature_email_changed? && installer_signature_email.present?
       SignatureMailer.installer_signature_request(self, installer_signature_email).deliver
     end
-  end
-  
-  def contractor_signature
-    Signature.find_by_id(contractor_signature_id) || Signature.find_by_id(installer_signature_id)
   end
   
   private

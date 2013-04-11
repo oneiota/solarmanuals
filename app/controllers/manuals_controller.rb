@@ -144,8 +144,7 @@ class ManualsController < ApplicationController
     
     respond_to do |format|
       if @manual.save
-        if params[:manual] && 
-          ( params[:manual][:installer_signature_attributes] || params[:manual][:contractor_signature_attributes] )
+        if params[:manual] && params[:manual][:installer_signature_attributes]
           format.html { redirect_to manual_signature_success_path(@manual) }
         elsif @manual.filled
           format.html { redirect_to @manual, notice: 'Manual was successfully updated.' }

@@ -1,6 +1,6 @@
 <p>Hi</p>
 
-<p><%= @manual.user.full_name %> is completing a user manual for the <%= @manual.client_name %> at <%= @manual.client_address %> and is requesting you to sign off as the accredited installer.</p>
+<p><%= @manual.user.full_name %> is completing a user manual for <%= @manual.client_name %> at <%= @manual.client_address %> and is requesting you to sign off as the accredited installer.</p>
 
 <p>Please <%= link_to "click here", manual_installer_signature_url(@manual) %> to digitally sign the document.</p>
 
