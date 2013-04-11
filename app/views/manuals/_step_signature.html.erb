@@ -8,7 +8,7 @@
   <div class="field-label">&nbsp;</div>
   <div class="field-input">
     <%= f.check_box :account_installer %> 
-    <%= f.label :account_installer, "I am the Accredited Installer (#{current_user.full_name})" %>
+    <%= f.label :account_installer, "I am the CEC Accredited Installer (#{current_user.full_name})" %>
   </div>
 </div>
 
@@ -56,5 +56,26 @@
   <div class="field-input">
     <%= f.email_field :contractor_signature_email %>
     <p class="help">An email with a link to sign the document will be sent.</p>
+  </div>
+</div>
+
+
+<div class="field">
+  <div class="field-label">&nbsp;</div>
+  <div class="field-input">
+    <%= f.check_box :account_designer %> 
+    <%= f.label :account_designer, "CEC Accredited Designer is #{current_user.full_name}" %>
+  </div>
+</div>
+
+<div id="designer-fields">
+  <div class="field">
+    <div class="field-label"><%= f.label :designer_name %></div>
+    <div class="field-input"><%= f.text_field :designer_name %></div>
+  </div>
+  
+  <div class="field">
+    <div class="field-label"><%= f.label :designer_accreditation %></div>
+    <div class="field-input"><%= f.text_field :designer_accreditation %></div>
   </div>
 </div>

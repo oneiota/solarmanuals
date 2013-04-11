@@ -18,6 +18,10 @@ showHideSigFields = ->
   $('#contractor-signature-sign').toggle(contractorChecked)
   $('#contractor-signature-email').toggle(!contractorChecked)
   
+  designerChecked = $('#manual_account_designer').is(':checked')
+  console.log designerChecked
+  $('#designer-fields').toggle(!designerChecked)
+  
   if installerChecked && contractorChecked
     $('#contractor-signature-sign').hide()
     $('#contractor-signature').hide()
@@ -32,7 +36,7 @@ $ ->
     $('.file', this).attr('value', data)
     
   showHideSigFields()
-  $('#manual_account_installer, #manual_account_contractor').on 'change', (e) ->
+  $('#manual_account_installer, #manual_account_contractor, #manual_account_designer').on 'change', (e) ->
     showHideSigFields()
 
   $('.sign-btn').on 'click', (e) ->
