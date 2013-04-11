@@ -3,7 +3,7 @@
   <fieldset class="string-fields">
     <div class="field">
       <div class="field-label">
-        <%= f.label :number, "Number of panels" %> 
+        <%= f.label :number, "Number of Panels" %> 
       </div>
       <div class="field-input">
         <%= f.text_field :number, :class => "inline" %>
@@ -12,7 +12,7 @@
 
     <div class="field">
       <div class="field-label">
-        <%= f.label :volts, "Total Voltage"%>
+        <%= f.label :volts, "Tested Voltage"%>
       </div>
       <div class="field-input input-append">
         <span class="input-container"><%= f.text_field :volts %></span>
@@ -21,14 +21,53 @@
     </div>
     <div class="field">
       <div class="field-label">
-        <%= f.label :amps, "Current" %>
+        <%= f.label :amps, "Operating Current" %>
       </div>
       <div class="field-input input-append inline">
         <span class="input-container"><%= f.text_field :amps %></span>
         <span class="add-on">Amps</span>
       </div>
     </div>
-  
+    
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :short_circuit, "Short Circuit" %>
+      </div>
+      <div class="field-input input-append inline">
+        <span class="input-container"><%= f.text_field :short_circuit %></span>
+        <span class="add-on">Amps</span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :tilt, "Array Tilt" %>
+      </div>
+      <div class="field-input input-append inline">
+        <span class="input-container"><%= f.text_field :tilt %></span>
+        <span class="add-on">Degrees</span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :orientation, "Array Orientation" %>
+      </div>
+      <div class="field-input input-append inline">
+        <span class="input-container"><%= f.text_field :orientation %></span>
+        <span class="add-on">Degrees</span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :polarity, "Correct Polarity?" %>
+      </div>
+      <div class="field-input input-append inline">
+        <span class="input-container"><%= f.check_box :polarity %></span>
+      </div>
+    </div>
+    
     <div class="field">
       <div class="field-label">&nbsp;</div>
       <div class="field-input">

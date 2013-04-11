@@ -151,8 +151,12 @@ ActiveRecord::Schema.define(:version => 20130411061443) do
     t.string   "volts"
     t.string   "amps"
     t.integer  "manual_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "polarity"
+    t.string   "short_circuit"
+    t.string   "tilt"
+    t.string   "orientation"
   end
 
   create_table "pdfs", :force => true do |t|

@@ -40,12 +40,11 @@
   </div>
 </div>
 
-
 <ol id="string-fields">
   <%= f.fields_for :panel_strings do |b| %>
     <%= render 'panel_string_fields', :f => b %>
   <% end %>
   <div class="add-fields">
-    <%= link_to_add_fields "Add another string", f, :panel_strings %>
+    <%= link_to_add_fields "Add another string?", f, :panel_strings %>
   </div>
 </ol>

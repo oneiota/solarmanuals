@@ -69,20 +69,18 @@ if ChecklistGroup.count == 0
         ]
       ],
     
-    "PV Array" => 
+    "PV Arrays" => 
       [
         "",
         [
-          ["PV array tilt?","","text_field"],
-          ["PV array orientation?","","text_field"],
-          ["Array frame is certified to AS1170.2 for installation location?","","check_box"],
-          ["Array frame is installed to manufacturer’s instructions?","","check_box"],
+          ["Array frames are certified to AS1170.2 for installation location?","","check_box"],
+          ["Array frames are installed to manufacturer’s instructions?","","check_box"],
           ["No galvanically dissimilar metals are in contact with the array frames or supports?","","check_box"],
           ["Roof penetrations are suitably sealed and weatherproofed?","","check_box"],
           ["PV wiring losses are less than 3%at the maximum current output of the array?","","check_box"],
-          ["Where PV array comprises multiple strings-string protection has been provided?","","check_box"],
+          ["Where PV array comprise multiple strings-string protection has been provided?","","check_box"],
           ["Wiring is protected from mechanical damage and is appropriately supported?","","check_box"],
-          ["Weatherproof PV array isolator mounted adjacent to the array?","(Rating:................................Vdc, ................Adc)","check_box"]
+          ["Weatherproof PV array isolator mounted adjacent to each array?","(Rating:................................Vdc, ................Adc)","check_box"]
         ]
       ],
     
