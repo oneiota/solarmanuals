@@ -15,7 +15,6 @@ showHideSigFields = ->
   $('#installer-signature-email').toggle(!installerChecked)
   
   designerChecked = $('#manual_account_designer').is(':checked')
-  console.log designerChecked
   $('#designer-fields').toggle(!designerChecked)
   
 $ ->
