@@ -2,7 +2,7 @@ class ManualsController < ApplicationController
   layout "pdf", :only => [:document]
   layout "blank", :only => [:installer_signature, :contractor_signature, :signature_success]
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:installer_signature, :signature_success]
   load_and_authorize_resource
   
   def document
@@ -189,9 +189,9 @@ class ManualsController < ApplicationController
       :updated_at => Time.now,
       :current_step => 'customer',
       :installer_signature_id => nil,
-      :contractor_signature_id => nil,
       :installer_signature_email => nil,
-      :contractor_signature_email => nil
+      :panels_serial_numbers => nil,
+      :inverter_serial => nil
     })
     
     @to_dup.panel_strings.each do |ps|
@@ -212,11 +212,6 @@ class ManualsController < ApplicationController
   def installer_signature
     @manual = Manual.find(params[:manual_id])
     @manual.build_installer_signature
-  end
-  
-  def contractor_signature
-    @manual = Manual.find(params[:manual_id])    
-    @manual.build_contractor_signature
   end
   
   def signature_success
