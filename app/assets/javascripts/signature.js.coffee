@@ -25,6 +25,7 @@ $ ->
   $('#signature form').on 'submit', (e) ->
     data = $('#signature_box')[0].toDataURL()
     $('.file', this).attr('value', data)
+    $('[name=commit]', this).val('Processing...')
     
   showHideSigFields()
   $('#manual_account_installer, #manual_account_designer').on 'change', (e) ->

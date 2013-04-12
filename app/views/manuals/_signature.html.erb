@@ -1,6 +1,9 @@
 <div id="signature">  
   
   <canvas id="signature_box" height="200" width="640"></canvas>
+  
+  <p><%= link_to 'Clear', '#signature_box', 'data-clear' => 'yes', :class => 'btn' %></p>
+  
   <%= form_for @manual do |f| %>
   
     <%= f.fields_for (controller.action_name + "_attributes"), @manual.send(controller.action_name) do |b| %>
@@ -8,10 +11,10 @@
       <% unless params[:account] %>
       
         <%= b.label :name, "Your Name" %> 
-        <%= b.text_field :name %><br/>
+        <%= b.text_field :name %><br/><br/>
       
         <%= b.label :licence, (controller.action_name == 'installer_signature' ? 'CEC Accreditation Number' : 'Electrical Contractor Licence Number') %> 
-        <%= b.text_field :licence %><br/>
+        <%= b.text_field :licence %><br/><br/>
         
       <% end %>
       
