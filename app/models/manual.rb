@@ -203,11 +203,26 @@ class Manual < ActiveRecord::Base
     (installer_signature && installer_signature.licence) || (user && user.accreditation)
   end
   
-  
   def send_signature_emails  
     if installer_signature_email_changed? && installer_signature_email.present?
       SignatureMailer.installer_signature_request(self, installer_signature_email).deliver
     end
+  end
+  
+  def warranty_workmanship
+    append_years(self[:warranty_workmanship])
+  end
+    
+  def warranty_panels_product
+    append_years(self[:warranty_panels_product])
+  end
+  
+  def warranty_panels_output_performance
+    append_years(self[:warranty_panels_output_performance])
+  end
+  
+  def warranty_inverter
+    append_years(self[:warranty_inverter])
   end
   
   private
@@ -223,6 +238,12 @@ class Manual < ActiveRecord::Base
     !duplicate
   end
   
-  
+  def append_years(str)
+    is_numeric = true if Float(str) rescue false
+    if is_numeric
+      return str + " years"
+    end
+    str
+  end
   
 end
