@@ -17,6 +17,7 @@ class DocumentPdf < Prawn::Document
     @diagram = Diagram.new(self, @manual)
     @certificate = Certificate.new(self, @manual)
     @cover = Cover.new(self, @manual)
+    @checklist = InstallationChecklist.new(self, @manual)
     
     template = ERB.new(File.read(Rails.root.join('app/pdfs/manual.md.erb')))
     result = template.result(binding)
@@ -151,6 +152,10 @@ class DocumentPdf < Prawn::Document
   
   def cover
     @cover.draw
+  end
+  
+  def checklist_answers
+    @checklist.draw
   end
   
   private
