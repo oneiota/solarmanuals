@@ -19,7 +19,7 @@ module Paperclip
 
       begin
         parameters = []
-        parameters << "-q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite"
+        parameters << "-q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/printer"
         parameters << "-sOutputFile=:dest"
         parameters << "-c .setpdfwrite -f :source"
 

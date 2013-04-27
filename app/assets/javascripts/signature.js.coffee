@@ -45,6 +45,3 @@ $ ->
           if manual = data && data.manual          
             if installer_url = manual.installer_signature && manual.installer_signature.url
               replaceInstallerSig(installer_url)
-          
-            if contractor_url = manual.contractor_signature && manual.contractor_signature.url
-              replaceContractorSig(contractor_url)
