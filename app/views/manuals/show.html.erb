@@ -37,26 +37,25 @@
               <% end %>
           </div>
           
-          <hr/>
+        <% end %>
           
-            <% Checklist.all.each do |checklist| %>
-            
-              <% if checklist.show_check_question || (checklist.show_check_question && @manual.include_checklist) %>
-                <%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
-                <%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
-              <% end %>
-              
-            <% end %>
-            
-            <div id="manual-actions">              
-              <p>Download your completed manual below</p>
-              <button type="submit" class="btn primary" id="download-pdf">
-                <i class='icon-download-alt'></i> Download Manual
-              </button>
-            </div>
-            
+        <hr/>
+        
+        <% Checklist.all.each do |checklist| %>
+        
+          <% if checklist.show_check_question || !@manual.include_checklist %>
+            <%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
+            <%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
           <% end %>
-      
+          
+        <% end %>
+        
+        <div id="manual-actions">              
+          <p>Download your completed manual below</p>
+          <button type="submit" class="btn primary" id="download-pdf">
+            <i class='icon-download-alt'></i> Download Manual
+          </button>
+        </div>
       
       
       <% end %>

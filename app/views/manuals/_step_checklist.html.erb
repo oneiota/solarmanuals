@@ -31,13 +31,11 @@
     
 	    <% if previous_group_id != b.object.checklist_item.checklist_group_id %>
 	      <div class="checklist-heading">
-	        
-			<p><%= b.object.checklist_item.checklist_group.name %></p>
+			    <p><%= b.object.checklist_item.checklist_group.name %></p>
 	        <p class="help"><%= b.object.checklist_item.checklist_group.description.html_safe %></p>
-	      
-		  </div>
+		    </div>
 	    <% end %> 
-    
+      
 	    <% previous_group_id = b.object.checklist_item.checklist_group_id %>
     
   
