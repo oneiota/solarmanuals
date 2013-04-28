@@ -39,23 +39,24 @@
           
           <hr/>
           
-        <% end %>
-        
-      
-        <div>Attachment Checklist <i class="icon-ok"></i><br/>
-          <p class="help">Before downloading your manual be sure to check you have attached the following:</p>
-          <% Checklist.all.each do |checklist| %>
-            <%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
-            <%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
+            <% Checklist.all.each do |checklist| %>
+            
+              <% if checklist.show_check_question || (checklist.show_check_question && @manual.include_checklist) %>
+                <%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
+                <%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
+              <% end %>
+              
+            <% end %>
+            
+            <div id="manual-actions">              
+              <p>Download your completed manual below</p>
+              <button type="submit" class="btn primary" id="download-pdf">
+                <i class='icon-download-alt'></i> Download Manual
+              </button>
+            </div>
+            
           <% end %>
-        
-          <div id="manual-actions">              
-            <p>Download your completed manual below</p>
-            <button type="submit" class="btn primary" id="download-pdf">
-              <i class='icon-download-alt'></i> Download Manual
-            </button>
-          </div>             
-        </div>
+      
       
       
       <% end %>

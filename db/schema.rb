@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411061443) do
+ActiveRecord::Schema.define(:version => 20130427072508) do
 
   create_table "checklist_groups", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130411061443) do
     t.string   "field_type"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "image_url"
   end
 
   create_table "checklist_responses", :force => true do |t|
@@ -38,7 +39,8 @@ ActiveRecord::Schema.define(:version => 20130411061443) do
   end
 
   create_table "checklists", :force => true do |t|
-    t.text "question"
+    t.text    "question"
+    t.boolean "show_check_question"
   end
 
   create_table "checklists_manuals", :id => false, :force => true do |t|
@@ -124,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130411061443) do
     t.boolean  "account_designer",                                                 :default => true
     t.string   "designer_name"
     t.string   "designer_accreditation"
+    t.boolean  "include_checklist",                                                :default => false
   end
 
   create_table "manuals_pdfs", :force => true do |t|
