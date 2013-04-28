@@ -93,7 +93,7 @@ class Manual < ActiveRecord::Base
       "warranties" => [warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship].join(", "),
       "performance" => (include_performance ? "#{sunlight_city.capitalize}, #{(performance_multiplier * 100).to_i}%" : 'No'),
       "wiring" => (include_wiring ? 'Yes' : 'No'),
-      "certificate" => (include_certificate ? 'Yes' : 'No'),
+      "checklist" => (include_checklist ? 'Included' : 'Manually complete & include'),
       "signature" => (installer_signature_id ? 'Signed' : 'Not Signed')
     }[step]
   end

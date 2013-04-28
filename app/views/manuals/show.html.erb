@@ -19,10 +19,16 @@
           
           <%= form_for @manual, :url => manual_document_path(@manual, :format => :pdf) do |f| %>
           
-            <% Checklist.all.each do |checklist| %>
-              <%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
-              <%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
-            <% end %>
+            <% Checklist.all.each do |checklist| %>	
+              
+								<% if checklist.show_check_question %>
+									<%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
+             	 		<%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
+								<% elsif !@manual.include_checklist %>
+									<%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
+           	 			<%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
+								<% end %>
+						<% end %>
             
             <div id="manual-actions">              
               <p>Download your completed manual below</p>
