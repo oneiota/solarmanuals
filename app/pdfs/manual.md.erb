@@ -276,9 +276,10 @@ Energy Production Estimates:
 = draw_diagram
 
 <% end %>
-
+<% if @manual.include_checklist %>
 ---
 
 # Installation and Commissioning Checklist
 
 = checklist_answers
+<% end %>

@@ -123,10 +123,29 @@ class DocumentPdf < Prawn::Document
   
   def table_from_string(buffer)
     arr = []
+    images = false
     buffer.each_line do |line|
-      arr << line.strip.split('|').reject{ |s| s.empty? }
+      cells = line.strip.split('|').reject{ |s| s.empty? }
+      
+      arr << cells.map do |cell|
+        # string ends with .gif or .jpg
+        if [".gif", ".jpg"].include? cell[-4..-1]
+          images = true
+          cell = { :image => "#{Rails.root.to_s}/app/assets/images/#{cell}", :scale => 0.5 }
+        end
+        cell
+      end
     end
-    table arr, :cell_style => { :inline_format => true, :border_width => 2 }, :width => bounds.width
+    
+    begin
+      if images
+        table arr, :cell_style => { :inline_format => true, :border_width => 1 }, :column_widths => [175, 220, 80]
+      else
+        table arr, :cell_style => { :inline_format => true, :border_width => 1 }, :width => bounds.width
+      end
+    rescue ArgumentError
+      # hmm
+    end
     move_down @spacing * 2
   end
   

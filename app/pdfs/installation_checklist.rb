@@ -21,6 +21,10 @@ class InstallationChecklist
         
         response = @manual.checklist_responses.where(:checklist_item_id => item.id).first
         
+        if item.image_url
+          table_buffer << item.image_url
+        end
+        
         table_buffer << item.label
         
         response_string = " - "

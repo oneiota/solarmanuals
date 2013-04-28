@@ -131,7 +131,7 @@ if ChecklistGroup.count == 0
     
     "INSULATION RESISTANCE MEASUREMENTS" => 
       [
-        "<img src='/assets/insulation_resistance_table.gif' title='Minimum insulation resistance' alt='Minimum insulation resistance'/>",
+        "<img src='/assets/insulation_resistance_table.jpg' title='Minimum insulation resistance' alt='Minimum insulation resistance'/>",
         [
           ["Array positive to earth","MΩ","text_field",""],
           ["Array negative to earth","MΩ","text_field",""]
@@ -142,10 +142,10 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["On switchboard to which inverter is directly connected?","<img src='/assets/AS4777_1.gif'/>","check_box","/assets/ASNZS5033_1.gif"],
-          ["Is permanently fixed at the main switch?","<img src='/assets/AS4777_2.gif'/>","check_box","/assets/AS4777_2.gif"],
-          ["Is permanently fixed at the solar main switch?","<img src='/assets/AS4777_3.gif'/>","check_box","/assets/AS4777_3.gif"],
-          ["If the solar system is connected to a distribution board then the following sign is located on main switchboard and all intermediate distribution boards?","<img src='/assets/AS4777_4.gif'/>","check_box","/assets/AS4777_4.gif"]
+          ["On switchboard to which inverter is directly connected?","<img src='/assets/AS4777_1.jpg'/>","check_box","ASNZS5033_1.jpg"],
+          ["Is permanently fixed at the main switch?","<img src='/assets/AS4777_2.jpg'/>","check_box","AS4777_2.jpg"],
+          ["Is permanently fixed at the solar main switch?","<img src='/assets/AS4777_3.jpg'/>","check_box","AS4777_3.jpg"],
+          ["If the solar system is connected to a distribution board then the following sign is located on main switchboard and all intermediate distribution boards?","<img src='/assets/AS4777_4.jpg'/>","check_box","AS4777_4.jpg"]
         ]
       ],
     
@@ -153,11 +153,11 @@ if ChecklistGroup.count == 0
       [
         "",
         [
-          ["Is permanently fixed on array junction boxes (black on yellow)?","<img src='/assets/ASNZS5033_1.gif'/>","check_box","/assets/ASNZS5033_1.gif"],
-          ["Fire emergency information is permanently fixed on the main switchboard and/or meter box (if not installed together)?","<img src='/assets/ASNZS5033_2.gif'/>","check_box","/assets/ASNZS5033_2.gif"],
-          ["PV DC isolation is clearly identified?","<img src='/assets/ASNZS5033_3.gif'/>","check_box","/assets/ASNZS5033_3.gif"],
-          ["Is placed adjacent to the inverter when multiple isolation/disconnection devices are used that are not ganged together?","<img src='/assets/ASNZS5033_5.gif'/>","check_box","/assets/ASNZS5033_5.gif"],
-          ["Exterior surface of wiring enclosures labelled ‘SOLAR’?","<img src='/assets/ASNZS5033_4.gif'/>","check_box","/assets/ASNZS5033_4.gif"],
+          ["Is permanently fixed on array junction boxes (black on yellow)?","<img src='/assets/ASNZS5033_1.jpg'/>","check_box","ASNZS5033_1.jpg"],
+          ["Fire emergency information is permanently fixed on the main switchboard and/or meter box (if not installed together)?","<img src='/assets/ASNZS5033_2.jpg'/>","check_box","ASNZS5033_2.jpg"],
+          ["PV DC isolation is clearly identified?","<img src='/assets/ASNZS5033_3.jpg'/>","check_box","ASNZS5033_3.jpg"],
+          ["Is placed adjacent to the inverter when multiple isolation/disconnection devices are used that are not ganged together?","<img src='/assets/ASNZS5033_5.jpg'/>","check_box","ASNZS5033_5.jpg"],
+          ["Exterior surface of wiring enclosures labelled ‘SOLAR’?","<img src='/assets/ASNZS5033_4.jpg'/>","check_box","ASNZS5033_4.jpg"],
           ["Shutdown procedure is permanently fixed at inverter and/or on main switchboard?","","check_box",""],
           ["Any other signage as required by the local electricity distributor?","","check_box",""]
         ]
