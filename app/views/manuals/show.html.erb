@@ -40,7 +40,8 @@
         <% end %>
           
         <hr/>
-        
+        <h3>Attachment Checklist <i class="icon-ok"></i></h3>
+        <p class="help">Before downloading your manual be sure to check you have attached the following:</p><br/>
         <% Checklist.all.each do |checklist| %>
         
           <% if checklist.show_check_question || !@manual.include_checklist %>
