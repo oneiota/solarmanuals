@@ -36,9 +36,9 @@
       <hr/>
       
       <div class="actions">
-        <%= f.label :terms do %>
-          <%= f.check_box :terms %> I agree to the <%= link_to "Terms and Conditions", "/terms", :target => '_blank' %>
-        <% end %>
+        <%= f.check_box :terms %>
+        <%= f.label :terms, "I agree to the #{link_to('Terms and Conditions', '/terms', :target => '_blank')}".html_safe %>
+
       </div>
       
       <hr/>
