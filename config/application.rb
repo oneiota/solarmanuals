@@ -67,6 +67,8 @@ module Solar
     
     config.serve_static_assets = false
     
+    config.assets.precompile += ['blank.js']
+    
   end
 end
 
