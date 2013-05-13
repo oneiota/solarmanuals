@@ -21,8 +21,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 gem 'debugger'
 gem "nokogiri"
 
@@ -46,3 +44,5 @@ gem 'bigcharger'
 gem 'exception_notification'
 
 gem "active_model_serializers", :github => "rails-api/active_model_serializers"
+
+gem 'therubyracer'

@@ -1075,16 +1075,6 @@ $.fn.cycle.defaults = {
 })(jQuery);
 
 
-/*!
- * jQuery Cycle Plugin Transition Definitions
- * This script is a plugin for the jQuery Cycle Plugin
- * Examples and documentation at: http://malsup.com/jquery/cycle/
- * Copyright (c) 2007-2010 M. Alsup
- * Version:	 2.73
- * Dual licensed under the MIT and GPL licenses:
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
- */
 (function($) {
 "use strict";
 
