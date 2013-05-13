@@ -65,6 +65,8 @@ module Solar
     
     # config.force_ssl = false
     
+    config.serve_static_assets = false
+    
   end
 end
 
