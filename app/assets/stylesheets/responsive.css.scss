@@ -1,8 +1,14 @@
-@import 'variables';
+@import "_variables";
 
 @media screen and (min-width: 480px) {
   .noslideshow {
     display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #home-menu ul {
+    display: block !important;
   }
 }
 
