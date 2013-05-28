@@ -19,3 +19,7 @@
 *.orig
 
 .DS_Store
+
+#Ignore Sublime project files
+/solarmanuals.sublime-project
+/solarmanuals.sublime-workspace

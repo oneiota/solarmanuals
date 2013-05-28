@@ -1,0 +1,193 @@
+@import 'variables';
+
+@media screen and (min-width: 480px) {
+  .noslideshow {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #intro-holder {
+    margin-top: 72px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .papers {
+    top: 8em;
+  }
+  #home-menu {
+    ul {
+      margin: 0;
+      display: none;
+      float:left;
+      width: 100%;
+      #sign-in {
+        height: 0;
+        margin:0;
+        overflow: hidden;
+      }
+    } 
+    li {
+      width:100%;
+      text-align: center;
+      margin: 1em 0;
+    }
+    #logo {
+      h1 {
+        text-align: center;
+        &:after {
+          content: none;
+        }
+        a {
+        width: 100%;
+        display: block;
+          &:after {
+            font-family: 'FontAwesome';
+            content:'\f0C9';
+            position: absolute;
+            right: 1em;
+            top: 0;
+          }
+        }
+      }
+    }
+    #logo.open {
+      h1 {
+        a {
+          &:after {
+            opacity: 0.2;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .get_started_holder {
+    text-align: center;
+    margin-top: 1em;
+  }
+  .slideshow {
+    display: none;
+  }
+  .noslideshow {
+    display: block;
+    margin: 0 auto 1em auto; 
+    width: 50%;
+    margin-bottom: 1em;
+    -moz-transform:  rotate(-4deg);
+    -webkit-transform:  rotate(-4deg);
+    -o-transform:  rotate(-4deg);
+    -ms-transform:  rotate(-4deg);
+    transform:  rotate(-4deg);
+    img {
+      height: auto;
+    }
+  }
+
+  #intro {
+    padding: 0 1em;
+    width: 100%;
+    h1 {
+      margin: 0.5em 0;
+      font-size: 1.6em;
+      line-height: 1.5em;
+    }
+    p {
+      width: 100%;
+    }
+  }
+  
+  .inner-container {
+    h2 {
+      margin: 0.5em 0;
+      font-size: 1.6em;
+      line-height: 1.5em;
+    }
+    .notice-body {
+      margin-bottom: 1em;
+    }
+  }
+
+  .notice, .notice-body, #sample div {
+    width:100%;
+    padding: 0 1em;
+    margin: auto;
+  }
+
+  body .btn {
+    margin: 0;
+  }
+  
+  #features .feature img {
+    display: block;
+    margin: 0 auto;
+    width: 75%;
+  }
+
+  #sample .manual-pic { 
+    margin: 0 0 1em 0;
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+    }
+  }
+
+  #pricing {
+    div {
+      padding: 0;
+    }
+    h3 {
+      margin: 1em 0;
+    }
+    .secondary-section a {
+      display: none;
+    }
+    .price {
+      margin: 0;
+      .small {
+        display: block;
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+  .foot1,.foot2,.foot3, .arrow-down i {
+    display: none;
+  }
+
+  .foot4 {
+    width:100%;
+  }
+  
+  .blackfooter ul li {
+    display: block;
+  }
+
+  .greenfooter {
+    a {
+      font-size: 0.7em;
+    }
+  }
+
+  #footer, #push {
+    height: 277px;
+  }
+  
+  #footer, .nest {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  #footer > div {
+    padding: 1em 0;
+  }
+
+}
+
+  
+  
+
