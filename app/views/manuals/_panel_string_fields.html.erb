@@ -12,29 +12,30 @@
 
     <div class="field">
       <div class="field-label">
-        <%= f.label :volts, "Tested Voltage"%>
+        <%= f.label :volts, "Open-circuit Voltage (Voc)"%>
       </div>
       <div class="field-input input-append">
         <span class="input-container"><%= f.text_field :volts %></span>
         <span class="add-on">Volts DC</span>
       </div>
     </div>
+    
     <div class="field">
       <div class="field-label">
-        <%= f.label :amps, "Operating Current" %>
+        <%= f.label :short_circuit, "Short Circuit Current (Isc)" %>
       </div>
       <div class="field-input input-append inline">
-        <span class="input-container"><%= f.text_field :amps %></span>
+        <span class="input-container"><%= f.text_field :short_circuit %></span>
         <span class="add-on">Amps</span>
       </div>
     </div>
     
     <div class="field">
       <div class="field-label">
-        <%= f.label :short_circuit, "Short Circuit" %>
+        <%= f.label :amps, "Operating Current" %>
       </div>
       <div class="field-input input-append inline">
-        <span class="input-container"><%= f.text_field :short_circuit %></span>
+        <span class="input-container"><%= f.text_field :amps %></span>
         <span class="add-on">Amps</span>
       </div>
     </div>
