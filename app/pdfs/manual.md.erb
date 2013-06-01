@@ -231,10 +231,10 @@ See attachments.
 
 |Inverter Brand: <b><%= @manual.inverter_brand %></b>|Inverter Model: <b><%= @manual.inverter_model %></b>|Inverter Output: <b><%= @manual.inverter_output %>kW</b>|
 
-### Inverter Serial Number
+### Inverter Serial Numbers
 
 <% unless @manual.inverter_serial.blank? %>
-|<b><%= @manual.inverter_serial %></b>|
+<%= @manual.inverters_table %>
 <% else %>
 See attachments.
 <% end %>

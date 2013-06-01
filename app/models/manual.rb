@@ -129,11 +129,15 @@ class Manual < ActiveRecord::Base
     panels_serial_numbers.split(',').map{ |number| number.strip }
   end
   
-  def panels_table
+  def inverters_serials
+    inverter_serial.split(',').map{ |number| number.strip }
+  end
+  
+  def table_from_csv(csv)
     buffer = ""
     index = 1
     line_text = ""
-    panels_serials.each do |number|
+    csv.each do |number|
       line_text += "|#{index}. <b>#{number}</b>"
       if index % 3 == 0
         buffer << "#{line_text}|\n"
@@ -145,6 +149,15 @@ class Manual < ActiveRecord::Base
     buffer
   end
   
+  def panels_table
+    pp panels_serials
+    table_from_csv(panels_serials)
+  end
+  
+  def inverters_table
+    pp inverters_serials
+    table_from_csv(inverters_serials)
+  end
   
   # 
   
