@@ -76,17 +76,20 @@ $ ->
       visibleRemoveButtons()
     event.preventDefault()
     
-  $('#serial-range input').on 'keydown', (e) ->
-    if e.which == 13
-      e.preventDefault()
-      from = parseInt($('#range-from').val())
-      to = parseInt($('#range-to').val())
-      if from && to
-        serials = [from..to]
-        existing = $('#manual_panels_serial_numbers').val()
-        existingArray = _.map existing.split(","), (s) ->
-          s.replace(/\ /g,'')
-        result = _.reject existingArray.concat(serials), (s) ->
-          !s
-        $('#manual_panels_serial_numbers').val(result.join(', '))
-        $('#range-from, #range-to').val('')
+  
+  $('[data-serial-range]').each ->
+    self = this
+    $('.serial-range input', self).on 'keydown', (e) ->
+      if e.which == 13
+        e.preventDefault()
+        from = parseInt($('.range-from', self).val())
+        to = parseInt($('.range-to', self).val())
+        if from && to
+          serials = [from..to]
+          existing = $('[data-serial-range-output]', self).val() || ""
+          existingArray = _.map existing.split(","), (s) ->
+            s.replace(/\ /g,'')
+          result = _.reject existingArray.concat(serials), (s) ->
+            !s
+          $('[data-serial-range-output]', self).val(result.join(', '))
+          $('.range-from, .range-to', self).val('')

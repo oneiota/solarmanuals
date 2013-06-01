@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427072508) do
+ActiveRecord::Schema.define(:version => 20130601215645) do
 
   create_table "checklist_groups", :force => true do |t|
     t.string   "name"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(:version => 20130427072508) do
     t.string   "inverter_brand"
     t.string   "inverter_model"
     t.string   "inverter_output"
-    t.string   "inverter_serial"
+    t.text     "inverter_serial"
     t.string   "warranty_workmanship"
     t.string   "warranty_panels_product"
     t.string   "warranty_panels_output_performance"
