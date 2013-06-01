@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601215645) do
+ActiveRecord::Schema.define(:version => 20130601223849) do
 
   create_table "checklist_groups", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130601215645) do
     t.string   "response"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.boolean  "na"
   end
 
   create_table "checklists", :force => true do |t|

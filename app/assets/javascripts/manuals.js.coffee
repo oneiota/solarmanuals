@@ -93,3 +93,16 @@ $ ->
             !s
           $('[data-serial-range-output]', self).val(result.join(', '))
           $('.range-from, .range-to', self).val('')
+  
+  $('.field.checklist').each ->
+    console.log(this)
+    self = this
+    do checkNA = ->
+      na = $('.na-field', self).val() == 'true'
+      $(self).toggleClass('na', na)
+      $('.na-btn', self).text(if na then 'Undo' else 'N/A')
+    $('.na-btn', self).on 'click', (e) ->
+      e.preventDefault()
+      newVal = if $('.na-field', self).val() == 'true' then 'false' else 'true'
+      $('.na-field', self).val(newVal)
+      checkNA()
