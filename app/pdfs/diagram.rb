@@ -1,3 +1,5 @@
+include ActionView::Helpers::TextHelper
+
 class Diagram
   def initialize(document, manual)
     @doc = document
@@ -271,7 +273,7 @@ class Diagram
     
     text = [
       {
-        :text => "Inverter -\n",
+        :text => "#{pluralize(@manual.number_of_inverters, 'Inverter')} -\n",
         :styles => [:regular]
       },
       {
