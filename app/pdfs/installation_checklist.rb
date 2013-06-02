@@ -29,14 +29,18 @@ class InstallationChecklist
         
         response_string = " - "
         
-        if response
+        if response          
           response_string = response.response.empty? ? " - " : response.response # prevent hiding column
-          if item.field_type == "check_box"
-            if response.response == "1"
-              response_string = "Yes"
-            end
-            if response.response == "0"
-              response_string = "No"
+          if response.na
+            response_string = "N/A"
+          else
+            if item.field_type == "check_box"
+              if response.response == "1"
+                response_string = "Yes"
+              end
+              if response.response == "0"
+                response_string = "No"
+              end
             end
           end
         end
