@@ -9,13 +9,13 @@
         <%= f.text_field :number, :class => "inline" %>
       </div>
     </div>
-
+    
     <div class="field">
       <div class="field-label">
-        <%= f.label :volts, "Open-circuit Voltage (Voc)"%>
+        <%= f.label :voc, "Open-circuit Voltage (Voc)"%>
       </div>
       <div class="field-input input-append">
-        <span class="input-container"><%= f.text_field :volts %></span>
+        <span class="input-container"><%= f.text_field :voc %></span>
         <span class="add-on">Volts DC</span>
       </div>
     </div>
@@ -31,8 +31,39 @@
     </div>
     
     <div class="field">
+      <hr/>
+      <div class="field-label">&nbsp;</div>
+      <div class="field-input">
+        <p class="help">These fields are required for the Installation &amp; Commissioning Checklist (optional):</p>
+      </div>
+    </div>
+    
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :volts, "Voltage"%>
+        <p class="help">Tested System Check</p>
+      </div>
+      <div class="field-input input-append">
+        <span class="input-container"><%= f.text_field :volts %></span>
+        <span class="add-on">Volts DC</span>
+      </div>
+    </div>
+    
+    <div class="field">
+      <div class="field-label">
+        <%= f.label :short_circuit, "Short Circuit Current" %>
+        <p class="help">Tested System Check</p>
+      </div>
+      <div class="field-input input-append inline">
+        <span class="input-container"><%= f.text_field :short_circuit %></span>
+        <span class="add-on">Amps</span>
+      </div>
+    </div>
+    
+    <div class="field">
       <div class="field-label">
         <%= f.label :amps, "Operating Current" %>
+        <p class="help">Tested System Check</p>
       </div>
       <div class="field-input input-append inline">
         <span class="input-container"><%= f.text_field :amps %></span>

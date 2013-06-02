@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601223849) do
+ActiveRecord::Schema.define(:version => 20130602030735) do
 
   create_table "checklist_groups", :force => true do |t|
     t.string   "name"
@@ -161,6 +161,8 @@ ActiveRecord::Schema.define(:version => 20130601223849) do
     t.string   "short_circuit"
     t.string   "tilt"
     t.string   "orientation"
+    t.string   "voc"
+    t.string   "isc"
   end
 
   create_table "pdfs", :force => true do |t|

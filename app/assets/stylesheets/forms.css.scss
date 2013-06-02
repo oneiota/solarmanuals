@@ -108,7 +108,6 @@ button,
 .checklist-container {
   padding: 0 4em;
   img {
-    width:100%;
     margin: 0 auto;
     height: auto;
     display: inline-block;
@@ -123,6 +122,9 @@ button,
     &:first-child {
       border: none;
     }
+  }
+  .help {
+    display: inline-block;
   }
 }
 
