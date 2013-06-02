@@ -125,10 +125,6 @@ class Manual < ActiveRecord::Base
     Image.where(manual_id: id, feature: true).first
   end
   
-  def number_of_inverters
-    (inverters_serials || []).size
-  end
-  
   def panels_serials
     panels_serial_numbers.split(',').map{ |number| number.strip }
   end
@@ -154,12 +150,10 @@ class Manual < ActiveRecord::Base
   end
   
   def panels_table
-    pp panels_serials
     table_from_csv(panels_serials)
   end
   
   def inverters_table
-    pp inverters_serials
     table_from_csv(inverters_serials)
   end
   

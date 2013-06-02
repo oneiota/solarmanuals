@@ -32,6 +32,14 @@
     <span class="add-on">kW</span>
   </div>
 </div>
+<div class="field">
+  <div class="field-label">
+    <%= f.label :inverter_number, "Number of Inverters" %>
+  </div>
+  <div class="field-input input-append">
+    <span class="input-container"><%= f.text_field :inverter_number %></span>
+  </div>
+</div>
 
 <div class="field" data-serial-range>
   <%= render 'serial_range' %>

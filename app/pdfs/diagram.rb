@@ -273,7 +273,7 @@ class Diagram
     
     text = [
       {
-        :text => "#{pluralize(@manual.number_of_inverters, 'Inverter')} -\n",
+        :text => "#{pluralize(@manual.inverter_number, 'Inverter')} -\n",
         :styles => [:regular]
       },
       {
