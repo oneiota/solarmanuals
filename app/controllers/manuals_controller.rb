@@ -2,6 +2,11 @@ class ManualsController < ApplicationController
   layout "pdf", :only => [:document]
   layout "blank", :only => [:installer_signature, :contractor_signature, :signature_success]
   
+  rescue_from BigCharger::Error do |e|
+    flash[:alert] = e.message
+    redirect_to :back
+  end
+  
   before_filter :authenticate_user!, :except => [:installer_signature, :signature_success]
   load_and_authorize_resource
   
