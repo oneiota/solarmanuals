@@ -16,3 +16,6 @@
 
 # Ignore all logfiles and tempfiles.
 /config/database.yml
+
+#Ignore sublime local files
+/solarmanuals.sublime*
