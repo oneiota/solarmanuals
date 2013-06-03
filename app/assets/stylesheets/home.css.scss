@@ -19,6 +19,9 @@
 
 #home-nav {
   border-bottom: 1px $lightGrey solid;
+  ul {
+    margin:0;
+  }
   li {
     display: inline-block;
     float:left;
