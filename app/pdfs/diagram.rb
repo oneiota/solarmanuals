@@ -57,7 +57,7 @@ class Diagram
           :text => "Total: "
         },
         {
-          :text => "#{string.total}W Array \n#{string.volts} Volts DC, #{string.amps} Amps",
+          :text => "#{string.total}W Array \nVoc: #{string.voc} Volts DC, Isc: #{string.isc} Amps",
           :styles => [:bold]
         }
       ]

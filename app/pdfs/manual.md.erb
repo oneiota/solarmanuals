@@ -227,9 +227,10 @@ To turn on the system it is the reverse process of the shutdown procedure (step 
 See attachments.
 <% end %>
 
-## Inverter
+## Inverter(s)
 
-|Inverter Brand: <b><%= @manual.inverter_brand %></b>|Inverter Model: <b><%= @manual.inverter_model %></b>|Inverter Output: <b><%= @manual.inverter_output %>kW</b>|
+|Number of Inverters: <b><%= @manual.inverter_number %></b>|Inverter Brand: <b><%= @manual.inverter_brand %></b>|Inverter Series: <b><%= @manual.inverter_series %></b>|
+|Inverter Model: <b><%= @manual.inverter_model %></b>|Inverter Output: <b><%= @manual.inverter_output %>kW</b>||
 
 ### Inverter Serial Numbers
 
@@ -244,7 +245,7 @@ See attachments.
 |Installation Workmanship|<b><%= @manual.warranty_workmanship %></b>|
 |Panels - Product|<b><%= @manual.warranty_panels_product %></b>|
 |Panels - Output Performance|<b><%= @manual.warranty_panels_output_performance %></b>|
-|Inverter|<b><%= @manual.warranty_inverter %></b>|
+|Inverter(s)|<b><%= @manual.warranty_inverter %></b>|
 
 <% if @manual.include_performance %>
 ---
