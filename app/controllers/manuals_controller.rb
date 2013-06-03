@@ -7,8 +7,8 @@ class ManualsController < ApplicationController
     redirect_to :back
   end
   
-  before_filter :authenticate_user!, :except => [:installer_signature, :signature_success]
-  load_and_authorize_resource :except => [:installer_signature, :signature_success]
+  before_filter :authenticate_user!, :except => [:installer_signature, :signature_success, :update]
+  load_and_authorize_resource :except => [:installer_signature, :signature_success, :update]
   
   def document
     @manual = Manual.find(params[:id])
