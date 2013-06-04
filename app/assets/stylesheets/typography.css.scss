@@ -1,4 +1,4 @@
-@import 'variables';
+@import "_variables";
 
 body {
   font-size: $baseFontSize;
@@ -51,7 +51,6 @@ p, ul, blockquote {
 }
 
 .help {
-  display: inline-block;
   font-size: $smallFontSize;
   line-height: 1.5em;
   color: $midGrey;

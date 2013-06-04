@@ -1,8 +1,14 @@
 class ManualsController < ApplicationController
   layout "pdf", :only => [:document]
+  layout "blank", :only => [:installer_signature, :contractor_signature, :signature_success]
   
-  before_filter :authenticate_user!
-  load_and_authorize_resource
+  rescue_from BigCharger::Error do |e|
+    flash[:alert] = e.message
+    redirect_to :back
+  end
+  
+  before_filter :authenticate_user!, :except => [:installer_signature, :signature_success, :update]
+  load_and_authorize_resource :except => [:installer_signature, :signature_success, :update]
   
   def document
     @manual = Manual.find(params[:id])
@@ -108,10 +114,6 @@ class ManualsController < ApplicationController
       user_params = params[:manual].delete(:user)
     end
     
-    if params[:pdf_list]
-      params[:manual] ||= { :pdf_ids => [] }
-    end
-    
     @manual.assign_attributes(params[:manual])
     
     # payment step
@@ -147,7 +149,9 @@ class ManualsController < ApplicationController
     
     respond_to do |format|
       if @manual.save
-        if @manual.filled
+        if params[:manual] && params[:manual][:installer_signature_attributes]
+          format.html { redirect_to manual_signature_success_path(@manual) }
+        elsif @manual.filled
           format.html { redirect_to @manual, notice: 'Manual was successfully updated.' }
           format.json { head :no_content }
           format.js
@@ -188,7 +192,11 @@ class ManualsController < ApplicationController
       :eway_payment => nil,
       :created_at => Time.now,
       :updated_at => Time.now,
-      :current_step => 'customer'
+      :current_step => 'customer',
+      :installer_signature_id => nil,
+      :installer_signature_email => nil,
+      :panels_serial_numbers => nil,
+      :inverter_serial => nil
     })
     
     @to_dup.panel_strings.each do |ps|
@@ -204,5 +212,15 @@ class ManualsController < ApplicationController
       redirect_to manuals_path, :alert => @manual.errors.full_messages.join(" ")
     end
   end
-    
+  
+  
+  def installer_signature
+    @manual = Manual.find(params[:manual_id])
+    @manual.build_installer_signature
+  end
+  
+  def signature_success
+    @manual = Manual.find(params[:manual_id])
+  end
+  
 end

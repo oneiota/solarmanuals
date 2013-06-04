@@ -1,4 +1,4 @@
-@import 'variables';
+@import "_variables";
 
 form input[type=checkbox] {
   margin-right: 1em;
@@ -59,7 +59,7 @@ form input[type=checkbox] {
 #pdf-uploads {
 
   @include grid(12);
-  margin-bottom: $baseLineHeight * 3;
+  margin-bottom: 1em;
 
 }
 
@@ -67,6 +67,10 @@ form input[type=checkbox] {
   float: left;
   width: 100%;
   margin-top: 1em;
+  margin-bottom: 3em;
+  h4 {
+    margin-bottom: 1em;
+  }
   .pdf {
     @include clearfix;
     margin-bottom: 0;
@@ -239,7 +243,7 @@ textarea {
 
 
 
-#serial-range {
+#manual-form .serial-range {
   position: absolute;
   right: 20px;
   p {

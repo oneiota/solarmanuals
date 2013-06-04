@@ -1,0 +1,29 @@
+<h1>Listing checklist_items</h1>
+
+<table>
+  <tr>
+    <th>Checklist group</th>
+    <th>Label</th>
+    <th>Helper</th>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @checklist_items.each do |checklist_item| %>
+  <tr>
+    <td><%= checklist_item.checklist_group_id %></td>
+    <td><%= checklist_item.label %></td>
+    <td><%= checklist_item.helper %></td>
+    <td><%= checklist_item.type %></td>
+    <td><%= link_to 'Show', checklist_item %></td>
+    <td><%= link_to 'Edit', edit_checklist_item_path(checklist_item) %></td>
+    <td><%= link_to 'Destroy', checklist_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Checklist item', new_checklist_item_path %>

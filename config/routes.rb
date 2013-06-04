@@ -1,5 +1,7 @@
 Solar::Application.routes.draw do
 
+  resources :checklist_items
+
   devise_for :users
   
   resources :users, only: [:show, :update] do
@@ -17,6 +19,9 @@ Solar::Application.routes.draw do
   resources :manuals do
     post :single_charge
     get :duplicate
+    get :installer_signature
+    get :contractor_signature
+    get :signature_success
   end
   
   resources :invoices, :controller => "eway_payments", :only => [:show]
@@ -39,7 +44,8 @@ Solar::Application.routes.draw do
   get '/delivery', to: 'home#delivery'
   get '/refunds', to: 'home#refunds'
   get '/terms', to: 'home#terms'
-  
+  get '/admin_info', to: 'admin#admin_info'
+
   root :to => 'home#index'
 
 end

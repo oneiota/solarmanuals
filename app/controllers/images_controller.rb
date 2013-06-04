@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  
+  before_filter :authenticate_user!
   def destroy
     @image = Image.find(params[:id])
     @image.destroy

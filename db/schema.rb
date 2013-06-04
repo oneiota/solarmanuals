@@ -11,10 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326052127) do
+ActiveRecord::Schema.define(:version => 20130602030735) do
+
+  create_table "checklist_groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "checklist_items", :force => true do |t|
+    t.integer  "checklist_group_id"
+    t.text     "label"
+    t.string   "helper"
+    t.string   "field_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_url"
+  end
+
+  create_table "checklist_responses", :force => true do |t|
+    t.integer  "manual_id"
+    t.integer  "checklist_item_id"
+    t.string   "response"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.boolean  "na"
+  end
 
   create_table "checklists", :force => true do |t|
-    t.text "question"
+    t.text    "question"
+    t.boolean "show_check_question"
   end
 
   create_table "checklists_manuals", :id => false, :force => true do |t|
@@ -64,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20130326052127) do
     t.string   "inverter_brand"
     t.string   "inverter_model"
     t.string   "inverter_output"
-    t.string   "inverter_serial"
+    t.text     "inverter_serial"
     t.string   "warranty_workmanship"
     t.string   "warranty_panels_product"
     t.string   "warranty_panels_output_performance"
@@ -93,6 +120,14 @@ ActiveRecord::Schema.define(:version => 20130326052127) do
     t.string   "inverter_series"
     t.string   "current_step"
     t.decimal  "performance_multiplier",             :precision => 8, :scale => 2, :default => 0.75
+    t.integer  "installer_signature_id"
+    t.string   "installer_signature_email"
+    t.boolean  "account_installer",                                                :default => true
+    t.boolean  "account_contractor",                                               :default => true
+    t.boolean  "account_designer",                                                 :default => true
+    t.string   "designer_name"
+    t.string   "designer_accreditation"
+    t.boolean  "include_checklist",                                                :default => false
   end
 
   create_table "manuals_pdfs", :force => true do |t|
@@ -120,8 +155,14 @@ ActiveRecord::Schema.define(:version => 20130326052127) do
     t.string   "volts"
     t.string   "amps"
     t.integer  "manual_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "polarity"
+    t.string   "short_circuit"
+    t.string   "tilt"
+    t.string   "orientation"
+    t.string   "voc"
+    t.string   "isc"
   end
 
   create_table "pdfs", :force => true do |t|
@@ -130,6 +171,17 @@ ActiveRecord::Schema.define(:version => 20130326052127) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+  end
+
+  create_table "signatures", :force => true do |t|
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "name"
+    t.string   "licence"
   end
 
   create_table "states", :force => true do |t|

@@ -1,0 +1,68 @@
+@import "_variables";
+
+// Place all the styles related to the ChecklistItems controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.notshit input[type="checkbox"] + p.help {
+  margin-left:4em;
+}
+
+.notshit input[type="checkbox"] {
+    display:none;
+}
+.notshit .field.checkbox label, .notshit form input[type="checkbox"] + label {
+  font-family: FontAwesome, Helvetica, sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: inherit;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+  cursor:pointer;
+  position: relative;
+}
+
+.notshit .field.checkbox label:before {
+  font-weight: normal;
+  position:absolute;
+  right: -65px;
+  top:-3px;
+  content:"\f096";
+  font-size:1.5em;
+  color:$blue;
+  cursor:pointer;
+  padding-right:0.5em;
+}
+
+.notshit form input[type="checkbox"] + label:before {
+  position:relative;
+  top:3px;
+  font-weight: normal;
+  content:"\f096";
+  font-size:1.5em;
+  color:$blue;
+  cursor:pointer;
+  padding-right:0.5em;
+}
+
+.notshit .field.checkbox.checked label:before, .notshit form input[type="checkbox"]:checked + label:before {
+  content:"\f046";
+  font-size:1.5em;
+  color:$blue;
+  cursor:pointer;
+}
+
+
+
+.na-btn {
+  position: absolute;
+  right: 0;
+}

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  checklist_group_id: 1
+  label: MyText
+  helper: MyString
+  type: 
+
+two:
+  checklist_group_id: 1
+  label: MyText
+  helper: MyString
+  type: 

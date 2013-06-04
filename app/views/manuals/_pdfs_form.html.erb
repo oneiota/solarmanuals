@@ -9,21 +9,4 @@
     </div>
   <% end %>
   
-  <% if current_user.pdfs.count > 0 %>
-    <div id="manual-pdfs-boxes">
-      <%= form_for @manual do |f| %>
-        <%= hidden_field_tag :pdf_list, true %>
-        <% @manual.user.pdfs.each do |pdf| %>
-          <p class="pdf">
-            <%= label_tag dom_id(pdf), :class => 'checkbox' do %>
-              <%= check_box_tag 'manual[pdf_ids][]', pdf.id, @manual.pdf_ids.include?(pdf.id), id: dom_id(pdf), :class => 'pdf-checkbox' %> 
-              <%= pdf.file_file_name %>
-            <% end %>
-            <%= link_to "Delete", pdf_path(pdf), :method => :delete, :confirm => "Delete #{pdf.file_file_name}?", :class => 'delete-pdf-link' %>
-          </p>
-        <% end %>
-        <%= f.submit "Update List", class: 'pdfs-submit-btn btn' %>
-      <% end %>
-    </div>
-  <% end %>
 </div>

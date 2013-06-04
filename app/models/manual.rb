@@ -10,23 +10,34 @@ class Manual < ActiveRecord::Base
   
   belongs_to :eway_payment
   
-  has_many :images
+  has_many :images, :dependent => :destroy
   accepts_nested_attributes_for :images
   
   belongs_to :client_state, :class_name => "State"
   
   has_and_belongs_to_many :pdfs
   
-  has_many :panel_strings
+  has_many :panel_strings, :dependent => :destroy
   accepts_nested_attributes_for :panel_strings, :allow_destroy => true
   
   accepts_nested_attributes_for :user
   
   has_and_belongs_to_many :checklists
   
+  has_many :checklist_responses, :dependent => :destroy
+  has_many :checklist_items, :through => :checklist_responses
+  
+  accepts_nested_attributes_for :checklist_responses  
+  
   attr_accessor :payment, :prefill_id, :duplicate
   
-  after_save :build_strings
+  after_save :build_strings, :send_signature_emails
+  
+  belongs_to :installer_signature, :class_name => "Signature"
+  belongs_to :contractor_signature, :class_name => "Signature"
+  
+  accepts_nested_attributes_for :installer_signature
+  accepts_nested_attributes_for :contractor_signature
   
   def build_strings
     panel_strings.build unless panel_strings.count > 0
@@ -35,7 +46,7 @@ class Manual < ActiveRecord::Base
   # steps
   
   def steps
-    %w{customer panels inverter warranties performance wiring} + (user.subscribed? || paid? || user.insider || user.manuals.count == 0 ? [] : %w{payment})
+    %w{customer panels inverter warranties performance wiring checklist signature} + (user.subscribed? || paid? || user.insider || user.manuals.count == 0 ? [] : %w{payment})
   end
   
   def step_index(step)
@@ -82,7 +93,8 @@ class Manual < ActiveRecord::Base
       "warranties" => [warranty_inverter, warranty_panels_output_performance, warranty_panels_product, warranty_workmanship].join(", "),
       "performance" => (include_performance ? "#{sunlight_city.capitalize}, #{(performance_multiplier * 100).to_i}%" : 'No'),
       "wiring" => (include_wiring ? 'Yes' : 'No'),
-      "certificate" => (include_certificate ? 'Yes' : 'No')
+      "checklist" => (include_checklist ? 'Included' : 'Manually complete & include'),
+      "signature" => (installer_signature_id ? 'Signed' : 'Not Signed')
     }[step]
   end
   
@@ -117,11 +129,15 @@ class Manual < ActiveRecord::Base
     panels_serial_numbers.split(',').map{ |number| number.strip }
   end
   
-  def panels_table
+  def inverters_serials
+    (inverter_serial || "").split(',').map{ |number| number.strip }
+  end
+  
+  def table_from_csv(csv)
     buffer = ""
     index = 1
     line_text = ""
-    panels_serials.each do |number|
+    csv.each do |number|
       line_text += "|#{index}. <b>#{number}</b>"
       if index % 3 == 0
         buffer << "#{line_text}|\n"
@@ -133,6 +149,13 @@ class Manual < ActiveRecord::Base
     buffer
   end
   
+  def panels_table
+    table_from_csv(panels_serials)
+  end
+  
+  def inverters_table
+    table_from_csv(inverters_serials)
+  end
   
   # 
   
@@ -181,11 +204,39 @@ class Manual < ActiveRecord::Base
     (10..100).step(5).map{|n| ["#{n}%", (n / 100.0)] }
   end
   
+  # signatures
   
+  def installer_name
+    (installer_signature && installer_signature.name) || (user && user.full_name)
+  end
   
+  def installer_accreditation
+    (installer_signature && installer_signature.licence) || (user && user.accreditation)
+  end
+  
+  def send_signature_emails  
+    if installer_signature_email_changed? && installer_signature_email.present?
+      SignatureMailer.installer_signature_request(self, installer_signature_email).deliver
+    end
+  end
+  
+  def warranty_workmanship
+    append_years(self[:warranty_workmanship])
+  end
+    
+  def warranty_panels_product
+    append_years(self[:warranty_panels_product])
+  end
+  
+  def warranty_panels_output_performance
+    append_years(self[:warranty_panels_output_performance])
+  end
+  
+  def warranty_inverter
+    append_years(self[:warranty_inverter])
+  end
   
   private
-  
   
   def self.all_present?(array)
     array.each do |v|
@@ -198,6 +249,12 @@ class Manual < ActiveRecord::Base
     !duplicate
   end
   
-  
+  def append_years(str)
+    is_numeric = true if Float(str) rescue false
+    if is_numeric
+      return str + " years"
+    end
+    str
+  end
   
 end

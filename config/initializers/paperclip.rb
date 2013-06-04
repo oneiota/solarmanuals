@@ -19,6 +19,13 @@ LOGO_OPTS = {
   :s3_credentials => "#{Rails.root}/config/s3.yml"
 }
 
+SIGNATURE_OPTS = { 
+  :path => "/signatures/:style/:id/:basename.:extension",
+  :url => ':s3_path_url',
+  :storage => :s3, 
+  :s3_credentials => "#{Rails.root}/config/s3.yml"
+}
+
 
 PDF_OPTS = {
   :styles => { :processed => ["", :pdf] },
@@ -32,5 +39,6 @@ PDF_OPTS = {
 if Rails.env.development?
   IMAGE_OPTS[:path].insert(0, "/dev")
   LOGO_OPTS[:path].insert(0, "/dev")
+  SIGNATURE_OPTS[:path].insert(0, "/dev")
   PDF_OPTS[:path].insert(0, "/dev")
 end

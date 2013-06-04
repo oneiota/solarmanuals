@@ -25,27 +25,22 @@
   </div>
 </div>
 
-<div class="field">
-  <div id="serial-range">
-    <p class="help">Enter a range of serials<br/>and press enter.</p>
-    <label>From</label><input id="range-from" type="text" /><br/>
-    <label>To</label><input id="range-to" type="text" />
-  </div>
+<div class="field" data-serial-range>
+  <%= render 'serial_range' %>
   <div class="field-label">
     <%= f.label :panels_serial_numbers, "Serial Numbers" %>
     <p class="helper">Optional - list here unless published in attachments.</p>
   </div>
   <div class="field-input">
-    <%= f.text_area :panels_serial_numbers, :rows => 4 %>
+    <%= f.text_area :panels_serial_numbers, :rows => 4, 'data-serial-range-output' => '' %>
   </div>
 </div>
-
 
 <ol id="string-fields">
   <%= f.fields_for :panel_strings do |b| %>
     <%= render 'panel_string_fields', :f => b %>
   <% end %>
   <div class="add-fields">
-    <%= link_to_add_fields "Add another string", f, :panel_strings %>
+    <%= link_to_add_fields "Add another string?", f, :panel_strings %>
   </div>
 </ol>

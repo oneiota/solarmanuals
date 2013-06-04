@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
   skip_before_filter :check_user_flagged!
+  before_filter :authenticate_user!
   
   rescue_from BigCharger::Error do |e|
     flash[:alert] = e.message
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
   
   def billing
     @user = current_user
-    @payments = current_user.eway_payments.reverse
+    @payments = @user.eway_payments.reverse
     @payments_months = @payments.group_by{ |p| p.created_at.beginning_of_month }.sort.reverse!.first(12)
     
     if @payments_months.size > 0

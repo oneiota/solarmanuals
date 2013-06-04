@@ -4,10 +4,24 @@ $ ->
     e.preventDefault()
     scrltarget = $(this).attr('href').substr(1)
     $("html, body").animate { scrollTop: $(scrltarget).offset().top - 200 }, 'slow', (e) ->
-		  console.log("done")
-		  $('#device').css('height', '0px')
-		  
-	$(".home.index #home-menu #logo a").on 'click', (e) ->
-	 e.preventDefault()
-	 $("html, body").animate { scrollTop: 0 }, 1000
-    
+      $('#device').css('height', '0px')
+
+  $(".home.index #home-menu #logo a").on 'click', (e) ->
+    e.preventDefault()
+    if $(document).width() > 768
+      $("html, body").animate
+        scrollTop: 0
+        , 1000
+    else
+      $('#home-menu ul').toggle(500)
+      $('#logo').toggleClass('open')
+
+  $(".get_started").on 'click', (e) ->
+    if $(document).width() < 480
+      e.preventDefault()
+      alert('We are sorry but our website is not optimised for mobile use. Please visit us again on a non-mobile device to try our service for free.')
+  
+  $('#home-menu ul a').on 'click', ->
+    if $(document).width() < 768
+      $('#home-menu ul').toggle(500)
+      $('#logo').toggleClass('open')       

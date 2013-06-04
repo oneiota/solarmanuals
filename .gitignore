@@ -16,3 +16,10 @@
 
 # Ignore all logfiles and tempfiles.
 /config/database.yml
+*.orig
+
+.DS_Store
+
+#Ignore Sublime project files
+/solarmanuals.sublime-project
+/solarmanuals.sublime-workspace

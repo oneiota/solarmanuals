@@ -14,27 +14,50 @@
         <%= render 'pdfs_form' %>
       </div>
       
-      <div>Attachment Checklist <i class="icon-ok"></i><br/>
-          <p class="help">Before downloading your manual be sure to check you have attached the following:</p>
-          
-          <%= form_for @manual, :url => manual_document_path(@manual, :format => :pdf) do |f| %>
-          
-            <% Checklist.all.each do |checklist| %>
-              <%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
-              <%= label_tag dom_id(checklist), checklist.question.html_safe %><br>
-            <% end %>
+      
+      <%= form_for @manual, :url => manual_document_path(@manual, :format => :pdf) do |f| %>
+      
+        <% if current_user.pdfs.count > 0 %>
+        
+          <div id="manual-pdfs-boxes">
             
-            <div id="manual-actions">              
-              <p>Download your completed manual below</p>
-              <button type="submit" class="btn primary" id="download-pdf">
-                <i class='icon-download-alt'></i> Download Manual
-              </button>
-            </div>
-            
-          <% end %>    
-      </div>
+              <h4>Choose documents to attach to this manual</h4>
+              
+              <%= hidden_field_tag :pdf_list, true %>
+              <%= hidden_field_tag 'manual[pdf_ids][]', nil %>
+
+              <% @manual.user.pdfs.each do |pdf| %>
+                <p class="pdf">
+                  <%= check_box_tag 'manual[pdf_ids][]', pdf.id, @manual.pdf_ids.include?(pdf.id), id: dom_id(pdf), :class => 'pdf-checkbox' %> 
+                  <%= label_tag dom_id(pdf), pdf.file_file_name, :class => "checkbox" %>  
+                  <%= link_to "Delete", pdf_path(pdf), :method => :delete, :confirm => "Delete #{pdf.file_file_name}?", :class => 'delete-pdf-link' %>
+                </p>
+              <% end %>
+          </div>
+          
+        <% end %>
+          
+        <hr/>
+        <h3>Attachment Checklist <i class="icon-ok"></i></h3>
+        <p class="help">Before downloading your manual be sure to check you have attached the following:</p><br/>
+        <% Checklist.all.each do |checklist| %>
+        
+          <% if checklist.show_check_question || !@manual.include_checklist %>
+            <%= check_box_tag "manual[checklist_ids][]", checklist.id, @manual.checklist_ids.include?(checklist.id), id: dom_id(checklist) %>
+            <%= label_tag dom_id(checklist), checklist.question.html_safe %><br/>
+          <% end %>
+          
+        <% end %>
+        
+        <div id="manual-actions">              
+          <p>Download your completed manual below</p>
+          <button type="submit" class="btn primary" id="download-pdf">
+            <i class='icon-download-alt'></i> Download Manual
+          </button>
+        </div>
       
       
+      <% end %>
       
     <% end %>
   <% end %>

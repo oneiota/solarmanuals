@@ -24,7 +24,7 @@ end
 gem 'debugger'
 gem "nokogiri"
 
-gem "prawn", :git => "git://github.com/prawnpdf/prawn.git"
+gem "prawn", :git => "git://github.com/tomconroy/prawn.git", :branch => "patch-table-bug"
 
 gem 'devise'
 
