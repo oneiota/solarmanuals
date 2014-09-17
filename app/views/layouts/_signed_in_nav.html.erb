@@ -1,10 +1,10 @@
 <div id="signed-in-top" class="nest">
-  
+
   <div id="identity">
     <%= render "users/logo" %>
   </div>
-  
-  <div id="user-details">    
+
+  <div id="user-details">
     <div class="user-icon"><i class="icon-user"></i></div>
     <div class="user-deets">
       <p>
@@ -17,11 +17,11 @@
   </div>
 
   <div id="billing-info">
-    
+
     <div class="bill-icon"><i class="icon-file-alt"></i></div>
-    
+
     <div class="bill-deets">
-    <% if current_user.insider %>  
+    <% if current_user.insider %>
       <p>Insider Account</p>
     <% elsif current_user.subscribed? %>
       <p>
@@ -29,30 +29,26 @@
         Usage <strong><%= currency(current_user.current_charge) %></strong><br/>
         Next charge <strong><%= nicetime(current_user.last_payed_at + 1.month) %></strong>
       </p>
-  
+
     <% else %>
         <p>
           <strong>Casual User</strong><br/>
           <strong><%= currency(CASUAL_FEE) %> <span class="help">Per Manual</span></strong><br/><br/>
           <%= link_to "Billing Details", billing_users_path %>
-        </p>  
+        </p>
     <% end %>
     </div>
   </div>
-  
+
   <div id="signout-holder">
     <%= link_to destroy_user_session_path, :method => :delete, :id => "sign-out" do %>
       Sign Out <i class="icon-signout icon-white"></i>
     <% end %>
-    <br/><br/>
-    <% unless current_user.subscribed %>
-      <%= link_to "Subscribe", subscribe_users_path, :class => "btn primary" %>
-    <% end %>
   </div>
-  
+
 </div>
 
 <div id="user-menu">
-  <%= nav_link "New Manual", root_path %>  
+  <%= nav_link "New Manual", root_path %>
   <%= nav_link "My Installs (#{current_user.active_manuals.count})", manuals_path %>
 </div>

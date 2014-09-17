@@ -32,28 +32,24 @@ class EwayPayment < ActiveRecord::Base
   end
 
   def process_payment!(amount)
+    response = Eway.client.process_payment(
+      user.eway_id,
+      amount,
+      'Solar Manuals Subscription'
+    )
 
-    begin
-      response = Eway.client.process_payment(
-        user.eway_id,
-        amount,
-        'Solar Manuals Subscription'
-      )
-
-      set_payment_details(response)
-    rescue
-      return false
-    end
-
+    set_payment_details(response)
   end
 
   def process_subscription!
     charge_amount = user.current_charge
     return if charge_amount == 0
 
+    self.process_payment!(charge_amount)
+
     self.subscription = true
 
-    if self.process_payment!(charge_amount) && self.save
+    if self.save
       puts "Created payment for #{user.full_name} at #{charge_amount}"
 
       user.flagged = false
