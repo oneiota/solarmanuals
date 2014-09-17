@@ -23,7 +23,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'debugger'
+
 gem "nokogiri"
 
 gem "prawn", :git => "git://github.com/prawnpdf/prawn.git"
